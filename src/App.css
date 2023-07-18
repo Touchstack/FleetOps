@@ -40,3 +40,43 @@
 .read-the-docs {
   color: #888;
 }
+
+@font-face {
+  font-family:"Bold" ;
+  src: url("../src/assets/fonts/AnekDevanagari-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"ExtraBold" ;
+  src: url("../src/assets/fonts/AnekDevanagari-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"ExtraLight" ;
+  src: url("../src/assets/fonts/AnekDevanagari-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"Light" ;
+  src: url("../src/assets/fonts/AnekDevanagari-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"Medium" ;
+  src: url("../src/assets/fonts/AnekDevanagari-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"Regular" ;
+  src: url("../src/assets/fonts/AnekDevanagari-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"SemiBold" ;
+  src: url("../src/assets/fonts/AnekDevanagari-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family:"Thin" ;
+  src: url("../src/assets/fonts/AnekDevanagari-Thin.ttf") format("truetype");
+}
