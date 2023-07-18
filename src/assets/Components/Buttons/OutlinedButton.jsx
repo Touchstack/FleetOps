@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PrimaryButton({ cssprops, buttonText }) {
+export default function OutlinedButton({ cssprops, buttonText, }) {
   return (
     <button
       type="button"
@@ -10,3 +10,4 @@ export default function PrimaryButton({ cssprops, buttonText }) {
     </button>
   );
 }
+
