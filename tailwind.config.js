@@ -16,6 +16,9 @@ module.exports = {
       colors: {
         fleetBlue: "#23A6BF",
         fleetLightBlue: "#30aec7",
+        fleetDeepBlue: "#234C65",
+        fleetGrey: "#C0C0C0",
+        fleetFooterHover: "#08B5D6",
       },
     },
   },
