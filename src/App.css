@@ -1,41 +1,41 @@
-
-
 @font-face {
-  font-family:"AnekDevanagari-Bold" ;
+  font-family: "AnekDevanagari-Bold";
   src: url("../src/assets/fonts/AnekDevanagari-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-ExtraBold" ;
-  src: url("../src/assets/fonts/AnekDevanagari-ExtraBold.ttf") format("truetype");
+  font-family: "AnekDevanagari-ExtraBold";
+  src: url("../src/assets/fonts/AnekDevanagari-ExtraBold.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-ExtraLight" ;
-  src: url("../src/assets/fonts/AnekDevanagari-ExtraLight.ttf") format("truetype");
+  font-family: "AnekDevanagari-ExtraLight";
+  src: url("../src/assets/fonts/AnekDevanagari-ExtraLight.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-Light" ;
+  font-family: "AnekDevanagari-Light";
   src: url("../src/assets/fonts/AnekDevanagari-Light.ttf") format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-Medium" ;
+  font-family: "AnekDevanagari-Medium";
   src: url("../src/assets/fonts/AnekDevanagari-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-Regular" ;
+  font-family: "AnekDevanagari-Regular";
   src: url("../src/assets/fonts/AnekDevanagari-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-SemiBold" ;
+  font-family: "AnekDevanagari-SemiBold";
   src: url("../src/assets/fonts/AnekDevanagari-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family:"AnekDevanagari-Thin" ;
+  font-family: "AnekDevanagari-Thin";
   src: url("../src/assets/fonts/AnekDevanagari-Thin.ttf") format("truetype");
 }
