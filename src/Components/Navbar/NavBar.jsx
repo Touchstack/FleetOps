@@ -1,6 +1,5 @@
-import React from 'react'
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import OutlinedButton from '../Buttons/OutlinedButton';
+import OutlinedButton from "../Buttons/OutlinedButton";
 
 export default function NavBar() {
   return (
@@ -22,7 +21,9 @@ export default function NavBar() {
           </span>
           <OutlinedButton
             buttonText={"Contact Us"}
-            cssprops={"md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"}
+            cssprops={
+              "md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
+            }
           />
           <button
             data-collapse-toggle="navbar-cta"
@@ -113,7 +114,3 @@ export default function NavBar() {
     </nav>
   );
 }
-
-
-
-
