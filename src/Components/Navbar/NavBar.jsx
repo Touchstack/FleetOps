@@ -116,7 +116,7 @@ export default function NavBar() {
             initial={false}
             variants={menuVariants}
             animate={showMenu ? "opened" : "closed"}
-            className="flex flex-col text-xl font-Regular p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#E6F8F1] md:shadow-none sm:shadow-lg shadow-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
+            className="flex flex-col text-xl font-Regular p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:shadow-none sm:shadow-lg shadow-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
           >
             <motion.li variants={linkVariants}>
               <a
