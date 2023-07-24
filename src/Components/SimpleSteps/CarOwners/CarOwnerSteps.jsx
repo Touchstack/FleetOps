@@ -33,9 +33,7 @@ const CarOwnerSteps = ({ cssprops }) => {
   ];
 
   return (
-    <div
-      className={`bg-white font-Regular grid lg:grid-cols-2 grid-cols-1 ${cssprops}`}
-    >
+    <div className={`${cssprops} font-Regular grid lg:grid-cols-2 grid-cols-1`}>
       <div className="lg:p-16 md:p-18 p-16 flex lg:justify-end justify-center lg:order-first md:order-last sm:order-last order-last">
         <img
           src={CarOwnersImg}
@@ -45,7 +43,7 @@ const CarOwnerSteps = ({ cssprops }) => {
       </div>
 
       <div className="flex flex-col justify-center lg:items-start items-center">
-        <div className="lg:w-10/12 md:w-6/12 sm:w-8/12 w-10/12 self-center">
+        <div className="lg:w-10/12 md:w-9/12 sm:w-8/12 w-10/12 self-center">
           <p className="md:text-sm text-xs py-4">CAR OWNERS</p>
           <h3 className="font-Bold mb-5 text-[#0A0D14] lg:text-4xl md:text-4xl text-3xl">
             Simple Steps to Get Started
