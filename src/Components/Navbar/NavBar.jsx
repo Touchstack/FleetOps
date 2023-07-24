@@ -79,7 +79,7 @@ export default function NavBar() {
           <motion.button
             data-collapse-toggle="navbar-cta"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-cta"
             aria-expanded={ariaExpanded}
             onTouchStartCapture={() => showMenu && setShowMenu(false)}
@@ -116,7 +116,7 @@ export default function NavBar() {
             initial={false}
             variants={menuVariants}
             animate={showMenu ? "opened" : "closed"}
-            className="flex flex-col text-xl font-Regular p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:shadow-none sm:shadow-lg shadow-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
+            className="flex flex-col text-xl font-Regular p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#E6F8F1] md:shadow-none sm:shadow-lg shadow-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
           >
             <motion.li variants={linkVariants}>
               <a
@@ -130,7 +130,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/carowners"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Car Owners
               </a>
@@ -138,7 +138,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/drivers"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Drivers
               </a>
@@ -146,7 +146,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/faqs"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 FAQ
               </a>
@@ -154,7 +154,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="#"
-                className="flex py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="flex py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Company
                 <svg
@@ -174,7 +174,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/login"
-                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Login
               </a>
@@ -182,7 +182,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/contactus"
-                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white"
+                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Contact Us
               </a>
