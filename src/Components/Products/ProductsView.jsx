@@ -25,8 +25,8 @@ const ProductsView = () => {
   ];
 
   return (
-    <div className="bg-white pt-8">
-      <h3 className="font-Bold text-center text-[#0A0D14] lg:text-4xl md:text-4xl text-3xl">
+    <div className="bg-[#F7F9F8;] pt-8">
+      <h3 className="font-Bold text-center mt-10 mb-5 text-[#0A0D14] lg:text-4xl md:text-4xl text-3xl">
         Our Products
       </h3>
 

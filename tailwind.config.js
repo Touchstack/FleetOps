@@ -20,6 +20,7 @@ module.exports = {
         fleetGrey: "#C0C0C0",
         fleetFooterHover: "#08B5D6",
         fleetNavText: "#0A0D14",
+        faqText: "#270002",
       },
     },
   },
