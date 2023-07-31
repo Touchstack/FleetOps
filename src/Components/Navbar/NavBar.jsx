@@ -71,12 +71,15 @@ export default function NavBar() {
               Login
             </a>
           </span>
-          <OutlinedButton
-            buttonText={"Contact Us"}
-            cssprops={
-              "md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
-            }
-          />
+          <a href="/contactus">
+            <OutlinedButton
+              buttonText={"Contact Us"}
+              cssprops={
+                "md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
+              }
+            />
+          </a>
+
           <motion.button
             data-collapse-toggle="navbar-cta"
             type="button"

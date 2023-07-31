@@ -17,7 +17,7 @@ const AboutUsPage = () => {
           <p className="text-[#08B5D6] text-center mt-8 text-[19px]">
             Our mission
           </p>
-          <p className="text-white mt-8 self-center text-[35px] lg:w-7/12 md:w-9/12 sm:w-10/12 w-10/12 font-Bold leading-10">
+          <p className="text-white mt-8 self-center text-[35px] lg:w-8/12 md:w-9/12 sm:w-10/12 w-10/12 font-Bold leading-10">
             Revolutionize transportation through innovative, integrated
             solutions that maximize profitability, ensure accountability,and
             provide unrivalled operational efficiency.
