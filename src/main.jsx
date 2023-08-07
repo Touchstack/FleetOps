@@ -9,6 +9,7 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage.jsx";
 import CarOwnersRegistration from "./pages/CarOwnersRegistration/CarOwnersRegistration.jsx";
 import SuccessPage from "./pages/CarOwnersRegistration/SuccessPage.jsx";
+import Dashboard from "./pages/DashboardPage/Dashboard.jsx";
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import "./App.css";
 import "./index.css";
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
   {
     path: "/carowners/registration/success",
     element: <SuccessPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/dashboard",
+    element: <Dashboard />,
     errorElement: <ErrorPage />,
   },
 ]);

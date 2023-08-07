@@ -1,12 +1,11 @@
+import { useState } from "react";
 import NavBar from "../../Components/Navbar/NavBar";
 import FaqsBg from "../../assets/images/faqs-bg.svg";
 import ArrowRightCircle from "../../assets/images/arrow-right-circle.svg";
 import PlusIcon from "../../assets/images/plus-icon.svg";
-import Elipse from "../../assets/images/elipse.svg";
-import HomePageHero from "../../Components/Hero/HomePageHero";
+import MinusIcon from "../../assets/images/minus-icon.svg";
 import Testimonial1 from "../../assets/images/testimonial-1.svg";
 import Footer from "../../Components/Footer/Footer";
-
 
 const FaqPage = () => {
   const DataArray = [
@@ -40,7 +39,9 @@ const FaqPage = () => {
         "We offer a seamless sales process for car owners looking to put their car on Fleetops. While there may be nominal fees associated with listing and installation of trackers on vehicles, we provide a transparent and cost-effective platform for connecting buyers and sellers.",
     },
   ];
-  
+
+  const [faqOpen, setFaqOpen] = useState(null);
+
   return (
     <div>
       <NavBar />
@@ -54,7 +55,7 @@ const FaqPage = () => {
           height: 296,
           textAlign: "center",
         }}
-        className="grid lg:gap-6 xl:gap-0 lg:py-16 "
+        className="flex flex-col justify-center items-center"
       >
         <h1 className="text-white text-center text-[56px] font-Bold">FAQ</h1>
         <p className="text-white tex-center text-[19px] font-Regular ">
@@ -71,18 +72,29 @@ const FaqPage = () => {
           {DataArray.map((faq, index) => {
             return (
               <button
+                onClick={() =>
+                  faqOpen === index ? setFaqOpen() : setFaqOpen(index)
+                }
                 key={index}
                 className="lg:w-9/12 md:w-9/12 sm:w-10/12 w-10/12 h-[88] mb-5 border border-[#DADADA] rounded-lg"
               >
                 <div className="flex justify-between items-center m-6 text-[18px] text-faqText font-SemiBold">
                   <h1 className="text-left">{faq.question}</h1>
                   <div>
-                    <img src={PlusIcon} alt="AccordionIcon" className="" />
+                    {faqOpen !== index ? (
+                      <img src={PlusIcon} alt="AccordionIcon" className="" />
+                    ) : (
+                      <img src={MinusIcon} alt="AccordionIcon" className="" />
+                    )}
                   </div>
                 </div>
 
-                <div className="p-2 leading-6 max-h-0 overflow-hidden transition-[height]-0.5s">
-                  <p className="text-[#545151] text-[18px] font-Regular m-6">
+                <div className="p-2 leading-6">
+                  <p
+                    className={`text-[#545151] text-[18px] font-Light text-left m-6 ${
+                      faqOpen === index ? "" : "hidden"
+                    }`}
+                  >
                     {faq.answer}
                   </p>
                 </div>

@@ -1,23 +1,21 @@
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/Navbar/NavBar";
-import CarOwnerSteps from "../../Components/SimpleSteps/CarOwners/CarOwnerSteps";
 import Family from "../../assets/images/family.svg";
 import Owner from "../../assets/images/car-owners-steps.svg";
 import OutlinedButton from "../../Components/Buttons/OutlinedButton";
-
 
 const AboutUsPage = () => {
   return (
     <div>
       <NavBar />
 
-      <div className="bg-[#0A0D14] font-Regular flex flex-col text-center lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="container flex flex-col justify-center self-center lg:6/12 md:9/12 sm:10/12 ">
+      <div className="bg-[#0A0D14] font-Regular flex flex-col text-center lg:gap-8 xl:gap-0 lg:py-16 md:py-14 sm:py-12 py-12">
+        <div className="container flex flex-col justify-center items-center self-center lg:6/12 md:9/12 sm:10/12">
           <p className="text-[#08B5D6] text-center mt-8 text-[19px]">
             Our mission
           </p>
-          <p className="text-white mt-8 self-center text-[35px] lg:w-8/12 md:w-9/12 sm:w-10/12 w-10/12 font-Bold leading-10">
+          <p className="text-white mt-4 self-center lg:text-[35px] md:text-[30px] sm:text-[25px] text-[25px] lg:w-8/12 md:w-9/12 sm:w-10/12 w-10/12 font-Bold leading-tight">
             Revolutionize transportation through innovative, integrated
             solutions that maximize profitability, ensure accountability,and
             provide unrivalled operational efficiency.
@@ -37,7 +35,7 @@ const AboutUsPage = () => {
             achieve optimum fleet utilization and revenue generation, while
             promoting transparency, accountability, and operational excellence.
           </p>
-          <a href="/">
+          <a href="/contactus">
             <PrimaryButton buttonText={"Talk to us"} cssprops={"mt-8"} />
           </a>
         </div>
@@ -51,7 +49,7 @@ const AboutUsPage = () => {
           />
         </div>
       </div>
-      <div className="bg-white grid grid-cols-2 gap  2 mb-10 mt-12 px-20 py-20">
+      <div className="bg-white grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 mb-10 mt-12 px-20 py-20">
         <img src={Owner} alt="Owner" />
 
         <div className="">
