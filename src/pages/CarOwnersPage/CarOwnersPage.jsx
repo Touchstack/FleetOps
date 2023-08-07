@@ -56,7 +56,7 @@ const CarOwnersPage = () => {
             </p>
 
             <div className="mt-12 flex lg:flex-row md:flex-row sm:flex-col flex-col justify-start items-start self-start">
-              <a href="/registeration">
+              <a href="/carowners/registration">
                 <PrimaryButton buttonText={"Register Vehicle"} />
               </a>
               <a href="/apply">

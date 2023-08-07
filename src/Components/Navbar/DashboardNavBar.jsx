@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import OutlinedButton from "../Buttons/OutlinedButton";
+import UserIcon from "../../assets/images/dashboard-user.svg";
 import { motion } from "framer-motion";
 
-export default function NavBar() {
+export default function DashboardNavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
@@ -65,22 +65,19 @@ export default function NavBar() {
           />
         </a>
         <div className="flex md:order-2">
-          <span className="md:ml-20 py-1 text-xl lg:block md:hidden sm:hidden hidden">
-            <a
-              href="/drivers/dashboard"
-              className="text-fleetBlue font-SemiBold"
-            >
-              Login
-            </a>
+          <span className="md:ml-20 py-1 text-xl self-center lg:block md:hidden sm:hidden hidden">
+            <p className="font-Light text-fleetNavText text-center">
+              Kwame Mensah
+            </p>
           </span>
-          <a href="/contactus">
-            <OutlinedButton
-              buttonText={"Contact Us"}
-              cssprops={
-                "md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
-              }
+          <span>
+            <img
+              className="img-fluid md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
+              src={UserIcon}
+              alt="User Logo"
+              style={{ width: 50, height: 50 }}
             />
-          </a>
+          </span>
 
           <motion.button
             data-collapse-toggle="navbar-cta"
@@ -126,7 +123,7 @@ export default function NavBar() {
           >
             <motion.li variants={linkVariants}>
               <a
-                href="/"
+                href="/drivers/dashboard"
                 className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-fleetNavText md:p-0 md:hover:text-fleetBlue"
                 aria-current="page"
               >
@@ -135,62 +132,18 @@ export default function NavBar() {
             </motion.li>
             <motion.li variants={linkVariants}>
               <a
-                href="/carowners"
+                href="/findcars"
                 className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
-                Car Owners
+                Find Cars
               </a>
             </motion.li>
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers"
+                href="/reports"
                 className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Drivers
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/faqs"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                FAQ
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/aboutus"
-                className="flex py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Company
-                <svg
-                  className="mr-1 h-5 w-5 text-gray-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/drivers/dashboard"
-                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
-              >
-                Login
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/contactus"
-                className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
-              >
-                Contact Us
+                Reports
               </a>
             </motion.li>
           </motion.ul>

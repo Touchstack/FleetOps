@@ -15,13 +15,16 @@ export default function ErrorPage() {
         <p className="text-xl text-slate-600 py-8 text-center">
           Sorry, an unexpected error has occurred.
         </p>
-        <p className="text-amber-500 bg-red-100 px-12 pt-4 pb-3 rounded-xl text-xl text-center self-center">
+        <p className="text-amber-500 underline px-12 pt-0 pb-3 rounded-xl text-xl text-center self-center">
           <i>{error.statusText || error.message}</i>
         </p>
 
-        <a href="/" className="py-8">
-          <PrimaryButton buttonText={"Back To HomePage"} />
-        </a>
+        <div className="mt-10">
+          <PrimaryButton
+            buttonText={"Go Back"}
+            onClick={() => window.history.back()}
+          />
+        </div>
       </div>
     </div>
   );

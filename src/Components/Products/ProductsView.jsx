@@ -1,8 +1,9 @@
 import Product1 from "../../assets/images/products-ride-hailing.svg";
 import Product2 from "../../assets/images/products-rental.svg";
 import Product3 from "../../assets/images/products-hire-purchase.svg";
+import PropTypes from "prop-types";
 
-const ProductsView = () => {
+const ProductsView = ({ cssprops }) => {
   const DataArray = [
     {
       icon: Product1,
@@ -25,8 +26,8 @@ const ProductsView = () => {
   ];
 
   return (
-    <div className="bg-white pt-8">
-      <h3 className="font-Bold text-center text-[#0A0D14] lg:text-4xl md:text-4xl text-3xl">
+    <div className={`${cssprops} pt-8 `}>
+      <h3 className="font-Bold text-center mt-10 mb-5 text-[#0A0D14] lg:text-4xl md:text-4xl text-3xl">
         Our Products
       </h3>
 
@@ -56,6 +57,14 @@ const ProductsView = () => {
       </div>
     </div>
   );
+};
+
+ProductsView.propTypes = {
+  cssprops: PropTypes.string,
+};
+
+ProductsView.defaultProps = {
+  cssprops: "",
 };
 
 export default ProductsView;
