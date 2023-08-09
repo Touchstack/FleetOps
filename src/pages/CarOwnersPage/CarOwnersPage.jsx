@@ -4,7 +4,7 @@ import CarOwnerSteps from "../../Components/SimpleSteps/CarOwners/CarOwnerSteps"
 import CarOwnersImg from "../../assets/images/car-owners-hero.png";
 import StepsImg from "../../assets/images/car-owners-steps.svg";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
-import OutlinedButton from "../../Components/Buttons/OutlinedButton";
+import OutlinedButton from "../../components/Buttons/OutlinedButton";
 import ProductsView from "../../Components/Products/ProductsView";
 
 const CarOwnersPage = () => {

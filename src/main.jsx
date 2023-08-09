@@ -11,6 +11,10 @@ import CarOwnersRegistration from "./pages/CarOwnersRegistration/CarOwnersRegist
 import SuccessPage from "./pages/CarOwnersRegistration/SuccessPage.jsx";
 import Dashboard from "./pages/DashboardPage/Dashboard.jsx";
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
+import SignUpPage from "./pages/SignIn/SignUpPage.jsx";
+import GetToKnow from "./pages/SignIn/GetToKnow.jsx";
+import OtpPage from "./pages/SignIn/OtpPage.jsx";
+import LoginPage from "./pages/SignIn/LoginPage.jsx";
 import "./App.css";
 import "./index.css";
 
@@ -53,6 +57,26 @@ const router = createBrowserRouter([
   {
     path: "/carowners/registration/success",
     element: <SuccessPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signuppage",
+    element: <SignUpPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/otppage",
+    element: <OtpPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/gettoknow",
+    element: <GetToKnow />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/loginpage",
+    element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
   {

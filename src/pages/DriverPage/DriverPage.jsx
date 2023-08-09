@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer/Footer";
 import DriverSteps from "../../Components/SimpleSteps/Drivers/DriverSteps";
 import DriversHero from "../../assets/images/drivers-hero.png";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
-import OutlinedButton from "../../Components/Buttons/OutlinedButton";
+import OutlinedButton from "../../components/Buttons/OutlinedButton";
 import SalesCard from "../../assets/images/SalesCard.svg";
 import PartnershipCard from "../../assets/images/PartnershipCard.svg";
 import VehiclesCard from "../../assets/images/VehiclesCard.svg";
@@ -33,7 +33,7 @@ const DriverPage = () => {
               Join Our Platform, Find cars, Earn and Thrive.
             </p>
             <div className="mt-12 flex lg:flex-row md:flex-row sm:flex-col flex-col justify-start items-start self-start">
-              <a href="/applytodrive">
+              <a href="/drivers/loginpage">
                 <PrimaryButton buttonText={"Apply to drive"} />
               </a>
               <a href="#cars-section">

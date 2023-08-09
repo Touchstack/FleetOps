@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import OutlinedButton from "../Buttons/OutlinedButton";
+import OutlinedButton from "../../components/Buttons/OutlinedButton";
 import { motion } from "framer-motion";
 
 export default function NavBar() {
@@ -66,10 +66,7 @@ export default function NavBar() {
         </a>
         <div className="flex md:order-2">
           <span className="md:ml-20 py-1 text-xl lg:block md:hidden sm:hidden hidden">
-            <a
-              href="/drivers/dashboard"
-              className="text-fleetBlue font-SemiBold"
-            >
+            <a href="/signinpage" className="text-fleetBlue font-SemiBold">
               Login
             </a>
           </span>
@@ -179,7 +176,7 @@ export default function NavBar() {
             </motion.li>
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers/dashboard"
+                href="/signinpage"
                 className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Login
