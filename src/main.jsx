@@ -15,8 +15,11 @@ import SignUpPage from "./pages/SignIn/SignUpPage.jsx";
 import GetToKnow from "./pages/SignIn/GetToKnow.jsx";
 import OtpPage from "./pages/SignIn/OtpPage.jsx";
 import LoginPage from "./pages/SignIn/LoginPage.jsx";
+import Fov from "./pages/FOV/FOV.jsx";
+
 import "./App.css";
 import "./index.css";
+import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +85,16 @@ const router = createBrowserRouter([
   {
     path: "/drivers/dashboard",
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/fov",
+    element: <Fov />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/signupsuccess",
+    element: <SignUpSuccess />,
     errorElement: <ErrorPage />,
   },
 ]);

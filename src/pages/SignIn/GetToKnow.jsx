@@ -68,12 +68,14 @@ const GetToKnow =() =>{
             </svg>
 
             <div className="">
-              <PrimaryButton
-                buttonText={"Submit"}
-                onClick={() => {
-                  window.location.href = "/drivers/dashboard";
-                }}
-              />
+              <a href="/drivers/signupsuccess">
+                <PrimaryButton
+                  buttonText={"Submit"}
+                  onClick={() => {
+                    window.location.href = "/drivers/dashboard";
+                  }}
+                />
+              </a>
             </div>
           </div>
         </div>

@@ -59,7 +59,7 @@ const CarOwnersPage = () => {
               <a href="/carowners/registration">
                 <PrimaryButton buttonText={"Register Vehicle"} />
               </a>
-              <a href="/apply">
+              <a href="/fov">
                 <OutlinedButton
                   buttonText={"Learn more"}
                   cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}
