@@ -39,8 +39,8 @@ const Dashboard = () => {
                 Find available cars
               </p>
               <p className="text-gray-700 text-md pr-4">
-                Choose from a wide variety of vehicles from the top car
-                owners.All brands and models you want.
+                Choose from a wide variety of vehicles from the top car owners.
+                All brands and models you want.
               </p>
             </div>
             <div>

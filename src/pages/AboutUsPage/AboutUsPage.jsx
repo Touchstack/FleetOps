@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/Navbar/NavBar";
 import Family from "../../assets/images/family.svg";
 import Owner from "../../assets/images/car-owners-steps.svg";
-import OutlinedButton from "../../Components/Buttons/OutlinedButton";
+import OutlinedButton from "../../components/Buttons/OutlinedButton";
 
 const AboutUsPage = () => {
   return (

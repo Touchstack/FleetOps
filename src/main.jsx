@@ -11,8 +11,16 @@ import CarOwnersRegistration from "./pages/CarOwnersRegistration/CarOwnersRegist
 import SuccessPage from "./pages/CarOwnersRegistration/SuccessPage.jsx";
 import Dashboard from "./pages/DashboardPage/Dashboard.jsx";
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
+import SignUpPage from "./pages/SignIn/SignUpPage.jsx";
+import GetToKnow from "./pages/SignIn/GetToKnow.jsx";
+import OtpPage from "./pages/SignIn/OtpPage.jsx";
+import LoginPage from "./pages/SignIn/LoginPage.jsx";
+import Fov from "./pages/FOV/FOV.jsx";
+import FindCars from "./pages/DashboardPage/FindCars.jsx";
+import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
 import "./index.css";
+import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +64,48 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/signuppage",
+    element: <SignUpPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/otppage",
+    element: <OtpPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/gettoknow",
+    element: <GetToKnow />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/loginpage",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/drivers/dashboard",
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/fov",
+    element: <Fov />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/signupsuccess",
+    element: <SignUpSuccess />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/findcars",
+    element: <FindCars />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/reports",
+    element: <DriversReports />,
     errorElement: <ErrorPage />,
   },
 ]);

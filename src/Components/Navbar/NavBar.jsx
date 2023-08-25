@@ -1,12 +1,14 @@
 import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import OutlinedButton from "../Buttons/OutlinedButton";
+import OutlinedButton from "../../Components/Buttons/OutlinedButton";
+import { NavBarDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
 
 export default function NavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const navBarToggler = () => {
     if (hidden && ariaExpanded === "false") {
@@ -18,6 +20,10 @@ export default function NavBar() {
       setHiddenState("hidden");
       return setShowMenu(false);
     }
+  };
+
+  const handleShowDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   const iconVariants = {
@@ -55,7 +61,7 @@ export default function NavBar() {
 
   return (
     <nav className="bg-white border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-2">
         <a href="/" className="">
           <img
             className="lg:mr-20"
@@ -67,7 +73,7 @@ export default function NavBar() {
         <div className="flex md:order-2">
           <span className="md:ml-20 py-1 text-xl lg:block md:hidden sm:hidden hidden">
             <a
-              href="/drivers/dashboard"
+              href="/drivers/loginpage"
               className="text-fleetBlue font-SemiBold"
             >
               Login
@@ -136,7 +142,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/carowners"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0"
               >
                 Car Owners
               </a>
@@ -144,7 +150,7 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/drivers"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0"
               >
                 Drivers
               </a>
@@ -152,19 +158,19 @@ export default function NavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/faqs"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0"
               >
                 FAQ
               </a>
             </motion.li>
             <motion.li variants={linkVariants}>
-              <a
-                href="/aboutus"
-                className="flex py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              <button
+                onClick={handleShowDropdown}
+                className="flex py-2 pl-3 pr-4 text-fleetNavText w-full rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0"
               >
                 Company
                 <svg
-                  className="mr-1 h-5 w-5 text-gray-400"
+                  className="mr-1 h-5 w-5 text-gray-400 md:hover:text-fleetBlue"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
@@ -175,11 +181,12 @@ export default function NavBar() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </button>
+              {showDropdown && <NavBarDropdown />}
             </motion.li>
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers/dashboard"
+                href="/drivers/loginpage"
                 className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Login

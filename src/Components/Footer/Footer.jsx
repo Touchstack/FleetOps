@@ -63,7 +63,7 @@ export default function Footer() {
                   <ul className="">
                     <li className="mb-4">
                       <a
-                        href="/car-listings"
+                        href="/fov"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         FOVCollector2.1
