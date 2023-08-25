@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import UserIcon from "../../assets/images/dashboard-user.svg";
+import OutlinedButton from "../Buttons/OutlinedButton";
 import { motion } from "framer-motion";
 
-export default function DashboardNavBar() {
+export default function DriversOnboardingNavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
@@ -65,19 +65,14 @@ export default function DashboardNavBar() {
           />
         </a>
         <div className="flex md:order-2">
-          <span className="md:ml-20 py-1 text-xl self-center lg:block md:hidden sm:hidden hidden">
-            <p className="font-Light text-fleetNavText text-center">
-              Kwame Mensah
-            </p>
-          </span>
-          <span>
-            <img
-              className="img-fluid md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
-              src={UserIcon}
-              alt="User Logo"
-              style={{ width: 50, height: 50 }}
+          <a href="/contactus">
+            <OutlinedButton
+              buttonText={"Contact Us"}
+              cssprops={
+                "md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
+              }
             />
-          </span>
+          </a>
 
           <motion.button
             data-collapse-toggle="navbar-cta"
@@ -123,27 +118,11 @@ export default function DashboardNavBar() {
           >
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers/dashboard"
-                className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-fleetNavText md:p-0 md:hover:text-fleetBlue"
+                href="/contactus"
+                className="lg:hidden md:hidden sm:block block py-2 pl-3 pr-4 rounded md:bg-transparent text-fleetNavText md:p-0 md:hover:text-fleetBlue"
                 aria-current="page"
               >
-                Home
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/drivers/findcars"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
-              >
-                Find Cars
-              </a>
-            </motion.li>
-            <motion.li variants={linkVariants}>
-              <a
-                href="/drivers/reports"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Reports
+                Contact Us
               </a>
             </motion.li>
           </motion.ul>
