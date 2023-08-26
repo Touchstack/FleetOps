@@ -34,7 +34,7 @@ export default function Footer() {
                   <ul className="">
                     <li className="mb-4">
                       <a
-                        href="/car-listings"
+                        href="/carowners"
                         className="hover:underline hover:text-fleetLightBlue"
                       >
                         Register a car
@@ -42,7 +42,7 @@ export default function Footer() {
                     </li>
                     <li className="mb-4">
                       <a
-                        href="/dealersguide"
+                        href="/drivers"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         Apply to drive
@@ -50,7 +50,7 @@ export default function Footer() {
                     </li>
                     <li className="mb-4">
                       <a
-                        href="/contact"
+                        href="/drivers#cars-section"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         Available vehicles
@@ -71,7 +71,7 @@ export default function Footer() {
                     </li>
                     <li className="mb-4">
                       <a
-                        href="/sellers"
+                        href="/"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         What others say
@@ -85,7 +85,7 @@ export default function Footer() {
                   <ul className="">
                     <li className="mb-4">
                       <a
-                        href="/car-listings"
+                        href="/aboutus"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         About us
@@ -93,7 +93,7 @@ export default function Footer() {
                     </li>
                     <li className="mb-4">
                       <a
-                        href="/sellers"
+                        href="/contactus"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         Contact us

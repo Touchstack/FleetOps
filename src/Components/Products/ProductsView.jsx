@@ -1,29 +1,6 @@
-import Product1 from "../../assets/images/products-ride-hailing.svg";
-import Product2 from "../../assets/images/products-rental.svg";
-import Product3 from "../../assets/images/products-hire-purchase.svg";
 import PropTypes from "prop-types";
 
-const ProductsView = ({ cssprops }) => {
-  const DataArray = [
-    {
-      icon: Product1,
-      title: "Ride hailing for business (RH4B)",
-      description:
-        "Partner any ride hailing (RH) company i.e., Uber, Bolt, Yango etc. and gain access to their fleet manager dashboards that enable you monitor sales activities and performances of your cars. The driver would be an independent contractor working for you. FOVCollector2.1 ensures that sales are declared daily and manages field activities with dashboards to ensure accountability.",
-    },
-    {
-      icon: Product2,
-      title: "Rental for business (RT4B)",
-      description:
-        "Your vehicle is rented out (RT) to the driver who pays a fee daily, weekly, or monthly for using the vehicle. FOVCollector2.1 collects the rental fees and manages the use of the vehicle within the agreed parameters.",
-    },
-    {
-      icon: Product3,
-      title: "Hire-purchase for business (HP4B)",
-      description:
-        "Your vehicle is rented out (RT) to the driver who pays a fee daily, weekly, or monthly for using the vehicle. FOVCollector2.1 collects the rental fees and manages the use of the vehicle within the agreed parameters.",
-    },
-  ];
+const ProductsView = ({ cssprops, DataArray }) => {
 
   return (
     <div className={`${cssprops} pt-8 `}>
@@ -61,10 +38,12 @@ const ProductsView = ({ cssprops }) => {
 
 ProductsView.propTypes = {
   cssprops: PropTypes.string,
+  DataArray:PropTypes.array,
 };
 
 ProductsView.defaultProps = {
   cssprops: "",
+  DataArray:[],
 };
 
 export default ProductsView;

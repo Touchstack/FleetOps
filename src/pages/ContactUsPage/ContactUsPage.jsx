@@ -63,15 +63,42 @@ const ContactUsPage = () => {
         </p>
         <div className="flex text-center items-center p-3">
           <a
-            href="/"
+            href="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.69008856965!2d-0.155683!3d5.5784718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3f9e66b506c8f68!2sBargain%20Motogh!5e0!3m2!1sen!2sgh!4v1661864666754!5m2!1sen!2sgh"
             className="text-lg self-center hover:underline font-Light text-fleetBlue mr-3"
           >
             View on map
           </a>
           <img src={ArrowRightCircle} className="self-center" />
         </div>
-        <div>
-          <img src={Map} alt="" className="p-8" />
+        <div
+          className="rounded-lg"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            width: "764px",
+            paddingTop: "56.25%",
+          }}
+        >
+          <iframe
+            title="FleetOps Mapview"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.69008856965!2d-0.155683!3d5.5784718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3f9e66b506c8f68!2sBargain%20Motogh!5e0!3m2!1sen!2sgh!4v1661864666754!5m2!1sen!2sgh"
+            width="600"
+            height="450"
+            style={{
+              border: "0",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              width: "746px",
+              height: "383px",
+            }}
+            className="rounded-[20px] mt-8"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 

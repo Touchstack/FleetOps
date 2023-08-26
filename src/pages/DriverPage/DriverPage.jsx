@@ -11,10 +11,33 @@ import VehiclesCard from "../../assets/images/VehiclesCard.svg";
 import ProductsView from "../../Components/Products/ProductsView";
 import { apiGetVehicles } from "../../services/VehiclesService";
 import { config } from "../../services/Config";
+import Product1 from "../../assets/images/products-ride-hailing.svg";
+import Product2 from "../../assets/images/products-rental.svg";
+import Product3 from "../../assets/images/products-hire-purchase.svg";
 
 const DriverPage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const DataArray = [
+    {
+      icon: Product1,
+      title: "Ride hailing for business (RH4B)",
+      description:
+        "As a driver, work flexibly as an independent contractor with a fleet owner partnered with a ride-hailing service like Uber, Bolt, Yango etc. Remit sales daily and be on your way to making your super earnings with a bonus for high performance.",
+    },
+    {
+      icon: Product2,
+      title: "Rental for business (RT4B)",
+      description:
+        "With this model, you can render transport services to your customers with ease by renting a vehicle from an owner for a predetermined fee and time frame. Plan better, and pay rental fees daily, weekly or monthly according to arrangements with the owner.",
+    },
+    {
+      icon: Product3,
+      title: "Hire-purchase for business (HP4B)",
+      description:
+        "Buy a car and pay in instalments. You can eventually own the car by making regular payments over a period, while using it for your transport business. The platform facilitates this arrangement by remitting payments to the owner and managing the vehicle.",
+    },
+  ];
 
   const fetchVehicles = async () => {
     setLoading(true);
@@ -135,18 +158,22 @@ const DriverPage = () => {
       </div>
 
       <div className="mt-16 mb-2">
-        <ProductsView cssprops={"bg-[#F7F9F8;]"} />
+        <ProductsView cssprops={"bg-[#F7F9F8;]"} DataArray={DataArray} />
       </div>
       <DriverSteps />
 
       <div className="bg-[#F7F9F8;] p-12" id="cars-section">
-        <h3 className=" mt-5 font-Bold text-center text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
+        <h3 className=" mt-5 font-Bold text-center text-[45px] text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
           Available Cars
         </h3>
-        <p className="text-center text-[19px] text-[#545151] font-Light">
+        <p className="text-center text-[19px] text-[#545151] font-Regular">
           Choose from a wide variety of vehicles from the top car owners. <br />
           All brands and models you want.
         </p>
+
+        <div>
+
+        </div>
 
         {loading ? (
           <Spinner />
