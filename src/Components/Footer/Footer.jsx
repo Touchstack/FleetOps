@@ -118,7 +118,12 @@ export default function Footer() {
                   <a href="/">TERM OF USE</a>
                 </div>
                 <div className="flex">
-                  <a href="/" className="mr-4">
+                  <a
+                    href="https://www.linkedin.com/company/fleetops-vantage-ltd/"
+                    className="mr-4"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img
                       className="img-fluid"
                       src={LinkedInIcon}
@@ -130,6 +135,8 @@ export default function Footer() {
                       className="img-fluid"
                       src={TwitterIcon}
                       alt="Twitter"
+                      target="_blank"
+                      rel="noreferrer"
                     />
                   </a>
                   <a href="/">

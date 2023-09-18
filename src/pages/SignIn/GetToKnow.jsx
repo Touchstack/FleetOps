@@ -36,14 +36,12 @@ const GetToKnow = () => {
           />
 
           <div className="flex justify-end align-baseline">
-            <a href="/drivers/signupsuccess">
-              <PrimaryButton
-                buttonText={"Submit"}
-                onClick={() => {
-                  window.location.href = "/drivers/dashboard";
-                }}
-              />
-            </a>
+            <PrimaryButton
+              buttonText={"Submit"}
+              onClick={() => {
+                window.location.href = "/drivers/dashboard";
+              }}
+            />
           </div>
         </div>
       </div>
