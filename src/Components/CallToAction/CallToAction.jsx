@@ -32,10 +32,10 @@ const CallToAction = () => {
           </p>
 
           <div className="mt-12">
-            <a href="/carlistings">
+            <a href="/carowners">
               <PrimaryButton buttonText={"List your car"} />
             </a>
-            <a href="/apply">
+            <a href="/drivers">
               <OutlinedButton
                 buttonText={"Apply to drive"}
                 cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}

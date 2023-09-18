@@ -29,7 +29,7 @@ const HomePageHero = () => {
             <a href="/carowners">
               <PrimaryButton buttonText={"Car Owner"} />
             </a>
-            <a href="/apply">
+            <a href="/drivers">
               <OutlinedButton
                 buttonText={"Driver"}
                 cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}

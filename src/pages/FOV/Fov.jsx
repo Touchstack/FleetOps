@@ -15,10 +15,10 @@ const Fov = () => {
         <NavBar />
 
         <div className="flex flex-col items-center">
-          <h1 className="font-Bold mt-16 mb-1 lg:text-4xl md:text-4xl sm:text-3xl">
+          <h1 className="font-Bold mt-16 mb-1 lg:text-6xl md:text-4xl sm:text-3xl">
             About FOVCollector2.1
           </h1>
-          <p className="text-[#545151] lg:w-4/12 md:7/12 sm:w-11/12 w-11/12">
+          <p className="text-[#545151] text-[19px] font-Regular lg:w-5/12 md:7/12 sm:w-11/12 w-11/12">
             FOVCollector2.1 is a cloud-based application and integrated
             transportation fleet management solution. Its usefulness is evident
             in the informal sectors where private cars are let off to be used
@@ -38,7 +38,7 @@ const Fov = () => {
           <h1 className="text-[30px] w-7/12 font-Bold mt-16">
             System Overview and Description
           </h1>
-          <p className="w-7/12 mb-10">
+          <p className="font-Regular w-7/12 mb-10">
             FOVCollector2.1 is a web-based application that seeks to address the
             challenges faced by individuals or businesses who wish to manage a
             fleet of cars while generating income from ride hailing activities.
@@ -52,7 +52,7 @@ const Fov = () => {
           </p>
           <img src={FleetManager} alt="" className="p-10" />
           <div className="flex flex-col items-center">
-            <p className="w-8/12 mt-8 mb-8">
+            <p className="font-Regular w-8/12 mt-8 mb-8">
               Ride hailing companies are technology organizations whose
               activities create this marketplace composed of three major
               business streams. In the upstream, vehicle acquisitions are made
@@ -81,7 +81,7 @@ const Fov = () => {
               <img src={FovDashboard} alt="" className="inline-flex md:flex flex-col" />
               <img src={DriverLogin} alt="" className="inline-flex" />
             </div>
-            <p className="w-8/12 mt-12 mb-8">
+            <p className="font-Regular w-8/12 mt-12 mb-8">
               FOVCollector2.1 is an integrator that enhances the RH marketplace
               by partly resolving these challenges by handling the routine and
               repetitive tasks such as sales declaration, cash collection,

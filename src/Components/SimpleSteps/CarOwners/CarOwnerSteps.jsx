@@ -73,7 +73,9 @@ const CarOwnerSteps = ({ cssprops }) => {
           })}
 
           <div>
-            <PrimaryButton buttonText={"Get Started"} />
+            <a href="/carowners/registration">
+              <PrimaryButton buttonText={"Get Started"} />
+            </a>
           </div>
         </div>
       </div>

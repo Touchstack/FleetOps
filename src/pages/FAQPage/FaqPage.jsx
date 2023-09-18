@@ -111,7 +111,7 @@ const FaqPage = () => {
 
         <div className="flex justify-center items-center mb-10">
           <a
-            href="/"
+            href="mailto:info@fleetops.com"
             className="text-lg self-center hover:underline font-Light text-fleetBlue mr-3"
           >
             Send and email

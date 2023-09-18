@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/Navbar/NavBar";
 import Family from "../../assets/images/family.svg";
 import Owner from "../../assets/images/car-owners-steps.svg";
-import OutlinedButton from "../../components/Buttons/OutlinedButton";
+import OutlinedButton from "../../Components/Buttons/OutlinedButton";
 
 const AboutUsPage = () => {
   return (
@@ -76,10 +76,10 @@ const AboutUsPage = () => {
             providing opportunities <br /> for stable income.
           </p>
           <div className="mt-12 flex lg:flex-row md:flex-row sm:flex-col flex-col justify-start items-start self-start">
-            <a href="/registeration">
+            <a href="/carowners">
               <PrimaryButton buttonText={"Register a car"} />
             </a>
-            <a href="/apply">
+            <a href="/drivers">
               <OutlinedButton
                 buttonText={"Apply to drive"}
                 cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}

@@ -5,6 +5,11 @@ export const apiClient = axios.create({
   headers: { Accept: "application/json" },
 });
 
+export const apiClientMarketing = axios.create({
+  baseURL: "https://fleetops-api.onrender.com/api",
+  headers: { Accept: "application/json" },
+});
+
 export const config = {
   VEHICLE_IMG_URL: "http://engines.fleetopsgh.com/uploads/photo/",
 };

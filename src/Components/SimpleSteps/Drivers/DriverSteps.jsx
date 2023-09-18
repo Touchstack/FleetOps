@@ -63,8 +63,8 @@ const DriverSteps = () => {
           })}
 
           <div className="lg:self-start md:self-start sm:self-center self-center">
-            <a href="gettoknow">
-              <PrimaryButton buttonText={"Get Started"} />
+            <a href="/drivers">
+              <PrimaryButton buttonText={"Find Cars Now"} />
             </a>
           </div>
         </div>
