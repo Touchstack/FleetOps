@@ -15,7 +15,7 @@ import SignUpPage from "./pages/SignIn/SignUpPage.jsx";
 import GetToKnow from "./pages/SignIn/GetToKnow.jsx";
 import OtpPage from "./pages/SignIn/OtpPage.jsx";
 import LoginPage from "./pages/SignIn/LoginPage.jsx";
-import Fov from "./pages/FOV/FOV.jsx";
+import FOV from "./pages/FOV/FOV.jsx";
 import FindCars from "./pages/DashboardPage/FindCars.jsx";
 import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/fov",
-    element: <Fov />,
+    element: <FOV />,
     errorElement: <ErrorPage />,
   },
   {
