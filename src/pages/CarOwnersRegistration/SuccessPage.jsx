@@ -1,6 +1,6 @@
 import HeroImg from "../../assets/images/sucess.jpeg";
 import ClipBoard from "../../assets/images/clipboard.svg";
-import OutlinedButton from "../../components/Buttons/OutlinedButton";
+import OutlinedButton from "../../Components/Buttons/OutlinedButton";
 import { motion } from "framer-motion";
 
 const SuccessPage = () => {
