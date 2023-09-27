@@ -130,7 +130,7 @@ export default function DashboardNavBar() {
                 Home
               </a>
             </motion.li>
-            <motion.li variants={linkVariants}>
+            {/*<motion.li variants={linkVariants}>
               <a
                 href="/drivers/findcars"
                 className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
@@ -145,7 +145,7 @@ export default function DashboardNavBar() {
               >
                 Reports
               </a>
-            </motion.li>
+  </motion.li>*/}
           </motion.ul>
         </div>
       </div>

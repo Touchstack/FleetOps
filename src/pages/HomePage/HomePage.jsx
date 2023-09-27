@@ -62,7 +62,10 @@ const HomePage = () => {
         <CarOwnerSteps cssprops={"bg-white"} />
       </div>
       <DriverSteps />
-      <div className="flex flex-col justify-center items-center bg-[#5E338A] py-24">
+      <div
+        className="flex flex-col justify-center items-center bg-[#5E338A] py-24"
+        id="#testimonials"
+      >
         <h3 className="font-Bold text-[#E6B422] lg:text-4xl md:text-4xl text-3xl text-center">
           Everyone loves FleetOps
         </h3>
