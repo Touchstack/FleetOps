@@ -48,14 +48,14 @@ export default function Footer() {
                         Apply to drive
                       </a>
                     </li>
-                    <li className="mb-4">
+                    {/*<li className="mb-4">
                       <a
                         href="/drivers#cars-section"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         Available vehicles
                       </a>
-                    </li>
+  </li>*/}
                   </ul>
                 </div>
                 <div>
@@ -71,7 +71,7 @@ export default function Footer() {
                     </li>
                     <li className="mb-4">
                       <a
-                        href="/"
+                        href="/faqs#testimonials"
                         className="hover:underline hover:text-fleetFooterHover"
                       >
                         What others say
@@ -112,10 +112,10 @@ export default function Footer() {
                   </a>
                 </div>
                 <div className="lg:my-0 md:my-2 my-2">
-                  <a href="/">PRIVACY POLICY</a>
+                  {/*<a href="/">PRIVACY POLICY</a>*/}
                 </div>
                 <div className="lg:mb-0 md:mb-2 mb-2">
-                  <a href="/">TERM OF USE</a>
+                  {/*<a href="/">TERM OF USE</a>*/}
                 </div>
                 <div className="flex">
                   <a

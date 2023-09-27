@@ -107,12 +107,12 @@ const DriverPage = () => {
               <a href="/drivers/loginpage">
                 <PrimaryButton buttonText={"Apply to drive"} />
               </a>
-              <a href="#cars-section">
+              {/*<a href="#cars-section">
                 <OutlinedButton
                   buttonText={"Find cars"}
                   cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}
                 />
-              </a>
+      </a>*/}
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ const DriverPage = () => {
       </div>
       <DriverSteps />
 
-      <div className="bg-[#F7F9F8;] p-12" id="cars-section">
+      {/*<div className="bg-[#F7F9F8;] p-12" id="cars-section">
         <h3 className=" mt-5 font-Bold text-center text-[45px] text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
           Available Cars
         </h3>
@@ -211,7 +211,7 @@ const DriverPage = () => {
             </p>
           </div>
         )}
-      </div>
+      </div>*/}
 
       <Footer />
     </div>
