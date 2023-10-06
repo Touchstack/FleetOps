@@ -9,7 +9,6 @@ import FormInputItem from "../../Components/Forms/Inputs/RegistrationFormInput";
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import { Formik } from "formik";
-import "react-phone-input-2/lib/style.css";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);

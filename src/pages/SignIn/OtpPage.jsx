@@ -1,7 +1,35 @@
+import OtpInput from "react-otp-input";
+import { useState } from "react";
+import {
+  Spinner,
+  ErrorAlert,
+} from "../../Components/Forms/CarOwnersRegistrationForm";
+import { apiVerifyOtp } from "../../services/VehiclesService";
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 
 const OtpPage = () => {
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState("");
+
+  const verifyOtp = async () => {
+    try {
+      setError(false);
+      setLoading(true);
+      await apiVerifyOtp({ code: otp });
+      setLoading(false);
+      return (window.location.href = "/gettoknow");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      setError(true);
+      setErrorText(error?.response?.data?.message || error?.message);
+      setTimeout(() => setError(false), 3000);
+    }
+  };
+
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
       <DriversOnboardingNavBar />
@@ -16,26 +44,28 @@ const OtpPage = () => {
             Enter code
           </h3>
         </div>
-        <div className="items-center text-center lg:space-x-4 lg:w-5/12 md:w-5-12 sm:w-10/12 w-10/12">
-          <input
-            type="text"
-            maxLength={1}
-            className=" gap-4 text-center rounded-lg w-[68px] h-[56px] text-[32px] p-2 m-[2px] border border-fleetBlue outline-0 font-Bold transition-all focus:outline-none "
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="text-center rounded-lg w-[68px] h-[56px] text-[32px] p-2 m-[2px] border border-fleetBlue outline-0 font-Bold transition-all focus:outline-none"
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="text-center rounded-lg w-[68px] h-[56px] text-[32px] p-2 m-[2px] border border-fleetBlue outline-0 font-Bold transition-all focus:outline-none"
-          />
-          <input
-            type="text"
-            maxLength={1}
-            className="text-center rounded-lg w-[68px] h-[56px] text-[32px] p-2 m-[2px] border border-fleetBlue outline-0 font-Bold transition-all focus:outline-none"
+        {error && <ErrorAlert error={errorText} />}
+        <div className="flex justify-center items-center text-center lg:w-6/12 md:w-6/12 sm:w-10/12 w-10/12">
+          <OtpInput
+            containerStyle={{
+              flexDirection: "row",
+              justifyContent: "center",
+
+              width: "100%",
+            }}
+            value={otp}
+            onChange={setOtp}
+            numInputs={4}
+            renderInput={(props) => (
+              <input
+                {...props}
+                type="number"
+                className="text-center rounded-lg text-[32px] h-[56px] p-2 m-2 border border-fleetBlue outline-0 font-Bold transition-all focus:outline-none"
+                style={{
+                  width: "75px",
+                }}
+              />
+            )}
           />
         </div>
         <a href="/otppage">
@@ -44,12 +74,11 @@ const OtpPage = () => {
           </h3>
         </a>
         <div className="flex justify-end align-baseline">
-          <PrimaryButton
-            buttonText={"Verify"}
-            onClick={() => {
-              window.location.href = "/gettoknow";
-            }}
-          />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <PrimaryButton buttonText={"Verify"} onClick={verifyOtp} />
+          )}
         </div>
       </div>
     </div>
