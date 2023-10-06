@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import NavBar from "../../Components/Navbar/NavBar";
 import Footer from "../../Components/Footer/Footer";
 import DriverSteps from "../../Components/SimpleSteps/Drivers/DriverSteps";
@@ -10,13 +10,14 @@ import PartnershipCard from "../../assets/images/PartnershipCard.svg";
 import VehiclesCard from "../../assets/images/VehiclesCard.svg";
 import ProductsView from "../../Components/Products/ProductsView";
 import { apiGetVehicles } from "../../services/VehiclesService";
-import { config } from "../../services/Config";
+import { AppContext } from "../../context/AppContext";
 import Product1 from "../../assets/images/products-ride-hailing.svg";
 import Product2 from "../../assets/images/products-rental.svg";
 import Product3 from "../../assets/images/products-hire-purchase.svg";
 
 const DriverPage = () => {
   const [data, setData] = useState([]);
+  const [appContext, setAppContext] = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const DataArray = [
     {
@@ -43,12 +44,21 @@ const DriverPage = () => {
     setLoading(true);
     try {
       const response = await apiGetVehicles();
-      setData(response.data);
+      setData(response.data?.data);
+      console.log(response.data?.data);
       return setLoading(false);
     } catch (error) {
       console.log(error);
       return setData(false);
     }
+  };
+
+  const selectVehicle = (vehicle) => {
+    setAppContext({
+      ...appContext,
+      selectedVehicle: vehicle,
+    });
+    return (window.location.href = `/vehicle/details/${vehicle?.id}`);
   };
 
   useEffect(() => {
@@ -107,12 +117,12 @@ const DriverPage = () => {
               <a href="/drivers/loginpage">
                 <PrimaryButton buttonText={"Apply to drive"} />
               </a>
-              {/*<a href="#cars-section">
+              <a href="#cars-section">
                 <OutlinedButton
                   buttonText={"Find cars"}
                   cssprops={"lg:mt-0 md:mt-0 sm:mt-4 mt-4"}
                 />
-      </a>*/}
+              </a>
             </div>
           </div>
         </div>
@@ -162,8 +172,8 @@ const DriverPage = () => {
       </div>
       <DriverSteps />
 
-      {/*<div className="bg-[#F7F9F8;] p-12" id="cars-section">
-        <h3 className=" mt-5 font-Bold text-center text-[45px] text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
+      <div className="bg-[#F7F9F8;] p-12" id="cars-section">
+        <h3 className="mt-5 font-Bold text-center text-[45px] text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
           Available Cars
         </h3>
         <p className="text-center text-[19px] text-[#545151] font-Regular">
@@ -171,33 +181,32 @@ const DriverPage = () => {
           All brands and models you want.
         </p>
 
-        <div>
-
-        </div>
-
         {loading ? (
           <Spinner />
         ) : !loading && data.length >= 1 ? (
           <div className="container lg:w-11/12 md:w-full sm:w-full w-full mx-auto">
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-8 self-center mt-12">
-              {data.map((car) => {
-                return (
-                  <div
-                    key={car?.driver_id}
-                    className="flex flex-col lg:justify-start md:justify-start sm:justify-center lg:items-start md:items-start sm:items-center"
-                  >
-                    <img
-                      src={`${config.VEHICLE_IMG_URL}${car?.DLD}`}
-                      alt={`${car?.VMK} ${car?.VMD}`}
-                      className="lg:self-start md:self-start sm:self-center self-center lg:w-[350px] lg:h-[350px] md:w-[350px] md:h-[350px] sm:w-[300px] sm:h-[300px] w-[300px] h-[300px] rounded-2xl bg-slate-300"
-                    />
-                    <p className="font-Regular md:text-2xl text-xl text-[#0A0D14] tracking-tighter py-4 lg:text-left md:text-left sm:text-center text-center">
-                      {car?.VMK} {car?.VMD}
+            {data.map((car) => {
+              return (
+                <div
+                  key={car?.driver_id}
+                  className="bg-white my-5 flex md:flex-row sm:flex-col flex-col justify-between items-center lg:w-11/12 md:w-full sm:w-full w-full p-8 rounded-md"
+                >
+                  <div>
+                    <h4 className="text-dark font-Regular md:text-2xl text-xl">
+                      {car?.VCL} {car?.VMK} {car?.VMD}
+                    </h4>
+                    <p className="font-Bold text-[#234C65] text-lg">
+                      GHS {car?.VAM}{" "}
+                      <span className="font-Light lowercase">{car?.VPF}</span>
                     </p>
                   </div>
-                );
-              })}
-            </div>
+                  <OutlinedButton
+                    buttonText={"View Details"}
+                    onClick={() => selectVehicle(car)}
+                  />
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center mt-12">
@@ -211,7 +220,16 @@ const DriverPage = () => {
             </p>
           </div>
         )}
-      </div>*/}
+
+        <div className="flex justify-center items-center my-10">
+          <a
+            href="#"
+            className="text-lg text-center self-center hover:underline font-Light text-fleetBlue mr-3"
+          >
+            Load more
+          </a>
+        </div>
+      </div>
 
       <Footer />
     </div>

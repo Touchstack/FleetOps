@@ -30,6 +30,7 @@ const SignUpPage = () => {
       setError(false);
       setLoading(true);
       await apiDriverSignUp(values);
+      localStorage.setItem("driverNumber", values?.phone_number);
       setLoading(false);
       return (window.location.href = "/otppage");
     } catch (error) {

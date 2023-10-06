@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const apiClient = axios.create({
-  baseURL: "http://engines.fleetopsgh.com/api",
+  baseURL: "https://engines.fleetopsgh.com/api",
   headers: { Accept: "application/json" },
 });
 

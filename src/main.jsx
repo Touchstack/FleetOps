@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { ContextProvider } from "./context/AppContext.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import CarOwnersPage from "./pages/CarOwnersPage/CarOwnersPage.jsx";
@@ -20,6 +21,7 @@ import FindCars from "./pages/DashboardPage/FindCars.jsx";
 import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
 import "./index.css";
+import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 
 const router = createBrowserRouter([
@@ -71,7 +73,7 @@ const router = createBrowserRouter([
   {
     path: "/otppage",
     element: <OtpPage />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "/gettoknow",
@@ -108,10 +110,17 @@ const router = createBrowserRouter([
     element: <DriversReports />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/vehicle/details/:id",
+    element: <VehicleDetails />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </React.StrictMode>
 );
