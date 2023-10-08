@@ -49,7 +49,8 @@ const DriverPage = () => {
       return setLoading(false);
     } catch (error) {
       console.log(error);
-      return setData(false);
+      setLoading(false);
+      return setData([]);
     }
   };
 
@@ -183,9 +184,9 @@ const DriverPage = () => {
 
         {loading ? (
           <Spinner />
-        ) : !loading && data.length >= 1 ? (
+        ) : !loading && data?.length >= 1 ? (
           <div className="container lg:w-11/12 md:w-full sm:w-full w-full mx-auto">
-            {data.map((car) => {
+            {data?.map((car) => {
               return (
                 <div
                   key={car?.driver_id}
@@ -209,26 +210,23 @@ const DriverPage = () => {
             })}
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center mt-12">
-            <div className="border border-gray-800 rounded-full pr-10 pl-10 py-6 mt-8">
-              <p className="text-center self-center lg:text-5xl md:text-4xl sm:text-4xl text-4xl font-Bold">
-                ?
-              </p>
-            </div>
-            <p className="text-[#545151] text-center text-[19px] font-Light p-8">
+          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
+            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
               No available cars
             </p>
-          </div>
+          </section>
         )}
 
-        <div className="flex justify-center items-center my-10">
-          <a
-            href="#"
-            className="text-lg text-center self-center hover:underline font-Light text-fleetBlue mr-3"
-          >
-            Load more
-          </a>
-        </div>
+        {!loading && data?.length >= 1 && (
+          <div className="flex justify-center items-center my-10">
+            <a
+              href="#"
+              className="text-lg text-center self-center hover:underline font-Light text-fleetBlue mr-3"
+            >
+              Load more
+            </a>
+          </div>
+        )}
       </div>
 
       <Footer />

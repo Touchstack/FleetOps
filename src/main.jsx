@@ -73,7 +73,7 @@ const router = createBrowserRouter([
   {
     path: "/otppage",
     element: <OtpPage />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/gettoknow",

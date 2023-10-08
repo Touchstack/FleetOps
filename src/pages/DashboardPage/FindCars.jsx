@@ -1,11 +1,15 @@
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
 import { apiGetVehicles } from "../../services/VehiclesService";
+import OutlinedButton from "../../Components/Buttons/OutlinedButton";
 import { config } from "../../services/Config";
 
 const FindCars = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [appContext, setAppContext] = useContext(AppContext);
 
   const fetchVehicles = async () => {
     setLoading(true);
@@ -15,8 +19,17 @@ const FindCars = () => {
       return setLoading(false);
     } catch (error) {
       console.log(error);
-      return setData(false);
+      setLoading(false);
+      return setData([]);
     }
+  };
+
+  const selectVehicle = (vehicle) => {
+    setAppContext({
+      ...appContext,
+      selectedVehicle: vehicle,
+    });
+    return (window.location.href = `/vehicle/details/${vehicle?.id}`);
   };
 
   useEffect(() => {
@@ -66,37 +79,35 @@ const FindCars = () => {
           <Spinner />
         ) : !loading && data.length >= 1 ? (
           <div className="container lg:w-11/12 md:w-full sm:w-full w-full mx-auto">
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-8 self-center mt-12">
-              {data.map((car) => {
-                return (
-                  <div
-                    key={car?.driver_id}
-                    className="flex flex-col lg:justify-start md:justify-start sm:justify-center lg:items-start md:items-start sm:items-center"
-                  >
-                    <img
-                      src={`${config.VEHICLE_IMG_URL}${car?.DLD}`}
-                      alt={`${car?.VMK} ${car?.VMD}`}
-                      className="lg:self-start md:self-start sm:self-center self-center lg:w-[350px] lg:h-[350px] md:w-[350px] md:h-[350px] sm:w-[300px] sm:h-[300px] w-[300px] h-[300px] rounded-2xl bg-slate-300"
-                    />
-                    <p className="font-Regular md:text-2xl text-xl text-[#0A0D14] tracking-tighter py-4 lg:text-left md:text-left sm:text-center text-center">
-                      {car?.VMK} {car?.VMD}
+            {data?.map((car) => {
+              return (
+                <div
+                  key={car?.driver_id}
+                  className="bg-white my-5 flex md:flex-row sm:flex-col flex-col justify-between items-center lg:w-11/12 md:w-full sm:w-full w-full p-8 rounded-md"
+                >
+                  <div>
+                    <h4 className="text-dark font-Regular md:text-2xl text-xl">
+                      {car?.VCL} {car?.VMK} {car?.VMD}
+                    </h4>
+                    <p className="font-Bold text-[#234C65] text-lg">
+                      GHS {car?.VAM}{" "}
+                      <span className="font-Light lowercase">{car?.VPF}</span>
                     </p>
                   </div>
-                );
-              })}
-            </div>
+                  <OutlinedButton
+                    buttonText={"View Details"}
+                    onClick={() => selectVehicle(car)}
+                  />
+                </div>
+              );
+            })}
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center mt-12">
-            <div className="border border-gray-800 rounded-full pr-10 pl-10 py-6 mt-8">
-              <p className="text-center self-center lg:text-5xl md:text-4xl sm:text-4xl text-4xl font-Bold">
-                ?
-              </p>
-            </div>
-            <p className="text-[#545151] text-center text-[19px] font-Light p-8">
+          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
+            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
               No available cars
             </p>
-          </div>
+          </section>
         )}
       </div>
     </div>

@@ -57,6 +57,7 @@ const GetToKnow = () => {
       bodyFormData.append("phoneNumber", driverNumber);
       bodyFormData.append("licenseFront", values?.licenseFront);
       bodyFormData.append("licenseBack", values?.licenseBack);
+      localStorage.setItem("fullName", values?.name);
       const response = await apiPostDriver(bodyFormData);
       console.log(response);
       setError(false);

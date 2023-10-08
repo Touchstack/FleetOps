@@ -1,7 +1,6 @@
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/Navbar/NavBar";
 import ContactHero from "../../assets/images/contact-hero.svg";
-import Map from "../../assets/images/map.svg";
 import Whatsapp from "../../assets/images/whatsapp.svg";
 import ArrowRightCircle from "../../assets/images/arrow-right-circle.svg";
 
@@ -41,7 +40,7 @@ const ContactUsPage = () => {
           <br /> you can also reach us at:
         </p>
         <div className="text-fleetBlue">
-          <a href="">Email: info@fleetopsgh.com</a>
+          <a href="mailto:info@fleetopsgh.com">Email: info@fleetopsgh.com</a>
         </div>
         <h1 className="mt-10 font-Bold text-[#000] text-[36px]">Whatsapp</h1>
         <p className="mb-4 font-Regular text-[19px]">
@@ -63,7 +62,7 @@ const ContactUsPage = () => {
         </p>
         <div className="flex text-center items-center p-3">
           <a
-            href="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.69008856965!2d-0.155683!3d5.5784718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3f9e66b506c8f68!2sBargain%20Motogh!5e0!3m2!1sen!2sgh!4v1661864666754!5m2!1sen!2sgh"
+            href="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.224111574871!2d-0.0995915!3d5.5956549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf85c0659343ad%3A0x2f92174559d14f9e!2s19%20Oleander%20Street%2C%20Teshie-Nungua%20Estates!5e0!3m2!1sen!2sgh!4v1696802340981!5m2!1sen!2sgh"
             className="text-lg self-center hover:underline font-Light text-fleetBlue mr-3"
           >
             View on map
@@ -81,7 +80,7 @@ const ContactUsPage = () => {
         >
           <iframe
             title="FleetOps Mapview"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.69008856965!2d-0.155683!3d5.5784718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3f9e66b506c8f68!2sBargain%20Motogh!5e0!3m2!1sen!2sgh!4v1661864666754!5m2!1sen!2sgh"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15883.224111574871!2d-0.0995915!3d5.5956549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf85c0659343ad%3A0x2f92174559d14f9e!2s19%20Oleander%20Street%2C%20Teshie-Nungua%20Estates!5e0!3m2!1sen!2sgh!4v1696802340981!5m2!1sen!2sgh"
             width="600"
             height="450"
             style={{

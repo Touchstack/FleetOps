@@ -135,7 +135,7 @@ export default function VehicleDetails() {
 
           {loading ? (
             <Spinner />
-          ) : !loading && vehicles.length >= 1 ? (
+          ) : !loading && vehicles?.length >= 1 ? (
             <div className="container lg:w-11/12 md:w-full sm:w-full w-full mx-auto">
               {vehicles.map((car) => {
                 return (
