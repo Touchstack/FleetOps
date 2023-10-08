@@ -1,12 +1,14 @@
 import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
-import UserIcon from "../../assets/images/dashboard-user.svg";
+import { DriverDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
 
 export default function DashboardNavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const driverName = localStorage.getItem("fullName");
 
   const navBarToggler = () => {
     if (hidden && ariaExpanded === "false") {
@@ -18,6 +20,10 @@ export default function DashboardNavBar() {
       setHiddenState("hidden");
       return setShowMenu(false);
     }
+  };
+
+  const handleShowDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   const iconVariants = {
@@ -65,19 +71,30 @@ export default function DashboardNavBar() {
           />
         </a>
         <div className="flex md:order-2">
-          <span className="md:ml-20 py-1 text-xl self-center lg:block md:hidden sm:hidden hidden">
+          <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
             <p className="font-Light text-fleetNavText text-center">
-              Kwame Mensah
+              {driverName}
             </p>
           </span>
           <span>
-            <img
+            {/*<img
               className="img-fluid md:ml-10 lg:block md:hidden sm:hidden hidden font-SemiBold"
               src={UserIcon}
               alt="User Logo"
               style={{ width: 50, height: 50 }}
-            />
+            />*/}
+            <svg
+              onClick={handleShowDropdown}
+              className="w-[40px] h-[40px] text-gray-300 dark:text-white mr-2 hover:cursor-pointer self-center"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+            </svg>
           </span>
+          {showDropdown && <DriverDropdown />}
 
           <motion.button
             data-collapse-toggle="navbar-cta"
@@ -130,7 +147,7 @@ export default function DashboardNavBar() {
                 Home
               </a>
             </motion.li>
-            {/*<motion.li variants={linkVariants}>
+            <motion.li variants={linkVariants}>
               <a
                 href="/drivers/findcars"
                 className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
@@ -138,7 +155,7 @@ export default function DashboardNavBar() {
                 Find Cars
               </a>
             </motion.li>
-            <motion.li variants={linkVariants}>
+            {/*<motion.li variants={linkVariants}>
               <a
                 href="/drivers/reports"
                 className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
