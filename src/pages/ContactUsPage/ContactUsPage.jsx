@@ -47,10 +47,15 @@ const ContactUsPage = () => {
           You can also send us a whatsapp message and we will <br /> respond as
           soon as possible.
         </p>
-        <button className="bg-[#38B908] font-Regular text-white rounded-lg p-5 px-8 py-3">
+        <a
+          href="https://wa.me/2332725888838"
+          target="_blank"
+          rel="noreferrer"
+          className="bg-[#38B908] hover:bg-[#59a82b] font-Regular text-white rounded-lg p-5 px-8 py-3"
+        >
           <img src={Whatsapp} alt="whatsapp" className="inline-flex p-1" />
           Send message
-        </button>
+        </a>
       </div>
 
       <div className=" flex flex-col items-center bg-white mt-20 mb-10">
