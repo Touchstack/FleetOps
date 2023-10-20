@@ -48,7 +48,7 @@ const ContactUsPage = () => {
           soon as possible.
         </p>
         <a
-          href="https://wa.me/2332725888838"
+          href="https://wa.me/233272588838"
           target="_blank"
           rel="noreferrer"
           className="bg-[#38B908] hover:bg-[#59a82b] font-Regular text-white rounded-lg p-5 px-8 py-3"
