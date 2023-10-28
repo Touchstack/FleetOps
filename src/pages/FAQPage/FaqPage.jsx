@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "../../Components/Navbar/NavBar";
 import FaqsBg from "../../assets/images/faqs-bg.svg";
 import ArrowRightCircle from "../../assets/images/arrow-right-circle.svg";
 import PlusIcon from "../../assets/images/plus-icon.svg";
 import MinusIcon from "../../assets/images/minus-icon.svg";
-import Testimonial1 from "../../assets/images/testimonial-1.svg";
+// import Testimonial1 from "../../assets/images/testimonial-1.svg";
 import Footer from "../../Components/Footer/Footer";
+import BrianImg from "../../assets/images/brian.jpeg";
+import BerniceImg from "../../assets/images/bernice.jpeg";
 
 const FaqPage = () => {
   const DataArray = [
@@ -41,6 +43,28 @@ const FaqPage = () => {
   ];
 
   const [faqOpen, setFaqOpen] = useState(null);
+  const [testimonial, setTestimonial] = useState();
+  const [number, setNumber] = useState(0);
+  const testimonials = [
+    {
+      name: "Brian Adjei-O",
+      image: BrianImg,
+      answer:
+        "I've had an incredible experience on my journey with the Fleetops team. Their assistance in managing my fleet of 10 vehicles has been truly invaluable. They've connected me with reliable drivers who utilize my vehicles for Hire Purchase and Rentals. The Engine Platforms provided have allowed me to effortlessly track drivers and streamline the payment process. It's an outstanding platform that has made a significant difference in the way I operate my fleet.",
+    },
+    {
+      name: "Bernice Buensi Otoo",
+      image: BerniceImg,
+      answer:
+        "Being frequent travelers living almost in the countryside, my husband and I have found great peace of mind in the Fleetops platform. During our time away, we enrolled in their service and experienced the security of having our cars efficiently managed under their rental system. The platform seamlessly connected us with trustworthy drivers who not only ensured the safety of our vehicles but also utilized them for ride-hailing services like Uber and Bolt, allowing them to earn a livelihood. We are thrilled to be part of a platform that offers such a combination of freedom and security. Choosing FleetOps has truly been a rewarding decision for us.",
+    },
+  ];
+
+  useEffect(() => {
+    setTestimonial(testimonials[number]);
+  }, [number]);
+
+  setTimeout(() => (number === 0 ? setNumber(1) : setNumber(0)), 3000);
 
   return (
     <div>
@@ -130,20 +154,21 @@ const FaqPage = () => {
 
         <div className="container bg-white mx-auto py-8 rounded-3xl mt-5 xl:w-6/12 lg:w-7/12 w-10/12">
           <p className="text-center text-[#234C65] font-Regular text-xl lg:px-20 px-16">
-            Fleetops has transformed how we manage our fleet. The real-time
-            tracking and driver management features have greatly increased our
-            operational efficiency.
+            {testimonial?.answer}
           </p>
 
           <div className="flex justify-center items-center mt-8">
-            <img src={Testimonial1} className="self-center" />
+            <img
+              src={testimonial?.image}
+              className="self-center h-[80px] w-[80px] rounded-[50px]"
+            />
             <div className="flex flex-col justify-start ml-4">
               <p className="text-[#545151] text-left font-Regular text-lg">
-                Eugenia Princeton
+                {testimonial?.name}
               </p>
-              <p className="text-[#545151] text-left font-Light text-md">
-                Owns 5 cars on Fleetops
-              </p>
+              {/* <p className="text-[#545151] text-left font-Light text-md">
+                Fleetops Customer
+  </p>*/}
             </div>
           </div>
         </div>
