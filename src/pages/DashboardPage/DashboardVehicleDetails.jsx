@@ -5,7 +5,6 @@ import {
   apiGetVehicles,
 } from "../../services/VehiclesService";
 import { useLocation } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
 import OutlinedButton from "../../Components/Buttons/OutlinedButton";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
