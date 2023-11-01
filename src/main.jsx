@@ -22,6 +22,7 @@ import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
 import "./index.css";
 import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
+import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 
 const router = createBrowserRouter([
@@ -113,6 +114,11 @@ const router = createBrowserRouter([
   {
     path: "/vehicle/details/:id",
     element: <VehicleDetails />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/dashboard/vehicle/details/:id",
+    element: <DashboardVehicleDetails />,
     errorElement: <ErrorPage />,
   },
 ]);

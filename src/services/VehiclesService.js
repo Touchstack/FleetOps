@@ -22,7 +22,11 @@ export async function apiDriverSignUp(data) {
 }
 
 export async function apiVerifyOtp(data) {
-  return apiClientMarketing.post(`/verify`, data);
+  return apiClientMarketing.post(`/verify/otp`, data);
+}
+
+export async function apiRegisterDriver(data) {
+  return apiClientMarketing.post(`/drivers/register`, data);
 }
 
 export async function apiPostDriver(bodyFormData) {
@@ -33,21 +37,9 @@ export async function apiPostDriver(bodyFormData) {
     headers: { "Content-Type": "multipart/form-data" },
   })
     .then((response) => {
-      // handle success
-      // return setSuccessText(response.data.message);
       return response;
     })
     .catch((error) => {
-      // handle error
-      /*setErrorText(
-        error?.response?.data?.message
-          ? error?.response?.data?.message
-          : error?.message
-      );
-      setErrorAlert(true);
-      setLoading(false);
-      return setTimeout(() => setErrorAlert(false), 3000);
-     */
       return error;
     });
 }

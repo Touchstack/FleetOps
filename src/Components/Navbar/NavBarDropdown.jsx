@@ -35,7 +35,7 @@ export const DriverDropdown = () => {
   return (
     <div
       id="dropdownNavbarCompany"
-      className="z-10 font-Regular absolute mt-14 bg-white divide-y divide-gray-100 rounded-[20px] lg:w-40 md:w-40 sm:w-40 lg:-ml-5 md:-ml-5 sm:-ml-24 -ml-24 w-40 drop-shadow-lg"
+      className="z-10 font-Regular absolute mt-14 bg-white divide-y divide-gray-100 rounded-[20px] lg:w-40 md:w-40 sm:w-40 lg:ml-24 md:ml-18 sm:-ml-24 -ml-24 w-40 drop-shadow-lg"
     >
       <ul
         className="p-5 text-xl text-gray-900 dark:text-gray-400"
@@ -43,14 +43,21 @@ export const DriverDropdown = () => {
       >
         <p className="px-2 py-3 text-gray-400 text-base">SETTINGS</p>
 
-        <li>
+        <button
+          onClick={() => {
+            localStorage.removeItem("driverNumber");
+            localStorage.removeItem("driver");
+            localStorage.removeItem("token");
+            return (window.location.href = "/drivers/loginpage");
+          }}
+        >
           <a
             href="#"
             className="block px-2 py-3 text-xl hover:bg-gray-100 dark:hover:bg-green-100"
           >
             Logout
           </a>
-        </li>
+        </button>
       </ul>
     </div>
   );

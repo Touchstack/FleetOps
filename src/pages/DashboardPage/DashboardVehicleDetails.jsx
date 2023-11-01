@@ -5,14 +5,12 @@ import {
   apiGetVehicles,
 } from "../../services/VehiclesService";
 import { useLocation } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
 import OutlinedButton from "../../Components/Buttons/OutlinedButton";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
-import NavBar from "../../Components/Navbar/NavBar";
-import Footer from "../../Components/Footer/Footer";
+import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 
-export default function VehicleDetails() {
+export default function DashboardVehicleDetails() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [vehicles, setVehicles] = useState([]);
@@ -61,8 +59,8 @@ export default function VehicleDetails() {
   }, []);
 
   return (
-    <main>
-      <NavBar />
+    <main className="bg-[#F7F9F8] min-h-screen">
+      <DashboardNavBar />
       <div className="w-full bg-[#F7F9F8]">
         {loading ? (
           <div className="container mx-auto p-24 bg-[#F7F9F8]">
@@ -75,22 +73,21 @@ export default function VehicleDetails() {
           <section className="container mx-auto p-8 bg-[#F7F9F8]">
             <p className="font-Light text-[#545151]">
               <a
-                href="/drivers"
+                href="/drivers/dashboard"
                 className="hover:underline hover:text-fleetBlue"
               >
-                Drivers
+                Dashboard
               </a>{" "}
               /{" "}
-              <HashLink
-                to="/drivers#cars-section"
-                className="hover:underline hover:text-fleetBlue"
-                smooth={true}
+              <a
+                to="/drivers/findcars"
+                className="hover:underline hover:cursor-pointer hover:text-fleetBlue"
               >
                 Cars
-              </HashLink>{" "}
+              </a>{" "}
               /{" "}
               <span className="text-fleetBlue">
-                {data?.VMK} {data?.VMD}
+                {data?.VCL} {data?.VMK} {data?.VMD}
               </span>
             </p>
 
@@ -171,7 +168,6 @@ export default function VehicleDetails() {
           )}
         </section>
       </div>
-      <Footer />
     </main>
   );
 }

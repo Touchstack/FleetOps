@@ -4,7 +4,6 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
 import { apiGetVehicles } from "../../services/VehiclesService";
 import OutlinedButton from "../../Components/Buttons/OutlinedButton";
-import { config } from "../../services/Config";
 
 const FindCars = () => {
   const [data, setData] = useState([]);
@@ -15,7 +14,7 @@ const FindCars = () => {
     setLoading(true);
     try {
       const response = await apiGetVehicles();
-      setData(response.data);
+      setData(response.data?.data);
       return setLoading(false);
     } catch (error) {
       console.log(error);
@@ -29,7 +28,7 @@ const FindCars = () => {
       ...appContext,
       selectedVehicle: vehicle,
     });
-    return (window.location.href = `/vehicle/details/${vehicle?.id}`);
+    return (window.location.href = `/drivers/dashboard/vehicle/details/${vehicle?.id}`);
   };
 
   useEffect(() => {
