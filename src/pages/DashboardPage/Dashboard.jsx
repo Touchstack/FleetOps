@@ -1,14 +1,26 @@
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import Car from "../../assets/images/car-dashboard.svg";
 import Chart from "../../assets/images/chart.svg";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const data = localStorage.getItem("driver");
+  const driver = JSON.parse(data);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return (window.location.href = "/drivers/loginpage");
+    }
+  }, []);
+
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
       <DashboardNavBar />
       <div className="font-Light flex flex-col justify-center items-start">
         <div className="container flex flex-col justify-center items-start self-center lg:px-16 md:px-12 sm:px-10 px-10 py-16">
-          <p className="text-[#707EAE] text-lg text-left">Hi, Kwaku</p>
+          <p className="text-[#707EAE] text-lg text-left">
+            Hi, {driver?.fullname}
+          </p>
           <h1 className="text-[#2B3674] font-Bold md:text-4xl sm:text-3xl text-3xl">
             Welcome to FleetOps
           </h1>

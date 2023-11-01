@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Yup from "yup";
 import {
   Spinner,
@@ -9,14 +9,23 @@ import FormInputItem from "../../Components/Forms/Inputs/RegistrationFormInput";
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      return navigate("/drivers/dashboard");
+    }
+  }, []);
 
   const validation = Yup.object().shape({
-    phone_number: Yup.string()
+    phoneNumber: Yup.string()
       .matches(
         /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
         "Phone Number is Invalid"
@@ -28,7 +37,10 @@ const LoginPage = () => {
     try {
       setError(false);
       setLoading(true);
-      await apiDriverLogin(values);
+      const response = await apiDriverLogin(values);
+      const userData = response.data?.data;
+      localStorage.setItem("driver", JSON.stringify(userData));
+      localStorage.setItem("token", userData?.token);
       setLoading(false);
       return (window.location.href = "/otppage");
     } catch (error) {
@@ -54,7 +66,7 @@ const LoginPage = () => {
         </h3>
         <h3 className="text-[#666666] font-Light">Login To Continue</h3>
         <Formik
-          initialValues={{ phone_number: "" }}
+          initialValues={{ phoneNumber: "" }}
           validationSchema={validation}
           onSubmit={(values) => registerDriver(values)}
         >
@@ -69,12 +81,12 @@ const LoginPage = () => {
                 placeholder={"e.g  0245869979"}
                 type={"tel"}
                 id={"phonenumber"}
-                value={values.phone_number}
-                onChange={handleChange("phone_number")}
+                value={values.phoneNumber}
+                onChange={handleChange("phoneNumber")}
               />
-              {touched.phone_number && errors.phone_number && (
+              {touched.phoneNumber && errors.phoneNumber && (
                 <p className="text-red-500 underline font-Regular pb-2">
-                  {errors.phone_number}
+                  {errors.phoneNumber}
                 </p>
               )}
               <div className="mt-10 flex justify-end align-baseline">

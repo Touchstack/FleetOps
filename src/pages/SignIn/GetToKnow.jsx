@@ -1,7 +1,10 @@
 import * as Yup from "yup";
 import { useState } from "react";
 import { Formik } from "formik";
-import { apiPostDriver } from "../../services/VehiclesService";
+import {
+  apiPostDriver,
+  apiRegisterDriver,
+} from "../../services/VehiclesService";
 import Preview from "../../Components/ImgPreview/Preview";
 import {
   ErrorAlert,
@@ -58,7 +61,18 @@ const GetToKnow = () => {
       bodyFormData.append("licenseFront", values?.licenseFront);
       bodyFormData.append("licenseBack", values?.licenseBack);
       localStorage.setItem("fullName", values?.name);
+      const data = {
+        fullname: values?.name,
+        email: values?.email,
+        phoneNumber: driverNumber,
+        licenseFront: values?.licenseFront,
+        licenseBack: values?.licenseBack,
+      };
+      const apiMarketingRes = await apiRegisterDriver(data);
       const response = await apiPostDriver(bodyFormData);
+      const userData = apiMarketingRes.data?.data;
+      localStorage.setItem("driver", JSON.stringify(userData));
+      localStorage.setItem("token", userData?.token);
       console.log(response);
       setError(false);
       setLoading(false);

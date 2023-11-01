@@ -8,7 +8,8 @@ export default function DashboardNavBar() {
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
-  const driverName = localStorage.getItem("fullName");
+  const data = localStorage.getItem("driver");
+  const driver = JSON.parse(data);
 
   const navBarToggler = () => {
     if (hidden && ariaExpanded === "false") {
@@ -73,7 +74,7 @@ export default function DashboardNavBar() {
         <div className="flex md:order-2">
           <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
             <p className="font-Light text-fleetNavText text-center">
-              {driverName}
+              {driver?.fullname}
             </p>
           </span>
           <span>

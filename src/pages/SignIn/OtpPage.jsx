@@ -18,8 +18,12 @@ const OtpPage = () => {
     try {
       setError(false);
       setLoading(true);
+      const token = localStorage.getItem("token");
       await apiVerifyOtp({ code: otp });
       setLoading(false);
+      if (token) {
+        return (window.location.href = "/drivers/dashboard");
+      }
       return (window.location.href = "/gettoknow");
     } catch (error) {
       console.log(error);
@@ -68,12 +72,12 @@ const OtpPage = () => {
             )}
           />
         </div>
-        <a href="/otppage">
+        {/*<a href="/otppage">
           <h3 className="text-fleetBlue font-Regular text-[15px] p-6">
             Resend code
           </h3>
-        </a>
-        <div className="flex justify-end align-baseline">
+              </a>*/}
+        <div className="flex justify-end align-baseline mt-5">
           {loading ? (
             <Spinner />
           ) : (
