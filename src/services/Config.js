@@ -6,7 +6,7 @@ export const apiClient = axios.create({
 });
 
 export const apiClientMarketing = axios.create({
-  baseURL: "https://fleetops-api.onrender.com/api",
+  baseURL: "https://fleetops-k3g7.onrender.com/api",
   headers: { Accept: "application/json" },
 });
 
