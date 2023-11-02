@@ -29,6 +29,14 @@ export async function apiRegisterDriver(data) {
   return apiClientMarketing.post(`/drivers/register`, data);
 }
 
+export async function apiSelectVehicle(data) {
+  return apiClientMarketing.post(`/drivers/select_vehicle`, data);
+}
+
+export async function apiGetSelectedVehicle(id) {
+  return apiClientMarketing.get(`/drivers/vehicle/${id}`);
+}
+
 export async function apiPostDriver(bodyFormData) {
   return axios({
     method: "post",

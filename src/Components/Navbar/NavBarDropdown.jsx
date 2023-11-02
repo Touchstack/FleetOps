@@ -48,6 +48,8 @@ export const DriverDropdown = () => {
             localStorage.removeItem("driverNumber");
             localStorage.removeItem("driver");
             localStorage.removeItem("token");
+            localStorage.removeItem("fullName");
+            localStorage.removeItem("driverVehicle");
             return (window.location.href = "/drivers/loginpage");
           }}
         >
