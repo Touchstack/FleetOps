@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Formik } from "formik";
 import {
@@ -19,6 +21,15 @@ const GetToKnow = () => {
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
   const driverNumber = localStorage.getItem("driverNumber");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      return navigate("/drivers/dashboard");
+    }
+  }, []);
 
   const validation = Yup.object().shape({
     name: Yup.string().required("Fullname is Required"),
@@ -65,8 +76,8 @@ const GetToKnow = () => {
         fullname: values?.name,
         email: values?.email,
         phoneNumber: driverNumber,
-        licenseFront: values?.licenseFront,
-        licenseBack: values?.licenseBack,
+        licenseFront: values?.licenseFront?.name,
+        licenseBack: values?.licenseBack?.name,
       };
       const apiMarketingRes = await apiRegisterDriver(data);
       const response = await apiPostDriver(bodyFormData);
