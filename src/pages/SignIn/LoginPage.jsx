@@ -40,7 +40,7 @@ const LoginPage = () => {
       const response = await apiDriverLogin(values);
       const userData = response.data?.data;
       localStorage.setItem("driver", JSON.stringify(userData));
-      localStorage.setItem("token", userData?.token);
+      localStorage.setItem("tempToken", userData?.token);
       setLoading(false);
       return (window.location.href = "/otppage");
     } catch (error) {

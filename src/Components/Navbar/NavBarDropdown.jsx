@@ -35,7 +35,7 @@ export const DriverDropdown = () => {
   return (
     <div
       id="dropdownNavbarCompany"
-      className="z-10 font-Regular absolute mt-14 bg-white divide-y divide-gray-100 rounded-[20px] lg:w-40 md:w-40 sm:w-40 lg:ml-24 md:ml-18 sm:-ml-24 -ml-24 w-40 drop-shadow-lg"
+      className="z-10 font-Regular absolute mt-14 bg-white divide-y divide-gray-100 rounded-[20px] lg:w-44 md:w-40 sm:w-40 lg:ml-24 md:ml-18 sm:-ml-24 -ml-24 w-40 drop-shadow-lg"
     >
       <ul
         className="p-5 text-xl text-gray-900 dark:text-gray-400"

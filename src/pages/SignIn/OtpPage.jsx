@@ -18,10 +18,12 @@ const OtpPage = () => {
     try {
       setError(false);
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const tempToken = localStorage.getItem("tempToken");
       await apiVerifyOtp({ code: otp });
       setLoading(false);
-      if (token) {
+      if (tempToken) {
+        localStorage.setItem("token", tempToken);
+        localStorage.removeItem("tempToken");
         return (window.location.href = "/drivers/dashboard");
       }
       return (window.location.href = "/gettoknow");
