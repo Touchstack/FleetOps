@@ -9,6 +9,7 @@ export default function NavBar() {
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const token = localStorage.getItem("token");
 
   const navBarToggler = () => {
     if (hidden && ariaExpanded === "false") {
@@ -73,10 +74,10 @@ export default function NavBar() {
         <div className="flex md:order-2">
           <span className="md:ml-20 py-1 text-xl lg:block md:hidden sm:hidden hidden">
             <a
-              href="/drivers/loginpage"
+              href={!token ? "/drivers/loginpage" : "/drivers/dashboard"}
               className="text-fleetBlue font-SemiBold"
             >
-              Login
+              {!token ? "Login" : "Dashboard"}
             </a>
           </span>
           <a href="/contactus">
@@ -186,10 +187,10 @@ export default function NavBar() {
             </motion.li>
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers/loginpage"
+                href={!token ? "/drivers/loginpage" : "/drivers/dashboard"}
                 className="block lg:hidden md:hidden py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
-                Login
+                {!token ? "Login" : "Dashboard"}
               </a>
             </motion.li>
             <motion.li variants={linkVariants}>
