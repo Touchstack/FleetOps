@@ -189,7 +189,7 @@ export default function DashboardVehicleDetails() {
                 {statusText === "Vehicle Selected Successfully!" ? (
                   <>
                     <p className="font-Light lg:text-2xl md:text-2xl sm:text-2xl text-xl py-2 underline">
-                      You have selected this vehicle
+                      You have selected the vehicle below:
                     </p>
                     <p className="font-Bold lg:text-2xl md:text-2xl sm:text-2xl text-xl">
                       {data?.VCL} {data?.VMK} {data?.VMD} (
@@ -202,7 +202,7 @@ export default function DashboardVehicleDetails() {
                 ) : driverVehicle ? (
                   <>
                     <p className="font-Light lg:text-2xl md:text-2xl sm:text-2xl text-xl py-2 underline">
-                      You have already selected this vehicle
+                      You have already selected the vehicle below:
                     </p>
 
                     <p className="font-Bold lg:text-2xl md:text-2xl sm:text-2xl text-xl">
