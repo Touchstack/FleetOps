@@ -64,7 +64,7 @@ const FaqPage = () => {
     setTestimonial(testimonials[number]);
   }, [number]);
 
-  setTimeout(() => (number === 0 ? setNumber(1) : setNumber(0)), 3000);
+  setTimeout(() => (number === 0 ? setNumber(1) : setNumber(0)), 10000);
 
   return (
     <div>
