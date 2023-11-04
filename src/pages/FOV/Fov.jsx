@@ -1,6 +1,5 @@
 import NavBar from "../../Components/Navbar/NavBar";
 import Footer from "../../Components/Footer/Footer";
-import ProductsView from "../../Components/Products/ProductsView";
 import DriverLogin from "../../assets/images/DriverLogin.svg";
 import FleetManager from "../../assets/images/FleetManager.png";
 import Process from "../../assets/images/Process.png";
