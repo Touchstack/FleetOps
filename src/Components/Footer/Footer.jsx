@@ -99,6 +99,14 @@ export default function Footer() {
                         Contact us
                       </a>
                     </li>
+                    <li className="mb-4">
+                      <a
+                        href="/faqs"
+                        className="hover:underline hover:text-fleetFooterHover"
+                      >
+                        FAQs
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
