@@ -40,13 +40,8 @@ const AboutUsPage = () => {
           </a>
         </div>
 
-        <div className="my-10">
-          <img src={Family} alt="family-pic" className="inline-flex " />
-          <img
-            src={Owner}
-            alt="Owners"
-            className="inline-flex h-[168px] w-[168px] rounded-2xl lg:ml-10 md:ml-0 sm:ml-0 lg:self-auto md:self-auto sm:self-center self-center"
-          />
+        <div className="my-10 flex justify-center">
+          <img src={Family} alt="Owners" className="inline-flex" />
         </div>
       </div>
       <div className="bg-white grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 mb-10 mt-12 px-20 py-20">
