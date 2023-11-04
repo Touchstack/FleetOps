@@ -97,8 +97,6 @@ const FOV = () => {
         </div>
       </div>
 
-      <ProductsView />
-
       <Footer />
     </div>
   );
