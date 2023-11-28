@@ -28,12 +28,26 @@ const AboutUsPage = () => {
           <h1 className="max-w-2xl mt-10 mb-8 text-4xl font-Bold tracking-tight leading-none md:text-5xl">
             Who We Are{" "}
           </h1>
-          <p className="mb-10 font-Regular text-[#0A0D14] text-[19px]">
-            We are a dedicated company passionate about transforming the way
-            informal transportation sectors operate. Our mission is to
-            seamlessly integrate technology, vehicle owners, and drivers to
-            achieve optimum fleet utilization and revenue generation, while
-            promoting transparency, accountability, and operational excellence.
+          <p className="font-Regular text-[#0A0D14] text-[19px] text-justify">
+            Fleet Operations and Vantage Ltd is an automotive transportation
+            company at its core, with deep business competencies in big fleet
+            management solutions.
+          </p>
+          <p className="font-Regular text-[#0A0D14] text-[19px] text-justify">
+            Our recent undertakings and adoption of technology has made of us an
+            enabler that feeds the ride hailing marketplace with adequate supply
+            of cars and drivers. FleetOps is NOT a ride hailing app, nor is it
+            aligned or, associated contractually or otherwise with any ride
+            hailing company, including the globally known ones. We operate
+            upstream in the ride hailing space where cars are easily and
+            voluntarily given by owners to willing, safe and well trained
+            drivers for business, who can use any ride hailing app to provide
+            services to the public.
+          </p>
+          <p className="mb-10 font-Regular text-[#0A0D14] text-[19px] text-justify">
+            This is successfully achieved through our use of purpose-built
+            web-applications which enables easy and seamless fleet management
+            and control.
           </p>
           <a href="/contactus">
             <PrimaryButton buttonText={"Talk to us"} cssprops={"mt-8"} />
