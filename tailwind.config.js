@@ -15,6 +15,8 @@ module.exports = {
         SemiBold: ["AnekDevanagari-SemiBold", "sans-serif"],
         ExtraBold: ["AnekDevanagari-ExtraBold", "sans-serif"],
         Medium: ["AnekDevanagari-Medium", "sans-serif"],
+        SansMedium: ["DMSans", "sans-serif"],
+        SansLight: ["DMSansLight", "sans-serif"]
       },
       colors: {
         fleetBlue: "#23A6BF",
