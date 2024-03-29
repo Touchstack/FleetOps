@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ReturnReason from "./components/modals/ReturnReason";
 import ExperienceRate from "./components/modals/ExperienceRate";
 import Confirmation from "./components/modals/Confirmation";
+import Congratulations from "./components/modals/Congratulations";
 
 const Dashboard = () => {
   const driverData = localStorage.getItem("driver");
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [showReturnReason, setShowReturnReason] = useState(false);
   const [showExperienceRate, setShowExperienceRate] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
   const driver = JSON.parse(driverData);
   const driverVehicleObj = localStorage.getItem("driverVehicle");
   const driverVehicle = JSON.parse(driverVehicleObj);
@@ -52,6 +54,7 @@ const Dashboard = () => {
     setShowReturnReason(false);
     setShowExperienceRate(false)
     setShowConfirmation(false);
+    setShowCongratulations(false);
   };
 
   const handleShowExperience = () => {
@@ -220,6 +223,10 @@ const Dashboard = () => {
      {showConfirmation && (
         <Confirmation onCancel={closeModal} />
      )}
+
+      {showCongratulations && (
+       <Congratulations onCancel={closeModal} />
+      )}
 
     </div>
   );
