@@ -3,6 +3,7 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import OtherCarsYouMayLike from "./OtherCarsYouMayLike";
 import Car from "../../assets/images/Car.png";
 import Info from "../../assets/images/info.png";
+import PlacingBidModal from './modals/PlacingBidModal';
 
 
 const Carousel = [
@@ -54,9 +55,14 @@ const carDetails = [
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
+    const [showPlaceBid, setshowPlaceBid] = useState(false)
 
     const toggleShowMore = () => {
         setShowMore(!showMore);
+      };
+
+    const toggleShowPlaceBid = () => {
+       setshowPlaceBid(!showPlaceBid);
       };
 
   return (
@@ -132,7 +138,7 @@ const DashboardVehicleDetailsPage = () => {
            
            {/* Slider image */}
           <div className='flex md:hidden mb-10'>
-             <img src={Car} alt="" className="w-full rounded-[10px] h-[208px]" />
+             <img src={Car} alt="" className="w-full rounded-[10px]" />
           </div>
           
           <h1 className="text-[34px] font-Bold">Corolla LE Eco 2022</h1>
@@ -152,7 +158,7 @@ const DashboardVehicleDetailsPage = () => {
             {/* Terms */}
 
             {/* Call to action */}
-            <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+            <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
                 <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
             </div>
             {/* Call to action */}
@@ -199,7 +205,9 @@ const DashboardVehicleDetailsPage = () => {
      </div>
 
     
-       <OtherCarsYouMayLike />
+      <OtherCarsYouMayLike />
+
+      {showPlaceBid && <PlacingBidModal onCancel={toggleShowPlaceBid} /> }
       
     </main>
   );
