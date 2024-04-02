@@ -24,6 +24,8 @@ import "./index.css";
 import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
 import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
+import BidsPage from "./pages/BidsPage/BidsPage.jsx";
+import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleDetailsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -118,7 +120,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/drivers/dashboard/vehicle/details/:id",
-    element: <DashboardVehicleDetails />,
+    // element: <DashboardVehicleDetails />,
+     element: <DashboardVehicleDetailsPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/bids",
+    element: <BidsPage />,
     errorElement: <ErrorPage />,
   },
 ]);
