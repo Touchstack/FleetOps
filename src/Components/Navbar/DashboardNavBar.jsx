@@ -2,7 +2,6 @@ import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
 import { DriverDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom"; 
 
 export default function DashboardNavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
@@ -11,8 +10,6 @@ export default function DashboardNavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const data = localStorage.getItem("driver");
   const driver = JSON.parse(data);
-
-  const location = useLocation();
 
   const navBarToggler = () => {
     if (hidden && ariaExpanded === "false") {
@@ -140,9 +137,7 @@ export default function DashboardNavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/drivers/dashboard"
-                className={`block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue  md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/dashboard" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
+                className="block py-2 pl-3 pr-4 rounded md:bg-transparent text-fleetNavText md:p-0 md:hover:text-fleetBlue"
                 aria-current="page"
               >
                 Home
@@ -151,25 +146,11 @@ export default function DashboardNavBar() {
             <motion.li variants={linkVariants}>
               <a
                 href="/drivers/findcars"
-                className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/findcars" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
+                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500"
               >
                 Find Cars
               </a>
             </motion.li>
-            
-            <motion.li variants={linkVariants}>
-              <a
-                href="/drivers/Bids"
-                className={`block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/Bids" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
-              >
-                Bids
-              </a>
-            </motion.li>
-
             {/*<motion.li variants={linkVariants}>
               <a
                 href="/drivers/reports"
@@ -177,7 +158,7 @@ export default function DashboardNavBar() {
               >
                 Reports
               </a>
-           </motion.li>*/}
+  </motion.li>*/}
           </motion.ul>
         </div>
       </div>

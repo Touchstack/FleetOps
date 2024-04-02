@@ -4,19 +4,11 @@ import { apiGetSelectedVehicle } from "../../services/VehiclesService";
 import Car from "../../assets/images/car-dashboard.svg";
 import Chart from "../../assets/images/chart.svg";
 import { useEffect, useState } from "react";
-import ReturnReason from "./components/modals/ReturnReason";
-import ExperienceRate from "./components/modals/ExperienceRate";
-import Confirmation from "./components/modals/Confirmation";
-import Congratulations from "./components/modals/Congratulations";
 
 const Dashboard = () => {
   const driverData = localStorage.getItem("driver");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
-  const [showReturnReason, setShowReturnReason] = useState(false);
-  const [showExperienceRate, setShowExperienceRate] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showCongratulations, setShowCongratulations] = useState(false);
   const driver = JSON.parse(driverData);
   const driverVehicleObj = localStorage.getItem("driverVehicle");
   const driverVehicle = JSON.parse(driverVehicleObj);
@@ -40,7 +32,6 @@ const Dashboard = () => {
     }
   };
 
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -48,24 +39,6 @@ const Dashboard = () => {
     }
     getSelectedVehicle();
   }, []);
-
-
-  const closeModal = () => {
-    setShowReturnReason(false);
-    setShowExperienceRate(false)
-    setShowConfirmation(false);
-    setShowCongratulations(false);
-  };
-
-  const handleShowExperience = () => {
-    setShowReturnReason(!showReturnReason)
-    setShowExperienceRate(!showExperienceRate)
-  }
-
-  const handleShowConfrimation = () => {
-    setShowExperienceRate(!showExperienceRate)
-    setShowConfirmation(!showConfirmation)
-  }
 
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
@@ -80,9 +53,7 @@ const Dashboard = () => {
           </h1>
 
           <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 my-12 w-full">
-            
-          {/* Selected Cars */}
-            {/* <div className="bg-fleetBlue text-white rounded-3xl p-8 h-40">
+            <div className="bg-fleetBlue text-white rounded-3xl p-8 h-40">
               <p className="text-md">Current Vehicle</p>
               <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-between items-center">
                 {loading ? (
@@ -133,57 +104,18 @@ const Dashboard = () => {
                   <img src={Chart} className="img-fluid" />
                 )}
               </div>
-            </div> */}
+            </div>
 
- 
-              <div className="bg-fleetBlue font-Sans text-white rounded-3xl p-8 h-50">
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-col gap-2">
-                    <p className="text-[16px] text-[#E9EDF7] font-SansLight">Current vehicle</p>
-                    {loading ? (
-                      <Spinner /> // Show spinner while loading
-                    ) : driverVehicle ? (
-                      <p className="text-[20px] font-SansMedium">
-                        {driverVehicle?.VCL} {driverVehicle?.VMK} {driverVehicle?.VMD} ({driverVehicle?.VDT?.split("-")[0]})
-                      </p>
-                    ) : data ? (
-                      <p className="text-[20px] font-SansMedium">
-                        {data?.VCL} {data?.VMK} {data?.VMD} ({data?.VDT?.split("-")[0]})
-                      </p>
-                    ) : (
-                      <p className="text-[20px] font-SansMedium">_</p> // Empty state
-                    )}
-                  </div>
-                
-                    <img src={Chart} className="img-fluid" />
-                
-                </div>
-
-                {driverVehicle || data ? (
-                  <>
-                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: Ride hailing for business (RH4B)</p>
-                    <div className="flex justify-end mt-5">
-                      <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
-                       onClick={() => setShowReturnReason(true)}
-                      >
-                        Return car
-                      </div>
-                    </div>
-                  </>
-                    ) : null}
-              </div>
-           {/* Selected Cars */}
-
-            <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Cars requested</p>
+            <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-40">
+              <p className="text-gray-700 text-md">Cars Selected</p>
               <h3 className="font-Regular text-2xl">
                 {" "}
                 {driverVehicle || data ? 1 : 0}
               </h3>
             </div>
 
-            <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Reviews</p>
+            <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-40">
+              <p className="text-gray-700 text-md">Complaints</p>
               <h3 className="font-Regular text-2xl">0</h3>
             </div>
           </div>
@@ -193,16 +125,10 @@ const Dashboard = () => {
               <p className="font-Bold  md:text-4xl sm:text-3xl text-3xl">
                 Find available cars
               </p>
-              <p className="text-gray-700 text-md pr-4 max-w-[356px]">
+              <p className="text-gray-700 text-md pr-4">
                 Choose from a wide variety of vehicles from the top car owners.
                 All brands and models you want.
               </p>
-
-              <div className="mt-3 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  w-[140px] h-[46px] rounded-[10px] flex items-center justify-center">
-                <p className="pt-1 font-Sans text-[#FFFFFF] text-[14px]">
-                 Start Search
-                </p>
-              </div>
             </div>
             <div>
               <img src={Car} className="img-fluid" />
@@ -210,24 +136,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-     
-     {showReturnReason && (
-        <ReturnReason onCancel={closeModal} onNext={handleShowExperience} />
-     )}
-     
-     {showExperienceRate && (
-        <ExperienceRate onCancel={closeModal} onNext={handleShowConfrimation} />
-     )}
-
-     {showConfirmation && (
-        <Confirmation onCancel={closeModal} />
-     )}
-
-      {showCongratulations && (
-       <Congratulations onCancel={closeModal} />
-      )}
-
     </div>
   );
 };
