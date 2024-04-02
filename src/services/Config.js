@@ -6,7 +6,7 @@ export const apiClient = axios.create({
 });
 
 export const apiClientMarketing = axios.create({
-  baseURL: "https://sea-lion-app-ceg3r.ondigitalocean.app",
+  baseURL: "https://sea-lion-app-ceg3r.ondigitalocean.app/api",
   headers: { Accept: "application/json" },
 });
 
