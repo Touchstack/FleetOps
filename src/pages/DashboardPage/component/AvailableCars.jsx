@@ -1,53 +1,7 @@
 import React, { useState } from 'react';
 import Car from "../../../assets/images/Car.png";
-import Toyota from "../../../assets/images/Toyota.png"
-import Hundai from "../../../assets/images/Hundai.png"
 import { Button } from "@/Components/ui/button";
 
-const otherCarsData = [
-  {
-    id: 1,
-    title: 'Corolla LE Eco 2022',
-    model: ' Ride hailing for business (RH4B)',
-    image: Car,
-    price:'400'
-  },
-  {
-    id: 2,
-    title: 'Corolla LE Eco 2022',
-    model: ' Hire-purchase for business (HP4B)',
-    image: Toyota,
-    price:'400'
-  },
-  {
-    id: 3,
-    title: 'Corolla LE Eco 2022',
-    model: ' Hire-purchase for business (HP4B))',
-    image: Hundai,
-    price:'400'
-  }, 
-  {
-    id: 4,
-    title: 'Corolla LE Eco 2022',
-    model: ' Ride hailing for business (RH4B)',
-    image: Car,
-    price:'400'
-  },
-  {
-    id: 5,
-    title: 'Corolla LE Eco 2022',
-    model: ' Hire-purchase for business (HP4B)',
-    image: Hundai,
-    price:'400'
-  },
-  {
-    id: 6,
-    title: 'Corolla LE Eco 2022',
-    model: ' Ride hailing for business (RH4B)',
-    image: Toyota,
-    price:'400'
-  }, 
-];
 
 const Spinner = () => {
   return (
@@ -75,35 +29,34 @@ const Spinner = () => {
   );
 };
 
-const AvailableCars = () => {
-  const [loading, setLoading] = useState(false);
+const AvailableCars = ({data, Selected, loading}) => {
 
   return (
-    <div className="">
+    <div className="z-0">
       {loading ? (
         <Spinner />
-      ) : !loading && otherCarsData.length >= 1 ? (
+      ) : !loading && data.length > 0 ? (
        <>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-10">
-          {otherCarsData.map((cars) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-10 z-0">
+          {data.map((car) => {
             return (
-              <div key={cars.id} className="w-12/12">
+              <div onClick={() => Selected(car)} key={car?.driver_id} className="w-12/12">
                 <div className="relative flex flex-col cursor-pointer  py-[23px] rounded-[30px]">
-                  <img src={cars.image} className="md:w-11/12 w-12/12 h-auto rounded-[10px]" alt="" />
+                  <img src={Car} className="md:w-11/12 w-12/12 h-auto rounded-[10px]" alt="" />
                   {/* Price tag */}
                   <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
-                    <p>GHS {cars.price}</p>
-                    <span className="text-[13.32px] font-Light pt-1">per week</span>
+                    <p> GHS {car?.VAM}{" "}</p>
+                    <span className="text-[13.32px] font-Light pt-1">{car?.VPF}</span>
                   </div>
                   {/* Price tag */}
                   
                   {/* Car info */}
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">
-                      {cars.title}
+                       {car?.VCL} {car?.VMK} {car?.VMD}
                     </p>
                     <p className="font-Light  text-[18px]">
-                      Model: {cars.model}
+                      Model: {car?.VBM} 
                     </p>
                   </div>
                   {/* Car info */}
@@ -113,7 +66,11 @@ const AvailableCars = () => {
           })}
         </div>
          <div className="flex items-center justify-center">
-           <Button className='bg-[#181818] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 text-[#FFFFFF] rounded-[30px]'>Load more</Button>
+           <Button 
+            className='bg-[#181818] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 text-[#FFFFFF] rounded-[30px]'
+            >
+            Load more
+           </Button>
          </div>
         </>
       ) : (
