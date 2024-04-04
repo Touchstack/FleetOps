@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Car from "../../../assets/images/Car.png";
 import { Button } from "@/Components/ui/button";
+import { IoImagesOutline } from "react-icons/io5";
 
 
 const Spinner = () => {
@@ -41,15 +42,24 @@ const AvailableCars = ({data, Selected, loading}) => {
           {data.map((car) => {
             return (
               <div onClick={() => Selected(car)} key={car?.driver_id} className="w-12/12">
-                <div className="relative flex flex-col cursor-pointer  py-[23px] rounded-[30px]">
-                  <img src={Car} className="md:w-11/12 w-12/12 h-auto rounded-[10px]" alt="" />
+                <div className="relative flex flex-col cursor-pointer  border-white py-[23px] rounded-[30px]">
+                  {/* Render image or placeholder */}
+                  {car?.DLD !== null ? (
+                    <img
+                      src={`http://engines.fleetopsgh.com/uploads/photo/${car?.DLD}`}
+                      className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
+                      alt=""
+                    />
+                  ) : (
+                    <div className="flex justify-center items-center bg-white md:w-11/12 w-12/12 h-auto rounded-[10px]">
+                      <IoImagesOutline size={80} className="text-black  h-[408px]" />
+                    </div>
+                  )}
                   {/* Price tag */}
                   <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
                     <p> GHS {car?.VAM}{" "}</p>
                     <span className="text-[13.32px] font-Light pt-1">{car?.VPF}</span>
                   </div>
-                  {/* Price tag */}
-                  
                   {/* Car info */}
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">

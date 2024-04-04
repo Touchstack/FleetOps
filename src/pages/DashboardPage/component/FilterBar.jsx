@@ -60,7 +60,7 @@ const FilterDropdown = ({ title, onSelect, onMouseEnter, onMouseLeave }) => {
     return (
       <div
         className="md:flex cursor-pointer hidden relative"
-        onClick={() => setShowDropdown(true)}
+        onClick={() => setShowDropdown(!showDropdown)}
       >
         <div className="flex flex-col justify-center">
           <h1 className="text-[14px] text-[#3E3C3C]">{title}</h1>
