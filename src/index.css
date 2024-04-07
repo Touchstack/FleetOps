@@ -67,7 +67,7 @@
 }
 
 @layer base {
-  html {
+  html::-webkit-scrollbar {
     scroll-behavior: smooth;
   }
 }

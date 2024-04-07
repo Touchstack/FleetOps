@@ -4,8 +4,9 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
 import { apiGetVehicles } from "../../services/VehiclesService";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/Components/ui/tabs";
-import AvailableCars from "./component/AvailableCars";
-import FilterBar from "./component/FilterBar";
+import AvailableCars from "./components/AvailableCars";
+import FilterBar from "./Filters/FilterBar";
+import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
 
 
 const FindCars = () => {
@@ -43,18 +44,23 @@ const FindCars = () => {
     <div className="bg-[#F7F9F8] min-h-screen">
       <DashboardNavBar />
 
-      <div className="p-12" id="cars-section">
+      <div className="md:p-12 p-4" id="cars-section">
         <h3 className="mt-5 font-Bold text-center text-[#0A0D14] mb-2 lg:text-4xl md:text-4xl text-3xl">
           Available Cars
         </h3>
-        <p className="text-center text-[19px] text-[#545151] font-Light">
+        <p className="text-center px-11 text-[19px] text-[#545151] font-Light">
           Choose from a wide variety of vehicles from the top car owners. <br />
           All brands and models you want.
         </p>
          
 
-      <div className="z-50 relative">
+      <div className="z-50 relative hidden md:block">
         <FilterBar />
+      </div>
+     
+      {/* Mobile view bar */}
+      <div className="md:hidden">
+        <MobileFilterBar />
       </div>
 
       {/* Tabs */}
@@ -94,7 +100,7 @@ const FindCars = () => {
         <TabsContent value="Ride hailing">
           <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
             <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              No available cars
+              Oops! No vehicles were found
             </p>
           </section>
         </TabsContent>
@@ -102,7 +108,7 @@ const FindCars = () => {
         <TabsContent value="Rental">
          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
             <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              No available cars
+              Oops! No vehicles were found
             </p>
           </section>
         </TabsContent>
@@ -110,7 +116,7 @@ const FindCars = () => {
         <TabsContent value="Hire-purchase">
           <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
             <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              No available cars
+              Oops! No vehicles were found
             </p>
           </section>
         </TabsContent>

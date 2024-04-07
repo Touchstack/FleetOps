@@ -1,5 +1,5 @@
 import { IoCloseOutline } from "react-icons/io5";
-import Clipboard from "../../../assets/images/clipboard.svg"
+import Clipboard from "../../../../assets/images/clipboard.svg"
 
 const PlacingBidModal = ({onCancel, onNext}) => {
     const handleClose = () => {
