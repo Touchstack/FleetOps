@@ -3,22 +3,33 @@ import { AppContext } from "../../context/AppContext";
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
 import { apiGetVehicles } from "../../services/VehiclesService";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/Components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../.././Components/ui/tabs";
 import AvailableCars from "./components/AvailableCars";
 import FilterBar from "./Filters/FilterBar";
 import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
+import { nextPage } from "../../services/VehiclesService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const FindCars = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isloadMore, setloadMore] = useState(false)
   const [appContext, setAppContext] = useContext(AppContext);
+  const [URL, setURL] = useState("")
+
+
+
+  //console.log("this is url ==>", URL)
 
   const fetchVehicles = async () => {
     setLoading(true);
     try {
       const response = await apiGetVehicles();
       setData(response.data?.data);
+      setURL(response?.data?.next_page_url)
       return setLoading(false);
     } catch (error) {
       console.log(error);
@@ -26,6 +37,29 @@ const FindCars = () => {
       return setData([]);
     }
   };
+
+  const loadMore = async () => {
+    setloadMore(true);
+    let newUrl = URL;
+    try {
+       if (newUrl === null) {
+         toast.error("End of List Reached");
+         setloadMore(false);
+         return
+       } else {
+        const res = await nextPage(newUrl);
+        setURL(res?.data?.next_page_url);
+        const newArr = [...data, ...res?.data?.data];
+        setData(newArr);
+        setloadMore(false);
+       }
+    } catch (error) {
+        setloadMore(false);
+        console.log(error);
+    }
+};
+
+  
 
   const selectVehicle = (vehicle) => {
     setAppContext({
@@ -52,8 +86,8 @@ const FindCars = () => {
           Choose from a wide variety of vehicles from the top car owners. <br />
           All brands and models you want.
         </p>
-         
-
+          
+              
       <div className="z-50 relative hidden md:block">
         <FilterBar />
       </div>
@@ -94,7 +128,7 @@ const FindCars = () => {
        
        
         <TabsContent value="All">
-          <AvailableCars data={data} Selected={selectVehicle}  loading={loading} />
+          <AvailableCars data={data} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
 
         <TabsContent value="Ride hailing">
@@ -122,8 +156,22 @@ const FindCars = () => {
         </TabsContent>
        </Tabs>
      {/* Tabs */}
-
+     
       </div>
+
+       <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+        /> 
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SlArrowLeft } from "react-icons/sl";
-import { Input } from "@/components/ui/input";
+import { Input } from "../../../../.././Components/ui/input";
 import { motion } from "framer-motion";
-import { slideIn } from "@/utils/animation";
+import { slideIn } from "../../../../.././utils/animation";
 
 const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
   const [searchQuery, setSearchQuery] = useState('');
