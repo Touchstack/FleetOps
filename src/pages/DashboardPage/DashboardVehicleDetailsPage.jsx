@@ -3,7 +3,7 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import OtherCarsYouMayLike from "./OtherCarsYouMayLike";
 import Info from "../../assets/images/info.png";
 import PlacingBidModal from './components/modals/PlacingBidModal';
-import { apiGetVehicles, apiGetVehicleById } from '@/services/VehiclesService';
+import { apiGetVehicles, apiGetVehicleById } from '../.././services/VehiclesService';
 import { useLocation } from "react-router-dom";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
 import {

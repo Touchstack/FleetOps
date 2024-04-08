@@ -1,7 +1,7 @@
 import React from 'react'
 import { SlArrowLeft } from "react-icons/sl";
 import { motion } from "framer-motion";
-import { slideIn } from "@/utils/animation";
+import { slideIn } from "../../../../.././utils/animation";
 
 const TransmissonTypePage = ({ onBackClick,  onValueSelect }) => {
    const data = [

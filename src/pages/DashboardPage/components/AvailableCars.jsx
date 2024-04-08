@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import Car from "../../../assets/images/Car.png";
-import { Button } from "@/Components/ui/button";
+import React from 'react';
+import { Button } from "../../.././Components/ui/button";
 import { IoImagesOutline } from "react-icons/io5";
 import ClipLoader from "react-spinners/ClipLoader";
 

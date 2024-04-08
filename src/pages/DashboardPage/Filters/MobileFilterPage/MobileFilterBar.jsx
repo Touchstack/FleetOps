@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { Button } from '@/Components/ui/Button'; // Assuming Button is a custom component
-import { Separator } from '@/Components/ui/separator';
+import { Button } from '../../../../Components/ui/button';
+import { Separator } from '../../../../Components/ui/separator';
 import AllFilterPage from './AllFilterPage';
 
 
