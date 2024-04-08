@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { slideIn } from "@/utils/animation";
+import { slideIn } from "../../../.././utils/animation";
 import { Separator } from '@/Components/ui/separator';
 import { Button } from "@/Components/ui/button";
 import { MdKeyboardArrowRight } from "react-icons/md";

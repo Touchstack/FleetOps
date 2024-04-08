@@ -51,3 +51,13 @@ export async function apiPostDriver(bodyFormData) {
       return error;
     });
 }
+
+export const nextPage = async (url) => {
+    try {
+      const res = axios.get(url)
+      return res
+    } catch (error) {
+      console.log("This is load more error =>>", error)
+      return error
+    }
+}

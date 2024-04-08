@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Car from "../../../assets/images/Car.png";
 import { Button } from "@/Components/ui/button";
 import { IoImagesOutline } from "react-icons/io5";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const Spinner = () => {
@@ -30,7 +31,7 @@ const Spinner = () => {
   );
 };
 
-const AvailableCars = ({data, Selected, loading}) => {
+const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => {
 
   return (
     <div className="z-0">
@@ -39,9 +40,9 @@ const AvailableCars = ({data, Selected, loading}) => {
       ) : !loading && data.length > 0 ? (
        <>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-10 z-0">
-          {data.map((car) => {
+          {data.map((car, index) => {
             return (
-              <div onClick={() => Selected(car)} key={car?.driver_id} className="w-12/12">
+              <div onClick={() => Selected(car)} key={index} className="w-12/12">
                 <div className="relative flex flex-col cursor-pointer  border-white py-[23px] rounded-[30px]">
                   {/* Render image or placeholder */}
                   {car?.DLD !== null ? (
@@ -77,9 +78,14 @@ const AvailableCars = ({data, Selected, loading}) => {
         </div>
          <div className="flex items-center justify-center">
            <Button 
+            onClick={() => loadMore()}
             className='bg-[#181818] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 text-[#FFFFFF] rounded-[30px]'
             >
-            Load more
+             {isLoadMoreLoading ? (
+               <ClipLoader color='#ffffff' size={30}/>
+             ) : (
+               "Load more"
+             )}
            </Button>
          </div>
         </>
