@@ -48,7 +48,7 @@ const ActiveBids = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1  gap-10">
           {data.map((cars) => (
             <div key={cars.id} className="w-12/12">
-              <div className="relative flex flex-col cursor-pointer  py-[23px] px-[22px] rounded-[30px] bg-[#FFFFFF]">
+              <div className="relative flex flex-col cursor-pointer  py-[23px] px-[22px] rounded-[30px]">
                 <img src={cars.image} className="w-full h-auto rounded-[10px]" alt="" />
                 {/* Price tag */}
                   <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">

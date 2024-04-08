@@ -120,7 +120,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/drivers/dashboard/vehicle/details/:id",
-    // element: <DashboardVehicleDetails />,
+     //element: <DashboardVehicleDetails />,
      element: <DashboardVehicleDetailsPage />,
     errorElement: <ErrorPage />,
   },
