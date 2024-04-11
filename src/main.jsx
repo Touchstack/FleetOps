@@ -22,10 +22,11 @@ import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
 import "./index.css";
 import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
-//import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 import BidsPage from "./pages/BidsPage/BidsPage.jsx";
 import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleDetailsPage.jsx";
+//import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx"; not in use by kobby
+import CarOwnerDashboard from "./pages/CarOwnerDashboardPage/CarOwnerDashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +128,11 @@ const router = createBrowserRouter([
   {
     path: "/drivers/bids",
     element: <BidsPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/dashboard",
+    element: <CarOwnerDashboard />,
     errorElement: <ErrorPage />,
   },
 ]);
