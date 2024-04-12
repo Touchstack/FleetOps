@@ -1,11 +1,11 @@
-import { Skeleton } from "@/Components/ui/skeleton";
+import { Skeleton } from "../../.././Components/ui/skeleton";
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-  } from "@/Components/ui/carousel"
+  } from "../../.././Components/ui/carousel"
 
 const VehiclesLoading = () => {
   return (

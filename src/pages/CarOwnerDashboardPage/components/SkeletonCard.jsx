@@ -1,10 +1,10 @@
-import { Skeleton } from "@/Components/ui/skeleton"
+import { Skeleton } from "../../.././Components/ui/skeleton"
 import {
     Card,
     CardContent,
     CardFooter,
     CardHeader,
-  } from "@/components/ui/card"
+  } from "../../.././Components/ui/card"
   
 const SkeletonCard = () => {
   return (
