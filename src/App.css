@@ -50,3 +50,22 @@
   src: url("../src/assets/fonts/DMSans_18pt-Light.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "GelionLight";
+  src: url("../src/assets/fonts/Gelion-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "GelionBold";
+  src: url("../src/assets/fonts/Gelion-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "GelionRegular";
+  src: url("../src/assets/fonts/Gelion-Regular.ttf") format("truetype");
+}
+
+
+
+
+

@@ -13,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../.././Components/ui/carousel"
+import VehiclesLoading from './components/VehiclesLoading';
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -129,7 +130,7 @@ const DashboardVehicleDetailsPage = () => {
       <div className='flex items-center justify-center'>
         <div className="flex justify-between px-5 items pt-5 md:pt-20">
       {loading ? (
-        <Spinner />
+        <VehiclesLoading />
       ) : (
        <section className="flex md:flex-row flex-col w-full gap-10 md:gap-20">
         <div className="flex flex-col md:min-w-[550px] max-w-[650px]">
