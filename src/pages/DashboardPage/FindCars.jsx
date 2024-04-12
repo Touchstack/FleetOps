@@ -49,7 +49,7 @@ const FindCars = () => {
        } else {
         const res = await nextPage(newUrl);
         setURL(res?.data?.next_page_url);
-        const newArr = [...data, ...res?.data?.data];
+        const newArr = [...data, ...res.data.data];
         setData(newArr);
         setloadMore(false);
        }

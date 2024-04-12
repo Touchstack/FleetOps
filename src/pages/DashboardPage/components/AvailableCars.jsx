@@ -1,8 +1,7 @@
-import React from 'react';
 import { Button } from "../../.././Components/ui/button";
 import { IoImagesOutline } from "react-icons/io5";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import  PropTypes  from 'prop-types';
 
 const Spinner = () => {
   return (
@@ -98,6 +97,14 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
     </div>
   )
   
+}
+
+AvailableCars.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  Selected: PropTypes.func.isRequired,
+  loadMore: PropTypes.func.isRequired,
+  isLoadMoreLoading: PropTypes.bool.isRequired
 }
 
 export default AvailableCars;
