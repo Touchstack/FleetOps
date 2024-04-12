@@ -66,9 +66,5 @@
   }
 }
 
-@layer base {
-  html::-webkit-scrollbar {
-    scroll-behavior: smooth;
-  }
-}
+
 
