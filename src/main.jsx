@@ -121,6 +121,10 @@ const router = createBrowserRouter([
     element: <DashboardVehicleDetails />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "*", // This acts as the fallback route
+    element: <HomePage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
