@@ -5,6 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "../.././Components/ui/
 import ListedCars from "./components/ListedCars";
 import FilterBar from "./Filters/FilterBar";
 import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
+import ActiveBids from "@/pages/CarOwnerDashboardPage/components/ActiveBids.jsx";
 
 
 
@@ -28,13 +29,13 @@ const CarsListing = () => {
     }
   };
 
-  
+
 
   useEffect(() => {
     fetchVehicles();
   }, []);
 
-  
+
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
       <CarOwnerDashboardNavBar />
@@ -46,12 +47,12 @@ const CarsListing = () => {
         <p className="text-center px-11 text-[19px] text-[#545151] font-Light">
            All vehicles added will be listed here
         </p>
-          
-              
+
+
       <div className="z-50 relative hidden md:block">
         <FilterBar />
       </div>
-     
+
       {/* Mobile view bar */}
       <div className="md:hidden">
         <MobileFilterBar />
@@ -85,8 +86,8 @@ const CarsListing = () => {
             Active Bids
           </TabsTrigger>
         </TabsList>
-       
-       
+
+
         <TabsContent value="All">
           <ListedCars data={data}   loading={loading} />
         </TabsContent>
@@ -108,15 +109,11 @@ const CarsListing = () => {
         </TabsContent>
 
         <TabsContent value="Active Bids">
-          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+            <ActiveBids />
         </TabsContent>
        </Tabs>
-     {/* Tabs */}
-     
+          {/* Tabs */}
+
       </div>
     </div>
   );
