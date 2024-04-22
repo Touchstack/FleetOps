@@ -100,7 +100,7 @@ const CarsListing = () => {
           </section>
         </TabsContent>
 
-        <TabsContent value="Unssigned">
+        <TabsContent value="Unassigned">
          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
             <p className="font-Regular my-2 text-[#212121] text-xl text-center">
               Oops! No vehicles were found

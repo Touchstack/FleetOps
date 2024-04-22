@@ -4,10 +4,12 @@ import { Button } from "@/Components/ui/button.jsx";
 import { useState } from "react";
 import ScheduleMeetModal from "@/pages/CarOwnerDashboardPage/components/modals/SchedulleMeet.jsx";
 import CancelBidModal from "@/pages/CarOwnerDashboardPage/components/modals/CancelBid.jsx";
+import YouAreAssigning from "./modals/YouAreAssigning";
 
 export default function ActiveBid() {
   const [openModal, setOpenModal] = useState(false);
   const [cancelBid, setCancelBid] = useState(false);
+  const [onAssignCar, setonAssignCar] = useState(false)
 
   const handleAcceptBid = () => {
     setOpenModal(!openModal);
@@ -16,6 +18,11 @@ export default function ActiveBid() {
   const handleCancelBid = () => {
     setCancelBid(!cancelBid);
   };
+
+  const handleAssign = () => {
+    setonAssignCar(!onAssignCar)
+  };
+
   return (
     <div className={"py-6"}>
       <div
@@ -69,11 +76,17 @@ export default function ActiveBid() {
             "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
           }
         >
-          <Button
+          {/* <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
             onClick={handleAcceptBid}
           >
             Accept bid
+          </Button> */}
+          <Button
+            className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
+            onClick={handleAssign}
+          >
+            Assign Car
           </Button>
           <Button
             className={"border-[#23A6BF] text-base text-fleetBlue"}
@@ -84,11 +97,16 @@ export default function ActiveBid() {
           </Button>
         </div>
       </div>
+
       {openModal && (
         <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} />
       )}
       {cancelBid && (
         <CancelBidModal open={cancelBid} onClose={handleCancelBid} />
+      )}
+
+      {onAssignCar && (
+         <YouAreAssigning onCancel={() => setonAssignCar(!onAssignCar)} />
       )}
     </div>
   );

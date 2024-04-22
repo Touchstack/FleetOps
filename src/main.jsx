@@ -28,6 +28,7 @@ import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleD
 //import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx"; not in use by kobby
 import CarOwnerDashboard from "./pages/CarOwnerDashboardPage/CarOwnerDashboard.jsx";
 import CarsListing from "./pages/CarOwnerDashboardPage/CarsListing.jsx";
+import CarAssigning from "./pages/CarOwnerDashboardPage/CarAssigning.jsx";
 
 const router = createBrowserRouter([
   {
@@ -139,6 +140,11 @@ const router = createBrowserRouter([
   {
     path: "/carowner/listing",
     element: <CarsListing />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign",
+    element: <CarAssigning />,
     errorElement: <ErrorPage />,
   },
 ]);
