@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 
 const data = [
   {
@@ -48,9 +50,28 @@ export const FormDataRow = ({ description, details }) => {
   );
 };
 
-const CollectionForm = ({ onNext, onBack }) => {
+const CollectionForm = () => {
+  
+  const navigate = useNavigate();
+
+    const handleContinue = () => {
+      const checkedItems = data.map(item => ({
+        Description: item.Description,
+        Checked: item.Checked
+      }));
+      localStorage.setItem('form', JSON.stringify(checkedItems));
+     navigate('/carowner/assign/car-image/front')
+    }
+  
+    const handleRestart = () => {
+      navigate('/carowner/assign/driver-image')
+    }
+
   return (
+    <>
+    <CarOwnerDashboardNavBar />
     <div className="flex flex-col my-20 md:mx-20">
+
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-[#0A0D14] font-bold text-3xl md:text-5xl">
           Vehicle Collection Form
@@ -87,15 +108,19 @@ const CollectionForm = ({ onNext, onBack }) => {
         {/* Check column */}
         <div className="text-center md:border-b md:border-gray-400">
           <h2 className="font-semibold p-4">Check</h2>
-          {data.map((item) => (
-           <div key={item.id} className="flex items-center justify-center md:border-b md:border-t  md:border-[#AAAAAA] md:p-[0.65rem] ">
-              <div className="md:px-4 md:py-0 py-[1.3rem]">
-                 <input
-                   type="checkbox"
+          {data.map((item, index) => (
+              <div key={item.id} className="flex items-center justify-center md:border-b md:border-t  md:border-[#AAAAAA] md:p-[0.65rem] ">
+                <div className="md:px-4 md:py-0 py-[1.3rem]">
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      const newData = [...data];
+                      newData[index].Checked = !newData[index].Checked;
+                    }}
                   />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
 
@@ -103,7 +128,7 @@ const CollectionForm = ({ onNext, onBack }) => {
       {/* Buttons */}
       <div className="flex justify-end mt-20 p-4 gap-2">
         <div 
-          onClick={onBack}
+          onClick={handleRestart}
           className="px-[40px] border-[1px] border-[#23A6BF] py-[16px] cursor-pointer rounded-[10px] mb-10">
             <p className="text-[#23A6BF]">
               Restart
@@ -111,7 +136,7 @@ const CollectionForm = ({ onNext, onBack }) => {
         </div>
 
         <div 
-           onClick={onNext}
+           onClick={handleContinue}
           className="px-[40px] py-[16px] hover:cursor-pointer  rounded-[10px] bg-[#23A6BF] border-[1px] border-[#FFFFFF] mb-10">
             <p className="text-[#FFFFFF]">
               Continue
@@ -119,6 +144,7 @@ const CollectionForm = ({ onNext, onBack }) => {
         </div>
    </div>
     </div>
+    </>
   );
 };
 

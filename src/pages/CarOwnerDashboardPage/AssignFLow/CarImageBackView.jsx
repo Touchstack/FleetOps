@@ -1,13 +1,16 @@
 import { AiOutlineCamera } from "react-icons/ai";
 import { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro-react-18";
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 
-const CarImage = ({ lastStep }) => {
+
+const CarImageBackView = () => {
     const camera = useRef(null);
     const [image, setImage] = useState(null);
     const [aspectRatio, setAspectRatio] = useState(16/9);
  
+    const navigate = useNavigate()
       
     useEffect(() => {
      const handleResize = () => {
@@ -28,11 +31,18 @@ const CarImage = ({ lastStep }) => {
      setImage(null);
    }
 
+   const handlePreview = () => {
+     localStorage.setItem('backView-img', image)
+     navigate('/carowner/assign/car-image/preview')
+   }
+
   return (
+  <>
+   <CarOwnerDashboardNavBar />
     <div className="flex flex-col my-20 items-center justify-center">
     <div className="flex flex-col items-center mb-8">
       <h1 className="text-[#0A0D14] font-Bold text-[32px] md:text-[45px]">
-       Take Vehicle’s Photo
+       Take Back View of Vehicle
       </h1>
       <p className="text-[#545151] md:text-[19px] md:w-full w-[248px] text-center text-[16px] font-Light">
        Please ensure optimal lighting conditions to avoid photo being blur.
@@ -77,7 +87,7 @@ const CarImage = ({ lastStep }) => {
         </div>
 
         <div
-          onClick={lastStep} 
+          onClick={handlePreview} 
           className="px-[40px] py-[16px] hover:cursor-pointer  rounded-[10px] bg-[#23A6BF] border-[1px] border-[#FFFFFF] mb-10">
             <p className="text-[#FFFFFF]">
               Use photo
@@ -85,12 +95,10 @@ const CarImage = ({ lastStep }) => {
         </div>
    </div>
    )}
-</div>
+  </div>
+</>
   )
 }
 
-CarImage.propTypes = {
-    lastStep: PropTypes.func.isRequired
-  };
 
-export default CarImage
+export default CarImageBackView

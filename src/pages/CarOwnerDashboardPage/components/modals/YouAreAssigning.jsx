@@ -13,7 +13,7 @@ const YouAreAssigning = ({onCancel}) => {
   };
 
   const handleContinue = () => {
-    navigate('/carowner/assign')
+    navigate('/carowner/assign/driver-image')
   }
 
 
