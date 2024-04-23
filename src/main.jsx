@@ -28,6 +28,13 @@ import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleD
 //import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx"; not in use by kobby
 import CarOwnerDashboard from "./pages/CarOwnerDashboardPage/CarOwnerDashboard.jsx";
 import CarsListing from "./pages/CarOwnerDashboardPage/CarsListing.jsx";
+import CarImage from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageFrontView.jsx";
+import CarImageRightView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageRightView.jsx";
+import CollectionForm from "./pages/CarOwnerDashboardPage/AssignFLow/CollectionForm.jsx";
+import DriverImage from "./pages/CarOwnerDashboardPage/AssignFLow/DriverImage.jsx";
+import CarImageLeftView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageLeftView.jsx";
+import CarImageBackView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageBackView.jsx";
+import Preview from "./pages/CarOwnerDashboardPage/AssignFLow/Preview.jsx";
 
 const router = createBrowserRouter([
   {
@@ -141,6 +148,42 @@ const router = createBrowserRouter([
     element: <CarsListing />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/carowner/assign/driver-image",
+    element: <DriverImage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/form",
+    element: <CollectionForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/front",
+    element: <CarImage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/right",
+    element: <CarImageRightView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/left",
+    element: <CarImageLeftView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/back",
+    element: <CarImageBackView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/preview",
+    element: <Preview />,
+    errorElement: <ErrorPage />,
+  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
