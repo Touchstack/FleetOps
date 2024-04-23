@@ -1,3 +1,6 @@
+import { PropTypes } from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
 export const NavBarDropdown = () => {
   return (
     <div
@@ -31,7 +34,9 @@ export const NavBarDropdown = () => {
   );
 };
 
-export const DriverDropdown = () => {
+export const DriverDropdown = ({ Settings }) => {
+  const navigate = useNavigate();
+  
   return (
     <div
       id="dropdownNavbarCompany"
@@ -41,7 +46,12 @@ export const DriverDropdown = () => {
         className="p-5 text-xl text-gray-900 dark:text-gray-400"
         aria-labelledby="dropdownLargeButton"
       >
-        <p className="px-2 py-3 text-gray-400 text-base">SETTINGS</p>
+       { Settings &&  
+          <p 
+          onClick={() => navigate('/drivers/account')}
+          className="px-2 py-3 cursor-pointer text-base hover:bg-gray-100 dark:hover:bg-green-100">
+            SETTINGS
+        </p> }
 
         <button
           onClick={() => {
@@ -63,4 +73,8 @@ export const DriverDropdown = () => {
       </ul>
     </div>
   );
+};
+
+DriverDropdown.propTypes = {
+  Settings: PropTypes.bool.isRequired,
 };

@@ -93,7 +93,7 @@ export default function CarOwnerDashboardNavBar() {
               </svg>
             </span>
           </button>
-          {showDropdown && <DriverDropdown />}
+          {showDropdown && <DriverDropdown Settings={false} />}
 
           <motion.button
             data-collapse-toggle="navbar-cta"
