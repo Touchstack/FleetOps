@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/Components/ui/button";
+import { apiPostCarOwner } from "@/services/CarOwnerService";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+import { ErrorAlert } from "@/Components/Forms/CarOwnersRegistrationForm";
 
 const CarOwnerLogin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -8,8 +12,39 @@ const CarOwnerLogin = () => {
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState("");
 
-    const onSubmit = (data) => {
-        // Implement your login logic here
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const token = localStorage.getItem("car-owner-token");
+        if (token) {
+          return navigate("/carowner/dashboard");
+        }
+      }, []);
+
+    const onSubmit = async (data) => {
+       try {
+        const payLoad = {
+            email: data.email,
+            password: data.password
+        }
+
+        await apiPostCarOwner(payLoad).then((res) => {
+            setLoading(true);
+            if (res.status === 200) {
+              localStorage.setItem('car-owner-token', res.data?.data?.token);
+              navigate('/carowner/dashboard')
+              setLoading(false);
+            } else {
+             setLoading(false); 
+             setError(true); 
+             setErrorText(error?.response?.data?.message || error?.message);
+             setTimeout(() => setError(false), 3000);
+            }
+        })
+       } catch (error) {
+        console.log(error);
+       }
     };
 
     return (
@@ -17,6 +52,7 @@ const CarOwnerLogin = () => {
             <div className="py-5 flex flex-col justify-start items-center">
                 {/* Form */}
                 <form onSubmit={handleSubmit(onSubmit)} className="bg-transparent  min-w-[350px] pt-6 pb-8 mb-4">
+                  {error && <ErrorAlert error={errorText} />}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-[14px] font-Light mb-2" htmlFor="email">
                             Enter your email
@@ -47,7 +83,11 @@ const CarOwnerLogin = () => {
                             type="submit"
                             className="bg-[#23A6BF] flex items-center justify-center pb-1 font-SemiBold text-white font-bold w-full md:w-[140px] h-[46px] rounded-[10px]"
                         >
-                            Sign in
+                           {loading ? (
+                              <ClipLoader size={30} color="#ffffff" />
+                           ) : (
+                             'Sign in'
+                           )}
                         </Button>
                     </div>
                 </form>
