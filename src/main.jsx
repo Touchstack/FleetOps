@@ -35,6 +35,7 @@ import DriverImage from "./pages/CarOwnerDashboardPage/AssignFLow/DriverImage.js
 import CarImageLeftView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageLeftView.jsx";
 import CarImageBackView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageBackView.jsx";
 import Preview from "./pages/CarOwnerDashboardPage/AssignFLow/Preview.jsx";
+import Account from "./pages/DashboardPage/Account.jsx";
 
 const router = createBrowserRouter([
   {
@@ -183,7 +184,11 @@ const router = createBrowserRouter([
     element: <Preview />,
     errorElement: <ErrorPage />,
   },
-  
+  {
+    path: "/drivers/account",
+    element: <Account />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

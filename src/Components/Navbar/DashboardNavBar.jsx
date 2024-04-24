@@ -65,7 +65,7 @@ export default function DashboardNavBar() {
 
   return (
     <nav className="bg-white border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-2">
+      <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-2 py-2">
         <a href="/" className="">
           <img
             className="lg:mr-20"
@@ -93,7 +93,7 @@ export default function DashboardNavBar() {
               </svg>
             </span>
           </button>
-          {showDropdown && <DriverDropdown />}
+          {showDropdown && <DriverDropdown Settings={true} />}
 
           <motion.button
             data-collapse-toggle="navbar-cta"

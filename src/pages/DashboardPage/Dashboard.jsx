@@ -41,13 +41,13 @@ const Dashboard = () => {
   };
 
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      return (window.location.href = "/drivers/loginpage");
-    }
-    getSelectedVehicle();
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     return (window.location.href = "/drivers/loginpage");
+  //   }
+  //   getSelectedVehicle();
+  // }, []);
 
 
   const closeModal = () => {
