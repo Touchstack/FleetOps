@@ -3,30 +3,9 @@ import { IoImagesOutline } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { FaStar } from "react-icons/fa";
 import Loading from "./Loading";
-import { IoEllipsisVertical } from "react-icons/io5";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import PropTypes from "prop-types";
+import EllipsisMenu from "./EllipsisMenu";
 
-
-
-const FirstMenu = () => (
-  <div className="py-2 px-3 rounded-md bg-white">
-    <p className="font-Light">Unassign</p>
-    <div className="flex gap-2 justify-center">
-      <p className="font-Light">Change business model</p>
-      <MdOutlineKeyboardArrowRight />
-    </div>
- </div>
-)
-
-
-const SecondMenu = () => (
-  <div className="py-3 px-4 gap-4 rounded-md bg-white">
-    <p className="font-Light">Ride-hailing  for business (R4HB)</p>
-    <p className="font-Light">Rental  for business (RT4B)</p>
-    <p className="font-Light">Hire-purchase for business (HB4B)</p>
- </div>
-)
 
 const ListedCars = ({data, loading}) => {
   const [text, setText] = useState("Assigned")
@@ -96,10 +75,7 @@ const ListedCars = ({data, loading}) => {
                           {text}
                         </div>
 
-
-                        <div>
-                          <IoEllipsisVertical />
-                        </div>
+                        <EllipsisMenu />
 
                       </div>
                     </div>
