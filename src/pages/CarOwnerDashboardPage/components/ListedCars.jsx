@@ -3,8 +3,9 @@ import { IoImagesOutline } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { FaStar } from "react-icons/fa";
 import Loading from "./Loading";
-import { IoEllipsisVertical } from "react-icons/io5";
 import PropTypes from "prop-types";
+import EllipsisMenu from "./EllipsisMenu";
+
 
 const ListedCars = ({data, loading}) => {
   const [text, setText] = useState("Assigned")
@@ -63,9 +64,9 @@ const ListedCars = ({data, loading}) => {
                         Model: {car?.VBM}
                       </p>
 
-                      <div className="flex gap-[65%]">
+                      <div className="flex w-11/12 justify-between">
                         <div
-                          className={`px-3 py-1 text-[16px] rounded-[2px] ${
+                          className={`px-3 h-[39px] flex items-center  text-[16px] rounded-[2px] ${
                             text === "Unassigned"
                               ? "bg-[#ABB3BF]"
                               : "bg-[#63BC8C]"
@@ -74,9 +75,8 @@ const ListedCars = ({data, loading}) => {
                           {text}
                         </div>
 
-                        <div>
-                          <IoEllipsisVertical />
-                        </div>
+                        <EllipsisMenu />
+
                       </div>
                     </div>
                     {/* Car info */}
