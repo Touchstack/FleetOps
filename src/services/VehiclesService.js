@@ -61,3 +61,55 @@ export const nextPage = async (url) => {
       return error
     }
 }
+
+//new Endpoints
+export async function apiGetAvailableVehicles() {
+  return apiClient.get(`/availablecars`);
+}
+
+export async function apiGetVehicleDetails(id) {
+  return apiClient.get(`/vehicledetails/${id}`); //vehicle_id
+}
+
+
+export async function apiGetDriverBids(id) {
+  return apiClient.get(`/driver/${id}/bids`);  //driver_id
+}
+
+export async function apiPlaceDriverBids(payLoad) {
+  return axios({
+    method: "put",
+    url: "https://engines.fleetopsgh.com/api/place_a_bid",
+    data: payLoad  //vehicle_id & driver_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiCancelDriverBids(id) {
+  return apiClient.get(`/cancel/bid/${id}`);  //ask which id is this
+}
+
+export async function apiDriverReBid(payLoad) {
+  return axios({
+    method: "get",
+    url: "https://engines.fleetopsgh.com/api/rebid",
+    data: payLoad  //bid_id & driver_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiGetDriverDashboard(id) {
+  return apiClient.get(`/driver/${id}/dashboard`);  //driver id
+}
+
+//new Endpoints
