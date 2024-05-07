@@ -21,7 +21,7 @@ const BidsPage = () => {
             <DashboardNavBar />
 
             {/* Tab Navigation section */}
-            <div className="p-14 flex flex-col items-center justify-center">
+            <div className="md:p-14 p-5 flex flex-col items-center justify-center">
                 <h1 className="font-Bold text-[45px] mb-5">Bids</h1>
 
                 <div className="flex flex-row gap-[50px] hover:cursor-pointer  text-[19px] text-[#ABB3BF] font-SemiBold">

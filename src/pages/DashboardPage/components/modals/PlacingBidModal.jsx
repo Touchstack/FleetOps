@@ -59,5 +59,5 @@ export default PlacingBidModal
 
 PlacingBidModal.propTypes = {
   onCancel: PropTypes.func.isRequired,
-  onBackToSearch: PropTypes.func.isRequired
+  onBackToSearch: PropTypes.func
 }

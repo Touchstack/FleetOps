@@ -4,7 +4,7 @@ import { apiClient } from "./Config";
 export async function apiPostCarOwner(payLoad) {
     return axios({
       method: "post",
-      url: "https://engines.fleetopsgh.com/api/clientlogin",
+      url: "https://engines.fleetopsgh.com/api/carowner_login",
       data: payLoad,
       headers: { "Content-Type": "multipart/form-data" },
     })

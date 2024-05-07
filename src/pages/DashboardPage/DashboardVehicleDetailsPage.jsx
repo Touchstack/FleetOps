@@ -74,7 +74,7 @@ const DashboardVehicleDetailsPage = () => {
   
     const carDetails = [
       { label: 'Location', value: `${data?.location}` },
-      { label: 'Car Model', value: `${data?.bus_model}` },
+      { label: 'Car Model', value: `${data?.VMD}` },
       { label: 'Car Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.VNO}` },
       { label: 'Year of registration', value: `${data?.VDT}` },
@@ -122,7 +122,7 @@ const DashboardVehicleDetailsPage = () => {
         if (res.status === 200) {
           setshowPlaceBid(!showPlaceBid);
         } else {
-          toast.error("Error Placing bid try again");
+          toast.error(res?.response?.data?.message || "Error Placing bid try again");
         }
        } catch (error) {
         console.log(error)

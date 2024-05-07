@@ -15,8 +15,10 @@ const Modal = ({ bidId, onCancel, text, title, isRebid }) => {
     const handleConfirm = async () => {
       try {
         const res = await apiCancelDriverBids(bidId)
+         console.log(res)
         if (res.status === 200){
           toast.success('Bid cancelled successfully')
+          setTimeout(()=>{handleClose()},1000);
         }
       } catch (error) {
         toast.error("An error ocuured couldnt cancel bid")
@@ -104,7 +106,7 @@ export default Modal
 
 Modal.propTypes = {
   onCancel: PropTypes.func.isRequired,
-  bidId: PropTypes.string.isRequired,
+  bidId: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isRebid: PropTypes.bool.isRequired,

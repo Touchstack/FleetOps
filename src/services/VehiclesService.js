@@ -91,7 +91,7 @@ export async function apiPlaceDriverBids(payLoad) {
 }
 
 export async function apiCancelDriverBids(id) {
-  return apiClient.get(`/cancel/bid/${id}`);  //ask which id is this
+  return apiClient.put(`/cancel/bid/${id}`);  //ask which id is this
 }
 
 export async function apiDriverReBid(payLoad) {
