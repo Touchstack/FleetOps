@@ -21,7 +21,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
 
   const handleNext = async () => {
      const payLoad = {
-       experience_rate: selectedRate,
+       rating: selectedRate,
        reason,
        vehicle_id: driver.vehicle_id
      }
