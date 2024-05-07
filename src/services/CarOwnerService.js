@@ -120,19 +120,7 @@ export async function apiPostCarOwner(payLoad) {
       });
   }
 
-  export async function apiPostVehicleReturn(payLoad) { 
-    return axios({
-      method: "post",
-      url:  `https://engines.fleetopsgh.com/api/return/vehicle`,
-      data: payLoad, //reason & vehicle_id
-    })
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        return error;
-      });
-  }
+ 
 
 
 

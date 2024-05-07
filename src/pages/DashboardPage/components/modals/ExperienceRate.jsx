@@ -1,16 +1,37 @@
 import { useState } from 'react';
 import { IoCloseOutline } from "react-icons/io5"
+import { apiPostVehicleReturn } from "@/services/VehiclesService";
+import { PropTypes } from 'prop-types';
 
 
 const ExperienceRate = ({onCancel, onNext}) => {
   const [selectedRate, setSelectedRate] = useState(null);
+  
+  const reason = localStorage.getItem('reason')
 
   const handleClose = () => {
     onCancel();
   };
 
-  const handleNext = () => {
-    onNext();
+  const handleNext = async () => {
+     const payLoad = {
+       experience_rate: selectedRate,
+       reason,
+       vehicle_id: ""
+     }
+   
+    if(reason){
+      try {
+        const res = await apiPostVehicleReturn(payLoad)
+        console.log(res)
+        if (res.status === 200) {
+          onNext();
+          localStorage.removeItem("reason")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
   const rate = [
@@ -84,3 +105,8 @@ const ExperienceRate = ({onCancel, onNext}) => {
 }
 
 export default ExperienceRate
+
+ExperienceRate.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
+}

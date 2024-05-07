@@ -1,6 +1,6 @@
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
-import { apiGetSelectedVehicle } from "../../services/VehiclesService";
+import { apiGetDriverDashboard } from "../../services/VehiclesService";
 import Car from "../../assets/images/car-dashboard.svg";
 import Chart from "../../assets/images/chart.svg";
 import { useEffect, useState } from "react";
@@ -8,33 +8,56 @@ import ReturnReason from "./components/modals/ReturnReason";
 import ExperienceRate from "./components/modals/ExperienceRate";
 import Confirmation from "./components/modals/Confirmation";
 import Congratulations from "./components/modals/Congratulations";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const driverData = localStorage.getItem("driver");
+  //const driverData = localStorage.getItem("driver");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [showReturnReason, setShowReturnReason] = useState(false);
   const [showExperienceRate, setShowExperienceRate] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
-  const driver = JSON.parse(driverData);
-  const driverVehicleObj = localStorage.getItem("driverVehicle");
-  const driverVehicle = JSON.parse(driverVehicleObj);
+  // const driver = JSON.parse(driverData);
+  // const driverVehicleObj = localStorage.getItem("driverVehicle");
+  // const driverVehicle = JSON.parse(driverVehicleObj);
 
-  const getSelectedVehicle = async () => {
-    const driverObj = localStorage.getItem("driver");
-    const driver = JSON.parse(driverObj);
-    if (driver && !driverVehicle) {
+  const navigate = useNavigate()
+
+  const driver_id = localStorage.getItem("driver_id");
+
+  // const getSelectedVehicle = async () => {
+  //   const driverObj = localStorage.getItem("driver");
+  //   const driver = JSON.parse(driverObj);
+  //   if (driver && !driverVehicle) {
+  //     try {
+  //       setLoading(true);
+  //       const response = await apiGetSelectedVehicle(driver?.id);
+  //       localStorage.setItem(
+  //         "driverVehicle",
+  //         JSON.stringify(response.data?.data?.vehicle)
+  //       );
+  //       setData(response.data?.data?.vehicle);
+  //       return setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //     }
+  //   }
+  // };
+
+  const getDashBoardData = async () => {
+    if (driver_id) {
       try {
         setLoading(true);
-        const response = await apiGetSelectedVehicle(driver?.id);
-        localStorage.setItem(
-          "driverVehicle",
-          JSON.stringify(response.data?.data?.vehicle)
-        );
-        setData(response.data?.data?.vehicle);
-        return setLoading(false);
+        const res = await apiGetDriverDashboard(driver_id);
+        if (res.status === 200) {
+          const userData = res?.data;
+          setData(userData);
+          localStorage.setItem("driver", JSON.stringify(userData));
+          setLoading(false);
+        }
       } catch (error) {
+        console.log(error);
         setLoading(false);
       }
     }
@@ -42,12 +65,12 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    if (!driver_id) {
       return (window.location.href = "/drivers/loginpage");
     }
-    getSelectedVehicle();
-  }, []);
+    getDashBoardData();
+  
+  }, [driver_id]);
 
 
   const closeModal = () => {
@@ -73,7 +96,7 @@ const Dashboard = () => {
       <div className="font-Light flex flex-col justify-center items-start">
         <div className="container flex flex-col justify-center items-start self-center lg:px-16 md:px-12 sm:px-10 px-10 py-16">
           <p className="text-[#707EAE] text-lg text-left">
-            Hi, {driver?.fullname}
+            Hi, {data?.driver}
           </p>
           <h1 className="text-[#2B3674] font-Bold md:text-4xl sm:text-3xl text-3xl">
             Welcome to FleetOps
@@ -142,9 +165,9 @@ const Dashboard = () => {
                     <p className="text-[16px] text-[#E9EDF7] font-SansLight">Current vehicle</p>
                     {loading ? (
                       <Spinner /> // Show spinner while loading
-                    ) : driverVehicle ? (
+                    ) : data ? (
                       <p className="text-[20px] font-SansMedium">
-                        {driverVehicle?.VCL} {driverVehicle?.VMK} {driverVehicle?.VMD} ({driverVehicle?.VDT?.split("-")[0]})
+                         {data?.AssignedVehicle}
                       </p>
                     ) : data ? (
                       <p className="text-[20px] font-SansMedium">
@@ -159,9 +182,9 @@ const Dashboard = () => {
                 
                 </div>
 
-                {driverVehicle || data ? (
+                { data?.AssignedVehicle ? (
                   <>
-                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: Ride hailing for business (RH4B)</p>
+                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: {data?.model}</p>
                     <div className="flex justify-end mt-5">
                       <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                        onClick={() => setShowReturnReason(true)}
@@ -178,13 +201,13 @@ const Dashboard = () => {
               <p className="text-gray-700 text-md">Cars requested</p>
               <h3 className="font-Regular text-2xl">
                 {" "}
-                {driverVehicle || data ? 1 : 0}
+                {data?.BidCount}
               </h3>
             </div>
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
               <p className="text-gray-700 text-md">Reviews</p>
-              <h3 className="font-Regular text-2xl">0</h3>
+              <h3 className="font-Regular text-2xl">{data?.ReviewCount}</h3>
             </div>
           </div>
 
@@ -198,7 +221,7 @@ const Dashboard = () => {
                 All brands and models you want.
               </p>
 
-              <div className="mt-3 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  w-[140px] h-[46px] rounded-[10px] flex items-center justify-center">
+              <div onClick={()=> navigate("/drivers/findcars")} className="mt-3 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  w-[140px] h-[46px] rounded-[10px] flex items-center justify-center">
                 <p className="pt-1 font-Sans text-[#FFFFFF] text-[14px]">
                  Start Search
                 </p>

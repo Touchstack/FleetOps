@@ -1,58 +1,67 @@
-import { useState } from "react";
-import Car from "../../.././assets/images/Car.png";
+import { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
 import Modal from "./Modal";
+import { apiGetDriverBids } from "@/services/VehiclesService";
+import Loading from "@/pages/CarOwnerDashboardPage/components/Loading";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ActiveBids = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedBid, setSelectedBid] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState([])
 
+  const driver_id = localStorage.getItem("driver_id");
+  // Fetch bids for the logged in driver when component mounts
+  
+  const getActiveBids = async () => {
+     try {
+      setLoading(true)
+      const res = await  apiGetDriverBids(driver_id)
+       console.log(res);
+       if (res.status === 200) {
+         setLoading(false)
+         setData(res?.data?.activeBids?.data)
+        } else {
+          setLoading(false)
+        toast.error("An error ocuured couldnt fetch bids")
+      } 
+     } catch (error) {
+      console.log(error)
+     }
+  }
+ 
 
-  const data = [
-    {
-      id: 1,
-      title: 'Corolla LE Eco 2022',
-      model: ' Ride hailing for business (RH4B)',
-      image: Car,
-      price:'400'
-    },
-    {
-      id: 2,
-      title: 'Corolla LE Eco 2022',
-      model: ' Ride hailing for business (RH4B)',
-      image: Car,
-      price:'400'
-    },
-    {
-      id: 3,
-      title: 'Corolla LE Eco 2022',
-      model: ' Ride hailing for business (RH4B)',
-      image: Car,
-      price:'400'
-    }, 
-  ];
-
-  const handleCancelBid = (bidId) => {
-    setSelectedBid(bidId);
+  const handleCancelBid = async (bidId) => {
     setShowModal(true);
+    setSelectedBid(bidId)
   };
 
   const closeModal = () => {
     setShowModal(false);
     setSelectedBid(null);
+    getActiveBids()
   };
 
+  useEffect(() => {
+    getActiveBids()
+  }, [])
+  
+
   return (
-    <div>
-      {data.length > 0 ? (
+    <div className="w-full">
+      {loading ? (
+        <Loading />
+        ) : !loading && data.length > 0 ? (
           <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1  gap-10">
           {data.map((cars) => (
             <div key={cars.id} className="w-12/12">
               <div className="relative flex flex-col cursor-pointer  py-[23px] px-[22px] rounded-[30px]">
-                <img src={cars.image} className="w-full h-auto rounded-[10px]" alt="" />
+                <img src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.VRD}`} className="w-full h-auto rounded-[10px]" alt="" />
                 {/* Price tag */}
                   <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
-                   <p>GHS {cars.price}</p>
+                   <p>GHS {cars.amount}</p>
                    <span className="text-[13.32px] font-Light pt-1">per week</span>
                   </div>
                  {/* Price tag */}
@@ -61,11 +70,11 @@ const ActiveBids = () => {
                  {/* Car info */}
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">
-                        {cars.title}
+                        {cars?.VCL} {cars?.VMK} {cars?.VMD}
                     </p>
     
                     <p className="font-Light  text-[20px]">
-                      Model:{cars.model}
+                      Model:{cars.bus_model}
                     </p>
                   </div>
                  {/* Car info */}
@@ -103,8 +112,23 @@ const ActiveBids = () => {
         )}
 
       {showModal && (
-        <Modal onCancel={closeModal} bidId={selectedBid} text={'You are about to cancel this bid. Press Yes to proceed.'} title={'Cancel Bid?'} />
+        <Modal isRebid={false} onCancel={closeModal} bidId={selectedBid} text={'You are about to cancel this bid. Press Yes to proceed.'} title={'Cancel Bid?'} />
       )}
+
+
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+          /> 
 
     </div>
   );

@@ -5,7 +5,7 @@ import Loading from '../../CarOwnerDashboardPage/components/Loading';
 import PropTypes from "prop-types";
 
 
-const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => {
+const HirePurchase = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => {
 
   return (
     <div className="z-0">
@@ -74,7 +74,7 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
   )
 }
 
-AvailableCars.propTypes = {
+HirePurchase.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
   Selected: PropTypes.func.isRequired,
@@ -82,4 +82,4 @@ AvailableCars.propTypes = {
   isLoadMoreLoading: PropTypes.bool,
 };
 
-export default AvailableCars;
+export default HirePurchase;

@@ -14,15 +14,15 @@ export async function apiRegisterCarOnwer(data) {
 }
 
 export async function apiDriverLogin(data) {
-  return apiClientMarketing.post(`/drivers/login`, data);
+  return apiClient.post(`/driver/login`, data);
 }
 
 export async function apiDriverSignUp(data) {
   return apiClientMarketing.post(`/drivers/signup`, data);
 }
 
-export async function apiVerifyOtp(data) {
-  return apiClientMarketing.post(`/verify/otp`, data);
+export async function apiVerifyOtp(data, id) {
+  return apiClient.post(`/verify/otp/${id}`, data);
 }
 
 export async function apiRegisterDriver(data) {
@@ -99,6 +99,20 @@ export async function apiDriverReBid(payLoad) {
     method: "get",
     url: "https://engines.fleetopsgh.com/api/rebid",
     data: payLoad  //bid_id & driver_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiPostVehicleReturn(payLoad) { 
+  return axios({
+    method: "post",
+    url:  `https://engines.fleetopsgh.com/api/return/vehicle`,
+    data: payLoad, //reason & vehicle_id
   })
     .then((response) => {
       return response;
