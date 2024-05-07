@@ -1,13 +1,21 @@
 import { IoCloseOutline } from "react-icons/io5";
 import Clipboard from "../../../../assets/images/clipboard.svg"
+import { PropTypes } from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-const PlacingBidModal = ({onCancel, onNext}) => {
+const PlacingBidModal = ({onCancel}) => {
+  const navigate = useNavigate()
+
     const handleClose = () => {
         onCancel();
       };
 
-      const handleNext = () => {
-        onNext();
+      const handleOnBackToSearch = () => {
+        navigate('/drivers/findcars')
+      }
+
+      const handleViewBids = () => {
+        navigate('/drivers/bids')
       }
 
   return (
@@ -28,7 +36,7 @@ const PlacingBidModal = ({onCancel, onNext}) => {
 
         <div className="flex flex-row justify-center gap-[12px] mt-10">
            <div className="md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] border-[#23A6BF]"
-             onClick={handleClose}
+             onClick={handleViewBids}
            >
              <p className="text-white font-SemiBold">
                 View bids
@@ -36,7 +44,7 @@ const PlacingBidModal = ({onCancel, onNext}) => {
            </div>
 
            <div 
-            onClick={handleNext}
+            onClick={handleOnBackToSearch}
             className="md:px-[46px] md:text-[16px] text-[13px] text-white md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
                  Back to search
            </div>
@@ -48,3 +56,8 @@ const PlacingBidModal = ({onCancel, onNext}) => {
 }
 
 export default PlacingBidModal
+
+PlacingBidModal.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onBackToSearch: PropTypes.func
+}

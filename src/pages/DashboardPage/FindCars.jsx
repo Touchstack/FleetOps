@@ -1,10 +1,13 @@
-import { useContext } from "react";
+import { useContext, } from "react";
 import { AppContext } from "../../context/AppContext";
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
-import { apiGetVehicles } from "../../services/VehiclesService";
+import { apiGetAvailableVehicles } from "../../services/VehiclesService";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../.././Components/ui/tabs";
 import AvailableCars from "./components/AvailableCars";
+import RideHailing from "./components/RideHailing";
+import Rental from "./components/Rental";
+import HirePurchase from "./components/HirePurchase";
 import FilterBar from "./Filters/FilterBar";
 import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
 import { nextPage } from "../../services/VehiclesService";
@@ -13,30 +16,40 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+
 const FindCars = () => {
-  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [hirePurchase, setHirePurchase] = useState([]);
+  const [rentals, setRentals] = useState([]);
+  const [rideHailing, setRideHailing] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isloadMore, setloadMore] = useState(false)
   const [appContext, setAppContext] = useContext(AppContext);
   const [URL, setURL] = useState("")
 
 
-
-  //console.log("this is url ==>", URL)
-
-  const fetchVehicles = async () => {
+  const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await apiGetVehicles();
-      setData(response.data?.data);
-      setURL(response?.data?.next_page_url)
-      return setLoading(false);
+      const [allResponse, rentalsResponse, rideHailingResponse, hirePurchaseResponse] = await Promise.all([
+        apiGetAvailableVehicles(),
+        apiGetAvailableVehicles(),
+        apiGetAvailableVehicles(),
+        apiGetAvailableVehicles()
+      ]);
+      
+      setAllData(allResponse.data?.all?.data);
+      setRentals(rentalsResponse.data?.rentals?.data);
+      setRideHailing(rideHailingResponse.data?.rideHailing?.data);
+      setHirePurchase(hirePurchaseResponse.data?.hirePurchase?.data);
+      setURL(allResponse?.data?.all?.next_page_url || hirePurchaseResponse.data?.hirePurchase?.next_page_url || rentalsResponse.data?.rentals?.next_page_url || rideHailingResponse.data?.rideHailing?.next_page_url );
     } catch (error) {
-      console.log(error);
+      toast.error("Error occurred while fetching data");
+    } finally {
       setLoading(false);
-      return setData([]);
     }
   };
+
 
   const loadMore = async () => {
     setloadMore(true);
@@ -48,9 +61,9 @@ const FindCars = () => {
          return
        } else {
         const res = await nextPage(newUrl);
-        setURL(res?.data?.next_page_url);
-        const newArr = [...data, ...res.data.data];
-        setData(newArr);
+        setURL(res?.data?.all?.next_page_url);
+        const newArr = [...allData, ...res.data.all];
+        setAllData(newArr);
         setloadMore(false);
        }
     } catch (error) {
@@ -70,7 +83,7 @@ const FindCars = () => {
   };
 
   useEffect(() => {
-    fetchVehicles();
+    fetchData();
   }, []);
 
   
@@ -128,31 +141,19 @@ const FindCars = () => {
        
        
         <TabsContent value="All">
-          <AvailableCars data={data} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
+          <AvailableCars data={allData} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
 
         <TabsContent value="Ride hailing">
-          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+          <RideHailing data={rideHailing} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
 
         <TabsContent value="Rental">
-         <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+          <Rental data={rentals} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
 
         <TabsContent value="Hire-purchase">
-          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+          <HirePurchase data={hirePurchase} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
        </Tabs>
      {/* Tabs */}

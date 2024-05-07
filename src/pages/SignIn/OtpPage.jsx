@@ -14,16 +14,19 @@ const OtpPage = () => {
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
 
+  const id = localStorage.getItem("tempID");
+
   const verifyOtp = async () => {
     try {
       setError(false);
       setLoading(true);
-      const tempToken = localStorage.getItem("tempToken");
-      await apiVerifyOtp({ code: otp });
+      //const tempToken = localStorage.getItem("tempToken");
+      const res = await apiVerifyOtp({ otp: otp }, id);
+      console.log(res)
       setLoading(false);
-      if (tempToken) {
-        localStorage.setItem("token", tempToken);
-        localStorage.removeItem("tempToken");
+      if (res.status === 200) {
+        localStorage.setItem("driver_id", res?.data.driver_id);
+        localStorage.removeItem("tempID");
         return (window.location.href = "/drivers/dashboard");
       }
       return (window.location.href = "/gettoknow");

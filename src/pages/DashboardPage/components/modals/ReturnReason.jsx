@@ -1,13 +1,24 @@
 import { IoCloseOutline } from "react-icons/io5";
+import { PropTypes } from 'prop-types';
+import { useState } from 'react';
+
 
 const ReturnReason = ({onCancel, onNext}) => {
+  const [selectedReason, setSelectedReason] = useState("");
+
     const handleClose = () => {
         onCancel();
       };
 
       const handleNext = () => {
+         // Store selected reason in local storage
+         localStorage.setItem('reason', selectedReason);
         onNext();
       }
+
+      const handleRadioChange = (event) => {
+        setSelectedReason(event.target.value);
+    }
       
   return (
 <div className="fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center px-0 justify-center">
@@ -21,7 +32,7 @@ const ReturnReason = ({onCancel, onNext}) => {
        
          <form action="" className="flex flex-col">
             <div className="flex gap-4 mb-[10px] items-center">
-                <input type="radio" name="reason" /> 
+                <input type="radio" name="reason"  value="Task completed" onChange={handleRadioChange} /> 
                 <label className="flex items-center">  
                     <div className="flex flex-col mt-6">
                     <h2 className="mb-[5px] text-[16px]">Task completed</h2>
@@ -33,7 +44,7 @@ const ReturnReason = ({onCancel, onNext}) => {
             </div>
 
             <div className="flex gap-4 mb-[10px] items-center">
-                <input type="radio" name="reason" /> 
+                <input type="radio" name="reason"  value="Vehicle Issues" onChange={handleRadioChange} /> 
                 <label className="flex items-center"> 
                     <div className="flex flex-col mt-6">
                     <h2 className="mb-[5px] text-[16px]">Vehicle Issues</h2>
@@ -45,7 +56,7 @@ const ReturnReason = ({onCancel, onNext}) => {
             </div>
 
             <div className="flex gap-4 mb-[24px] items-center"> 
-                <input type="radio" name="reason" />
+                <input type="radio" name="reason" value="Personal Reasons" onChange={handleRadioChange} />
                 <label className="flex items-center"> 
                     <div className="flex flex-col mt-6">
                     <h2 className="mb-[5px] text-[16px]">Personal Reasons</h2>
@@ -57,7 +68,7 @@ const ReturnReason = ({onCancel, onNext}) => {
             </div>
 
             <div className="flex gap-4 mb-[24px] items-center"> 
-                <input type="radio" name="reason" />
+                <input type="radio" name="reason" value="Other reason" onChange={handleRadioChange} />
                 <label className="flex items-center"> 
                     <div className="flex flex-col ">
                     <h2 className="mb-[5px]">Other reason</h2>
@@ -90,4 +101,9 @@ const ReturnReason = ({onCancel, onNext}) => {
   )
 }
 
-export default ReturnReason
+ReturnReason.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
+};
+
+export default ReturnReason;

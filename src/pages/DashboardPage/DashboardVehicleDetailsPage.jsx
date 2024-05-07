@@ -3,17 +3,17 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import OtherCarsYouMayLike from "./OtherCarsYouMayLike";
 import Info from "../../assets/images/info.png";
 import PlacingBidModal from './components/modals/PlacingBidModal';
-import { apiGetVehicles, apiGetVehicleById } from '../.././services/VehiclesService';
+import { apiGetVehicleDetails, apiPlaceDriverBids } from '../.././services/VehiclesService';
 import { useLocation } from "react-router-dom";
-import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
   CarouselPrevious,
 } from "../.././Components/ui/carousel"
 import VehiclesLoading from './components/VehiclesLoading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -26,35 +26,28 @@ const DashboardVehicleDetailsPage = () => {
     const loaction = useLocation();
     const pathSegments = loaction?.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
+
+
+    const driver_id = localStorage.getItem("driver_id")
     
     
-    function isEmptyObject(obj) {
-      for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          return false;
-        }
-      }
-      return true;
-    }
+    // function isEmptyObject(obj) {
+    //   for (let key in obj) {
+    //     if (obj.hasOwnProperty(key)) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // }
   
-    const fetchVehicles = async () => {
-      setLoading(true);
-      try {
-        const response = await apiGetVehicles();
-        setVehicles(response.data?.data?.slice(0, 3));
-        return setLoading(false);
-      } catch (error) {
-        return setData(false);
-      }
-    };
   
     const getVehicle = async () => {
       try {
         setLoading(true);
-        const response = await apiGetVehicleById(id);
-        isEmptyObject(response?.data) ? setData(null) : setData(response?.data);
+        const res = await apiGetVehicleDetails(id);
+         setData(res?.data?.vehicles);
         setLoading(false);
-        return fetchVehicles();
+        return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
         setLoading(false);
       }
@@ -63,29 +56,29 @@ const DashboardVehicleDetailsPage = () => {
     const carouselImages = [
       {
           id: 1,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.DLD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
         },
         {
           id: 2,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.DLD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
         },
         {
           id: 3,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.DLD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
         }, 
         {
           id: 4,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.DLD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
         }, 
     ];
   
     const carDetails = [
-      { label: 'Location', value: 'Greater Accra, Madina' },
-      { label: 'Car Model', value: `${data?.VBM}` },
+      { label: 'Location', value: `${data?.location}` },
+      { label: 'Car Model', value: `${data?.VMD}` },
       { label: 'Car Brand', value: `${data?.VMK}` },
-      { label: 'Year of manufacturing', value: '2022' },
+      { label: 'Year of manufacturing', value: `${data?.VNO}` },
       { label: 'Year of registration', value: `${data?.VDT}` },
-      { label: 'Fuel consumption', value: `${data?.ECY}` }
+      { label: 'Fuel consumption', value: `${data?.fuel_consumption}` }
     ];
 
 
@@ -111,7 +104,6 @@ const DashboardVehicleDetailsPage = () => {
    
    
     useEffect(() => {
-      fetchVehicles();
       getVehicle();
     }, []);
 
@@ -119,8 +111,23 @@ const DashboardVehicleDetailsPage = () => {
         setShowMore(!showMore);
       };
 
-    const toggleShowPlaceBid = () => {
-       setshowPlaceBid(!showPlaceBid);
+    const toggleShowPlaceBid = async () => {
+       try {
+        const payLoad = {
+          driver_id: driver_id,
+          vehicle_id: data?.id
+        }
+        const res = await apiPlaceDriverBids(payLoad)
+          console.log(res)
+        if (res.status === 200) {
+          setshowPlaceBid(!showPlaceBid);
+        } else {
+          toast.error(res?.response?.data?.message || "Error Placing bid try again");
+        }
+       } catch (error) {
+        console.log(error)
+       }
+       
       };
 
   return (
@@ -137,7 +144,7 @@ const DashboardVehicleDetailsPage = () => {
         
         {/* Web view image */}
           <img 
-             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.DLD}`} //initial image
+             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`} //initial image
              alt="" 
              className="hidden rounded-[10px]  md:flex h-[422px]" 
           />
@@ -164,8 +171,8 @@ const DashboardVehicleDetailsPage = () => {
                 <div className="font-Light">
                   {carDetails.map((detail, index) => (
                       <div key={index} className="flex justify-between text-[16px] mb-5">
-                      <p>{detail.label}</p>
-                      <p>{detail.value}</p>
+                      <p>{detail?.label}</p>
+                      <p>{detail?.value}</p>
                       </div>
                   ))}
                 </div>
@@ -199,7 +206,7 @@ const DashboardVehicleDetailsPage = () => {
           </a>{" "}
           /{" "}
           <a
-            to="/drivers/findcars"
+            href="/drivers/findcars"
             className="hover:underline hover:cursor-pointer text-fleetBlue"
           >
             Find cars
@@ -227,21 +234,20 @@ const DashboardVehicleDetailsPage = () => {
             ))}
           </CarouselContent>
           <CarouselPrevious />
-          <CarouselNext />
         </Carousel>
         
         <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
-        <p className="font-Light text-[24px] font-[500] mb-5">GHS {data?.VAM} {data?.VPF}</p>
+        <p className="font-Light text-[24px] font-[500] mb-5">GHS {data?.amount}</p>
 
           {/* Terms */}
           <div className="flex flex-col mb-5">
               <p className="font-Light text-[24px] text-[#0A0D14] underline font-[500] pb-3">Terms</p>
                
                <div className="text-[#545151] font-Light">
-                   <p>Model : {data?.VBM}</p>
-                   <p>Engagement : Employee</p>
-                   <p>Renumerated : {data?.VPF}</p>
-                   <p>Bonus : without bonus</p>     
+                   <p>Model : {data?.bus_model}</p>
+                   <p>Engagement : {data?.engagement}</p>
+                   <p>Renumerated : {data?.renumerated}</p>
+                   <p>Bonus : {data?.bonus}</p>     
                </div>
           </div>
           {/* Terms */}
@@ -297,6 +303,22 @@ const DashboardVehicleDetailsPage = () => {
       <OtherCarsYouMayLike Data={vehicles} loading={loading} />
 
       {showPlaceBid && <PlacingBidModal onCancel={toggleShowPlaceBid} /> }
+
+
+
+      <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+        /> 
       
     </main>
   );
