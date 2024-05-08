@@ -166,11 +166,11 @@ const Dashboard = () => {
                     <p className="text-[16px] text-[#E9EDF7] font-SansLight">Current vehicle</p>
                     {loading ? (
                       <Spinner /> // Show spinner while loading
-                    ) : data ? (
+                    ) : data?.AssignedVehicle !== "" ? (
                       <p className="text-[20px] font-SansMedium">
                          {data?.AssignedVehicle}
                       </p>
-                    ) : data ? (
+                    ) : data?.AssignedVehicle !== "" ? (
                       <p className="text-[20px] font-SansMedium">
                         {data?.VCL} {data?.VMK} {data?.VMD} ({data?.VDT?.split("-")[0]})
                       </p>
