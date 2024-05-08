@@ -1,4 +1,5 @@
 import Empty from '../../.././assets/images/EmptyState.svg';
+import { PropTypes } from 'prop-types';
 
 const EmptyState = ({ BidType }) => {
   return (
@@ -20,3 +21,7 @@ const EmptyState = ({ BidType }) => {
 };
 
 export default EmptyState;
+
+EmptyState.propTypes = {
+  BidType: PropTypes.string.isRequired,
+}

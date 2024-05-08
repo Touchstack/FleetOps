@@ -1,11 +1,11 @@
-import { Button } from "../../.././Components/ui/button";
+import { Button } from "../../../Components/ui/button";
 import { IoImagesOutline } from "react-icons/io5";
 import ClipLoader from "react-spinners/ClipLoader";
 import Loading from '../../CarOwnerDashboardPage/components/Loading';
 import PropTypes from "prop-types";
 
 
-const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => {
+const RideHailing = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => {
 
   return (
     <div className="z-0">
@@ -74,7 +74,7 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
   )
 }
 
-AvailableCars.propTypes = {
+RideHailing.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
   Selected: PropTypes.func.isRequired,
@@ -82,4 +82,4 @@ AvailableCars.propTypes = {
   isLoadMoreLoading: PropTypes.bool,
 };
 
-export default AvailableCars;
+export default RideHailing;

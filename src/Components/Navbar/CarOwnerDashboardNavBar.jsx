@@ -65,7 +65,7 @@ export default function CarOwnerDashboardNavBar() {
 
   return (
     <nav className="bg-white border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-2">
+      <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-2 py-2">
         <a href="/" className="">
           <img
             className="lg:mr-20"
@@ -93,7 +93,7 @@ export default function CarOwnerDashboardNavBar() {
               </svg>
             </span>
           </button>
-          {showDropdown && <DriverDropdown />}
+          {showDropdown && <DriverDropdown Settings={false} />}
 
           <motion.button
             data-collapse-toggle="navbar-cta"
@@ -149,14 +149,14 @@ export default function CarOwnerDashboardNavBar() {
               </a>
             </motion.li>
             <motion.li variants={linkVariants}>
-              <a
-                href="/carowner/listing"
-                className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                  location.pathname === "/carowner/listing" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
-              >
-                Car listings
-              </a>
+            <a
+              href="/carowner/listing"
+              className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
+                location.pathname === "/carowner/listing" || location.pathname === "/carowner/assign" ? "text-fleetBlue" : "text-fleetNavText"
+              }`}
+            >
+              Car listings
+            </a>
             </motion.li>
           </motion.ul>
         </div>

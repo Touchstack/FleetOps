@@ -24,9 +24,9 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
             <div onClick={() => viewVehicleDetails(car)} key={car?.driver_id} className="w-12/12">
               <div className="relative flex flex-col cursor-pointer  border-white py-[23px] rounded-[30px]">
                 {/* Render image or placeholder */}
-                {car?.DLD !== null ? (
+                {car?.VRD !== null ? (
                   <img
-                    src={`http://engines.fleetopsgh.com/uploads/photo/${car?.DLD}`}
+                    src={`http://engines.fleetopsgh.com/uploads/photo/${car?.VRD}`}
                     className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                     alt=""
                   />
@@ -37,7 +37,7 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
                 )}
                 {/* Price tag */}
                 <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
-                  <p> GHS {car?.VAM}{" "}</p>
+                  <p> GHS {car?.amount}{" "}</p>
                   <span className="text-[13.32px] font-Light pt-1">{car?.VPF}</span>
                 </div>
                 {/* Car info */}
@@ -46,7 +46,7 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
                      {car?.VCL} {car?.VMK} {car?.VMD}
                   </p>
                   <p className="font-Light  text-[18px]">
-                    Model: {car?.VBM} 
+                    Model: {car?.bus_model} 
                   </p>
                 </div>
                 {/* Car info */}

@@ -1,5 +1,6 @@
 import { IoCloseOutline } from "react-icons/io5"
 import Car from "../../../.././assets/images/car-dashboard.svg"
+import { PropTypes } from 'prop-types';
 
 const Congratulations = ({onCancel}) => {
   
@@ -40,3 +41,7 @@ const Congratulations = ({onCancel}) => {
 }
 
 export default Congratulations
+
+Congratulations.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+}

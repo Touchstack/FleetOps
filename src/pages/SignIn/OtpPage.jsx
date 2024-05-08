@@ -16,6 +16,7 @@ const OtpPage = () => {
 
   const id = localStorage.getItem("tempID");
 
+
   const verifyOtp = async () => {
     try {
       setError(false);

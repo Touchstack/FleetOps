@@ -1,5 +1,6 @@
 import { IoCloseOutline } from "react-icons/io5"
 import clipboard from "../../../.././assets/images/clipboard.svg"
+import { PropTypes } from 'prop-types';
 
 const Confirmation = ({onCancel}) => {
   
@@ -40,3 +41,7 @@ const Confirmation = ({onCancel}) => {
 }
 
 export default Confirmation
+
+Confirmation.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+}

@@ -1,16 +1,45 @@
 import { useState } from 'react';
 import { IoCloseOutline } from "react-icons/io5"
+import { apiPostVehicleReturn } from "@/services/VehiclesService";
+import { PropTypes } from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ExperienceRate = ({onCancel, onNext}) => {
   const [selectedRate, setSelectedRate] = useState(null);
+  
+  const reason = localStorage.getItem('reason')
+  const driverString = localStorage.getItem('driver');
+
+
+  const driver = JSON.parse(driverString);
 
   const handleClose = () => {
     onCancel();
   };
 
-  const handleNext = () => {
-    onNext();
+  const handleNext = async () => {
+     const payLoad = {
+       rating: selectedRate,
+       reason,
+       vehicle_id: driver.vehicle_id
+     }
+   
+    if(reason){
+      try {
+        const res = await apiPostVehicleReturn(payLoad)
+        console.log(res)
+        if (res.status === 200) {
+          onNext();
+          localStorage.removeItem("reason")
+        } else {
+          toast.error(res?.response?.data?.message || "An error occured couldnt fetch bids")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
   const rate = [
@@ -79,8 +108,28 @@ const ExperienceRate = ({onCancel, onNext}) => {
 
         </div>
     </div>
+
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={true}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+      transition: Bounce
+    />
+
   </div>
   )
 }
 
 export default ExperienceRate
+
+ExperienceRate.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
+}

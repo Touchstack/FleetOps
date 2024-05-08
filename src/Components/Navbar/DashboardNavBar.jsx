@@ -4,6 +4,7 @@ import { DriverDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom"; 
 
+
 export default function DashboardNavBar() {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
@@ -25,6 +26,7 @@ export default function DashboardNavBar() {
       return setShowMenu(false);
     }
   };
+
 
   const handleShowDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -63,9 +65,10 @@ export default function DashboardNavBar() {
     },
   };
 
+  
   return (
     <nav className="bg-white border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-2">
+      <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-2 py-2">
         <a href="/" className="">
           <img
             className="lg:mr-20"
@@ -78,7 +81,7 @@ export default function DashboardNavBar() {
           <button className="flex" onClick={handleShowDropdown}>
             <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
               <p className="font-Light text-fleetNavText text-center">
-                {driver?.fullname}
+                {driver?.driver}
               </p>
             </span>
             <span>
@@ -93,7 +96,7 @@ export default function DashboardNavBar() {
               </svg>
             </span>
           </button>
-          {showDropdown && <DriverDropdown />}
+          {showDropdown && <DriverDropdown Settings={true} />}
 
           <motion.button
             data-collapse-toggle="navbar-cta"
@@ -161,9 +164,9 @@ export default function DashboardNavBar() {
             
             <motion.li variants={linkVariants}>
               <a
-                href="/drivers/Bids"
+                href="/drivers/bids"
                 className={`block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/Bids" ? "text-fleetBlue" : "text-fleetNavText"
+                  location.pathname === "/drivers/bids" ? "text-fleetBlue" : "text-fleetNavText"
                 }`}
               >
                 Bids
