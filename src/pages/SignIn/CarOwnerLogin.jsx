@@ -31,8 +31,9 @@ const CarOwnerLogin = () => {
 
         await apiPostCarOwner(payLoad).then((res) => {
             setLoading(true);
+            console.log(res)
             if (res.status === 200) {
-              localStorage.setItem('car-owner-token', res.data?.data?.token);
+              localStorage.setItem('car-owner-token', res.data?.client_id);
               navigate('/carowner/dashboard')
               setLoading(false);
             } else {

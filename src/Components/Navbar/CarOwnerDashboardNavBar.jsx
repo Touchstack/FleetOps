@@ -9,8 +9,8 @@ export default function CarOwnerDashboardNavBar() {
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
-  const data = localStorage.getItem("driver");
-  const driver = JSON.parse(data);
+  const data = localStorage.getItem("dashBoardData");
+  const carOwner = JSON.parse(data);
 
   const location = useLocation();
 
@@ -78,7 +78,7 @@ export default function CarOwnerDashboardNavBar() {
           <button className="flex" onClick={handleShowDropdown}>
             <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
               <p className="font-Light text-fleetNavText text-center">
-                {driver?.fullname}
+                {carOwner?.Name}
               </p>
             </span>
             <span>
