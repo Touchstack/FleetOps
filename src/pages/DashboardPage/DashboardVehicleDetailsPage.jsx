@@ -111,6 +111,10 @@ const DashboardVehicleDetailsPage = () => {
         setShowMore(!showMore);
       };
 
+    const closePlaceBid = () => {
+      setshowPlaceBid(!showPlaceBid);
+    }
+
     const toggleShowPlaceBid = async () => {
        try {
         const payLoad = {
@@ -302,7 +306,7 @@ const DashboardVehicleDetailsPage = () => {
     
       <OtherCarsYouMayLike Data={vehicles} loading={loading} />
 
-      {showPlaceBid && <PlacingBidModal onCancel={toggleShowPlaceBid} /> }
+      {showPlaceBid && <PlacingBidModal onCancel={closePlaceBid} /> }
 
 
 
