@@ -14,15 +14,15 @@ export async function apiRegisterCarOnwer(data) {
 }
 
 export async function apiDriverLogin(data) {
-  return apiClientMarketing.post(`/drivers/login`, data);
+  return apiClient.post(`/driver/login`, data);
 }
 
 export async function apiDriverSignUp(data) {
-  return apiClientMarketing.post(`/drivers/signup`, data);
+  return apiClient.post(`/driver/signup`, data);
 }
 
-export async function apiVerifyOtp(data) {
-  return apiClientMarketing.post(`/verify/otp`, data);
+export async function apiVerifyOtp(data, id) {
+  return apiClient.post(`/verify/otp/${id}`, data);
 }
 
 export async function apiRegisterDriver(data) {
@@ -61,3 +61,69 @@ export const nextPage = async (url) => {
       return error
     }
 }
+
+//new Endpoints
+export async function apiGetAvailableVehicles() {
+  return apiClient.get(`/availablecars`);
+}
+
+export async function apiGetVehicleDetails(id) {
+  return apiClient.get(`/vehicledetails/${id}`); //vehicle_id
+}
+
+
+export async function apiGetDriverBids(id) {
+  return apiClient.get(`/driver/${id}/bids`);  //driver_id
+}
+
+export async function apiPlaceDriverBids(payLoad) {
+  return axios({
+    method: "put",
+    url: "https://engines.fleetopsgh.com/api/place_a_bid",
+    data: payLoad  //vehicle_id & driver_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiCancelDriverBids(id) {
+  return apiClient.put(`/cancel/bid/${id}`);  //ask which id is this
+}
+
+export async function apiDriverReBid(payLoad) {
+  return axios({
+    method: "get",
+    url: "https://engines.fleetopsgh.com/api/rebid",
+    data: payLoad  //bid_id & driver_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiPostVehicleReturn(payLoad) { 
+  return axios({
+    method: "post",
+    url:  `https://engines.fleetopsgh.com/api/return/vehicle`,
+    data: payLoad, //reason & vehicle_id
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+export async function apiGetDriverDashboard(id) {
+  return apiClient.get(`/driver/${id}/dashboard`);  //driver id
+}
+
+//new Endpoints
