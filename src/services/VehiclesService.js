@@ -18,7 +18,7 @@ export async function apiDriverLogin(data) {
 }
 
 export async function apiDriverSignUp(data) {
-  return apiClientMarketing.post(`/drivers/signup`, data);
+  return apiClient.post(`/driver/signup`, data);
 }
 
 export async function apiVerifyOtp(data, id) {

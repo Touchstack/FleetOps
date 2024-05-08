@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Formik } from "formik";
 import {
   apiPostDriver,
-  apiRegisterDriver,
 } from "../../services/VehiclesService";
 import Preview from "../../Components/ImgPreview/Preview";
 import {
@@ -72,22 +71,24 @@ const GetToKnow = () => {
       bodyFormData.append("licenseFront", values?.licenseFront);
       bodyFormData.append("licenseBack", values?.licenseBack);
       localStorage.setItem("fullName", values?.name);
-      const data = {
-        fullname: values?.name,
-        email: values?.email,
-        phoneNumber: driverNumber,
-        licenseFront: values?.licenseFront?.name,
-        licenseBack: values?.licenseBack?.name,
-      };
-      const apiMarketingRes = await apiRegisterDriver(data);
+      // const data = {
+      //   fullname: values?.name,
+      //   email: values?.email,
+      //   phoneNumber: driverNumber,
+      //   licenseFront: values?.licenseFront?.name,
+      //   licenseBack: values?.licenseBack?.name,
+      // };
+      //const apiMarketingRes = await apiRegisterDriver(data);
       const response = await apiPostDriver(bodyFormData);
-      const userData = apiMarketingRes.data?.data;
-      localStorage.setItem("driver", JSON.stringify(userData));
-      localStorage.setItem("token", userData?.token);
-      console.log(response);
-      setError(false);
-      setLoading(false);
-      return (window.location.href = "/drivers/dashboard");
+      console.log("this is the response =>", response)
+      if (response.status === 200) {
+        const userData = response?.data.driver_id;
+        localStorage.setItem("driver_id", userData);
+        //localStorage.setItem("token", userData?.token);
+        setError(false);
+        setLoading(false);
+        return (window.location.href = "/drivers/dashboard");
+      }
     } catch (error) {
       console.log("ERROR: =>", error);
       setLoading(false);
@@ -160,6 +161,7 @@ const GetToKnow = () => {
                   onClick={() => setFieldValue("licenseFront", null)}
                 />
               ) : (
+                
                 <input
                   name="licenseFront"
                   value={""}
