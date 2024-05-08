@@ -34,8 +34,10 @@ const SignUpPage = () => {
       setLoading(true);
       const res = await apiDriverSignUp(payLoad);
       console.log(res)
+      localStorage.setItem('tempCode', res?.data?.code)
       localStorage.setItem('tempID', res?.data?.login_id)
       localStorage.setItem("driverNumber", values?.phone_number);
+      localStorage.setItem("driver_id", res?.data?.driver_id)
       setLoading(false);
       return (window.location.href = "/otppage");
     } catch (error) {
