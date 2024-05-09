@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
 
 
-const ListedCars = ({data, loading}) => {
-  const [text, setText] = useState("Assigned")
+const UnassignedCars = ({data, loading}) => {
+  const [text, setText] = useState("Unassigned")
   
   return (
     <div className="z-0">
@@ -22,7 +22,7 @@ const ListedCars = ({data, loading}) => {
                 <div key={index} className="w-12/12">
                   <div className="relative flex flex-col md:pl-4 cursor-pointer border-white py-[23px] rounded-[30px]">
                     {/* Render image or placeholder */}
-                    {car?.VRD ? (
+                    {car?.VRD  ? (
                       <img
                         src={`http://engines.fleetopsgh.com/uploads/photo/${car?.VRD}`}
                         className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
@@ -66,13 +66,13 @@ const ListedCars = ({data, loading}) => {
 
                       <div className="flex w-11/12 justify-between">
                         <div
-                          className={`px-3 h-[39px] capitalize flex items-center  text-[16px] rounded-[2px] ${
+                          className={`px-3 h-[39px] flex items-center  text-[16px] rounded-[2px] ${
                             car?.status === "unassigned"
                               ? "bg-[#ABB3BF]"
                               : "bg-[#63BC8C]"
                           } text-[#FFFFFF]`}
                         >
-                           {car?.status}
+                          {car?.status}
                         </div>
 
                         <EllipsisMenu />
@@ -97,10 +97,10 @@ const ListedCars = ({data, loading}) => {
   )
 }
 
-ListedCars.propTypes = {
+UnassignedCars.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
 };
 
 
-export default ListedCars;
+export default UnassignedCars;

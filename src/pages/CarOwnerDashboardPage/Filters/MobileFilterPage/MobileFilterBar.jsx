@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { Button } from '../../../../Components/ui/button';
 import { Separator } from '../../../../Components/ui/separator';
 import AllFilterPage from './AllFilterPage';
+import { apiGetCarOwnerVehiclesBySearch } from '@/services/CarOwnerService';
+import { PropTypes } from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const MobileFilterBar = () => {
+
+const MobileFilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
+  const id = localStorage.getItem("car-owner-token")
+
     const [selectedValues, setSelectedValues] = useState({
       'Brand': '',
-      'Year of man.': '',
-      'Year of reg.': '',
-      'Fuel consumption': '',
+      'Year_of_man.': '',
+      'Year_of_reg.': '',
+      'Fuel_consumption': '',
       'Transmission type': '',
     });
 
@@ -22,6 +29,22 @@ const MobileFilterBar = () => {
       const length = Object.values(selectedValues).filter(value => value !== '').length
 
      // console.log("Selected data on bar =>>", selectedValues)
+
+     const getSearchData = async () => {
+      try {
+        const res = await apiGetCarOwnerVehiclesBySearch(id, selectedValues)
+         console.log("search-data =>>", res);
+          if(res.status === 200){
+            updateAllData(res.data?.allVehicles?.data); 
+            updateAssigned(res.data?.assigned?.data);
+            updateUnassigned(res.data?.unAssigned?.data)
+            toast.success("fetching data successful");
+          }
+      } catch (error) {
+        toast.error("Error occurred while fetching data");
+        console.log(error)
+      }
+    }
       
   return (
    <>
@@ -43,7 +66,7 @@ const MobileFilterBar = () => {
           </div>
       </div>
 
-      <Button className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
+      <Button onClick={() => getSearchData() } className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
     </div>
 
     { AllFilter &&  
@@ -51,6 +74,7 @@ const MobileFilterBar = () => {
         onCloseClick={() => setAllFilter(!AllFilter)}
         selectedValues={selectedValues}
         onSelectedValuesChange={handleSelectedValuesChange}
+        onClickSearch={() =>  getSearchData()}
       /> 
     }
   </>
@@ -58,3 +82,9 @@ const MobileFilterBar = () => {
 };
 
 export default MobileFilterBar;
+
+MobileFilterBar.propTypes = {
+  updateAllData: PropTypes.func.isRequired,
+  updateAssigned: PropTypes.func.isRequired,
+  updateUnassigned : PropTypes.func.isRequired,
+}

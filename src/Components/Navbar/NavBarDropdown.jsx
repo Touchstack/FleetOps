@@ -60,6 +60,9 @@ export const DriverDropdown = ({ Settings }) => {
             localStorage.removeItem("token");
             localStorage.removeItem("fullName");
             localStorage.removeItem("driverVehicle");
+            localStorage.removeItem("driver_id");
+            localStorage.removeItem("dashBoardData");
+            localStorage.removeItem("car-owner-token");
             return (window.location.href = "/drivers/loginpage");
           }}
         >

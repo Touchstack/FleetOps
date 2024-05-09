@@ -1,31 +1,56 @@
 import CarOwnerDashboardNavBar from "@/Components/Navbar/CarOwnerDashboardNavBar";
 import { useEffect, useState } from "react";
-import { apiGetVehicles } from "../../services/VehiclesService";
+import { apiGetCarOwnerVehicles } from "@/services/CarOwnerService";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../.././Components/ui/tabs";
 import ListedCars from "./components/ListedCars";
+import UnassignedCars from "./components/UnassignedCars";
+import AssignedCars from "./components/AssignedCars";
 import FilterBar from "./Filters/FilterBar";
 import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
 import ActiveBids from "@/pages/CarOwnerDashboardPage/components/ActiveBids.jsx";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const CarsListing = () => {
-  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [assigned, setAssigned] = useState([]);
+  const [unassigned, setUnassigned] = useState([]);
   const [loading, setLoading] = useState(false);
 
   //console.log("this is url ==>", URL)
 
+  const id = localStorage.getItem("car-owner-token")
+
+  const updateAllData = (data) => {
+    setAllData(data);
+  };
+
+  const updateAssigned = (data) => {
+    setAssigned(data);
+  };
+  const updateUnassigned = (data) => {
+    setUnassigned(data);
+  };
+
   const fetchVehicles = async () => {
     setLoading(true);
     try {
-      const response = await apiGetVehicles();
-      setData(response.data?.data);
-      return setLoading(false);
+      const [allResponse, assignedResponse, unassignedResponse] = await Promise.all([
+        apiGetCarOwnerVehicles(id),
+        apiGetCarOwnerVehicles(id),
+        apiGetCarOwnerVehicles(id),
+        apiGetCarOwnerVehicles(id)
+      ]);
+      
+      setAllData(allResponse.data?.allVehicles?.data);
+      setAssigned(assignedResponse.data?.assigned?.data);
+      setUnassigned(unassignedResponse.data?.unAssigned?.data);
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data?.message  || "Error occurred while fetching data");
+    } finally {
       setLoading(false);
-      return setData([]);
     }
   };
 
@@ -50,12 +75,20 @@ const CarsListing = () => {
 
 
       <div className="z-50 relative hidden md:block">
-        <FilterBar />
+        <FilterBar
+          updateAllData={updateAllData} 
+          updateAssigned={updateAssigned} 
+          updateUnassigned={updateUnassigned}  
+        />
       </div>
 
       {/* Mobile view bar */}
       <div className="md:hidden">
-        <MobileFilterBar />
+        <MobileFilterBar 
+           updateAllData={updateAllData} 
+           updateAssigned={updateAssigned} 
+           updateUnassigned={updateUnassigned} 
+        />
       </div>
 
       {/* Tabs */}
@@ -89,23 +122,15 @@ const CarsListing = () => {
 
 
         <TabsContent value="All">
-          <ListedCars data={data}   loading={loading} />
+          <ListedCars data={allData}   loading={loading} />
         </TabsContent>
 
         <TabsContent value="Assigned">
-          <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+          <AssignedCars data={assigned} loading={loading}  />
         </TabsContent>
 
         <TabsContent value="Unassigned">
-         <section className="container mx-auto p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]">
-            <p className="font-Regular my-2 text-[#212121] text-xl text-center">
-              Oops! No vehicles were found
-            </p>
-          </section>
+          <UnassignedCars data={unassigned} loading={loading} />
         </TabsContent>
 
         <TabsContent value="Active Bids">
@@ -115,6 +140,21 @@ const CarsListing = () => {
           {/* Tabs */}
 
       </div>
+
+      <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+        /> 
+
     </div>
   );
 };

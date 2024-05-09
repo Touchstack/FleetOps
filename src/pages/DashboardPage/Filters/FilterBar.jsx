@@ -4,7 +4,7 @@ import { Button } from '../../.././Components/ui/button';
 import { Separator } from '../../.././Components/ui/separator';
 import { apiGetAvailableVehiclesBySearch } from '@/services/VehiclesService';
 import { PropTypes } from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -123,6 +123,7 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
               updateRentals(res.data?.rentals?.data)
               updateRideHailing(res.data?.rideHailing?.data)
               updateHirePurchase(res.data?.hirePurchase?.data)
+              toast.success("fetching data successful");
             }
         } catch (error) {
           toast.error("Error occurred while fetching data");
@@ -131,7 +132,7 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
       }
       
   return (
-  <>
+
     <div className="flex my-7 justify-between drop-shadow-md w-[8/12] bg-[#FFFFFF] p-[30px] md:p-[16px]">
      <FilterItem 
          title="Brand" 
@@ -177,20 +178,6 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
       <Button onClick={() => getSearchData() } className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
     </div>
 
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={true}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="colored"
-      transition: Bounce
-    /> 
-  </>
   );
 };
 

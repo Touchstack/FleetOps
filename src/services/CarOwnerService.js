@@ -33,6 +33,10 @@ export async function apiPostCarOwner(payLoad) {
     return apiClient.get(`/carowner/${id}/listings`); //user_id
   }
 
+  export async function apiGetCarOwnerVehiclesBySearch(id, data) {
+    return apiClient.get(`/carowner/${id}/listings`, data); //user_id
+  }
+
 
   export async function apiAssignCar(payLoad, id) {
     return axios({

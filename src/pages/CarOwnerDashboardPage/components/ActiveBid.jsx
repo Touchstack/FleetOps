@@ -76,18 +76,18 @@ export default function ActiveBid() {
             "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
           }
         >
-          {/* <Button
+          <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
             onClick={handleAcceptBid}
           >
             Accept bid
-          </Button> */}
-          <Button
+          </Button>
+          {/* <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
             onClick={handleAssign}
           >
             Assign Car
-          </Button>
+          </Button> */}
           <Button
             className={"border-[#23A6BF] text-base text-fleetBlue"}
             variant={"outline"}

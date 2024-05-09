@@ -2,7 +2,10 @@ import  { useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { Button } from '../../.././Components/ui/button';
 import { Separator } from '../../.././Components/ui/separator';
+import { apiGetCarOwnerVehiclesBySearch } from '@/services/CarOwnerService';
 import PropTypes from "prop-types";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
@@ -40,6 +43,8 @@ const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
   const FilterItem = ({ title, value, onChange, options }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
+
+    
     // const [options, setOptions] = useState([]);
 
     // useEffect(() => {   !!!! do not delete this by kobby
@@ -92,14 +97,16 @@ const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
   };
   
 
-const FilterBar = () => {
+const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
+
+   const id = localStorage.getItem("car-owner-token")
 
     const [selectedValues, setSelectedValues] = useState({
         'Brand': '',
-        'Year of man.': '',
-        'Year of reg.': '',
-        'Fuel consumption': '',
-        'Transmission type': '',
+        'Year_of_man.': '',
+        'Year_of_reg.': '',
+        'Fuel_consumption': '',
+        'Transmission_type': '',
       });
 
       const [AllFilter, setAllFilter] = useState(false)
@@ -110,6 +117,22 @@ const FilterBar = () => {
           [title]: value,
         }));
       };
+
+      const getSearchData = async () => {
+        try {
+          const res = await apiGetCarOwnerVehiclesBySearch(id, selectedValues)
+           console.log("search-data =>>", res);
+            if(res.status === 200){
+              updateAllData(res.data?.allVehicles?.data); 
+              updateAssigned(res.data?.assigned?.data);
+              updateUnassigned(res.data?.unAssigned?.data)
+              toast.success("fetching data successful");
+            }
+        } catch (error) {
+          toast.error("Error occurred while fetching data");
+          console.log(error)
+        }
+      }
 
       
   return (
@@ -122,26 +145,26 @@ const FilterBar = () => {
      />
       <FilterItem 
          title="Year of man." 
-         value={selectedValues['Year of man.']} 
-         onChange={(value) => handleFilterChange('Year of man.', value)}
+         value={selectedValues['Year_of_man.']} 
+         onChange={(value) => handleFilterChange('Year_of_man.', value)}
          options={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']}  
        />
       <FilterItem 
          title="Year of reg." 
-         value={selectedValues['Year of reg.']} 
-         onChange={(value) => handleFilterChange('Year of reg.', value)}
+         value={selectedValues['Year_of_reg.']} 
+         onChange={(value) => handleFilterChange('Year_of_reg.', value)}
          options={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']} 
        />
       <FilterItem 
          title="Fuel consumption" 
-         value={selectedValues['Fuel consumption']} 
-         onChange={(value) => handleFilterChange('Fuel consumption', value)}
-         options={['1.5L', '2.0L',]} 
+         value={selectedValues['Fuel_consumption']} 
+         onChange={(value) => handleFilterChange('Fuel_consumption', value)}
+         options={['1.5', '2.0',]} 
        />
       <FilterItem 
          title="Transmission type" 
-         value={selectedValues['Transmission type']} 
-         onChange={(value) => handleFilterChange('Transmission type', value)}
+         value={selectedValues['Transmission_type']} 
+         onChange={(value) => handleFilterChange('Transmission_type', value)}
          options={['Manual','Automatic']}  
       />
 
@@ -155,10 +178,16 @@ const FilterBar = () => {
         </div>
       </div>
 
-      <Button className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
+      <Button onClick={() => getSearchData() } className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
     </div>
   );
 };
+
+FilterBar.propTypes = {
+  updateAllData: PropTypes.func.isRequired,
+  updateAssigned: PropTypes.func.isRequired,
+  updateUnassigned: PropTypes.func.isRequired,
+}
 
 FilterItem.propTypes = {
   title: PropTypes.string.isRequired,

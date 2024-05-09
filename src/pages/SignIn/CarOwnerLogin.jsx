@@ -39,7 +39,7 @@ const CarOwnerLogin = () => {
             } else {
              setLoading(false); 
              setError(true); 
-             setErrorText(error?.response?.data?.message || error?.message);
+             setErrorText(res?.response?.data?.message || error?.message);
              setTimeout(() => setError(false), 3000);
             }
         })
@@ -92,8 +92,6 @@ const CarOwnerLogin = () => {
                         </Button>
                     </div>
                 </form>
-                {/* Error message */}
-                {error && <p className="text-red-500 text-xs italic">{errorText}</p>}
             </div>
         </div>
     );

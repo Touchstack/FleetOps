@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
 
 
-const ListedCars = ({data, loading}) => {
+const AssignedCars = ({data, loading}) => {
   const [text, setText] = useState("Assigned")
   
   return (
@@ -61,7 +61,7 @@ const ListedCars = ({data, loading}) => {
                         {car?.VCL} {car?.VMK} {car?.VMD}
                       </p>
                       <p className="font-Light text-[18px]">
-                        Model: {car?.bus_model} 
+                       Model: {car?.bus_model} 
                       </p>
 
                       <div className="flex w-11/12 justify-between">
@@ -72,7 +72,7 @@ const ListedCars = ({data, loading}) => {
                               : "bg-[#63BC8C]"
                           } text-[#FFFFFF]`}
                         >
-                           {car?.status}
+                          {car?.status}
                         </div>
 
                         <EllipsisMenu />
@@ -97,10 +97,10 @@ const ListedCars = ({data, loading}) => {
   )
 }
 
-ListedCars.propTypes = {
+AssignedCars.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
 };
 
 
-export default ListedCars;
+export default AssignedCars;
