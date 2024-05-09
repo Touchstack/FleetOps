@@ -1,7 +1,7 @@
-import React from 'react'
 import { SlArrowLeft } from "react-icons/sl";
 import { motion } from "framer-motion";
 import { slideIn } from "../../../../.././utils/animation";
+import { PropTypes } from 'prop-types';
 
 const TransmissonTypePage = ({ onBackClick,  onValueSelect }) => {
    const data = [
@@ -24,8 +24,8 @@ const TransmissonTypePage = ({ onBackClick,  onValueSelect }) => {
        className='flex overflow-auto flex-col mt-7'
        style={{ maxHeight: "calc(100vh - 250px)" }}
     >
-       {data.map((transmisson) => (
-        <p className='p-6 text-[17px]'
+       {data.map((transmisson, index) => (
+        <p key={index} className='p-6 text-[17px]'
          onClick={() =>  onValueSelect(transmisson.type)}
         >
            {transmisson.type}
@@ -38,3 +38,8 @@ const TransmissonTypePage = ({ onBackClick,  onValueSelect }) => {
 }
 
 export default TransmissonTypePage
+
+TransmissonTypePage.propTypes = {
+  onBackClick: PropTypes.func.isRequired,
+  onValueSelect: PropTypes.func.isRequired,
+}

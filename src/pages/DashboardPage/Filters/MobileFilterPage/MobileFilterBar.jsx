@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { Button } from '../../../../Components/ui/button';
 import { Separator } from '../../../../Components/ui/separator';
 import AllFilterPage from './AllFilterPage';
+import { PropTypes } from 'prop-types';
+import { apiGetAvailableVehiclesBySearch } from '@/services/VehiclesService';
 
-
-const MobileFilterBar = () => {
+const MobileFilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHirePurchase }) => {
     const [selectedValues, setSelectedValues] = useState({
       'Brand': '',
-      'Year of man.': '',
-      'Year of reg.': '',
-      'Fuel consumption': '',
-      'Transmission type': '',
+      'Year_of_man.': '',
+      'Year_of_reg.': '',
+      'Fuel_consumption': '',
+      'Transmission_type': '',
     });
 
     const handleSelectedValuesChange = (newSelectedValues) => {
@@ -22,6 +23,21 @@ const MobileFilterBar = () => {
       const length = Object.values(selectedValues).filter(value => value !== '').length
 
      // console.log("Selected data on bar =>>", selectedValues)
+
+     const getSearchData = async () => {
+      try {
+        const res = await apiGetAvailableVehiclesBySearch(selectedValues)
+         console.log(res);
+          if(res.status === 200){
+            updateAllData(res.data?.all?.data);
+            updateRentals(res.data?.rentals?.data)
+            updateRideHailing(res.data?.rideHailing?.data)
+            updateHirePurchase(res.data?.hirePurchase?.data)
+          }
+      } catch (error) {
+        console.log(error)
+      }
+    }
       
   return (
    <>
@@ -43,7 +59,7 @@ const MobileFilterBar = () => {
           </div>
       </div>
 
-      <Button className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
+      <Button onClick={() => getSearchData() } className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
     </div>
 
     { AllFilter &&  
@@ -51,6 +67,7 @@ const MobileFilterBar = () => {
         onCloseClick={() => setAllFilter(!AllFilter)}
         selectedValues={selectedValues}
         onSelectedValuesChange={handleSelectedValuesChange}
+        onClickSearch={() =>  getSearchData()}
       /> 
     }
   </>
@@ -58,3 +75,10 @@ const MobileFilterBar = () => {
 };
 
 export default MobileFilterBar;
+
+MobileFilterBar.propTypes = {
+  updateAllData: PropTypes.func.isRequired,
+  updateRentals: PropTypes.func.isRequired,
+  updateRideHailing: PropTypes.func.isRequired,
+  updateHirePurchase: PropTypes.func.isRequired,
+}

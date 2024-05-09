@@ -10,8 +10,7 @@ import FuelConsumptionSearchPage from "./components/FuelConsumptionSearchPage";
 import ManifactureSearchPage from "./components/ManifactureSearchPage";
 import RegistrationSearchPage from "./components/RegistrationSearchPage";
 import TransmissionTypePage from "./components/TransmissionTypePage";
-
-
+import { PropTypes } from 'prop-types';
 
 
 const FilterItem = ({ title, value, onChange, onOpen }) => {
@@ -29,7 +28,7 @@ const FilterItem = ({ title, value, onChange, onOpen }) => {
   );
 };
 
-const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange }) => {
+const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange, onClickSearch }) => {
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isManOpen, setIsManOpen] = useState(false);
   const [isRegOpen, setIsRegOpen] = useState(false);
@@ -46,6 +45,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
 
   const handleSearch = () => {
     onCloseClick()
+    onClickSearch()
   }
 
   const handleClear = () => {
@@ -69,23 +69,23 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
            onOpen={() => setIsBrandOpen(true)}
         />
         <FilterItem 
-          title={"Year of man"} 
-          value={selectedValues['Year of man.']}  
+          title={"Year of man."} 
+          value={selectedValues['Year_of_man.']}  
           onOpen={() => setIsManOpen(true)} 
         />
         <FilterItem 
            title={"Year of reg."} 
-           value={selectedValues['Year of reg.']} 
+           value={selectedValues['Year_of_reg.']} 
            onOpen={() => setIsRegOpen(true)}
         />
         <FilterItem 
            title={"Fuel consumption"} 
-           value={selectedValues['Fuel consumption']} 
+           value={selectedValues['Fuel_consumption']} 
            onOpen={() => setIsFuelOpen(true)}
         />
         <FilterItem 
           title={"Transmission type"} 
-          value={selectedValues['Transmission type']}
+          value={selectedValues['Transmission_type']}
           onOpen={() => setIsTransmissionOpen(true)} 
         />
       </div>
@@ -103,7 +103,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
          <ManifactureSearchPage 
          onBackClick={() => setIsManOpen(false)} 
          onValueSelect={(value) => {
-          handleFilterChange('Year of man.', value);
+          handleFilterChange('Year_of_man.', value);
           setIsManOpen(false);
          }}
       />}
@@ -111,7 +111,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
          <RegistrationSearchPage 
           onBackClick={() => setIsRegOpen(false)}
           onValueSelect={(value) => {
-            handleFilterChange('Year of reg.', value);
+            handleFilterChange('Year_of_reg.', value);
             setIsRegOpen(false);
           }}
       />}
@@ -119,7 +119,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
         <FuelConsumptionSearchPage 
          onBackClick={() => setIsFuelOpen(false)} 
          onValueSelect={(value) => {
-          handleFilterChange('Fuel consumption', value);
+          handleFilterChange('Fuel_consumption', value);
           setIsFuelOpen(false);
         }}
       />}
@@ -127,7 +127,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
          <TransmissionTypePage 
          onBackClick={() => setIsTransmissionOpen(false)}
          onValueSelect={(value) => {
-          handleFilterChange('Transmission type', value);
+          handleFilterChange('Transmission_type', value);
           setIsTransmissionOpen(false);
         }} 
       />}
@@ -156,3 +156,17 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange })
 };
 
 export default AllFilterPage;
+
+FilterItem.propTypes = {
+  onOpen: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+}
+
+AllFilterPage.propTypes = {
+  onCloseClick: PropTypes.func.isRequired,
+  onClickSearch: PropTypes.func.isRequired,
+  selectedValues: PropTypes.array,
+  onSelectedValuesChange: PropTypes.string.isRequired,
+}

@@ -2,7 +2,7 @@ import { useContext, } from "react";
 import { AppContext } from "../../context/AppContext";
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { useEffect, useState } from "react";
-import { apiGetAvailableVehicles } from "../../services/VehiclesService";
+import { apiGetAvailableVehicles } from '@/services/VehiclesService';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../.././Components/ui/tabs";
 import AvailableCars from "./components/AvailableCars";
 import RideHailing from "./components/RideHailing";
@@ -27,6 +27,21 @@ const FindCars = () => {
   const [appContext, setAppContext] = useContext(AppContext);
   const [URL, setURL] = useState("")
 
+  const updateAllData = (data) => {
+    setAllData(data);
+  };
+
+  const updateRentals = (data) => {
+    setRentals(data);
+  };
+  const updateRideHailing = (data) => {
+    setRideHailing(data);
+  };
+
+  const updateHirePurchase = (data) => {
+    setHirePurchase(data);
+  };
+
 
   const fetchData = async () => {
     setLoading(true);
@@ -49,6 +64,8 @@ const FindCars = () => {
       setLoading(false);
     }
   };
+
+  
 
 
   const loadMore = async () => {
@@ -102,12 +119,22 @@ const FindCars = () => {
           
               
       <div className="z-50 relative hidden md:block">
-        <FilterBar />
+        <FilterBar 
+          updateAllData={updateAllData} 
+          updateRentals={updateRentals} 
+          updateRideHailing={updateRideHailing} 
+          updateHirePurchase={updateHirePurchase}  
+        />
       </div>
      
       {/* Mobile view bar */}
       <div className="md:hidden">
-        <MobileFilterBar />
+        <MobileFilterBar
+           updateAllData={updateAllData} 
+           updateRentals={updateRentals} 
+           updateRideHailing={updateRideHailing} 
+           updateHirePurchase={updateHirePurchase} 
+         />
       </div>
 
       {/* Tabs */}
