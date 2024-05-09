@@ -130,4 +130,8 @@ export async function apiGetDriverDashboard(id) {
   return apiClient.get(`/driver/${id}/dashboard`);  //driver id
 }
 
+export async function apiGetDriverProfile(id) {
+  return apiClient.get(`/driver/${id}/profile`);  //driver id
+}
+
 //new Endpoints
