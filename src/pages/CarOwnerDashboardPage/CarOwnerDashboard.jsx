@@ -40,10 +40,10 @@ const CarOwnerDashboard = () => {
 
 
   useEffect(() => {
-    // const token = localStorage.getItem("owner_token");
-    // if (!token) {
-    //   return (window.location.href = "/owner/loginpage");
-    // }
+    const token = localStorage.getItem("car-owner-token");
+    if (!token) {
+      return (window.location.href = "/drivers/loginpage");
+    }
     getCarOwnerDashboard()
     //getSelectedVehicle();
   }, []);
