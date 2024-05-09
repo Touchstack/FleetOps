@@ -1,6 +1,6 @@
 import CarOwnerDashboardNavBar from "../../Components/Navbar/CarOwnerDashboardNavBar";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
-import { apiGetSelectedVehicle } from "../../services/VehiclesService";
+import { apiGetCarOwnerDashboard } from "@/services/CarOwnerService";
 import Car from "../../assets/images/car-dashboard.svg";
 import Chart from "../../assets/images/chart.svg";
 import { useEffect, useState } from "react";
@@ -8,41 +8,44 @@ import { useNavigate } from "react-router-dom";
 
 
 const CarOwnerDashboard = () => {
-  const driverData = localStorage.getItem("driver");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
-  const driver = JSON.parse(driverData);
-  const driverVehicleObj = localStorage.getItem("driverVehicle");
-  const driverVehicle = JSON.parse(driverVehicleObj);
+  // const carOwner = JSON.parse(carOwnerData);
+  // const driverVehicleObj = localStorage.getItem("driverVehicle");
+  // const driverVehicle = JSON.parse(driverVehicleObj);
 
   const navigate = useNavigate();
 
-  const getSelectedVehicle = async () => {
-    const driverObj = localStorage.getItem("driver");
-    const driver = JSON.parse(driverObj);
-    if (driver && !driverVehicle) {
-      try {
-        setLoading(true);
-        const response = await apiGetSelectedVehicle(driver?.id);
-        localStorage.setItem(
-          "driverVehicle",
-          JSON.stringify(response.data?.data?.vehicle)
-        );
-        setData(response.data?.data?.vehicle);
-        return setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
+ 
+  const getCarOwnerDashboard = async () => {
+    const id = localStorage.getItem("car-owner-token")
+      if(id){
+        try {
+          setLoading(true);
+          const res = await apiGetCarOwnerDashboard(id);
+          console.log(res);
+           if (res.status === 200) {
+            localStorage.setItem(
+              "dashBoardData",
+              JSON.stringify(res?.data)
+            );
+            setData(res?.data);
+           }
+          return setLoading(false);
+        } catch (error) {
+          setLoading(false);
+        }   
     }
-  };
+  }
 
 
   useEffect(() => {
-    // const token = localStorage.getItem("owner_token");
-    // if (!token) {
-    //   return (window.location.href = "/owner/loginpage");
-    // }
-    getSelectedVehicle();
+    const token = localStorage.getItem("car-owner-token");
+    if (!token) {
+      return (window.location.href = "/drivers/loginpage");
+    }
+    getCarOwnerDashboard()
+    //getSelectedVehicle();
   }, []);
 
 
@@ -52,7 +55,7 @@ const CarOwnerDashboard = () => {
       <div className="font-Light flex flex-col justify-center items-start">
         <div className="container flex flex-col justify-center items-start self-center lg:px-16 md:px-12 sm:px-10 px-10 py-16">
           <p className="text-[#707EAE] text-lg text-left">
-            Hi, {driver?.fullname}
+            Hi, {data?.Name}
           </p>
           <h1 className="text-[#2B3674] font-Bold md:text-4xl sm:text-3xl text-3xl">
             Welcome to FleetOps
@@ -67,9 +70,9 @@ const CarOwnerDashboard = () => {
                     <p className="text-[16px] text-[#E9EDF7] font-SansLight">Assigned Vehicles</p>
                     {loading ? (
                       <Spinner /> // Show spinner while loading
-                    ) : driverVehicle ? (
-                      <p className="text-[20px] font-SansMedium">
-                        1
+                    ) : data ? (
+                      <p className="text-[20px] font-Regular">
+                         {data?.AssignedVehicle_Count}
                       </p>
                     ) : (
                       <p className="text-[20px] font-SansMedium">_</p> // Empty state
@@ -84,7 +87,7 @@ const CarOwnerDashboard = () => {
               <p className="text-gray-700 text-md">Cars listed</p>
               <h3 className="font-Regular text-2xl">
                 {" "}
-                {driverVehicle || data ? 1 : 0}
+                 0
               </h3>
             </div>
 
