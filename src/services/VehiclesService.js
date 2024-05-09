@@ -134,4 +134,8 @@ export async function apiGetDriverProfile(id) {
   return apiClient.get(`/driver/${id}/profile`);  //driver id
 }
 
+export async function apiEditDriverProfile(id, data) {
+  return apiClient.post(`/driver/update/profile/${id}`, data);  //driver id
+}
+
 //new Endpoints

@@ -3,14 +3,35 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { CgProfile } from "react-icons/cg";
 import { Button } from "@/Components/ui/button";
 import { useForm } from "react-hook-form";
+import { apiEditDriverProfile } from "@/services/VehiclesService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const EditProfile = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // Do something with the form data
+  const onSubmit = async (data) => {
+    //console.log(data); // Do something with the form data
+    const payLoad = {
+      fullname: data.fullname,
+      phoneNumber: data.phone
+    }
+
+    try {
+     await apiEditDriverProfile(payLoad).then((res) => {
+       if(res.status === 200) {
+        toast.success("Driver Profile updates");
+       }else{
+        toast.error(res?.response?.data?.message || "Error Updating Driver profile ");
+       }
+     })
+    } catch (error) {
+     console.log(error) 
+    }
   };
+
+
 
   return (
     <div className="flex flex-col  mt-10">
@@ -66,6 +87,21 @@ const EditProfile = () => {
           </Button>
   
        </form>
+
+
+      <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+        />
     </div>
   )
 }
