@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SlArrowLeft } from "react-icons/sl";
 import { Input } from "../../../../.././Components/ui/input";
 import { motion } from "framer-motion";
 import { slideIn } from "../../../../.././utils/animation";
+import { PropTypes } from 'prop-types';
 
 const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -63,9 +64,9 @@ const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
   };
 
   // Function to filter cars based on search query
-  const filteredCars = cars.filter(car =>
-    car.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredCars = cars.filter(car =>
+  //   car.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   // Render categorized listing of cars
   const renderCategorizedCars = () => {
@@ -123,3 +124,8 @@ const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
 };
 
 export default BrandsSearchPage;
+
+BrandsSearchPage.propTypes = {
+  onBackClick: PropTypes.func.isRequired,
+  onValueSelect: PropTypes.func.isRequired,
+}

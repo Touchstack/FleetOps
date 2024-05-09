@@ -1,15 +1,15 @@
-import React from 'react'
 import { SlArrowLeft } from "react-icons/sl";
 import { motion } from "framer-motion";
 import { slideIn } from "../../../../.././utils/animation";
+import { PropTypes } from 'prop-types';
 
 const FuelConsumptionSearchPage = ({ onBackClick, onValueSelect }) => {
    const data = [
-      {liter: "50L"},
-      {liter: "40L"},
-      {liter: "30L"},
-      {liter: "20L"},
-      {liter: "10L"},   
+      {liter: "50"},
+      {liter: "40"},
+      {liter: "30"},
+      {liter: "20"},
+      {liter: "10"},   
    ]
   return (
     <motion.div
@@ -27,8 +27,8 @@ const FuelConsumptionSearchPage = ({ onBackClick, onValueSelect }) => {
        className='flex overflow-auto flex-col mt-7'
        style={{ maxHeight: "calc(100vh - 250px)" }}
     >
-       {data.map((liters) => (
-        <p className='p-6 text-[17px]'
+       {data.map((liters, index) => (
+        <p key={index} className='p-6 text-[17px]'
         onClick={() => onValueSelect(liters.liter)}
         >
            {liters.liter}
@@ -41,3 +41,8 @@ const FuelConsumptionSearchPage = ({ onBackClick, onValueSelect }) => {
 }
 
 export default FuelConsumptionSearchPage
+
+FuelConsumptionSearchPage.propTypes = {
+  onBackClick: PropTypes.func.isRequired,
+  onValueSelect: PropTypes.func.isRequired,
+}

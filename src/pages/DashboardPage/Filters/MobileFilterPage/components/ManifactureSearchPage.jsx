@@ -1,7 +1,7 @@
-import React from 'react'
 import { SlArrowLeft } from "react-icons/sl";
 import { motion } from "framer-motion";
 import { slideIn } from "../../../../.././utils/animation";
+import { PropTypes } from 'prop-types';
 
 const ManifactureSearchPage = ({ onBackClick,  onValueSelect }) => {
    const data = [
@@ -38,8 +38,8 @@ const ManifactureSearchPage = ({ onBackClick,  onValueSelect }) => {
        className='flex overflow-auto flex-col mt-7'
        style={{ maxHeight: "calc(100vh - 250px)" }}
     >
-       {data.map((years) => (
-        <p className='p-6 text-[17px]'
+       {data.map((years, index) => (
+        <p key={index} className='p-6 text-[17px]'
          onClick={() => onValueSelect(years.year)}
         >
            {years.year}
@@ -52,3 +52,8 @@ const ManifactureSearchPage = ({ onBackClick,  onValueSelect }) => {
 }
 
 export default ManifactureSearchPage
+
+ManifactureSearchPage.propTypes = {
+  onBackClick: PropTypes.func.isRequired,
+  onValueSelect: PropTypes.func.isRequired,
+}
