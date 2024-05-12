@@ -10,6 +10,7 @@ export default function ActiveBid() {
   const [openModal, setOpenModal] = useState(false);
   const [cancelBid, setCancelBid] = useState(false);
   const [onAssignCar, setonAssignCar] = useState(false)
+  const [inviteSent, setInviteSent] = useState(false);
 
   const handleAcceptBid = () => {
     setOpenModal(!openModal);
@@ -21,6 +22,10 @@ export default function ActiveBid() {
 
   const handleAssign = () => {
     setonAssignCar(!onAssignCar)
+  };
+
+  const handleInviteSent = () => {
+    setInviteSent(!inviteSent);
   };
 
   return (
@@ -76,18 +81,22 @@ export default function ActiveBid() {
             "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
           }
         >
+          {!inviteSent && (
           <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
             onClick={handleAcceptBid}
           >
             Accept bid
           </Button>
-          {/* <Button
+        )}
+        {inviteSent && (
+          <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
             onClick={handleAssign}
           >
             Assign Car
-          </Button> */}
+          </Button>
+        )}
           <Button
             className={"border-[#23A6BF] text-base text-fleetBlue"}
             variant={"outline"}
@@ -99,7 +108,7 @@ export default function ActiveBid() {
       </div>
 
       {openModal && (
-        <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} />
+        <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} onInviteSent={handleInviteSent} />
       )}
       {cancelBid && (
         <CancelBidModal open={cancelBid} onClose={handleCancelBid} />

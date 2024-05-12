@@ -1,14 +1,14 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { IoImagesOutline } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { FaStar } from "react-icons/fa";
 import Loading from "./Loading";
 import PropTypes from "prop-types";
-import EllipsisMenu from "./EllipsisMenu";
+// import EllipsisMenu from "./EllipsisMenu";
 
 
 const UnassignedCars = ({data, loading}) => {
-  const [text, setText] = useState("Unassigned")
+  // const [text, setText] = useState("Unassigned")
   
   return (
     <div className="z-0">
@@ -38,7 +38,7 @@ const UnassignedCars = ({data, loading}) => {
                     )}
 
                     {/* driver tag if assigned */}
-                    {car?.status === "assigned" && (
+                    {car?.status === "accepted" && (
                       <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
                         <Avatar>
                           <AvatarImage src="https://github.com/shadcn.png" />
@@ -61,13 +61,13 @@ const UnassignedCars = ({data, loading}) => {
                         {car?.VCL} {car?.VMK} {car?.VMD}
                       </p>
                       <p className="font-Light text-[18px]">
-                        Model: {car?.bus_model} 
+                        Plan: {car?.bus_model} 
                       </p>
 
                       <div className="flex w-11/12 justify-between">
                         <div
                           className={`px-3 h-[39px] flex items-center  text-[16px] rounded-[2px] ${
-                            car?.status === "unassigned"
+                            car?.status === "declined"
                               ? "bg-[#ABB3BF]"
                               : "bg-[#63BC8C]"
                           } text-[#FFFFFF]`}
@@ -75,7 +75,7 @@ const UnassignedCars = ({data, loading}) => {
                           {car?.status}
                         </div>
 
-                        <EllipsisMenu />
+                        {/* <EllipsisMenu /> */}
 
                       </div>
                     </div>

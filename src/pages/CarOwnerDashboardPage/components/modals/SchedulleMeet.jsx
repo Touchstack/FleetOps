@@ -5,25 +5,27 @@ import {LiaTimesSolid} from "react-icons/lia";
 import Avatar from "@/assets/images/brian.jpeg";
 import ClipBoard from "@/assets/images/clipboard.svg";
 import {Button} from "@/Components/ui/button.jsx";
+import { Label } from "@/Components/ui/label";
 
-const ScheduleMeetModal = ({ open, onClose }) => {
+const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
   const [invitationSent, setInvitationSent] = useState(false);
 
   const handleInvite = () => {
     // onClose()
     setInvitationSent(true);
+    onInviteSent();
   };
 
   return (
-    <Modal show={open} onClose={onClose} popup dismissible size={"md"}>
+    <Modal show={open} onClose={onClose} center popup dismissible size={"md"}>
       <div
         className={cn(
-          "p-4 relative rounded-tl-lg rounded-tr-lg",
+          "p-6 relative rounded-tl-lg rounded-tr-lg",
           invitationSent && "bg-fleetLightBlue "
         )}
       >
         {!invitationSent && (
-          <p className={"text-[24px] md:text-[32px]"}>Schedule a Meeting</p>
+          <p className={"text-[24px] font-SemiBold md:text-[32px]"}>Schedule a Meeting</p>
         )}
         <LiaTimesSolid
           color={`${invitationSent && "white"}`}
@@ -38,7 +40,7 @@ const ScheduleMeetModal = ({ open, onClose }) => {
         {!invitationSent && (
           <div className="">
             <div className={"bg-[#FAFAFA] mb-4 p-4 rounded-[12px]"}>
-              <p className={"mb-4"}>with Samuel Agyei</p>
+              <p className={"mb-4 font-Light"}>with Samuel Agyei</p>
               <img
                 src={Avatar}
                 alt={"avatar"}
@@ -46,25 +48,41 @@ const ScheduleMeetModal = ({ open, onClose }) => {
               />
             </div>
             <div>
-              <p className={"text-sm font-normal"}>
+              <p className={"text-sm font-Light"}>
                 Please choose the time you will be available
               </p>
-              <div className={"flex gap-4 py-4 w-full justify-between"}>
-                <input
-                  defaultValue={"12:00:00"}
-                  type="time"
-                  className={
-                    "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
-                  }
-                />
-                <input
-                  defaultValue={"14:00:00"}
-                  type="time"
-                  className={
-                    "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
-                  }
-                />
+              <div className={"flex gap-4 py-4 w-full "}>
+                <div className="w-full">
+                 <Label>To</Label>
+                  <input
+                    defaultValue={"12:00:00"}
+                    type="time"
+                    className={
+                      "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
+                    }
+                  />
+                </div>
+                <div className="w-full">
+                 <Label>From</Label>
+                  <input
+                    defaultValue={"14:00:00"}
+                    type="time"
+                    className={
+                      "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
+                    }
+                  />
+                </div>
               </div>
+              <div className="w-full">
+                 <Label>Where</Label>
+                  <input
+                    placeholder="eg.Spintex, Goil station"
+                    type="text"
+                    className={
+                      "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
+                    }
+                  />
+               </div>
             </div>
           </div>
         )}
@@ -101,6 +119,7 @@ const ScheduleMeetModal = ({ open, onClose }) => {
             <Button
               className={"border-[#23A6BF] text-base text-fleetBlue"}
               variant={"outline"}
+              onClick={onClose}
             >
               Cancel
             </Button>
