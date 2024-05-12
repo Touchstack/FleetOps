@@ -12,7 +12,7 @@ const EmptyState = ({ BidType }) => {
         <h1 className='mb-2 font-Bold text-[24px] md:text-[37px] text-center'>
           You have no {BidType} bids
         </h1>
-        <p className='md:w-[396px] w-[248px] text-[16px] text-center md:text-[19px] font-ExtraLight'>
+        <p className='md:w-[396px] w-[248px] text-[16px] text-center md:text-[19px] font-Medium text-[#545151]'>
           Choose from a wide variety of vehicles from the top car owners. All brands and models you want.
         </p>
       </div>

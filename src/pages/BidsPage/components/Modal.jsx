@@ -45,7 +45,7 @@ const Modal = ({ bidId, onCancel, text, title, isRebid }) => {
    
     <div className=" bg-white rounded-[30px] md:w-[6/12] w-[5/12] lg:w-4/12 gap-[24px] p-[32px] md:h-[200px] z-40"> 
        <div className="flex items-center justify-between">
-           <h1 className="font-Bold text-[32px]">
+           <h1 className="font-Medium text-[32px]">
             {title}
            </h1>
            <IoCloseOutline color='#272727' size={24} onClick={handleClose} className="hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110" />

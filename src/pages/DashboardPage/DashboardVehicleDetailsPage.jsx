@@ -73,33 +73,33 @@ const DashboardVehicleDetailsPage = () => {
     ];
   
     const carDetails = [
-      { label: 'Location', value: `${data?.location}` },
-      { label: 'Car Model', value: `${data?.VMD}` },
-      { label: 'Car Brand', value: `${data?.VMK}` },
-      { label: 'Year of manufacturing', value: `${data?.VNO}` },
-      { label: 'Year of registration', value: `${data?.VDT}` },
-      { label: 'Fuel consumption', value: `${data?.fuel_consumption}` }
+      { label: 'Model', value: `${data?.VMD}` },
+      { label: 'Brand', value: `${data?.VMK}` },
+      { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
+      { label: 'Year of registration', value: `${data?.year_of_registration}` },
+      { label: 'Trasmition', value: `${data?.fuel_consumption}` },
+      { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
 
-    const Features = [
-      {
-         id: 1,
-         msg: 'Air bags'
-      },
-      {
-          id: 2,
-          msg: 'Air condition'
-      },
-      {
-          id: 3,
-          msg: 'Bluetooth connectivity'
-      },
-      {
-          id: 4,
-          msg: 'Pedestrian detection'
-      }
-  ]
+  //   const Features = [
+  //     {
+  //        id: 1,
+  //        msg: 'Air bags'
+  //     },
+  //     {
+  //         id: 2,
+  //         msg: 'Air condition'
+  //     },
+  //     {
+  //         id: 3,
+  //         msg: 'Bluetooth connectivity'
+  //     },
+  //     {
+  //         id: 4,
+  //         msg: 'Pedestrian detection'
+  //     }
+  // ]
    
    
    
@@ -182,7 +182,7 @@ const DashboardVehicleDetailsPage = () => {
                 </div>
 
 
-                <div className='text-[24px] mt-5'>
+                {/* <div className='text-[24px] mt-5'>
                    <h1 className='font-Bold'>Car Features</h1>
 
                    <div className='flex flex-wrap gap-2 max-w-[230px] md:max-w-[430px]'>
@@ -192,7 +192,7 @@ const DashboardVehicleDetailsPage = () => {
                           </div>
                        ))}
                    </div>
-                </div>
+                </div> */}
             </div>
           {/* Car specifications */}
 
@@ -241,11 +241,16 @@ const DashboardVehicleDetailsPage = () => {
         </Carousel>
         
         <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
-        <p className="font-Light text-[24px] font-[500] mb-5">GHS {data?.amount}</p>
+          
+          <div className='space-y-2 pb-3 '>
+           <p className="text-[24px] font-SemiBold">Location : {data?.location}</p>
+           <p className="text-[24px] font-SemiBold">Plan : <span className='font-Medium'>{data?.bus_model}</span> </p>
+           {!data?.bus_model === 'ride hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.source} </p>}
+          </div>
 
           {/* Terms */}
           <div className="flex flex-col mb-5">
-              <p className="font-Light text-[24px] text-[#0A0D14] underline font-[500] pb-3">Terms</p>
+              <p className="font-Light text-[24px] text-[#0A0D14] underline pb-2">Terms</p>
                
                <div className="text-[#545151] font-Light">
                    <p>Model : {data?.bus_model}</p>
@@ -256,10 +261,20 @@ const DashboardVehicleDetailsPage = () => {
           </div>
           {/* Terms */}
 
-          {/* Call to action */}
-          <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
-              <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
-          </div>
+         {/* Call to action */}
+          {/* {!data?.status === 'pending' ? (
+            <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+            <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
+            </div>
+          ): (
+            <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center  cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+              <p className=" font-Light text-[19px] text-[#CE9A00]  pt-2">Awaiting Response</p>
+            </div>
+          )} */}
+
+            <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
+            </div>
           {/* Call to action */}
 
 
