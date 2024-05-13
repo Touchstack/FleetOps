@@ -42,7 +42,7 @@ const Preview = () => {
   return (
   <div className="bg-[#F7F9F8] min-h-screen">
    <CarOwnerDashboardNavBar />
-    <div className="flex flex-col my-20 md:mx-20">
+    <div className="flex flex-col mt-10 md:mx-20">
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-[#0A0D14] font-bold text-3xl md:text-5xl">
           Vehicle Photos
