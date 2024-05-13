@@ -151,7 +151,7 @@ const CarsListing = () => {
         </TabsContent>
 
         <TabsContent value="Assigned">
-          <AssignedCars data={assigned} loading={loading}  />
+          <AssignedCars data={assigned} onUnassignClick={openReturnReasonModal} loading={loading}  />
         </TabsContent>
 
         <TabsContent value="Unassigned">
@@ -181,7 +181,7 @@ const CarsListing = () => {
         /> 
 
 
-  {showReturnReason && (
+     {showReturnReason && (
         <ReturnReason onCancel={closeModal} onNext={handleShowExperience} />
      )}
      
