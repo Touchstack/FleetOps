@@ -155,7 +155,7 @@ export default function DashboardNavBar() {
               <a
                 href="/drivers/findcars"
                 className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/findcars" ? "text-fleetBlue" : "text-fleetNavText"
+                  location.pathname === "/drivers/findcars" ||  location.pathname.startsWith("/drivers/dashboard/vehicle/details/") ? "text-fleetBlue" : "text-fleetNavText"
                 }`}
               >
                 Find Cars

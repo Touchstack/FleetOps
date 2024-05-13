@@ -45,7 +45,7 @@ const PlacingBidModal = ({onCancel}) => {
 
            <div 
             onClick={handleOnBackToSearch}
-            className="md:px-[46px] md:text-[16px] text-[13px] text-white md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
+            className="md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
                  Back to search
            </div>
 

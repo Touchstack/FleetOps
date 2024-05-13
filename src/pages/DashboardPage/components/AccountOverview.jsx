@@ -1,24 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { CgProfile } from "react-icons/cg";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
 import { Separator } from "@/Components/ui/separator"
 import { apiGetDriverProfile } from "@/services/VehiclesService";
 import { useEffect, useState } from "react";
-
-
-const remark = [
-    {
-        id: 0,
-        name: 'Kyiewu Bernard',
-        remark: 'Driver finished their task or errand.',
-    },
-    {
-        id: 1,
-        name: 'Kyiewu Bernard',
-        remark: 'Driver finished their task or errand.',
-    },
-   
-]
 
 
 const AccountOverview = () => {
@@ -45,7 +30,7 @@ const AccountOverview = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-5 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src="https://github.com/shadcn.png"  />
+            <AvatarImage src=""  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>
@@ -75,7 +60,7 @@ const AccountOverview = () => {
 
      {/* Reviews */}
 
-     <div className="flex flex-col md:px-0 px-8 pt-10">
+     {/* <div className="flex flex-col md:px-0 px-8 pt-10">
         <h1 className="font-bold text-[24px] pb-8">Reviews (2)</h1>
 
         {remark.map((item) => (
@@ -100,7 +85,7 @@ const AccountOverview = () => {
            </div>
         </div>
         ))}
-     </div>
+     </div> */}
 
     </div>
   )

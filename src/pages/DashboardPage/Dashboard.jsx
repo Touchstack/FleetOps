@@ -185,7 +185,7 @@ const Dashboard = () => {
 
                 { data?.AssignedVehicle ? (
                   <>
-                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: {data?.model}</p>
+                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: {data?.bus_model}</p>
                     <div className="flex justify-end mt-5">
                       <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                        onClick={() => setShowReturnReason(true)}
@@ -199,7 +199,7 @@ const Dashboard = () => {
            {/* Selected Cars */}
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Cars requested</p>
+              <p className="text-gray-700 text-md">Active Bids</p>
               <h3 className="font-Regular text-2xl">
                 {" "}
                 {data?.BidCount}
@@ -207,8 +207,8 @@ const Dashboard = () => {
             </div>
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Reviews</p>
-              <h3 className="font-Regular text-2xl">{data?.ReviewCount}</h3>
+              <p className="text-gray-700 text-md">Average Reviews</p>
+              <h3 className="font-Regular text-2xl">{data?.ReviewCount} / 5.0</h3>
             </div>
           </div>
 
