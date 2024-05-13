@@ -3,16 +3,16 @@ import {
     MenubarContent,
     MenubarItem,
     MenubarMenu,
-    MenubarSub,
-    MenubarSubContent,
-    MenubarSubTrigger,
     MenubarTrigger,
   } from "@/Components/ui/menubar"
   import { IoEllipsisVertical } from "react-icons/io5";
+  import { IoIosRemoveCircle } from "react-icons/io";
+  import { BiSolidFilePdf } from "react-icons/bi";
 
 
 
-const EllipsisMenu = () => {
+// eslint-disable-next-line react/prop-types
+const EllipsisMenu = ({ onUnassignClick }) => {
   return (
    <Menubar>
       <MenubarMenu>
@@ -21,16 +21,14 @@ const EllipsisMenu = () => {
         </MenubarTrigger>
 
         <MenubarContent>
-          <MenubarItem disabled>Unassign</MenubarItem>
-          <MenubarSub>
-            <MenubarSubTrigger>Change business model</MenubarSubTrigger>
-            <MenubarSubContent>
-              <MenubarItem>Ride-hailing  for business (R4HB)</MenubarItem>
-              <MenubarItem>Rental  for business (RT4B)</MenubarItem>
-              <MenubarItem>Hire-purchase for business (HB4B)</MenubarItem>
-            </MenubarSubContent>
-          </MenubarSub>
-      
+          <MenubarItem onClick={onUnassignClick}>
+            <IoIosRemoveCircle />
+            Unassign
+          </MenubarItem>
+          <MenubarItem>
+            <BiSolidFilePdf />
+            Vehicle collection form
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

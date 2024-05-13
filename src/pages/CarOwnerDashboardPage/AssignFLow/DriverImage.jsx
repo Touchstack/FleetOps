@@ -36,11 +36,11 @@ const DriverImage = () => {
   }
 
   return (
-    <>
+    <div className="bg-[#F7F9F8] min-h-screen">
     <CarOwnerDashboardNavBar />
-    <div className="flex flex-col my-20 items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
     <div className="flex flex-col items-center mb-8">
-      <h1 className="text-[#0A0D14] font-Bold text-[32px] md:text-[45px]">
+      <h1 className="text-[#0A0D14] mt-6 font-Bold text-[32px] md:text-[45px]">
        Take Driver’s Photo
       </h1>
       <p className="text-[#545151] md:text-[19px] md:w-full w-[248px] text-center text-[16px] font-Light">
@@ -101,7 +101,7 @@ const DriverImage = () => {
    </div>
    )}
 </div>
-</>
+</div>
   )
 }
 

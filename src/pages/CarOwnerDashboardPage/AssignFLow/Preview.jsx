@@ -40,7 +40,7 @@ const Preview = () => {
   ]
 
   return (
-  <>
+  <div className="bg-[#F7F9F8] min-h-screen">
    <CarOwnerDashboardNavBar />
     <div className="flex flex-col my-20 md:mx-20">
       <div className="flex flex-col items-center mb-8">
@@ -78,7 +78,7 @@ const Preview = () => {
         </div>
      </div>
     </div>
-  </>
+  </div>
   )
 }
 

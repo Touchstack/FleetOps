@@ -37,7 +37,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
        </div>
        
         <p className="text-[14px] text-[#0B111C] md:w-[456px]">
-          On a scale of 1 - 5, how would you rate your experience with this vehicle?
+          On a scale of 1 - 5, how would you rate your experience with this driver?
         </p>
 
         {/* Rate Scale */}

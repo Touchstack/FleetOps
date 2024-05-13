@@ -152,7 +152,7 @@ export default function CarOwnerDashboardNavBar() {
             <a
               href="/carowner/listing"
               className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
-                location.pathname === "/carowner/listing" || location.pathname === "/carowner/assign" ? "text-fleetBlue" : "text-fleetNavText"
+                location.pathname === "/carowner/listing" || location.pathname.startsWith("/carowner/assign")  ? "text-fleetBlue" : "text-fleetNavText"
               }`}
             >
               Car listings

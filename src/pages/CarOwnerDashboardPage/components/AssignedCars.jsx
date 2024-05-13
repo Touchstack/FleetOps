@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IoImagesOutline } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { FaStar } from "react-icons/fa";
@@ -7,8 +6,11 @@ import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
 
 
-const AssignedCars = ({data, loading}) => {
-  const [text, setText] = useState("Assigned")
+const AssignedCars = ({data, loading, onUnassignClick}) => {
+  const handleUnassignClick = () => {
+    // Call the function to open the Return Reason modal
+    onUnassignClick();
+  };
   
   return (
     <div className="z-0">
@@ -61,7 +63,7 @@ const AssignedCars = ({data, loading}) => {
                         {car?.VCL} {car?.VMK} {car?.VMD}
                       </p>
                       <p className="font-Light text-[18px]">
-                       Model: {car?.bus_model} 
+                       Plan: {car?.bus_model} 
                       </p>
 
                       <div className="flex w-11/12 justify-between">
@@ -75,7 +77,7 @@ const AssignedCars = ({data, loading}) => {
                           {car?.status}
                         </div>
 
-                        <EllipsisMenu />
+                        <EllipsisMenu onUnassignClick={handleUnassignClick} />
 
                       </div>
                     </div>
@@ -100,6 +102,7 @@ const AssignedCars = ({data, loading}) => {
 AssignedCars.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
+  onUnassignClick: PropTypes.func
 };
 
 

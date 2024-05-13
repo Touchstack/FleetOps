@@ -10,7 +10,10 @@ import MobileFilterBar from "./Filters/MobileFilterPage/MobileFilterBar";
 import ActiveBids from "@/pages/CarOwnerDashboardPage/components/ActiveBids.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ReturnReason from "./components/modals/ReturnReason";
+import ExperienceRate from "./components/modals/ExperienceRate";
+import Confirmation from "./components/modals/Confirmation";
+import Congratulations from "./components/modals/Congratulations";
 
 
 const CarsListing = () => {
@@ -18,6 +21,10 @@ const CarsListing = () => {
   const [assigned, setAssigned] = useState([]);
   const [unassigned, setUnassigned] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showReturnReason, setShowReturnReason] = useState(false);
+  const [showExperienceRate, setShowExperienceRate] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   //console.log("this is url ==>", URL)
 
@@ -54,12 +61,30 @@ const CarsListing = () => {
     }
   };
 
-
-
   useEffect(() => {
     fetchVehicles();
   }, []);
 
+  const closeModal = () => {
+    setShowReturnReason(false);
+    setShowExperienceRate(false)
+    setShowConfirmation(false);
+    setShowCongratulations(false);
+  };
+
+  const handleShowExperience = () => {
+    setShowReturnReason(!showReturnReason)
+    setShowExperienceRate(!showExperienceRate)
+  }
+
+  const handleShowConfrimation = () => {
+    setShowExperienceRate(!showExperienceRate)
+    setShowConfirmation(!showConfirmation)
+  }
+
+ const openReturnReasonModal = () => {
+    setShowReturnReason(true);
+  }
 
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
@@ -122,11 +147,11 @@ const CarsListing = () => {
 
 
         <TabsContent value="All">
-          <ListedCars data={allData}   loading={loading} />
+          <ListedCars data={allData} onUnassignClick={openReturnReasonModal}   loading={loading} />
         </TabsContent>
 
         <TabsContent value="Assigned">
-          <AssignedCars data={assigned} loading={loading}  />
+          <AssignedCars data={assigned} onUnassignClick={openReturnReasonModal} loading={loading}  />
         </TabsContent>
 
         <TabsContent value="Unassigned">
@@ -154,6 +179,24 @@ const CarsListing = () => {
               theme="colored"
               transition: Bounce
         /> 
+
+
+     {showReturnReason && (
+        <ReturnReason onCancel={closeModal} onNext={handleShowExperience} />
+     )}
+     
+     {showExperienceRate && (
+        <ExperienceRate onCancel={closeModal} onNext={handleShowConfrimation} />
+     )}
+
+     {showConfirmation && (
+        <Confirmation onCancel={closeModal} />
+     )}
+
+
+      {showCongratulations && (
+       <Congratulations onCancel={closeModal} />
+      )}
 
     </div>
   );

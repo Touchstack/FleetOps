@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdInfo } from "react-icons/md";
 import {
   Accordion,
@@ -8,9 +8,27 @@ import {
 } from "@/Components/ui/accordion.jsx";
 import ActiveBid from "@/pages/CarOwnerDashboardPage/components/ActiveBid.jsx";
 import { cn } from "@/lib/utils";
+import { apiShowAllBids } from "@/services/CarOwnerService";
 
 export default function ActiveBids() {
   const [readMore, setReadMore] = useState(false);
+  const [data, setData] = useState()
+
+
+  const showAllbids = async () => {
+     try {
+      const res = await apiShowAllBids();
+       console.log(res)
+     } catch (error) {
+      console.log(error)
+     }
+  }
+
+  useEffect(() => {
+    showAllbids();
+  }, [])
+  
+  
   return (
     <section className="container px-2 mx-auto">
       {/*<div className={'p-24 mt-4 border border-gray-200 rounded-3xl bg-[#f1f1f1]'}>*/}
@@ -69,22 +87,6 @@ export default function ActiveBids() {
                 <p className={"no-underline mb-2"}>
                   Blue Suzuki Alto 800(2021)
                 </p>
-                <p className={"bg-[#D9D9D9] p-1 w-max no-underline text-sm"}>
-                  2 bids made
-                </p>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent>
-              <ActiveBid />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem
-            value="item-2"
-            className={"rounded-[20px] border px-4"}
-          >
-            <AccordionTrigger className={"hover:no-underline py-4"}>
-              <div>
-                <p className={"no-underline mb-2"}>Corolla LE Eco 2022</p>
                 <p className={"bg-[#D9D9D9] p-1 w-max no-underline text-sm"}>
                   2 bids made
                 </p>

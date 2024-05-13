@@ -92,8 +92,8 @@ const CarOwnerDashboard = () => {
             </div>
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Reviews</p>
-              <h3 className="font-Regular text-2xl">0</h3>
+              <p className="text-gray-700 text-md">Average Reviews</p>
+              <h3 className="font-Regular text-2xl">0 / 5.0</h3>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ const CarOwnerDashboard = () => {
               </p>
 
               <div onClick={() => navigate("/carowner/listing")} className="mt-3 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  w-[140px] h-[46px] rounded-[10px] flex items-center justify-center">
-                <p className="pt-1 font-Sans text-[#FFFFFF] text-[14px]">
+                <p className="pt-1 font-Sans font-Medium text-[#FFFFFF] text-[14px]">
                   Manage Listings
                 </p>
               </div>
