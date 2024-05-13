@@ -6,10 +6,9 @@ import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
 
 
-
 const ListedCars = ({data, loading, onUnassignClick }) => {
-  const handleUnassignClick = () => {
-    // Call the function to open the Return Reason modal
+  const handleUnassignClick = (id) => {
+    localStorage.setItem("car_id", id)
     onUnassignClick();
   };
   
@@ -78,8 +77,8 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                            {car?.status}
                         </div>
 
-                        {car?.status === "accepted" && <EllipsisMenu onUnassignClick={handleUnassignClick} />}
-
+                        {car?.status === "accepted" &&  <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />}
+                       
                       </div>
                     </div>
                     {/* Car info */}

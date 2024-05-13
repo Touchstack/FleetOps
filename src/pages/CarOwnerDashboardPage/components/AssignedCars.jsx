@@ -7,8 +7,8 @@ import EllipsisMenu from "./EllipsisMenu";
 
 
 const AssignedCars = ({data, loading, onUnassignClick}) => {
-  const handleUnassignClick = () => {
-    // Call the function to open the Return Reason modal
+  const handleUnassignClick = (id) => {
+    localStorage.setItem("car_id", id)
     onUnassignClick();
   };
   
@@ -77,7 +77,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                           {car?.status}
                         </div>
 
-                        <EllipsisMenu onUnassignClick={handleUnassignClick} />
+                        <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />
 
                       </div>
                     </div>

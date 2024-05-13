@@ -34,7 +34,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
           onNext();
           localStorage.removeItem("reason")
         } else {
-          toast.error(res?.response?.data?.message || "An error occured couldnt fetch bids")
+          toast.error(res?.response?.data?.message || "An error occured couldnt return vehicle")
         }
       } catch (error) {
         console.log(error)
