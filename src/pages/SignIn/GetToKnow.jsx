@@ -67,8 +67,8 @@ const GetToKnow = () => {
     try {
       setLoading(true);
       var bodyFormData = new FormData();
-      bodyFormData.append("lname", values?.firstName);
-      bodyFormData.append("fname", values?.lastName);
+      bodyFormData.append("lastName", values?.firstName);
+      bodyFormData.append("firstName", values?.lastName);
       bodyFormData.append("email", values?.email);
       bodyFormData.append("phoneNumber", driverNumber);
       bodyFormData.append("licenseFront", values?.licenseFront);

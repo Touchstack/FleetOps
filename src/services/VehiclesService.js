@@ -71,8 +71,8 @@ export async function apiGetAvailableVehiclesBySearch(data) {
   return apiClient.get(`/availablecars`, data);
 }
 
-export async function apiGetVehicleDetails(id) {
-  return apiClient.get(`/vehicledetails/${id}`); //vehicle_id
+export async function apiGetVehicleDetails(id, driver_id ) {
+  return apiClient.get(`${driver_id}/vehicledetails/${id}`); //vehicle_id //driver_id
 }
 
 
