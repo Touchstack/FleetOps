@@ -5,15 +5,10 @@ import Info from "../../assets/images/info.png";
 import PlacingBidModal from './components/modals/PlacingBidModal';
 import { apiGetVehicleDetails, apiPlaceDriverBids } from '../.././services/VehiclesService';
 import { useLocation } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-} from "../.././Components/ui/carousel"
 import VehiclesLoading from './components/VehiclesLoading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomCarousel from './components/CustomCarousel';
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -40,7 +35,7 @@ const DashboardVehicleDetailsPage = () => {
     //   return true;
     // }
   
-  
+   
     const getVehicle = async () => {
       try {
         setLoading(true);
@@ -229,27 +224,14 @@ const DashboardVehicleDetailsPage = () => {
          {/* Slider image */}
 
 
-        <Carousel className="flex md:hidden mb-10">
-          <CarouselContent>
-            {carouselImages.map((img) => (
-              <CarouselItem key={img.id}>
-              <img 
-                src={img.image}
-                alt="" 
-                className="w-full rounded-[10px]"
-              />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-        </Carousel>
+        <CustomCarousel data={carouselImages} />
         
         <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
           
           <div className='space-y-2 pb-3 '>
            <p className="text-[24px] font-SemiBold">Location : {data?.location}</p>
            <p className="text-[24px] font-SemiBold">Plan : <span className='font-Medium'>{data?.bus_model}</span> </p>
-           {data?.bus_model !== 'ride-hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.periodicity} </p>}
+           {data?.bus_model !== 'Ride-Hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.periodicity} </p>}
           </div>
 
           {/* Terms */}
