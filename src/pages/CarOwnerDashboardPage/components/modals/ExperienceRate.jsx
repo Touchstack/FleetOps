@@ -18,7 +18,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
     const payLoad = {
       rating: selectedRate,
       reason,
-      id: car_id
+      vehicle_id: car_id
     }
   
    if(reason){

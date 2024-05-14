@@ -56,19 +56,23 @@ const DashboardVehicleDetailsPage = () => {
     const carouselImages = [
       {
           id: 1,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`,
         },
         {
           id: 2,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.rear_photo}`,
         },
         {
           id: 3,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.side_photo}`,
         }, 
         {
           id: 4,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.interior_photo}`,
+        }, 
+        {
+          id: 5,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.engine_photo}`,
         }, 
     ];
   
@@ -77,7 +81,7 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
       { label: 'Year of registration', value: `${data?.year_of_registration}` },
-      { label: 'Trasmition', value: `${data?.fuel_consumption}` },
+      { label: 'Trasmition', value: `${data?.transmission_type}` },
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
@@ -148,7 +152,7 @@ const DashboardVehicleDetailsPage = () => {
         
         {/* Web view image */}
           <img 
-             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`} //initial image
+             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`} //initial image
              alt="" 
              className="hidden rounded-[10px]  md:flex h-[422px]" 
           />
@@ -245,7 +249,7 @@ const DashboardVehicleDetailsPage = () => {
           <div className='space-y-2 pb-3 '>
            <p className="text-[24px] font-SemiBold">Location : {data?.location}</p>
            <p className="text-[24px] font-SemiBold">Plan : <span className='font-Medium'>{data?.bus_model}</span> </p>
-           {!data?.bus_model === 'ride hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.source} </p>}
+           {data?.bus_model !== 'ride-hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.periodicity} </p>}
           </div>
 
           {/* Terms */}
@@ -262,7 +266,7 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
 
          {/* Call to action */}
-          {!data?.status === 'pending' ? (
+          {data?.status !== 'pending' ? (
             <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
             </div>

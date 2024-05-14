@@ -19,9 +19,9 @@ const RideHailing = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => 
               <div onClick={() => Selected(car)} key={index} className="w-12/12">
                 <div className="relative flex flex-col cursor-pointer  border-white md:px-0 px-5 py-[23px] rounded-[30px]">
                   {/* Render image or placeholder */}
-                  {car?.VRD ? (
+                  {car?.front_photo ? (
                     <img
-                      src={`http://engines.fleetopsgh.com/uploads/photo/${car?.VRD}`}
+                      src={`http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
                       className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                       alt=""
                     />
@@ -41,7 +41,7 @@ const RideHailing = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => 
                        {car?.VCL} {car?.VMK} {car?.VMD}
                     </p>
                     <p className="font-Light  text-[18px]">
-                      Model: {car?.bus_model} 
+                      Plan: {car?.bus_model} 
                     </p>
                   </div>
                   {/* Car info */}

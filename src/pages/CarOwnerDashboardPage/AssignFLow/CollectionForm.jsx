@@ -62,7 +62,8 @@ const CollectionForm = () => {
           warning_triangle_comment: values.warning_triangle_comment,
           spare_tire_comment: values.spare_tire_comment,
           horn: values.horn,
-          wiper_function: values.wiper_function
+          wiper_function: values.wiper_function,
+          form_code: values.form_code
       };
       localStorage.setItem('form', JSON.stringify(formData));
      navigate('/carowner/assign/car-image/front')
@@ -213,7 +214,21 @@ const CollectionForm = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />  
+              /> 
+
+               <FormField
+                control={form.control}
+                name="form_code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Form code</FormLabel>
+                    <FormControl>
+                      <Input disabled className="md:w-8/12" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> 
             </div>
          </div>
 
