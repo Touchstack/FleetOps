@@ -32,75 +32,96 @@ export default function ActiveBid({ data }) {
 
   return (
     <div className={"py-6"}>
-      <div className={"flex md:flex-row flex-col justify-between items-start gap-7 px-3"}>
-        {data?.map((data, index) => (
-          <div key={index} className={""}>
-            <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data?.DNM} {data.DSN}</p>
-            <div className={"flex gap-4 items-start"}>
-              <Avatar>
-                <AvatarImage className={"w-[44px] h-[44px] rounded"} src="" />
-                <AvatarFallback>
-                  <CgProfile size={30} />
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <div className={"inline-flex items-center gap-1"}>
-                  <MdOutlineStar color={"#CAEA08"} />
-                  <p className={"text-[#5A6267]"}>
-                    Rating: <span>3.3/5.0</span>
-                  </p>
-                </div>
+      {data?.map((data, index) => (
+      <div
+        key={index}
+        className={
+          "flex md:flex-row flex-col justify-between items-start gap-7 px-3"
+        }
+      >
+         <div className={""}>
+          <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data.DNM} {data.DSN}</p>
+          <div className={"flex gap-4 items-start"}>
+            <Avatar>
+              <AvatarImage className={"w-[44px] h-[44px] rounded"} src="" />
+              <AvatarFallback>
+                <CgProfile size={30} />
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <div className={"inline-flex items-center gap-1"}>
+                <MdOutlineStar color={"#CAEA08"} />
                 <p className={"text-[#5A6267]"}>
-                  License No: <span className={"text-bodyText"}>{data.license_no}</span>
+                  Rating: <span>3.3/5.0</span>
                 </p>
               </div>
-            </div>
-            <p className={"my-4 bg-[#EDFCFF] text-[#088DA7] w-max"}>
-              The bidder is currently driving another
-              <br /> but wants to swap
-            </p>
-            <div className={"flex md:flex-row flex-col gap-7 justify-between w-1/2"}>
-              <div className={"flex flex-col gap-4"}>
-                <p className={"font-bold text-[#6D6D6D]"}>Transmission type</p>
-                <p>{data?.tans_type}</p>
-              </div>
-              <div className={"flex flex-col gap-4"}>
-                <p className={"font-bold text-[#6D6D6D]"}>Year of experience</p>
-                <p>{data?.years_of_exp} years</p>
-              </div>
-              <div className={"flex flex-col gap-4"}>
-                <p className={"font-bold text-[#6D6D6D]"}>Time to expire</p>
-                <p className={"font-bold"}>06h : 40m : 56s</p>
-              </div>
-            </div>
-            <div className={"flex gap-2 justify-evenly md:justify-center md:w-max w-full"}>
-              {!inviteSent && (
-                <Button className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"} onClick={handleAcceptBid}>
-                  Accept bid
-                </Button>
-              )}
-              {inviteSent && (
-                <Button className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"} onClick={handleAssign}>
-                  Assign Car
-                </Button>
-              )}
-              <Button className={"border-[#23A6BF] text-base text-fleetBlue"} variant={"outline"} onClick={handleCancelBid}>
-                Cancel
-              </Button>
+              <p className={"text-[#5A6267]"}>
+                License No: <span className={"text-bodyText"}>{data.license_no}</span>
+              </p>
             </div>
           </div>
-        ))}
+          <p className={"my-4 bg-[#EDFCFF] text-[#088DA7] w-max"}>
+            The bidder is currently driving another
+            <br /> but wants to swap
+          </p>
+        </div>
+        <div
+          className={"flex md:flex-row flex-col gap-7 justify-between w-1/2"}
+        >
+          <div className={"flex flex-col gap-4"}>
+            <p className={"font-bold text-[#6D6D6D]"}>Transmission type</p>
+            <p>{data?.tans_type}</p>
+          </div>
+          <div className={"flex flex-col gap-4"}>
+            <p className={"font-bold text-[#6D6D6D]"}>Year of experience</p>
+            <p>{data?.years_of_exp} years</p>
+          </div>
+          <div className={"flex flex-col gap-4"}>
+            <p className={"font-bold text-[#6D6D6D]"}>Time to expire</p>
+            <p className={"font-bold"}>06h : 40m : 56s</p>
+          </div>
+        </div>
+        <div
+          className={
+            "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
+          }
+        >
+          {!inviteSent && (
+          <Button
+            className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
+            onClick={handleAcceptBid}
+          >
+            Accept bid
+          </Button>
+        )}
+        {inviteSent && (
+          <Button
+            className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
+            onClick={handleAssign}
+          >
+            Assign Car
+          </Button>
+        )}
+          <Button
+            className={"border-[#23A6BF] text-base text-fleetBlue"}
+            variant={"outline"}
+            onClick={handleCancelBid}
+          >
+            Cancel
+          </Button>
+          </div>
       </div>
-  
+    ))}
+
       {openModal && (
         <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} onInviteSent={handleInviteSent} />
       )}
       {cancelBid && (
         <CancelBidModal open={cancelBid} onClose={handleCancelBid} />
       )}
-  
+
       {onAssignCar && (
-        <YouAreAssigning onCancel={() => setonAssignCar(!onAssignCar)} />
+         <YouAreAssigning onCancel={() => setonAssignCar(!onAssignCar)} />
       )}
     </div>
   );
