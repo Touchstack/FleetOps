@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 
 export default function ActiveBids({ data }) {
   const [readMore, setReadMore] = useState(false);
- 
   return (
     <section className="container px-2 mx-auto">
       <div
@@ -74,7 +73,7 @@ export default function ActiveBids({ data }) {
                  </div>
                </AccordionTrigger>
                <AccordionContent>
-                 <ActiveBid data={data} />
+                 <ActiveBid data={vehicle?.vehicle?.driver} />
                </AccordionContent>
                </AccordionItem>
              </Accordion>

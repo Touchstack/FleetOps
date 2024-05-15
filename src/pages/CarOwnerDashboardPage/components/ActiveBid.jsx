@@ -13,7 +13,7 @@ export default function ActiveBid({ data }) {
   const [cancelBid, setCancelBid] = useState(false);
   const [onAssignCar, setonAssignCar] = useState(false)
   const [inviteSent, setInviteSent] = useState(false);
- 
+
   const handleAcceptBid = () => {
     setOpenModal(!openModal);
   };
@@ -36,7 +36,7 @@ export default function ActiveBid({ data }) {
       <div
         key={index}
         className={
-          "flex md:flex-row flex-col justify-between items-start gap-7 px-3"
+          "flex md:flex-row flex-col justify-between items-start  gap-7 px-3"
         }
       >
          <div className={""}>
@@ -83,7 +83,7 @@ export default function ActiveBid({ data }) {
         </div>
         <div
           className={
-            "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
+            "flex gap-2  justify-evenly md:justify-center md:w-max w-full"
           }
         >
           {!inviteSent && (
