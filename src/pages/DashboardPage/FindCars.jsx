@@ -27,6 +27,8 @@ const FindCars = () => {
   const [appContext, setAppContext] = useContext(AppContext);
   const [URL, setURL] = useState("")
 
+  console.log(hirePurchase)
+
   const updateAllData = (data) => {
     setAllData(data);
   };

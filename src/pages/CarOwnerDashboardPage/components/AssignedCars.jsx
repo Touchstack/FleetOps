@@ -24,9 +24,9 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                 <div key={index} className="w-12/12">
                   <div className="relative flex flex-col md:pl-4 cursor-pointer border-white py-[23px] rounded-[30px]">
                     {/* Render image or placeholder */}
-                    {car?.VRD ? (
+                    {car?.front_photo ? (
                       <img
-                        src={`http://engines.fleetopsgh.com/uploads/photo/${car?.VRD}`}
+                        src={`http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
                         className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                         alt=""
                       />
@@ -69,12 +69,12 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                       <div className="flex w-11/12 justify-between">
                         <div
                           className={`px-3 h-[39px] capitalize flex items-center  text-[16px] rounded-[2px] ${
-                            car?.status === "unassigned"
-                              ? "bg-[#ABB3BF]"
-                              : "bg-[#63BC8C]"
+                            car?.status === "assigned"
+                              ? "bg-[#63BC8C]"
+                              : "bg-[#ABB3BF]"
                           } text-[#FFFFFF]`}
                         >
-                          {car?.status}
+                          <p> {car?.status === "assigned" ? "Assigned" : "Unassigned"}</p>
                         </div>
 
                         <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />

@@ -20,6 +20,7 @@ const CarsListing = () => {
   const [allData, setAllData] = useState([]);
   const [assigned, setAssigned] = useState([]);
   const [unassigned, setUnassigned] = useState([]);
+  const [activeBids, setActiveBids] = useState([])
   const [loading, setLoading] = useState(false);
   const [showReturnReason, setShowReturnReason] = useState(false);
   const [showExperienceRate, setShowExperienceRate] = useState(false);
@@ -27,6 +28,7 @@ const CarsListing = () => {
   const [showCongratulations, setShowCongratulations] = useState(false);
 
   //console.log("this is url ==>", URL)
+ //console.log("this is active bid =>", activeBids)
 
   const id = localStorage.getItem("car-owner-token")
 
@@ -44,16 +46,17 @@ const CarsListing = () => {
   const fetchVehicles = async () => {
     setLoading(true);
     try {
-      const [allResponse, assignedResponse, unassignedResponse] = await Promise.all([
+      const [allResponse, assignedResponse, unassignedResponse, activeBidsResponse] = await Promise.all([
         apiGetCarOwnerVehicles(id),
         apiGetCarOwnerVehicles(id),
         apiGetCarOwnerVehicles(id),
-        apiGetCarOwnerVehicles(id)
+        apiGetCarOwnerVehicles(id),
       ]);
       
       setAllData(allResponse.data?.allVehicles?.data);
       setAssigned(assignedResponse.data?.assigned?.data);
-      setUnassigned(unassignedResponse.data?.unAssigned?.data);
+      setUnassigned(unassignedResponse.data?.unAssigned);
+      setActiveBids(activeBidsResponse.data?.activeBids?.data);
     } catch (error) {
       toast.error(error?.response?.data?.message  || "Error occurred while fetching data");
     } finally {
@@ -159,7 +162,7 @@ const CarsListing = () => {
         </TabsContent>
 
         <TabsContent value="Active Bids">
-            <ActiveBids />
+            <ActiveBids data={activeBids} loading={loading} />
         </TabsContent>
        </Tabs>
           {/* Tabs */}

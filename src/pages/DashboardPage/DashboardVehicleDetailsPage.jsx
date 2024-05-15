@@ -5,15 +5,10 @@ import Info from "../../assets/images/info.png";
 import PlacingBidModal from './components/modals/PlacingBidModal';
 import { apiGetVehicleDetails, apiPlaceDriverBids } from '../.././services/VehiclesService';
 import { useLocation } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-} from "../.././Components/ui/carousel"
 import VehiclesLoading from './components/VehiclesLoading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomCarousel from './components/CustomCarousel';
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -23,10 +18,10 @@ const DashboardVehicleDetailsPage = () => {
     const [image, setImage] = useState(``);
     const [data, setData] = useState();
     const [selectedImageId, setSelectedImageId] = useState(null);
+    const [bidStatus, setBidStatus] = useState("")
     const loaction = useLocation();
     const pathSegments = loaction?.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
-
 
     const driver_id = localStorage.getItem("driver_id")
     
@@ -40,12 +35,13 @@ const DashboardVehicleDetailsPage = () => {
     //   return true;
     // }
   
-  
+   
     const getVehicle = async () => {
       try {
         setLoading(true);
         const res = await apiGetVehicleDetails(id, driver_id);
          setData(res?.data?.vehicles);
+         setBidStatus(res?.data?.bid_status)
         setLoading(false);
         return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
@@ -56,19 +52,23 @@ const DashboardVehicleDetailsPage = () => {
     const carouselImages = [
       {
           id: 1,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`,
         },
         {
           id: 2,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.rear_photo}`,
         },
         {
           id: 3,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.side_photo}`,
         }, 
         {
           id: 4,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.interior_photo}`,
+        }, 
+        {
+          id: 5,
+          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.engine_photo}`,
         }, 
     ];
   
@@ -77,7 +77,7 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
       { label: 'Year of registration', value: `${data?.year_of_registration}` },
-      { label: 'Trasmition', value: `${data?.fuel_consumption}` },
+      { label: 'Trasmition', value: `${data?.transmission_type}` },
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
@@ -148,7 +148,7 @@ const DashboardVehicleDetailsPage = () => {
         
         {/* Web view image */}
           <img 
-             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.VRD}`} //initial image
+             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`} //initial image
              alt="" 
              className="hidden rounded-[10px]  md:flex h-[422px]" 
           />
@@ -225,27 +225,14 @@ const DashboardVehicleDetailsPage = () => {
          {/* Slider image */}
 
 
-        <Carousel className="flex md:hidden mb-10">
-          <CarouselContent>
-            {carouselImages.map((img) => (
-              <CarouselItem key={img.id}>
-              <img 
-                src={img.image}
-                alt="" 
-                className="w-full rounded-[10px]"
-              />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-        </Carousel>
+        <CustomCarousel data={carouselImages} />
         
         <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
           
           <div className='space-y-2 pb-3 '>
            <p className="text-[24px] font-SemiBold">Location : {data?.location}</p>
            <p className="text-[24px] font-SemiBold">Plan : <span className='font-Medium'>{data?.bus_model}</span> </p>
-           {!data?.bus_model === 'ride hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.source} </p>}
+           {data?.bus_model !== 'Ride-Hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.periodicity} </p>}
           </div>
 
           {/* Terms */}
@@ -262,7 +249,7 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
 
          {/* Call to action */}
-          {!data?.status === 'pending' ? (
+          {bidStatus !== 'pending' ? (
             <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
             </div>

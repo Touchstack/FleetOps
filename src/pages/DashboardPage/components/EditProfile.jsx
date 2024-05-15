@@ -12,9 +12,8 @@ import { Button } from "@/Components/ui/button";
 import { useForm } from "react-hook-form";
 import { apiEditDriverProfile } from "@/services/VehiclesService";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditProfile = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,7 +29,7 @@ const EditProfile = () => {
       transmission: transmission
     }
 
-    console.log(payLoad);
+   // console.log(payLoad);
 
     try {
      await apiEditDriverProfile(payLoad).then((res) => {

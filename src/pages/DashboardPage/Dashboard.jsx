@@ -10,6 +10,7 @@ import ExperienceRate from "./components/modals/ExperienceRate";
 import Confirmation from "./components/modals/Confirmation";
 import Congratulations from "./components/modals/Congratulations";
 import { useNavigate } from "react-router-dom";
+import { BiSolidFilePdf } from "react-icons/bi";
 
 const Dashboard = () => {
   //const driverData = localStorage.getItem("driver");
@@ -183,9 +184,21 @@ const Dashboard = () => {
                 
                 </div>
 
-                { data?.AssignedVehicle ? (
+                {data?.AssignedVehicle ? (
                   <>
-                    <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Model: {data?.bus_model}</p>
+                    <div className="space-y-3">
+                      <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Plan: {data?.model}</p>
+                     <div className="flex items-center space-x-3">
+                      <BiSolidFilePdf size={25} />
+                      <a 
+                        href={`https://engines.fleetopsgh.com/${data?.form}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-SemiBold font-[16px] underline">
+                        Vehicle Collection Form
+                      </a>
+                     </div>
+                    </div>
                     <div className="flex justify-end mt-5">
                       <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                        onClick={() => setShowReturnReason(true)}

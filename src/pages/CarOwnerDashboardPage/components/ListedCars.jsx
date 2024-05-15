@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import Loading from "./Loading";
 import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
+import { CgProfile } from "react-icons/cg";
 
 
 const ListedCars = ({data, loading, onUnassignClick }) => {
@@ -24,9 +25,9 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                 <div key={index} className="w-12/12">
                   <div className="relative flex flex-col md:pl-4 cursor-pointer border-white py-[23px] rounded-[30px]">
                     {/* Render image or placeholder */}
-                    {car?.VRD ? (
+                    {car?.front_photo ? (
                       <img
-                        src={`http://engines.fleetopsgh.com/uploads/photo/${car?.VRD}`}
+                        src={`http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
                         className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                         alt=""
                       />
@@ -40,11 +41,13 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                     )}
 
                     {/* driver tag if assigned */}
-                    {car?.status === "accepted" && (
+                    {car?.status === "assigned" && (
                       <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
                         <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CO</AvatarFallback>
+                          <AvatarImage src="" />
+                          <AvatarFallback>
+                            <CgProfile size={50} />
+                          </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
                           <p className="font-GelionBold">{car?.driver?.DNM} {car?.driver?.DSN}</p>
@@ -69,15 +72,15 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                       <div className="flex w-11/12 justify-between">
                         <div
                           className={`px-3 h-[39px] capitalize flex items-center  text-[16px] rounded-[2px] ${
-                            car?.status === "declined"
-                              ? "bg-[#ABB3BF]"
-                              : "bg-[#63BC8C]"
+                            car?.status === "assigned"
+                              ? "bg-[#63BC8C]"
+                              : "bg-[#ABB3BF]"
                           } text-[#FFFFFF]`}
                         >
-                           {car?.status}
+                          <p> {car?.status === "assigned" ? "Assigned" : "Unassigned"}</p>
                         </div>
 
-                        {car?.status === "accepted" &&  <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />}
+                        {car?.status === "assigned" &&  <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />}
                        
                       </div>
                     </div>

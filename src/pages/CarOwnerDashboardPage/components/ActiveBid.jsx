@@ -1,12 +1,14 @@
-import Avatar from "@/assets/images/brian.jpeg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { MdOutlineStar } from "react-icons/md";
 import { Button } from "@/Components/ui/button.jsx";
 import { useState } from "react";
 import ScheduleMeetModal from "@/pages/CarOwnerDashboardPage/components/modals/SchedulleMeet.jsx";
 import CancelBidModal from "@/pages/CarOwnerDashboardPage/components/modals/CancelBid.jsx";
 import YouAreAssigning from "./modals/YouAreAssigning";
+import { CgProfile } from "react-icons/cg";
+import PropTypes from "prop-types";
 
-export default function ActiveBid() {
+export default function ActiveBid({ data }) {
   const [openModal, setOpenModal] = useState(false);
   const [cancelBid, setCancelBid] = useState(false);
   const [onAssignCar, setonAssignCar] = useState(false)
@@ -30,19 +32,22 @@ export default function ActiveBid() {
 
   return (
     <div className={"py-6"}>
+      {data?.map((data, index) => (
       <div
+        key={index}
         className={
-          "flex md:flex-row flex-col justify-between items-start gap-7 px-3"
+          "flex md:flex-row flex-col justify-between items-start  gap-7 px-3"
         }
       >
-        <div className={""}>
-          <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>Samuel Agyei</p>
+         <div className={""}>
+          <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data.DNM} {data.DSN}</p>
           <div className={"flex gap-4 items-start"}>
-            <img
-              src={Avatar}
-              alt={"avatar"}
-              className={"w-[44px] h-[44px] rounded"}
-            />
+            <Avatar>
+              <AvatarImage className={"w-[44px] h-[44px] rounded"} src="" />
+              <AvatarFallback>
+                <CgProfile size={30} />
+              </AvatarFallback>
+            </Avatar>
             <div>
               <div className={"inline-flex items-center gap-1"}>
                 <MdOutlineStar color={"#CAEA08"} />
@@ -51,7 +56,7 @@ export default function ActiveBid() {
                 </p>
               </div>
               <p className={"text-[#5A6267]"}>
-                License No: <span className={"text-bodyText"}>566999</span>
+                License No: <span className={"text-bodyText"}>{data.license_no}</span>
               </p>
             </div>
           </div>
@@ -65,11 +70,11 @@ export default function ActiveBid() {
         >
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Transmission type</p>
-            <p>Automatic</p>
+            <p>{data?.tans_type}</p>
           </div>
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Year of experience</p>
-            <p>12 years</p>
+            <p>{data?.years_of_exp} years</p>
           </div>
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Time to expire</p>
@@ -78,7 +83,7 @@ export default function ActiveBid() {
         </div>
         <div
           className={
-            "flex gap-2 justify-evenly md:justify-center md:w-max w-full"
+            "flex gap-2  justify-evenly md:justify-center md:w-max w-full"
           }
         >
           {!inviteSent && (
@@ -104,8 +109,9 @@ export default function ActiveBid() {
           >
             Cancel
           </Button>
-        </div>
+          </div>
       </div>
+    ))}
 
       {openModal && (
         <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} onInviteSent={handleInviteSent} />
@@ -120,3 +126,7 @@ export default function ActiveBid() {
     </div>
   );
 }
+
+ActiveBid.propTypes = {
+  data: PropTypes.array,
+};

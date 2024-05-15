@@ -4,6 +4,9 @@ export const formSchema = z.object({
     form_number: z.string().min(1, {
       required_error: "Form number is required",
     }),
+    form_code:z.string().min(1, {
+      required_error: "Form number is required",
+    }),
     driver_account_num: z.string().min(1, {
       required_error: "Driver account number is required",
     }),
@@ -104,10 +107,11 @@ export const defaultValues = {
     form_number: "21",
     driver_account_num: "230012784",
     vehicle_reg_num: "GT4555-18",
+    form_code: '290',
+    form_acceptance_date: "2024-02-09",
     form_acceptance: false,
     road_test: false,
     overall_comment: "",
-    form_acceptance_date: "2024-02-09",
     road_test_comment: "",
     front_lights_high: false,
     reverse_lights: false,
