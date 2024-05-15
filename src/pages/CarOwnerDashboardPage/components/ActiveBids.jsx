@@ -64,9 +64,14 @@ export default function ActiveBids({ data }) {
              >
                <AccordionTrigger className={"hover:no-underline py-4"}>
                  <div>
-                   <p className={"no-underline mb-2"}>
+                   <p className={"no-underline font-Bold mb-2"}>
                      {vehicle?.vehicle?.VCL} {vehicle?.vehicle?.VMK} {vehicle?.vehicle?.VMD}
                    </p>
+                   {vehicle?.vehicle?.trans_type !== null && (
+                      <p className={"no-underline font-SemiBold text-[14px] mb-2"}>
+                        {vehicle?.vehicle?.trans_type} Transmission
+                      </p>
+                    )}
                    <p className={"bg-[#D9D9D9] p-1 w-max no-underline text-sm"}>
                    {vehicle?.vehicle?.bid_count} bids made
                    </p>

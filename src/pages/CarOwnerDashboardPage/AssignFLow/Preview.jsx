@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
-
+import Congratulations from '../components/modals/Congratulations';
+import { useState } from 'react';
 
 const Preview = () => {
+  const [showModal, setshowModal] = useState(false)
 
   const navigate = useNavigate()
 
@@ -12,6 +14,7 @@ const Preview = () => {
   }
 
   const handleSubmit = () => {
+    
     //clear localStorage and make api call
   }
 
@@ -78,6 +81,8 @@ const Preview = () => {
         </div>
      </div>
     </div>
+
+    {showModal && <Congratulations onCancel={() => setshowModal(!showModal)} />}
   </div>
   )
 }

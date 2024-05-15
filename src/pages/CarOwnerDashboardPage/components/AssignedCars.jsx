@@ -43,7 +43,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                     {car?.status === "assigned" && (
                       <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
                         <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
+                          <AvatarImage src="" />
                           <AvatarFallback>CO</AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">

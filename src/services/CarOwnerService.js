@@ -124,6 +124,31 @@ export async function apiPostCarOwner(payLoad) {
       });
   }
 
+  export async function apiScheduleBid(payLoad) {
+    return axios({
+      method: "post",
+      url:  `https://engines.fleetopsgh.com/api/schedule`,
+      data: payLoad,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+  export async function apiGetCarCancelBid(id) {
+    return apiClient.put(`/carowner/cancel/bid/${id}`); //bid_id
+  }
+
+  export async function apiGetBidingInfo(id) {
+    return apiClient.get(`/carowner/bid/${id}/vehicle`); //bid_id
+  }
+
+
+
+
  
 
 

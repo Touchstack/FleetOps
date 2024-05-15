@@ -8,27 +8,33 @@ import YouAreAssigning from "./modals/YouAreAssigning";
 import { CgProfile } from "react-icons/cg";
 import PropTypes from "prop-types";
 
+
+
 export default function ActiveBid({ data }) {
   const [openModal, setOpenModal] = useState(false);
   const [cancelBid, setCancelBid] = useState(false);
   const [onAssignCar, setonAssignCar] = useState(false)
-  const [inviteSent, setInviteSent] = useState(false);
+  //const [inviteSent, setInviteSent] = useState(false);
 
-  const handleAcceptBid = () => {
+ 
+  const handleAcceptBid = (id) => {
+     localStorage.setItem("bid_id", id)
     setOpenModal(!openModal);
   };
 
-  const handleCancelBid = () => {
+  const handleCancelBid = (id) => {
+    localStorage.setItem("bid_id", id)
     setCancelBid(!cancelBid);
   };
 
-  const handleAssign = () => {
+  const handleAssign = (id) => {
+    localStorage.setItem("bid_id", id)
     setonAssignCar(!onAssignCar)
   };
 
-  const handleInviteSent = () => {
-    setInviteSent(!inviteSent);
-  };
+  // const handleInviteSent = () => {
+  //   setInviteSent(!inviteSent);
+  // };
 
   return (
     <div className={"py-6"}>
@@ -60,13 +66,15 @@ export default function ActiveBid({ data }) {
               </p>
             </div>
           </div>
-          <p className={"my-4 bg-[#EDFCFF] text-[#088DA7] w-max"}>
-            The bidder is currently driving another
+          {data?.swap === "yes" && 
+            <p className={"my-4 bg-[#EDFCFF] text-[#088DA7] w-max"}>
+              The bidder is currently driving another
             <br /> but wants to swap
-          </p>
+            </p>
+          }
         </div>
         <div
-          className={"flex md:flex-row flex-col gap-7 justify-between w-1/2"}
+          className={"flex md:flex-row flex-col gap-8 justify-between w-1/2"}
         >
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Transmission type</p>
@@ -77,35 +85,45 @@ export default function ActiveBid({ data }) {
             <p>{data?.years_of_exp} years</p>
           </div>
           <div className={"flex flex-col gap-4"}>
+            <p className={"font-bold text-[#6D6D6D]"}>Phone</p>
+            <p>{data?.DCN}</p>
+          </div>
+          <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Time to expire</p>
             <p className={"font-bold"}>06h : 40m : 56s</p>
+
+           {data?.bid_status === 'accepted' && 
+            <div className=" bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center p-1  cursor-pointer rounded-[4px] ">
+              <p className="font-Light text-[14px] text-[#CE9A00]  pt-2">Waiting to be assigned</p>
+            </div>
+           }
           </div>
         </div>
         <div
           className={
-            "flex gap-2  justify-evenly md:justify-center md:w-max w-full"
+            "flex gap-2  justify-end md:justify-center md:w-max w-full"
           }
         >
-          {!inviteSent && (
+          {data?.bid_status === 'pending' ? (
           <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-            onClick={handleAcceptBid}
+            onClick={() => handleAcceptBid(data?.bid_id)}
           >
             Accept bid
           </Button>
+        ) : (
+        <Button
+          className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
+          onClick={() => handleAssign(data?.bid_id)}
+         >
+          Assign Car
+        </Button>
         )}
-        {inviteSent && (
-          <Button
-            className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-            onClick={handleAssign}
-          >
-            Assign Car
-          </Button>
-        )}
+
           <Button
             className={"border-[#23A6BF] text-base text-fleetBlue"}
             variant={"outline"}
-            onClick={handleCancelBid}
+            onClick={() => handleCancelBid(data?.bid_id)}
           >
             Cancel
           </Button>
@@ -114,10 +132,10 @@ export default function ActiveBid({ data }) {
     ))}
 
       {openModal && (
-        <ScheduleMeetModal onClose={handleAcceptBid} open={openModal} onInviteSent={handleInviteSent} />
+        <ScheduleMeetModal onClose={() => handleAcceptBid(data?.bid_id)} open={openModal} />
       )}
       {cancelBid && (
-        <CancelBidModal open={cancelBid} onClose={handleCancelBid} />
+        <CancelBidModal open={cancelBid} onClose={() => handleCancelBid()} />
       )}
 
       {onAssignCar && (

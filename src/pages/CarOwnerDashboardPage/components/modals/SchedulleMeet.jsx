@@ -6,14 +6,38 @@ import Avatar from "@/assets/images/brian.jpeg";
 import ClipBoard from "@/assets/images/clipboard.svg";
 import {Button} from "@/Components/ui/button.jsx";
 import { Label } from "@/Components/ui/label";
+import { apiScheduleBid } from "@/services/CarOwnerService";
+import { ClipLoader } from "react-spinners";
 
-const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
+const ScheduleMeetModal = ({ open, onClose }) => {
   const [invitationSent, setInvitationSent] = useState(false);
+  const [timeFrom, setTimeFrom] = useState("")
+  const [timeTo, setTimeTo] = useState("")
+  const [location, setLocation] = useState("")
+  const [loading, setloading] = useState(false)
 
-  const handleInvite = () => {
-    // onClose()
-    setInvitationSent(true);
-    onInviteSent();
+  const bid_id = localStorage.getItem("bid_id")
+  const car_owner_id = localStorage.getItem("car-owner-token")
+
+  const handleInvite = async () => {
+    const payLoad = {
+      bid_id,
+      time_from: timeFrom,
+      time_to: timeTo,
+      location,
+      car_owner_id: car_owner_id
+    };
+    try {
+      setloading(true)
+      const res = await apiScheduleBid(payLoad);
+      console.log(res);
+      if (res.status === 200) {
+        setInvitationSent(true);
+      }
+    } catch (error) {
+      setloading(false)
+      console.log(error);
+    }
   };
 
   return (
@@ -55,7 +79,8 @@ const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
                 <div className="w-full">
                  <Label>To</Label>
                   <input
-                    defaultValue={"12:00:00"}
+                    onChange={(e) => setTimeTo(e.target.value)}
+                    defaultValue={"00:00:00"}
                     type="time"
                     className={
                       "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
@@ -65,7 +90,8 @@ const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
                 <div className="w-full">
                  <Label>From</Label>
                   <input
-                    defaultValue={"14:00:00"}
+                    onChange={(e) => setTimeFrom(e.target.value)}
+                    defaultValue={"00:00:00"}
                     type="time"
                     className={
                       "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
@@ -76,6 +102,7 @@ const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
               <div className="w-full">
                  <Label>Where</Label>
                   <input
+                   onChange={(e) => setLocation(e.target.value)}
                     placeholder="eg.Spintex, Goil station"
                     type="text"
                     className={
@@ -125,9 +152,9 @@ const ScheduleMeetModal = ({ open, onClose, onInviteSent }) => {
             </Button>
             <Button
               className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-              onClick={handleInvite}
+              onClick={() => handleInvite()}
             >
-              Send invite
+             {loading ? <ClipLoader /> :  "Send invite"}
             </Button>
           </div>
         )}

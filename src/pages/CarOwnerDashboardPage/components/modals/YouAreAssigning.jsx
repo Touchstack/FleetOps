@@ -3,8 +3,13 @@ import Car from "../../../.././assets/images/car-dashboard.svg"
 import Driver from "../../../.././assets/images/Driver.png"
 import { FaRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { apiGetBidingInfo } from "@/services/CarOwnerService";
 
 const YouAreAssigning = ({onCancel}) => {
+  const [data, setData] = useState("")
+
+  const bid_id = localStorage.getItem("bid_id")
 
   const navigate = useNavigate();
   
@@ -15,6 +20,23 @@ const YouAreAssigning = ({onCancel}) => {
   const handleContinue = () => {
     navigate('/carowner/assign/driver-image')
   }
+
+  const getData = async () => {
+    try {
+      const res = await apiGetBidingInfo(bid_id)
+      console.log(res);
+      if(res.status === 200) {
+        setData(res?.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+     getData();
+  }, [])
+  
 
 
 
