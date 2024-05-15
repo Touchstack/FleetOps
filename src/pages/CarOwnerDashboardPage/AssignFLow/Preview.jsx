@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import Congratulations from '../components/modals/Congratulations';
+import { apiPostForm } from '@/services/CarOwnerService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 const Preview = () => {
@@ -8,20 +11,50 @@ const Preview = () => {
 
   const navigate = useNavigate()
 
-  const handleRestart = () => {
-      localStorage.clear();
-      navigate('/carowner/assign/driver-image')
-  }
-
-  const handleSubmit = () => {
-    
-    //clear localStorage and make api call
-  }
-
   const frontView = localStorage.getItem('frontView-img')
   const rightView = localStorage.getItem('rightView-img')
   const leftView = localStorage.getItem('leftView-img')
   const backView = localStorage.getItem('backView-img')
+  const form = localStorage.getItem('form')
+  const driverId = localStorage.getItem('driver_id')
+  const driverimg = localStorage.getItem('driver-img')
+
+
+
+
+  const handleRestart = () => {
+      localStorage.removeItem('driver-img');
+      localStorage.removeItem('rightView-img');
+      localStorage.removeItem('leftView-img');
+      localStorage.removeItem('frontView-img');
+      localStorage.removeItem('backView-img');
+      localStorage.removeItem('form');
+      navigate('/carowner/assign/driver-image')
+  }
+
+
+  const handleSubmit = async () => {
+    const payLoad = {
+       driver_id: driverId,
+       driverImg: driverimg,
+       carImg: {
+        frontView,
+        rightView,
+        leftView,
+        backView
+       },
+       defaultValues:form
+    }
+     try {
+      const res = await apiPostForm(payLoad)
+      console.log(res);
+     } catch (error) {
+      toast.error(error?.response?.data?.message  || "Error occurred try again");
+      console.log(error)
+     }
+  }
+
+
 
   const data = [
     {
@@ -81,6 +114,20 @@ const Preview = () => {
         </div>
      </div>
     </div>
+
+    <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition: Bounce
+        /> 
 
     {showModal && <Congratulations onCancel={() => setshowModal(!showModal)} />}
   </div>

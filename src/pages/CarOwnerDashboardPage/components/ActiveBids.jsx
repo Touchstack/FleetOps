@@ -69,7 +69,7 @@ export default function ActiveBids({ data }) {
                    </p>
                    {vehicle?.vehicle?.trans_type !== null && (
                       <p className={"no-underline font-SemiBold text-[14px] mb-2"}>
-                        {vehicle?.vehicle?.trans_type} Transmission
+                        {vehicle?.vehicle?.transmission_type} Transmission
                       </p>
                     )}
                    <p className={"bg-[#D9D9D9] p-1 w-max no-underline text-sm"}>

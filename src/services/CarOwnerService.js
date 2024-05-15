@@ -143,8 +143,28 @@ export async function apiPostCarOwner(payLoad) {
   }
 
   export async function apiGetBidingInfo(id) {
-    return apiClient.get(`/carowner/bid/${id}/vehicle`); //bid_id
+    return apiClient.get(`/bid/${id}/vehicle`); //bid_id
   }
+
+  export async function apiGetCollectionForm(id) {
+    return apiClient.get(`/show/vcform/${id}`); //vehicle_id
+  }
+
+  export async function apiPostForm(payLoad) {
+    return axios({
+      method: "post",
+      url:  `https://engines.fleetopsgh.com/api/vcform/submit`,
+      data: payLoad,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+
 
 
 

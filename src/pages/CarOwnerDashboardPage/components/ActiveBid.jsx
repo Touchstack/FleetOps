@@ -37,19 +37,22 @@ export default function ActiveBid({ data }) {
   // };
 
   return (
-    <div className={"py-6"}>
+    <div className={"py-4"}>
       {data?.map((data, index) => (
       <div
         key={index}
         className={
-          "flex md:flex-row flex-col justify-between items-start  gap-7 px-3"
+          "flex md:flex-row flex-col justify-between items-start py-4 gap-7 px-3"
         }
       >
          <div className={""}>
-          <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data.DNM} {data.DSN}</p>
+          <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data?.DNM} {data?.DSN}</p>
           <div className={"flex gap-4 items-start"}>
             <Avatar>
-              <AvatarImage className={"w-[44px] h-[44px] rounded"} src="" />
+              <AvatarImage 
+                className={"w-[44px] h-[44px] rounded"} 
+                src={`http://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}
+              />
               <AvatarFallback>
                 <CgProfile size={30} />
               </AvatarFallback>
@@ -58,11 +61,11 @@ export default function ActiveBid({ data }) {
               <div className={"inline-flex items-center gap-1"}>
                 <MdOutlineStar color={"#CAEA08"} />
                 <p className={"text-[#5A6267]"}>
-                  Rating: <span>3.3/5.0</span>
+                  Rating: <span>{data?.rating}/5.0</span>
                 </p>
               </div>
               <p className={"text-[#5A6267]"}>
-                License No: <span className={"text-bodyText"}>{data.license_no}</span>
+                License No: <span className={"text-bodyText"}>{data?.license_no}</span>
               </p>
             </div>
           </div>
@@ -94,7 +97,7 @@ export default function ActiveBid({ data }) {
 
            {data?.bid_status === 'accepted' && 
             <div className=" bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center p-1  cursor-pointer rounded-[4px] ">
-              <p className="font-Light text-[14px] text-[#CE9A00]  pt-2">Waiting to be assigned</p>
+              <p className="font-Light text-[14px] text-[#CE9A00]  p-0">Waiting to be assigned</p>
             </div>
            }
           </div>
@@ -127,7 +130,7 @@ export default function ActiveBid({ data }) {
           >
             Cancel
           </Button>
-          </div>
+        </div>
       </div>
     ))}
 

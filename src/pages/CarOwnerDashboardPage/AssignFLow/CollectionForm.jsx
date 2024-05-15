@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema, defaultValues } from "./utils";
+import { formSchema } from "./utils";
 import {
   Form,
   FormControl,
@@ -14,16 +14,69 @@ import {
 } from "@/Components/ui/form"
 import { Button } from "@/Components/ui/button"
 import { Input } from "@/Components/ui/input";
-import { Checkbox } from "@/Components/ui/checkbox"
+import { Checkbox } from "@/Components/ui/checkbox";
+import {useState, useEffect } from 'react';
+import { apiGetCollectionForm } from "@/services/CarOwnerService";
 
 const CollectionForm = () => {
+  const [defaultData, setdefaultData] = useState("")
   const navigate = useNavigate();
 
+  const id = localStorage.getItem("vehicle_id");
+
+  const getDefaultData = async () => {
+     try {
+       const res = await apiGetCollectionForm(id)
+       console.log("this is response =>", res)
+     } catch (error) {
+       console.log(error)
+     }
+  }
+
+    useEffect(() => {
+      getDefaultData()
+    }, [])
     
   
     const form = useForm({
       resolver: zodResolver(formSchema),
-      defaultValues: defaultValues
+      defaultValues: {
+        form_number: "21",
+        driver_account_num: "230012784",
+        vehicle_reg_num: "GT4555-18",
+        form_code: '290',
+        form_acceptance_date: "2024-02-09",
+        form_acceptance: false,
+        road_test: false,
+        overall_comment: "",
+        road_test_comment: "",
+        front_lights_high: false,
+        reverse_lights: false,
+        wheel_caps: false,
+        indicator_lights_comment: "",
+        front_lights_high_comment: "",
+        reverse_lights_comment: "",
+        parking_lights_comment: "",
+        front_lights_deem_comment: "",
+        parking_light: false,
+        front_lights_deem: false,
+        indicator_lights: false,
+        break_lights: false,
+        radio: false,
+        air_conditioner: false,
+        fire_extinguisher: false,
+        radio_comments: "",
+        air_conditioner_comment: "",
+        fire_extinguisher_comment: "",
+        vehicle_tools: false,
+        warning_triangle: false,
+        spare_tire: false,
+        vehicle_tools_comment: "",
+        warning_triangle_comment: "",
+        spare_tire_comment: "",
+        horn: false,
+        wiper_function: false
+      }
     })
 
     const onSubmit = (values) => {
@@ -70,6 +123,7 @@ const CollectionForm = () => {
     }
   
     const handleRestart = () => {
+      localStorage.removeItem('driver-img');
       navigate('/carowner/assign/driver-image')
     }
 

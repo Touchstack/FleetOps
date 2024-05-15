@@ -87,13 +87,13 @@ const CarOwnerDashboard = () => {
               <p className="text-gray-700 text-md">Cars listed</p>
               <h3 className="font-Regular text-2xl">
                 {" "}
-                 0
+                {data?.listedVehicles}
               </h3>
             </div>
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
               <p className="text-gray-700 text-md">Average Reviews</p>
-              <h3 className="font-Regular text-2xl">0 / 5.0</h3>
+              <h3 className="font-Regular text-2xl">{data?.ReviewCount} / 5.0</h3>
             </div>
           </div>
 

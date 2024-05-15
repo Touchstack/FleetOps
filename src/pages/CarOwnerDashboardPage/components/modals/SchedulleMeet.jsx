@@ -32,6 +32,7 @@ const ScheduleMeetModal = ({ open, onClose }) => {
       const res = await apiScheduleBid(payLoad);
       console.log(res);
       if (res.status === 200) {
+        window.location.reload();
         setInvitationSent(true);
       }
     } catch (error) {
