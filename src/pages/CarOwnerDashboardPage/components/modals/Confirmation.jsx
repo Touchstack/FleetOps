@@ -4,6 +4,7 @@ import clipboard from "../../../.././assets/images/clipboard.svg"
 const Confirmation = ({onCancel}) => {
   
   const handleClose = () => {
+    window.location.href = '/carowner/dashboard'
     onCancel();
   };
 
