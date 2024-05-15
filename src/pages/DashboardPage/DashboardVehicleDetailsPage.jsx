@@ -18,10 +18,10 @@ const DashboardVehicleDetailsPage = () => {
     const [image, setImage] = useState(``);
     const [data, setData] = useState();
     const [selectedImageId, setSelectedImageId] = useState(null);
+    const [bidStatus, setBidStatus] = useState("")
     const loaction = useLocation();
     const pathSegments = loaction?.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
-
 
     const driver_id = localStorage.getItem("driver_id")
     
@@ -41,6 +41,7 @@ const DashboardVehicleDetailsPage = () => {
         setLoading(true);
         const res = await apiGetVehicleDetails(id, driver_id);
          setData(res?.data?.vehicles);
+         setBidStatus(res?.data?.bid_status)
         setLoading(false);
         return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
@@ -248,7 +249,7 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
 
          {/* Call to action */}
-          {data?.status !== 'pending' ? (
+          {bidStatus !== 'pending' ? (
             <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
             </div>
