@@ -1,10 +1,10 @@
 import { z } from "zod"
 
 export const formSchema = z.object({
-    form_number: z.string().min(1, {
+    form_number: z.number().min(1, {
       required_error: "Form number is required",
     }),
-    form_code:z.string().min(1, {
+    form_code:z.number().min(1, {
       required_error: "Form number is required",
     }),
     driver_account_num: z.string().min(1, {
@@ -103,6 +103,7 @@ export const formSchema = z.object({
       }).default(false).optional(),
   })
 
+
 export const defaultValues = {
     form_number: "21",
     driver_account_num: "230012784",
@@ -138,5 +139,5 @@ export const defaultValues = {
     warning_triangle_comment: "",
     spare_tire_comment: "",
     horn: false,
-    wiper_function: false
+    wiper_function: false,
   }

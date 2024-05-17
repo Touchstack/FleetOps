@@ -2,8 +2,34 @@ import DashboardNavBar from "@/Components/Navbar/DashboardNavBar"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/Components/ui/tabs";
 import EditProfile from "./components/EditProfile";
 import AccountOverview from "./components/AccountOverview";
+import { apiFillDriverProfile } from "@/services/VehiclesService";
+import { useEffect } from "react";
 
 const Account = () => {
+  const id = JSON.parse(localStorage.getItem('driver_id'))
+
+  const getFormData = async () => {
+    try {
+      const res = await apiFillDriverProfile(id);
+      if (res.status === 200) {
+        const driverData = {
+          fname: res?.data?.driver?.DNM,
+          lname: res?.data?.driver?.DSN,
+          phone: res?.data?.driver?.DCN,
+          email: res?.data?.driver?.email,
+          transmission: res?.data?.driver?.trans_type
+        };
+        localStorage.setItem('From-Prefill', JSON.stringify(driverData));
+      }
+    } catch (error) {
+      console.error("Error fetching driver profile data:", error);
+    }
+  };
+  
+  useEffect(() => {
+    getFormData();
+  }, [])
+  
   return (
     <div className="bg-[#F2F2F2]  min-h-screen">
       <DashboardNavBar />

@@ -146,8 +146,8 @@ export async function apiPostCarOwner(payLoad) {
     return apiClient.get(`/bid/${id}/vehicle`); //bid_id
   }
 
-  export async function apiGetCollectionForm(id) {
-    return apiClient.get(`/show/vcform/${id}`); //vehicle_id
+  export async function apiGetCollectionForm(vehicle_id, driver_id) {
+    return apiClient.get(`/show/${vehicle_id}/vcform/${driver_id}`); //vehicle_id
   }
 
   export async function apiPostForm(payLoad) {

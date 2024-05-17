@@ -6,9 +6,9 @@ import {
 import {useEffect, useState} from 'react'
 import { PropTypes } from 'prop-types';
 
+
 const CustomCarousel = ({ data }) => {
     const [current, setCurrent] = useState(0)
-    const [count, setCount] = useState(0)
     const [api, setApi] = useState();
 
     useEffect(() => {
@@ -16,7 +16,6 @@ const CustomCarousel = ({ data }) => {
        return
      }
        
-     setCount(api.scrollSnapList().length)
      setCurrent(api.selectedScrollSnap() + 1)
        
      api.on("select", () => {
@@ -25,7 +24,7 @@ const CustomCarousel = ({ data }) => {
     }, [api])
     
   return (
-    <div>
+    <div className="flex flex-col md:hidden mb-10">
       <Carousel setApi={setApi} className="flex flex-col md:hidden mb-10">
           <CarouselContent>
             {data.map((img) => (
@@ -41,11 +40,15 @@ const CustomCarousel = ({ data }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="py-1 text-center text-sm text-muted-foreground">
-           Slide {current} of {count}
-          </div>
+          <div className="flex justify-center py-1 space-x-2">
+             {data.map((img) => (
+                 <div
+                   key={img.id}
+                  className={`w-2 h-2 rounded-full ${current === img.id ? 'bg-fleetBlue' : 'bg-gray-300'}`}
+                  />
+              ))}
+          </div>         
       </Carousel>
-      
     </div>
   )
 }

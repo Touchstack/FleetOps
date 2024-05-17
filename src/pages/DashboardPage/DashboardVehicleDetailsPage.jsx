@@ -77,7 +77,7 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
       { label: 'Year of registration', value: `${data?.year_of_registration}` },
-      { label: 'Trasmition', value: `${data?.transmission_type}` },
+      { label: 'Trasmition', value: `${data?.trans_type}` },
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
@@ -208,14 +208,14 @@ const DashboardVehicleDetailsPage = () => {
           >
             Home
           </a>{" "}
-          /{" "}
+          <span className='text-fleetBlue'>/{" "}</span>
           <a
             href="/drivers/findcars"
             className="hover:underline hover:cursor-pointer text-fleetBlue"
           >
             Find cars
           </a>{" "}
-          /{" "}
+          <span className='text-fleetBlue'>/{" "}</span>
           <span className="">
            {data?.VCL} {data?.VMK} {data?.VMD}
           </span>
@@ -238,7 +238,7 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
           <div className="flex flex-col mb-5">
               <p className="font-Light text-[24px] text-[#0A0D14] underline pb-2">Terms</p>
-{/*                
+              {/*                
                <div className="text-[#545151] font-Light">
                    <p>Model : {data?.bus_model}</p>
                    <p>Engagement : {data?.engagement}</p>

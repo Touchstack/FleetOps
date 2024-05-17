@@ -15,7 +15,7 @@ const Preview = () => {
   const rightView = localStorage.getItem('rightView-img')
   const leftView = localStorage.getItem('leftView-img')
   const backView = localStorage.getItem('backView-img')
-  const form = localStorage.getItem('form')
+  const form = JSON.parse(localStorage.getItem('form'))
   const driverId = localStorage.getItem('driver_id')
   const driverimg = localStorage.getItem('driver-img')
 
@@ -47,9 +47,12 @@ const Preview = () => {
     }
      try {
       const res = await apiPostForm(payLoad)
-      console.log(res);
+      if(res.status === 200){
+        setshowModal(true)
+      }
      } catch (error) {
       toast.error(error?.response?.data?.message  || "Error occurred try again");
+      alert(error?.response?.data?.message  || "Error occurred try again");
       console.log(error)
      }
   }

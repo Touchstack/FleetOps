@@ -41,10 +41,10 @@ const CollectionForm = () => {
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        form_number: "21",
+        form_number: 21,
         driver_account_num: "230012784",
         vehicle_reg_num: "GT4555-18",
-        form_code: '290',
+        form_code: 290,
         form_acceptance_date: "2024-02-09",
         form_acceptance: false,
         road_test: false,

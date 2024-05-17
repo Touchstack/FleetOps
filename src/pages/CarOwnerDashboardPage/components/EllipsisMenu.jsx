@@ -10,6 +10,7 @@ import {
   import { BiSolidFilePdf } from "react-icons/bi";
 
 
+  const data = JSON.parse(localStorage.getItem("dashBoardData"))
 
 // eslint-disable-next-line react/prop-types
 const EllipsisMenu = ({ onUnassignClick }) => {
@@ -25,9 +26,15 @@ const EllipsisMenu = ({ onUnassignClick }) => {
             <IoIosRemoveCircle />
             Unassign
           </MenubarItem>
-          <MenubarItem>
+          <MenubarItem >
             <BiSolidFilePdf />
-            Vehicle collection form
+            <a 
+              href={`https://engines.fleetopsgh.com/${data?.form}`}
+              target="_blank"
+              rel="noreferrer"
+              className="font-SemiBold font-[16px] underline">
+              Vehicle Collection Form
+            </a>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
