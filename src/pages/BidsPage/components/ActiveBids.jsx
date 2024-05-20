@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import EmptyState from "./EmptyState";
 import Modal from "./Modal";
 import { apiGetDriverBids } from "@/services/VehiclesService";
+import { IoImagesOutline } from "react-icons/io5";
 import Loading from "@/pages/CarOwnerDashboardPage/components/Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -60,7 +61,20 @@ const ActiveBids = () => {
             {data.map((cars) => (
               <div key={cars.id} className="w-12/12">
                 <div className="relative flex flex-col cursor-pointer  py-[23px] px-[22px] rounded-[30px]">
-                  <img src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.vehicle.front_photo}`}  className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]" alt="" />
+                  
+
+                  {cars?.front_photo ? (
+                    <img 
+                      src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.vehicle.front_photo}`}  
+                      className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
+                       alt="" 
+                     />
+                  ) : (
+                    <div className="flex justify-center items-center bg-white md:w-11/12 w-12/12 h-auto rounded-[10px]">
+                      <IoImagesOutline size={80} className="text-black  h-[408px]" />
+                    </div>
+                  )}
+                  
                   {cars?.vehicle?.bus_model !== "ride-hailing" &&
                     <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
                      <p>GHS {cars?.vehicle?.amount}</p>

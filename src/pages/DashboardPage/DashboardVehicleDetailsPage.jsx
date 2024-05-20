@@ -9,6 +9,7 @@ import VehiclesLoading from './components/VehiclesLoading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomCarousel from './components/CustomCarousel';
+import { IoImagesOutline } from "react-icons/io5";
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -145,13 +146,18 @@ const DashboardVehicleDetailsPage = () => {
       ) : (
        <section className="flex md:flex-row flex-col w-full gap-10 md:gap-20">
         <div className="flex flex-col md:min-w-[550px] max-w-[650px]">
-        
-        {/* Web view image */}
-          <img 
-             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`} //initial image
-             alt="" 
-             className="hidden rounded-[10px]  md:flex h-[422px]" 
-          />
+          {data?.front_photo ? (
+            <img
+            src={image || `http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
+            className="hidden rounded-[10px]  md:flex h-[422px]" 
+            alt=""
+          />         
+          ) : (
+            <div className="flex justify-center items-center bg-white h-auto rounded-[10px]">
+              <IoImagesOutline size={80} className="text-black  h-[408px]" />
+            </div>
+          )}          
+      
 
           <div className="md:flex cursor-pointer hidden flex-row gap-3 pt-3">
           {carouselImages.map((img) => (

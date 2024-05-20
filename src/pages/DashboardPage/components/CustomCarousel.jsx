@@ -3,6 +3,7 @@ import {
     CarouselContent,
     CarouselItem,
   } from "@/Components/ui/carousel"
+import { IoImagesOutline } from "react-icons/io5";
 import {useEffect, useState} from 'react'
 import { PropTypes } from 'prop-types';
 
@@ -10,6 +11,8 @@ import { PropTypes } from 'prop-types';
 const CustomCarousel = ({ data }) => {
     const [current, setCurrent] = useState(0)
     const [api, setApi] = useState();
+
+    console.log(data);
 
     useEffect(() => {
      if (!api) {
@@ -29,14 +32,18 @@ const CustomCarousel = ({ data }) => {
           <CarouselContent>
             {data.map((img) => (
               <CarouselItem key={img.id}>
-                
-              <div className="p-1">
-               <img 
-                src={img.image}
-                alt="" 
-                className="w-full rounded-[10px]"
-              />
-             </div>
+               <div className="p-1">
+               {img?.image && !img.image.endsWith('null') ? (
+                  <img 
+                   src={img.image}
+                   alt="" 
+                   className="w-full rounded-[10px]"
+                 />
+               
+                ) : (
+                  <IoImagesOutline  size={180} className="w-full rounded-[10px]" />
+                )}
+               </div>
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -36,6 +36,7 @@
     "react-camera-pro-react-18": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.4",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-otp-input": "^3.1.0",
     "react-phone-input-2": "^2.15.1",

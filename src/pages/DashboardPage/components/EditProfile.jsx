@@ -11,24 +11,23 @@ import { CgProfile } from "react-icons/cg";
 import { Button } from "@/Components/ui/button";
 import { useForm } from "react-hook-form";
 import { apiEditDriverProfile } from "@/services/VehiclesService";
-import { toast } from 'react-toastify';
-import { useState, useEffect } from "react";
-import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 const EditProfile = () => {
   const prefillData = JSON.parse(localStorage.getItem('From-Prefill')) || {};
   const [transmission, setTransmission] = useState(prefillData.transmission || 'Manual');
   
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const id = localStorage.getItem("driver_id")
   
-  useEffect(() => {
-    // Prefill form fields
-    setValue("firstName", prefillData.fname);
-    setValue("lastName", prefillData.lname);
-    setValue("phone", prefillData.phone);
-    setValue("email", prefillData.email);
-  }, [prefillData, setValue]);
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      firstName: prefillData.fname,
+      lastName: prefillData.lname,
+      phone: prefillData.phone,
+      email: prefillData.email,
+    }
+  });
 
   const onSubmit = async (data) => {
      // Do something with the form data
@@ -52,7 +51,7 @@ const EditProfile = () => {
      })
     } catch (error) {
      console.log(error) 
-     toast.error("Error updating profile");
+     toast.error(error?.response?.data?.message || "Error updating profile");
     }
   };
 
@@ -133,6 +132,9 @@ const EditProfile = () => {
              Save changes
           </Button>
        </form>
+
+
+       <Toaster position="top-right" reverseOrder={true} />
     </div>
   )
 }

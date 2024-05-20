@@ -4,6 +4,7 @@ import { Camera } from "react-camera-pro-react-18";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useNavigate } from "react-router-dom";
 import { apiGetCollectionForm } from "@/services/CarOwnerService";
+import toast, { Toaster } from 'react-hot-toast';
 
 const DriverImage = () => {
     const camera = useRef(null);
@@ -39,11 +40,12 @@ const DriverImage = () => {
     try {
       const res = await apiGetCollectionForm(vehicle_id, driver_id)
       if (res.status === 200) {
-        localStorage.setItem("defaultData", JSON.stringify(res.data))
+        localStorage.setItem("defaultData", JSON.stringify(res?.data))
         navigate('/carowner/assign/form')
       }
     } catch (error) {
       console.log(error)
+      toast.error(error?.response?.data?.message ||'An error occured try again')
     }
  }
 
@@ -120,6 +122,8 @@ const DriverImage = () => {
    </div>
    )}
 </div>
+
+  <Toaster position="top-right" reverseOrder={true} />
 </div>
   )
 }

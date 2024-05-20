@@ -2,8 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import Congratulations from '../components/modals/Congratulations';
 import { apiPostForm } from '@/services/CarOwnerService';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
 
 const Preview = () => {
@@ -51,8 +50,7 @@ const Preview = () => {
         setshowModal(true)
       }
      } catch (error) {
-      toast.error(error?.response?.data?.message  || "Error occurred try again");
-      alert(error?.response?.data?.message  || "Error occurred try again");
+      toast.error(error?.response?.data?.message  || "Error occurred could'nt submit form");
       console.log(error)
      }
   }
@@ -118,19 +116,7 @@ const Preview = () => {
      </div>
     </div>
 
-    <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={true}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
-              transition: Bounce
-        /> 
+    <Toaster position="top-right" reverseOrder={true} />
 
     {showModal && <Congratulations onCancel={() => setshowModal(!showModal)} />}
   </div>
