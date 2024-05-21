@@ -1,24 +1,64 @@
 import { useNavigate } from 'react-router-dom'
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
-
+import Congratulations from '../components/modals/Congratulations';
+import { apiPostForm } from '@/services/CarOwnerService';
+import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 
 const Preview = () => {
+  const [showModal, setshowModal] = useState(false)
 
   const navigate = useNavigate()
-
-  const handleRestart = () => {
-      localStorage.clear();
-      navigate('/carowner/assign/driver-image')
-  }
-
-  const handleSubmit = () => {
-    //clear localStorage and make api call
-  }
 
   const frontView = localStorage.getItem('frontView-img')
   const rightView = localStorage.getItem('rightView-img')
   const leftView = localStorage.getItem('leftView-img')
   const backView = localStorage.getItem('backView-img')
+  const form = JSON.parse(localStorage.getItem('form'))
+  const driverId = localStorage.getItem('driver_id')
+  const driverimg = localStorage.getItem('driver-img')
+
+
+
+
+  const handleRestart = () => {
+      localStorage.removeItem('driver-img');
+      localStorage.removeItem('rightView-img');
+      localStorage.removeItem('leftView-img');
+      localStorage.removeItem('frontView-img');
+      localStorage.removeItem('backView-img');
+      localStorage.removeItem('form');
+      navigate('/carowner/assign/driver-image')
+  }
+
+
+  const handleSubmit = async () => {
+    const payLoad = {
+       driver_id: driverId,
+       driverImg: driverimg,
+       carImg: {
+        frontView,
+        rightView,
+        leftView,
+        backView
+       },
+       defaultValues:form
+    }
+     try {
+      const res = await apiPostForm(payLoad)
+      console.log(res);
+      if(res.status === 200){
+        localStorage.setItem('assigned_car', res?.data?.vehicle)
+        localStorage.removeItem('endTime_0')
+        setshowModal(true)
+      }
+     } catch (error) {
+      toast.error(error?.response?.data?.message  || "Error occurred could'nt submit form");
+      console.log(error)
+     }
+  }
+
+
 
   const data = [
     {
@@ -78,6 +118,9 @@ const Preview = () => {
         </div>
      </div>
     </div>
+    {showModal && <Congratulations onCancel={() => setshowModal(false)} />}
+
+    <Toaster position="bottom-right" reverseOrder={true} />
   </div>
   )
 }

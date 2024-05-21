@@ -1,8 +1,22 @@
 import { Modal } from "flowbite-react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { Button } from "@/Components/ui/button.jsx";
+import { apiGetCarCancelBid } from "@/services/CarOwnerService";
 
 const CancelBidModal = ({ open, onClose }) => {
+ const bid_id = localStorage.getItem("bid_id")
+
+  const handleCancel = async () => {
+    try {
+      const res = await apiGetCarCancelBid(bid_id)
+      if (res.status === 200) {
+        window.location.href = '/carowner/listing';
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Modal show={open} onClose={onClose}>
       <div className={"pt-4 px-4 relative"}>
@@ -21,7 +35,7 @@ const CancelBidModal = ({ open, onClose }) => {
         </div>
         <div className={"py-2 w-full flex justify-end items-center gap-4"}>
           <Button
-            onClick={onClose}
+            onClick={handleCancel}
             className={"border-[#23A6BF] text-base text-fleetBlue px-8 py-2"}
             variant={"outline"}
           >

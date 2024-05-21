@@ -44,6 +44,7 @@ const CarOwnerLogin = () => {
             }
         })
        } catch (error) {
+        setErrorText(error?.message);
         console.log(error);
        }
     };

@@ -11,13 +11,23 @@ import { CgProfile } from "react-icons/cg";
 import { Button } from "@/Components/ui/button";
 import { useForm } from "react-hook-form";
 import { apiEditDriverProfile } from "@/services/VehiclesService";
-import { toast } from 'react-toastify';
 import { useState } from "react";
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EditProfile = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [transmission, setTransmission] = useState('Manual')
+  const prefillData = JSON.parse(localStorage.getItem('From-Prefill')) || {};
+  const [transmission, setTransmission] = useState(prefillData.transmission || 'Manual');
+  
+  const id = localStorage.getItem("driver_id")
+  
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      firstName: prefillData.fname,
+      lastName: prefillData.lname,
+      phone: prefillData.phone,
+      email: prefillData.email,
+    }
+  });
 
   const onSubmit = async (data) => {
      // Do something with the form data
@@ -32,7 +42,7 @@ const EditProfile = () => {
    // console.log(payLoad);
 
     try {
-     await apiEditDriverProfile(payLoad).then((res) => {
+     await apiEditDriverProfile(id, payLoad).then((res) => {
        if(res.status === 200) {
         toast.success("Driver Profile updates");
        }else{
@@ -41,6 +51,7 @@ const EditProfile = () => {
      })
     } catch (error) {
      console.log(error) 
+     toast.error(error?.response?.data?.message || "Error updating profile");
     }
   };
 
@@ -105,7 +116,7 @@ const EditProfile = () => {
           />
            {errors?.phone && <span className="text-red-500 text-xs">Phone Number is required</span>}
            
-           <Label className='text-[#0A0D14] font-[400]'>Transmisson Preference</Label>
+           <Label className='text-[#0A0D14] font-[400]'>Preferred Transmisson</Label>
               <Select onValueChange={(value) => setTransmission(value)}  defaultValue={transmission}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a verified email to display" />
@@ -121,6 +132,9 @@ const EditProfile = () => {
              Save changes
           </Button>
        </form>
+
+
+       <Toaster position="top-right" reverseOrder={true} />
     </div>
   )
 }

@@ -3,11 +3,17 @@ import { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro-react-18";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useNavigate } from "react-router-dom";
+import { apiGetCollectionForm } from "@/services/CarOwnerService";
+import toast, { Toaster } from 'react-hot-toast';
 
 const DriverImage = () => {
     const camera = useRef(null);
     const [image, setImage] = useState(null);
     const [aspectRatio, setAspectRatio] = useState(16/9);
+
+
+    const vehicle_id = localStorage.getItem("vehicle_id");
+    const driver_id = localStorage.getItem("driver_id");
  
     const navigate = useNavigate()
       
@@ -30,10 +36,25 @@ const DriverImage = () => {
      setImage(null);
    }
 
+   const getDefaultData = async () => {
+    try {
+      const res = await apiGetCollectionForm(vehicle_id, driver_id)
+      if (res.status === 200) {
+        localStorage.setItem("defaultData", JSON.stringify(res?.data))
+        navigate('/carowner/assign/form')
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(error?.response?.data?.message ||'An error occured try again')
+    }
+ }
+
    const showForm = () => {
-    navigate('/carowner/assign/form')
+    getDefaultData()
     localStorage.setItem('driver-img', image)
   }
+
+
 
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
@@ -74,7 +95,7 @@ const DriverImage = () => {
       onClick={() => {
         if (camera.current) {
           const photo = camera.current.takePhoto();
-          console.log(photo);
+          //console.log(photo);
           setImage(photo);
         }
       }}
@@ -101,6 +122,8 @@ const DriverImage = () => {
    </div>
    )}
 </div>
+
+  <Toaster position="top-right" reverseOrder={true} />
 </div>
   )
 }

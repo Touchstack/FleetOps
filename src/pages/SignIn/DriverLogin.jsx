@@ -19,7 +19,7 @@ const DriverLogin = () => {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("driver_id");
     if (token) {
       return navigate("/drivers/dashboard");
     }

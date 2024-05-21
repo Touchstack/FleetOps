@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema, defaultValues } from "./utils";
+import { formSchema } from "./utils";
 import {
   Form,
   FormControl,
@@ -14,92 +14,110 @@ import {
 } from "@/Components/ui/form"
 import { Button } from "@/Components/ui/button"
 import { Input } from "@/Components/ui/input";
-import { Checkbox } from "@/Components/ui/checkbox"
+import { Checkbox } from "@/Components/ui/checkbox";
+import { Separator } from "@/Components/ui/separator";
 
 const CollectionForm = () => {
   const navigate = useNavigate();
 
-    
-  
+   const defaultData = JSON.parse(localStorage.getItem('defaultData'))
+   //console.log(defaultData)
+
     const form = useForm({
       resolver: zodResolver(formSchema),
-      defaultValues: defaultValues
+      defaultValues: {
+        registration: defaultData?.registration,
+        chasis_num: defaultData?.chasis_num,
+        insurance: defaultData?.insurance,
+        starting_mileage: '',
+        road_cert: defaultData?.road_cert,
+        comment: '',
+        hand_over_date: defaultData?.hand_over_date,
+        acceptance_code: defaultData?.acceptance_code,
+        signed_by: defaultData?.driver,
+        front_lights: false,
+        reverse_lights: false,
+        wheel_caps: false,
+        parking_lights: false,
+        front_lights_deem: false,
+        indicator_lights: false,
+        brake_lights: false,
+        vehicle_tools: false,
+        wiper_function: false,
+        radio: false,
+        warning_triangle: false,
+        horn: false,
+        air_conditioner: false,
+        spare_tire: false,
+        fire_extinguisher: false,
+        road_test: false
+      }
     })
 
     const onSubmit = (values) => {
-      console.log(values)
+      //console.log(values)
       const formData = {
-          form_number: values.form_number,
-          driver_account_num: values.driver_account_num,
-          vehicle_reg_num:  values.vehicle_reg_num,
-          form_acceptance: values.form_acceptance,
-          road_test:  values.road_test,
-          overall_comment: values.overall_comment,
-          form_acceptance_date: values.form_acceptance_date,
-          road_test_comment: values.road_test_comment,
-          front_lights_high: values.front_lights_high,
-          reverse_lights: values.reverse_lights,
-          wheel_caps: values.wheel_caps,
-          indicator_lights_comment: values.indicator_lights_comment,
-          front_lights_high_comment: values.front_lights_high_comment,
-          reverse_lights_comment: values.reverse_lights_comment,
-          parking_lights_comment: values.parking_lights_comment,
-          front_lights_deem_comment: values.front_lights_deem_comment,
-          parking_light: values.parking_light,
-          front_lights_deem: values.front_lights_deem,
-          indicator_lights: values.indicator_lights,
-          break_lights: values.break_lights,
-          radio: values.radio,
-          air_conditioner: values.air_conditioner,
-          fire_extinguisher: values.fire_extinguisher,
-          radio_comments: values.radio_comments,
-          air_conditioner_comment: values.air_conditioner_comment,
-          fire_extinguisher_comment: values.fire_extinguisher_comment,
-          vehicle_tools: values.vehicle_tools,
-          warning_triangle: values.warning_triangle,
-          spare_tire: values.spare_tire,
-          vehicle_tools_comment: values.vehicle_tools_comment,
-          warning_triangle_comment: values.warning_triangle_comment,
-          spare_tire_comment: values.spare_tire_comment,
-          horn: values.horn,
-          wiper_function: values.wiper_function,
-          form_code: values.form_code
+        registration: values.registration,
+        chasis_num: values.chasis_num,
+        insurance: values.insurance,
+        starting_mileage: values.starting_mileage,
+        road_cert: values.road_cert,
+        comment: values.comment,
+        hand_over_date: values.hand_over_date,
+        front_lights: values.front_lights,
+        reverse_lights: values.reverse_lights,
+        wheel_caps: values.wheel_caps,
+        parking_lights: values.parking_lights,
+        front_lights_deem: values.front_lights_deem,
+        indicator_lights: values.indicator_lights,
+        brake_lights: values.brake_lights,
+        vehicle_tools: values.vehicle_tools,
+        wiper_function: values.wiper_function,
+        radio: values.radio,
+        warning_triangle: values.warning_triangle,
+        horn: values.horn,
+        air_conditioner: values.air_conditioner,
+        spare_tire: values.spare_tire,
+        fire_extinguisher: values.fire_extinguisher,
+        road_test: values.road_test,
+        acceptance_code: values.acceptance_code,
+        signed_by: values.signed_by
       };
       localStorage.setItem('form', JSON.stringify(formData));
      navigate('/carowner/assign/car-image/front')
     }
   
     const handleRestart = () => {
+      localStorage.removeItem('driver-img');
       navigate('/carowner/assign/driver-image')
     }
 
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
       <CarOwnerDashboardNavBar />
-    <div className="flex flex-col md:mx-20">
+      <div className="flex flex-col">
 
       <div className="flex flex-col mt-10 items-center mb-8">
         <h1 className="text-[#0A0D14] font-bold text-3xl md:text-5xl">
           Vehicle Collection Form
         </h1>
-        <p className="text-[#545151] md:text-lg md:w-full  text-center text-base font-light">
+        <p className="text-[#545151] md:text-lg md:w-full pt-[16px]  text-center text-base font-light">
           Please fill in the vehicle checklist
         </p>
       </div>
 
       <Form {...form} className="px-6 space-y-4">
         <form onSubmit={form.handleSubmit(onSubmit)} className="px-2 space-y-10">
-         <div>
-           <p className="font-Bold text-[24px] ">Section 1</p>
-            <div className="grid md:grid-cols-3 gap-4  rounded-[5px] px-[22px] py-[16px] grid-cols-1 bg-[#FFFFFF]">
+         <div className="space-y-4">
+           <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] mb-10 md:mx-20 grid-cols-1">
             <FormField
                 control={form.control}
-                name="form_number"
+                name="registration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Form Number</FormLabel>
+                    <FormLabel>Registration(number plate)</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-8/12" {...field} />
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,12 +126,12 @@ const CollectionForm = () => {
 
               <FormField
                 control={form.control}
-                name="driver_account_num"
+                name="chasis_num"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Driver Account Number</FormLabel>
+                    <FormLabel>Chasis No</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-8/12"  {...field} />
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -122,12 +140,12 @@ const CollectionForm = () => {
 
              <FormField
                 control={form.control}
-                name="vehicle_reg_num"
+                name="insurance"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Vehicle Reg. No.</FormLabel>
+                    <FormLabel>Insurance</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-8/12"  {...field} />
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -136,9 +154,38 @@ const CollectionForm = () => {
 
               <FormField
                 control={form.control}
+                name="road_cert"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Roadworthy Certificate</FormLabel>
+                    <FormControl>
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="starting_mileage"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Starting Mileage</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+
+              {/* <FormField
+                control={form.control}
                 name="form_acceptance"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Form Acceptance
@@ -158,7 +205,7 @@ const CollectionForm = () => {
                 control={form.control}
                 name="road_test"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Road Test
@@ -172,77 +219,21 @@ const CollectionForm = () => {
                     </FormControl>
                   </FormItem>
                 )}
-              />
+              /> */}
 
-              <FormField
-                control={form.control}
-                name="overall_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Overall Comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="form_acceptance_date"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Form Acceptance Date</FormLabel>
-                    <FormControl>
-                      <Input disabled className="md:w-8/12"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="road_test_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Road Test Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> 
-
-               <FormField
-                control={form.control}
-                name="form_code"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Form code</FormLabel>
-                    <FormControl>
-                      <Input disabled className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> 
             </div>
-         </div>
+            <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
 
-         <div>
-           <p className="font-Bold text-[24px]">Section 2</p>
-            <div className="grid md:grid-cols-3 gap-4 rounded-[5px] px-[32px] py-[16px] grid-cols-1 bg-[#FFFFFF]">
-               <FormField
+            <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] md:mx-20 grid-cols-1">
+            
+              <FormField
                 control={form.control}
-                name="front_lights_high"
+                name="front_lights"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
-                        Front Lights (High) L/R
+                       Front Lights (High) L/R
                       </FormLabel>
                     </div>
                     <FormControl>
@@ -255,12 +246,11 @@ const CollectionForm = () => {
                 )}
               />
 
-              
               <FormField
                 control={form.control}
                 name="reverse_lights"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Reverse Lights L/R
@@ -276,15 +266,15 @@ const CollectionForm = () => {
                 )}
               />
 
-              
+
               <FormField
                 control={form.control}
                 name="wheel_caps"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
-                         Wheel Caps (FL/FR/RL/RR)
+                        Wheel Caps (FL/FR/RL/RR)
                       </FormLabel>
                     </div>
                     <FormControl>
@@ -295,58 +285,16 @@ const CollectionForm = () => {
                     </FormControl>
                   </FormItem>
                 )}
-              /> 
-
-              <FormField
-                control={form.control}
-                name="front_lights_high_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Front Lights (High) L/R Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
               />
 
               <FormField
                 control={form.control}
-                name="reverse_lights_comment"
+                name="parking_lights"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Reverse Lights L/R Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="wheel_caps_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Wheel Caps (FL/FR/RL/RR) Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="parking_light"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
-                       Parking Lights L/R
+                        Parking Lights L/R
                       </FormLabel>
                     </div>
                     <FormControl>
@@ -363,10 +311,10 @@ const CollectionForm = () => {
                 control={form.control}
                 name="front_lights_deem"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
-                        Front Lights (Deem) L/R
+                         Front Lights (Deem) L/R
                       </FormLabel>
                     </div>
                     <FormControl>
@@ -383,7 +331,7 @@ const CollectionForm = () => {
                 control={form.control}
                 name="indicator_lights"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Indicator Lights (FL/FR/RL/RR)
@@ -399,53 +347,11 @@ const CollectionForm = () => {
                 )}
               />
 
-             <FormField
-                control={form.control}
-                name="parking_lights_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Parking Lights L/R Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <FormField
                 control={form.control}
-                name="front_lights_deem_comment"
+                name="brake_lights"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Front Lights (Deem) L/R Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="indicator_lights_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Indicator Lights (FL/FR/RL/RR) Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="break_lights"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Brake Lights L/R
@@ -461,119 +367,11 @@ const CollectionForm = () => {
                 )}
               />
 
-            </div>
-         </div>
-
-         <div>
-           <p className="font-Bold text-[24px]">Section 3</p>
-            <div className="grid md:grid-cols-3 gap-4  rounded-[5px] px-[32px] py-[16px] grid-cols-1 bg-[#FFFFFF]">
-            <FormField
-                control={form.control}
-                name="radio"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="font-Light">
-                        Radio
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="air_conditioner"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="font-Light">
-                        Air-Conditioner
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="fire_extinguisher"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="font-Light">
-                        Fire Extinguisher
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="radio_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Radio Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="air_conditioner_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Air-Conditioner Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="fire_extinguisher_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Fire Extinguisher Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <FormField
                 control={form.control}
                 name="vehicle_tools"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Vehicle Tools
@@ -588,89 +386,12 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="warning_triangle"
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="font-Light">
-                        Warning Triangle
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="spare_tire "
-                render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="font-Light">
-                        Spare tire 
-                      </FormLabel>
-                    </div>
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-               <FormField
-                control={form.control}
-                name="vehicle_tools_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Vehicle Tools Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-               <FormField
-                control={form.control}
-                name="warning_triangle_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Warning Triangle Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-               <FormField
-                control={form.control}
-                name="spare_tire_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Spare Tire Comments</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-8/12" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
 
               <FormField
                 control={form.control}
                 name="wiper_function"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                         Wiper Function
@@ -688,9 +409,49 @@ const CollectionForm = () => {
 
               <FormField
                 control={form.control}
+                name="radio"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                        Radio
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="warning_triangle"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                         Warning Triangle
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="horn"
                 render={({ field }) => (
-                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-8/12 space-x-3 space-y-0 rounded-md border p-4">
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
                     <div className="space-y-1 leading-none">
                       <FormLabel className="font-Light">
                          Horn
@@ -705,7 +466,147 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
-              
+
+              <FormField
+                control={form.control}
+                name="air_conditioner"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                        Air-Conditioner
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="spare_tire"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                        Spare Tire
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="fire_extinguisher"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between  md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                        Fire Extinguisher
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="road_test"
+                render={({ field }) => (
+                  <FormItem className="flex h-10 flex-row items-center justify-between md:w-6/12 space-x-3 space-y-0 rounded-md border p-4">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="font-Light">
+                        Road Test
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+            </div>
+            <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
+
+            <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] md:mx-20 grid-cols-1">
+            <FormField
+                control={form.control}
+                name="comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="hand_over_date"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Vehicle Hand-over date</FormLabel>
+                    <FormControl>
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+             <FormField
+                control={form.control}
+                name="acceptance_code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Contract Acceptance Code</FormLabel>
+                    <FormControl>
+                      <Input disabled className="md:w-6/12 h-[52px] bg-[#AAAAAA]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="signed_by"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Signed By</FormLabel>
+                    <FormControl>
+                      <Input disabled className="md:w-6/12 bg-[#AAAAAA] h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
             </div>
          </div>
 
@@ -728,8 +629,8 @@ const CollectionForm = () => {
             </Button>
           </div>
         </form>
-      </Form>     
-    </div>
+       </Form>     
+      </div>
     </div>
   );
 };

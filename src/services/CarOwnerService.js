@@ -124,6 +124,51 @@ export async function apiPostCarOwner(payLoad) {
       });
   }
 
+  export async function apiScheduleBid(payLoad) {
+    return axios({
+      method: "post",
+      url:  `https://engines.fleetopsgh.com/api/schedule`,
+      data: payLoad,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+  export async function apiGetCarCancelBid(id) {
+    return apiClient.put(`/carowner/cancel/bid/${id}`); //bid_id
+  }
+
+  export async function apiGetBidingInfo(id) {
+    return apiClient.get(`/bid/${id}/vehicle`); //bid_id
+  }
+
+  export async function apiGetCollectionForm(vehicle_id, driver_id) {
+    return apiClient.get(`/show/${vehicle_id}/vcform/${driver_id}`); //vehicle_id
+  }
+
+  export async function apiPostForm(payLoad) {
+    return axios({
+      method: "post",
+      url:  `https://engines.fleetopsgh.com/api/vcform/submit`,
+      data: payLoad,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+
+
+
+
+
  
 
 

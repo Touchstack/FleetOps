@@ -9,6 +9,7 @@ import VehiclesLoading from './components/VehiclesLoading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomCarousel from './components/CustomCarousel';
+import { IoImagesOutline } from "react-icons/io5";
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
@@ -77,7 +78,7 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
       { label: 'Year of registration', value: `${data?.year_of_registration}` },
-      { label: 'Trasmition', value: `${data?.transmission_type}` },
+      { label: 'Trasmition', value: `${data?.trans_type}` },
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
@@ -145,13 +146,18 @@ const DashboardVehicleDetailsPage = () => {
       ) : (
        <section className="flex md:flex-row flex-col w-full gap-10 md:gap-20">
         <div className="flex flex-col md:min-w-[550px] max-w-[650px]">
-        
-        {/* Web view image */}
-          <img 
-             src={image ||  `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`} //initial image
-             alt="" 
-             className="hidden rounded-[10px]  md:flex h-[422px]" 
-          />
+          {data?.front_photo ? (
+            <img
+            src={image || `http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
+            className="hidden rounded-[10px]  md:flex h-[422px]" 
+            alt=""
+          />         
+          ) : (
+            <div className="flex justify-center items-center bg-white h-auto rounded-[10px]">
+              <IoImagesOutline size={80} className="text-black  h-[408px]" />
+            </div>
+          )}          
+      
 
           <div className="md:flex cursor-pointer hidden flex-row gap-3 pt-3">
           {carouselImages.map((img) => (
@@ -208,14 +214,14 @@ const DashboardVehicleDetailsPage = () => {
           >
             Home
           </a>{" "}
-          /{" "}
+          <span className='text-fleetBlue'>/{" "}</span>
           <a
             href="/drivers/findcars"
             className="hover:underline hover:cursor-pointer text-fleetBlue"
           >
             Find cars
           </a>{" "}
-          /{" "}
+          <span className='text-fleetBlue'>/{" "}</span>
           <span className="">
            {data?.VCL} {data?.VMK} {data?.VMD}
           </span>
@@ -238,7 +244,7 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
           <div className="flex flex-col mb-5">
               <p className="font-Light text-[24px] text-[#0A0D14] underline pb-2">Terms</p>
-{/*                
+              {/*                
                <div className="text-[#545151] font-Light">
                    <p>Model : {data?.bus_model}</p>
                    <p>Engagement : {data?.engagement}</p>

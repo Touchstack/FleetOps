@@ -8,11 +8,10 @@ import {
   import { IoEllipsisVertical } from "react-icons/io5";
   import { IoIosRemoveCircle } from "react-icons/io";
   import { BiSolidFilePdf } from "react-icons/bi";
+  import PropTypes from "prop-types";
 
 
-
-// eslint-disable-next-line react/prop-types
-const EllipsisMenu = ({ onUnassignClick }) => {
+const EllipsisMenu = ({ data, onUnassignClick }) => {
   return (
    <Menubar>
       <MenubarMenu>
@@ -25,9 +24,15 @@ const EllipsisMenu = ({ onUnassignClick }) => {
             <IoIosRemoveCircle />
             Unassign
           </MenubarItem>
-          <MenubarItem>
+          <MenubarItem >
             <BiSolidFilePdf />
-            Vehicle collection form
+            <a 
+              href={`https://engines.fleetopsgh.com/uploads/handover/${data?.driver?.VCC}`}
+              target="_blank"
+              rel="noreferrer"
+              className="font-SemiBold font-[16px] underline">
+              Vehicle Collection Form
+            </a>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
@@ -36,3 +41,8 @@ const EllipsisMenu = ({ onUnassignClick }) => {
 }
 
 export default EllipsisMenu
+
+EllipsisMenu.propTypes = {
+  data: PropTypes.object,
+  onUnassignClick: PropTypes.func
+};
