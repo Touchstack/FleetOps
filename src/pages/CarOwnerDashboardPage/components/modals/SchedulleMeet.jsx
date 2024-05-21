@@ -77,6 +77,19 @@ const ScheduleMeetModal = ({ open, onClose }) => {
                 Please choose the time you will be available
               </p>
               <div className={"flex gap-4 py-4 w-full "}>
+
+              <div className="w-full">
+                 <Label>From</Label>
+                  <input
+                    onChange={(e) => setTimeFrom(e.target.value)}
+                    defaultValue={"00:00:00"}
+                    type="time"
+                    className={
+                      "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
+                    }
+                  />
+                </div>
+                
                 <div className="w-full">
                  <Label>To</Label>
                   <input
@@ -88,17 +101,7 @@ const ScheduleMeetModal = ({ open, onClose }) => {
                     }
                   />
                 </div>
-                <div className="w-full">
-                 <Label>From</Label>
-                  <input
-                    onChange={(e) => setTimeFrom(e.target.value)}
-                    defaultValue={"00:00:00"}
-                    type="time"
-                    className={
-                      "p-3 border-[#23A6BF] border-[2px] rounded-md w-full"
-                    }
-                  />
-                </div>
+               
               </div>
               <div className="w-full">
                  <Label>Where</Label>

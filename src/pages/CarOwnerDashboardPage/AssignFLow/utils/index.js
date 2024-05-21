@@ -30,7 +30,7 @@ export const formSchema = z.object({
       message: "Hand over date is required",
     }),
 
-    acceptance_code: z.string().min(1, {
+    acceptance_code: z.number().min(1, {
       message: "Acceptance_Code is required",
     }),
 

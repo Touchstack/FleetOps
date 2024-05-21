@@ -46,7 +46,10 @@ const Preview = () => {
     }
      try {
       const res = await apiPostForm(payLoad)
+      console.log(res);
       if(res.status === 200){
+        localStorage.setItem('assigned_car', res?.data?.vehicle)
+        localStorage.removeItem('endTime_0')
         setshowModal(true)
       }
      } catch (error) {
@@ -115,10 +118,9 @@ const Preview = () => {
         </div>
      </div>
     </div>
+    {showModal && <Congratulations onCancel={() => setshowModal(false)} />}
 
-    <Toaster position="top-right" reverseOrder={true} />
-
-    {showModal && <Congratulations onCancel={() => setshowModal(!showModal)} />}
+    <Toaster position="bottom-right" reverseOrder={true} />
   </div>
   )
 }

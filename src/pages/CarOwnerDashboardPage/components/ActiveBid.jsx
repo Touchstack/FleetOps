@@ -19,6 +19,7 @@ export default function ActiveBid({ data }) {
   const [timeLeft, setTimeLeft] = useState({});
   const [expired, setExpired] = useState({});
   
+  //console.log('upper data =>', data)
  
   const handleAcceptBid = (id) => {
      localStorage.setItem("bid_id", id)
@@ -63,10 +64,11 @@ export default function ActiveBid({ data }) {
 
   useEffect(() => {
     const intervals = data.map((bid, index) => {
-      let endTime = moment(localStorage.getItem(`endTime_${index}`));
+      //console.log(bid);
+      let endTime = moment(bid?.expire_time);
       if (!endTime.isValid()) {
         endTime = moment().add(6, 'hours');
-        localStorage.setItem(`endTime_${index}`, endTime.toISOString());
+        //localStorage.setItem(`endTime_${index}`, endTime.toISOString());
       }
       return setInterval(() => {
         const timeLeft = calculateTimeLeft(endTime);

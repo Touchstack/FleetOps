@@ -80,7 +80,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                           <p> {car?.status === "assigned" ? "Assigned" : "Unassigned"}</p>
                         </div>
 
-                        {car?.status === "assigned" &&  <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />}
+                        {car?.status === "assigned" &&  <EllipsisMenu data={car} onUnassignClick={() => handleUnassignClick(car?.id)} />}
                        
                       </div>
                     </div>

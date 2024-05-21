@@ -21,20 +21,20 @@ const CollectionForm = () => {
   const navigate = useNavigate();
 
    const defaultData = JSON.parse(localStorage.getItem('defaultData'))
-   console.log(defaultData)
+   //console.log(defaultData)
 
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        registration: 'GE609-17',
-        chasis_num: 'MA3JFB2500A15892',
-        insurance: '2024-23-17',
+        registration: defaultData?.registration,
+        chasis_num: defaultData?.chasis_num,
+        insurance: defaultData?.insurance,
         starting_mileage: '',
-        road_cert: '2024-23-17',
+        road_cert: defaultData?.road_cert,
         comment: '',
-        hand_over_date: '2024-23-17',
-        acceptance_code: '9090',
-        signed_by: '',
+        hand_over_date: defaultData?.hand_over_date,
+        acceptance_code: defaultData?.acceptance_code,
+        signed_by: defaultData?.driver,
         front_lights: false,
         reverse_lights: false,
         wheel_caps: false,
@@ -600,7 +600,7 @@ const CollectionForm = () => {
                   <FormItem>
                     <FormLabel>Signed By</FormLabel>
                     <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                      <Input disabled className="md:w-6/12 bg-[#AAAAAA] h-[52px]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
