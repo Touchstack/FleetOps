@@ -65,6 +65,10 @@ const Dashboard = () => {
     }
   };
 
+  const handleCancelRetrival = () => {
+    //do something
+  } 
+
 
   useEffect(() => {
     if (!driver_id) {
@@ -191,7 +195,7 @@ const Dashboard = () => {
                      <div className="flex items-center space-x-3">
                       <BiSolidFilePdf size={25} />
                       <a 
-                        href={`https://engines.fleetopsgh.com/${data?.form}`}
+                        href={`https://engines.fleetopsgh.com/uploads/handover/${data?.form}`}
                         target="_blank"
                         rel="noreferrer"
                         className="font-SemiBold font-[16px] underline">
@@ -200,11 +204,19 @@ const Dashboard = () => {
                      </div>
                     </div>
                     <div className="flex justify-end mt-5">
-                      <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
-                       onClick={() => setShowReturnReason(true)}
-                      >
-                        Return car
-                      </div>
+                    {!data?.cancel ? (
+                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                         onClick={() => setShowReturnReason(true)}
+                        >
+                          Return car
+                        </div>
+                      )  : (
+                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                         onClick={handleCancelRetrival}
+                         >
+                          Cancel Retrival
+                         </div>
+                      )}
                     </div>
                   </>
                     ) : null}

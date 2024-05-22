@@ -4,11 +4,13 @@ import { FaStar } from "react-icons/fa";
 import Loading from "./Loading";
 import PropTypes from "prop-types";
 import EllipsisMenu from "./EllipsisMenu";
+import { CgProfile } from "react-icons/cg";
 
 
 const AssignedCars = ({data, loading, onUnassignClick}) => {
-  const handleUnassignClick = (id) => {
+  const handleUnassignClick = (id, driver_id) => {
     localStorage.setItem("car_id", id)
+    localStorage.setItem('driver_id', driver_id)
     onUnassignClick();
   };
   
@@ -43,8 +45,10 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                     {car?.status === "assigned" && (
                       <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
                         <Avatar>
-                          <AvatarImage src="" />
-                          <AvatarFallback>CO</AvatarFallback>
+                          <AvatarImage src={`http://engines.fleetopsgh.com/uploads/photo/${car?.driver?.avatar}`} />
+                          <AvatarFallback>
+                            <CgProfile size={50} />
+                          </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
                           <p className="font-GelionBold">{car?.driver?.DNM} {car?.driver?.DSN}</p>
@@ -53,6 +57,15 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                             <FaStar color="#CAEA08" size={10} />
                             <p>Rating: {car?.rating}/5.0 </p>
                           </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {car?.status === "assigned" && car?.retrive === true && (
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
+                        
+                        <div className="flex items-center justify-center">
+                          <p className="font-GelionBold text-[11px]">Retrival requested</p>
                         </div>
                       </div>
                     )}
@@ -77,7 +90,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                           <p> {car?.status === "assigned" ? "Assigned" : "Unassigned"}</p>
                         </div>
 
-                        <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id)} />
+                        <EllipsisMenu onUnassignClick={() => handleUnassignClick(car?.id, car?.driver_id)} />
 
                       </div>
                     </div>

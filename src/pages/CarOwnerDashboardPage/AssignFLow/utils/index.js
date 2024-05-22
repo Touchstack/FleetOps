@@ -38,6 +38,30 @@ export const formSchema = z.object({
       message: "Acceptance_Code is required",
     }),
 
+    front_lights_high_comment: z.string().optional(),
+
+    reverse_lights_comment: z.string().optional(),
+
+    parking_lights_comment: z.string().optional(),
+
+    front_lights_deem_comment: z.string().optional(),
+
+    indicator_lights_comment: z.string().optional(),
+
+    vehicle_tools_comment: z.string().optional(),
+
+    radio_comments: z.string().optional(),
+
+    warning_triangle_comment: z.string().optional(),
+
+    air_conditioner_comment: z.string().optional(),
+
+    spare_tire_comment: z.string().optional(),
+
+    fire_extinguisher_comment: z.string().optional(),
+
+    road_test_comment: z.string().optional(),
+
     front_lights: z.boolean({
       invalid_type_error: "must be a boolean",
     }).default(false).optional(),

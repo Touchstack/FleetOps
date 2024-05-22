@@ -2,12 +2,13 @@ import {useState} from "react";
 import {Modal} from "flowbite-react";
 import {cn} from "@/lib/utils.js";
 import {LiaTimesSolid} from "react-icons/lia";
-import Avatar from "@/assets/images/brian.jpeg";
 import ClipBoard from "@/assets/images/clipboard.svg";
 import {Button} from "@/Components/ui/button.jsx";
 import { Label } from "@/Components/ui/label";
 import { apiScheduleBid } from "@/services/CarOwnerService";
 import { ClipLoader } from "react-spinners";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
+import { CgProfile } from "react-icons/cg";
 
 const ScheduleMeetModal = ({ open, onClose }) => {
   const [invitationSent, setInvitationSent] = useState(false);
@@ -16,8 +17,10 @@ const ScheduleMeetModal = ({ open, onClose }) => {
   const [location, setLocation] = useState("")
   const [loading, setloading] = useState(false)
 
-  const bid_id = localStorage.getItem("bid_id")
-  const car_owner_id = localStorage.getItem("car-owner-token")
+  const bid_id = localStorage.getItem("bid_id");
+  const car_owner_id = localStorage.getItem("car-owner-token");
+  const bid_data = JSON.parse(localStorage.getItem("bid_data"));
+
 
   const handleInvite = async () => {
     const payLoad = {
@@ -65,12 +68,16 @@ const ScheduleMeetModal = ({ open, onClose }) => {
         {!invitationSent && (
           <div className="">
             <div className={"bg-[#FAFAFA] mb-4 p-4 rounded-[12px]"}>
-              <p className={"mb-4 font-Light"}>with Samuel Agyei</p>
-              <img
-                src={Avatar}
-                alt={"avatar"}
-                className={"w-[44px] h-[44px] rounded"}
+              <p className={"mb-4 font-Light"}>with {bid_data?.DNM} {bid_data?.DSN}</p>
+            <Avatar>
+              <AvatarImage 
+                className={"w-[44px] h-[44px] rounded"} 
+                src={`http://engines.fleetopsgh.com/uploads/driver/${bid_data?.avatar}`}
               />
+              <AvatarFallback>
+                <CgProfile size={30} />
+              </AvatarFallback>
+            </Avatar>
             </div>
             <div>
               <p className={"text-sm font-Light"}>

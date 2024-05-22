@@ -3,6 +3,8 @@ import AppLogo from "../../assets/images/fleetops-logo.svg";
 import { DriverDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom"; 
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
+import { CgProfile } from "react-icons/cg";
 
 
 export default function DashboardNavBar() {
@@ -84,17 +86,12 @@ export default function DashboardNavBar() {
                 {driver?.driver}
               </p>
             </span>
-            <span>
-              <svg
-                className="w-[40px] h-[40px] text-gray-300 dark:text-white mr-2 hover:cursor-pointer self-center"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-              </svg>
-            </span>
+            <Avatar className="w-14 h-14">
+              <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${driver?.driver_avatar}`}  />
+              <AvatarFallback>
+                  <CgProfile size={30} />
+              </AvatarFallback>
+            </Avatar>
           </button>
           {showDropdown && <DriverDropdown Settings={true} />}
 

@@ -6,6 +6,7 @@ const Confirmation = ({onCancel}) => {
   
   const handleClose = () => {
     onCancel();
+    window.location.href.reload()
   };
 
   return (
@@ -24,7 +25,7 @@ const Confirmation = ({onCancel}) => {
             </h1>
 
             <p className="text-center max-w-[327px] text-[#F5F5F5] font-Light mb-5">
-             We have received your request. A member of our team will contact you within 6 hours.
+             We have received your request. Vehicle owner will be notified shortly.
             </p>
            
            <div 

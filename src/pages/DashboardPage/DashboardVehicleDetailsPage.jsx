@@ -145,7 +145,7 @@ const DashboardVehicleDetailsPage = () => {
         <VehiclesLoading />
       ) : (
        <section className="flex md:flex-row flex-col w-full gap-10 md:gap-20">
-        <div className="flex flex-col md:min-w-[550px] max-w-[650px]">
+        <div className="md:flex hidden flex-col md:min-w-[550px] max-w-[650px]">
           {data?.front_photo ? (
             <img
             src={image || `http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}

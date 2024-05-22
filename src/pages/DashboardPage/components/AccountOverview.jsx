@@ -16,6 +16,7 @@ const AccountOverview = () => {
          const res = await apiGetDriverProfile(id)
             if (res.status === 200){
               setData(res?.data?.driver) 
+              localStorage.setItem('driver_avatar', res?.data?.driver?.avatar )
             }
       } catch (error) {
          console.log(error)
@@ -30,7 +31,7 @@ const AccountOverview = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-5 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src=""  />
+            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${data?.avatar}`}  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>

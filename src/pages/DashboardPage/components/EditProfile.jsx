@@ -19,6 +19,7 @@ const EditProfile = () => {
   const [transmission, setTransmission] = useState(prefillData.transmission || 'Manual');
   
   const id = localStorage.getItem("driver_id")
+  const driver_avatar = localStorage.getItem('driver_avatar')
   
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -61,7 +62,7 @@ const EditProfile = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-10 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src=""  />
+            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${driver_avatar}`}  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>
