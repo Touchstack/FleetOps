@@ -1,42 +1,58 @@
 import { useState } from 'react';
 import { IoCloseOutline } from "react-icons/io5"
-import { apiPostVehicleRetrieval } from "@/services/CarOwnerService";
+import { apiGetCollectionForm } from "@/services/CarOwnerService";
 import { PropTypes } from 'prop-types';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ExperienceRate = ({onCancel, onNext}) => {
   const [selectedRate, setSelectedRate] = useState(null);
-  const reason = localStorage.getItem('car_owner_reason')
-  const car_id = localStorage.getItem('car_id')
+  // const reason = localStorage.getItem('car_owner_reason')
+   const vehicle_id = localStorage.getItem('car_id');
+   const driver_id = localStorage.getItem('driver_id');
+
+  const navigate = useNavigate();
 
   const handleClose = () => {
     onCancel();
   };
 
-  const handleNext = async () => {
-    const payLoad = {
-      rating: selectedRate,
-      reason,
-      vehicle_id: car_id
-    }
+//   const handleNext = async () => {
+//     const payLoad = {
+//       rating: selectedRate,
+//       reason,
+//       vehicle_id: car_id
+//     }
   
-   if(reason){
-     try {
-       const res = await apiPostVehicleRetrieval(payLoad)
-       console.log(res)
-       if (res.status === 200) {
-         onNext();
-         localStorage.removeItem("reason")
-         localStorage.removeItem("car_id")
-       } else {
-         toast.error(res?.response?.data?.message || "An error occured couldnt return vehicle")
-       }
-     } catch (error) {
-       console.log(error)
-     }
-   }
- }
+//    if(reason){
+//      try {
+//        const res = await apiPostVehicleRetrieval(payLoad)
+//        console.log(res)
+//        if (res.status === 200) {
+//          onNext();
+//          localStorage.removeItem("reason")
+//          localStorage.removeItem("car_id")
+//        } else {
+//          toast.error(res?.response?.data?.message || "An error occured couldnt return vehicle")
+//        }
+//      } catch (error) {
+//        console.log(error)
+//      }
+//    }
+//  }
+
+const handleNext = async () => {
+  try {
+    const res = await apiGetCollectionForm(vehicle_id, driver_id)
+    if (res.status === 200) {
+      localStorage.setItem("defaultData", JSON.stringify(res?.data))
+      localStorage.setItem('Rate', selectedRate)
+      navigate('/carowner/retrival/form');
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
   const rate = [
     {id: '1', value: '1'},
@@ -98,7 +114,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
             onClick={handleNext}
             className="md:px-[46px] md:py-[8px] px-[20px] py-[8px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] bg-[#23A6BF]">
               <p className="text-[#ffffff]">
-                submit
+                Continue
               </p>
            </div>
 

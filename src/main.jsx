@@ -36,6 +36,12 @@ import CarImageLeftView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageL
 import CarImageBackView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageBackView.jsx";
 import Preview from "./pages/CarOwnerDashboardPage/AssignFLow/Preview.jsx";
 import Account from "./pages/DashboardPage/Account.jsx";
+import RetrivalForm from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetrivalForm.jsx";
+import RetrivalPreview from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetrivalPreview.jsx";
+import RetriveCarImageFrontView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageFrontView.jsx";
+import RetriveCarImageBackView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageBackView.jsx";
+import RetriveCarImageLeftView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageLeftView.jsx";
+import RetriveCarImageRightView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageRightView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -157,6 +163,37 @@ const router = createBrowserRouter([
   {
     path: "/carowner/assign/form",
     element: <CollectionForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/form",
+    element: <RetrivalForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/frontview",
+    element: <RetriveCarImageFrontView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/backview",
+    element: <RetriveCarImageBackView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/leftview",
+    element: <RetriveCarImageLeftView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/rightview",
+    element: <RetriveCarImageRightView />,
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: "/carowner/retrival/review",
+    element: <RetrivalPreview />,
     errorElement: <ErrorPage />,
   },
   {

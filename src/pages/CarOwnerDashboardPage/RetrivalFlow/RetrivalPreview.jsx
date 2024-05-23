@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import Congratulations from '../components/modals/Congratulations';
-import { apiPostForm } from '@/services/CarOwnerService';
+import { apiRetriveVehicle } from '@/services/CarOwnerService';
 import toast, { Toaster } from 'react-hot-toast';
 import { ClipLoader } from "react-spinners";
 import { useState } from 'react';
 
-const Preview = () => {
+const RetrivalPreview = () => {
   const [showModal, setshowModal] = useState(false)
   const [Loading, setLoading] = useState(false)
 
@@ -14,12 +14,13 @@ const Preview = () => {
 
   const frontView = localStorage.getItem('frontView-img')
   const rightView = localStorage.getItem('rightView-img')
-  const leftView = localStorage.getItem('leftView-img')
-  const backView = localStorage.getItem('backView-img')
+  const leftView =  localStorage.getItem('leftView-img')
+  const backView =  localStorage.getItem('backView-img')
   const form = JSON.parse(localStorage.getItem('form'))
   const driverId = localStorage.getItem('driver_id')
-  const driverimg = localStorage.getItem('driver-img')
-
+  //const driverimg = localStorage.getItem('driver-img')
+  const reason = localStorage.getItem('car_owner_reason')
+  const car_id = localStorage.getItem('car_id')
 
 
 
@@ -30,7 +31,7 @@ const Preview = () => {
       localStorage.removeItem('frontView-img');
       localStorage.removeItem('backView-img');
       localStorage.removeItem('form');
-      navigate('/carowner/assign/driver-image')
+      navigate('/carowner/retrival/form')
   }
 
 
@@ -38,21 +39,21 @@ const Preview = () => {
      try {
       const payLoad = {
         driver_id: driverId,
-        driverImg: driverimg,
+        vehicle_id: car_id,
         carImg: {
          frontView,
          rightView,
          leftView,
          backView
         },
-        defaultValues:form
+        defaultValues:form,
+        reason: reason
      }
       setLoading(true)
-      const res = await apiPostForm(payLoad)
+      const res = await apiRetriveVehicle(payLoad)
       console.log(res);
       if(res.status === 200){
         localStorage.setItem('assigned_car', res?.data?.vehicle)
-        localStorage.removeItem('endTime_0')
         setLoading(false)
         setshowModal(true)
       } else {
@@ -130,11 +131,11 @@ const Preview = () => {
         </div>
      </div>
     </div>
-    {showModal && <Congratulations unassigned={false} onCancel={() => setshowModal(false)} />}
+    {showModal && <Congratulations unassigned={true} onCancel={() => setshowModal(false)} />}
 
     <Toaster position="bottom-right" reverseOrder={true} />
   </div>
   )
 }
 
-export default Preview
+export default RetrivalPreview;

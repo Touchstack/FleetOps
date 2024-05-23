@@ -19,10 +19,11 @@ export default function ActiveBid({ data }) {
   const [timeLeft, setTimeLeft] = useState({});
   const [expired, setExpired] = useState({});
   
-  //console.log('upper data =>', data)
+  // console.log('upper data =>', data)
  
-  const handleAcceptBid = (id) => {
+  const handleAcceptBid = (id, data) => {
      localStorage.setItem("bid_id", id)
+     localStorage.setItem("bid_data", JSON.stringify(data))
     setOpenModal(!openModal);
   };
 
@@ -86,19 +87,21 @@ export default function ActiveBid({ data }) {
   return (
     <div className={"py-4"}>
       {data?.map((data, index) => (
+       
       <div
         key={index}
         className={
           "flex md:flex-row flex-col justify-between items-start py-4 gap-7 px-3"
         }
       >
+        
          <div className={""}>
           <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data?.DNM} {data?.DSN}</p>
           <div className={"flex gap-4 items-start"}>
             <Avatar>
               <AvatarImage 
                 className={"w-[44px] h-[44px] rounded"} 
-                src={`http://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}
+                src={`http://engines.fleetopsgh.com/uploads/driver/${data?.avatar}`}
               />
               <AvatarFallback>
                 <CgProfile size={30} />
@@ -157,7 +160,7 @@ export default function ActiveBid({ data }) {
           {data?.bid_status === 'pending' ? (
           <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-            onClick={() => handleAcceptBid(data?.bid_id)}
+            onClick={() => handleAcceptBid(data?.bid_id, data)}
           >
             Accept bid
           </Button>
@@ -189,7 +192,7 @@ export default function ActiveBid({ data }) {
       )}
 
       {onAssignCar && (
-         <YouAreAssigning onCancel={() => setonAssignCar(!onAssignCar)} />
+        <YouAreAssigning onCancel={() => setonAssignCar(!onAssignCar)} />
       )}
     </div>
   );

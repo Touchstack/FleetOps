@@ -1,7 +1,7 @@
 import { IoCloseOutline } from "react-icons/io5"
 import Car from "../../../.././assets/images/car-dashboard.svg"
 
-const Congratulations = ({onCancel}) => {
+const Congratulations = ({onCancel, unassigned}) => {
 
   const assigned_car = localStorage.getItem('assigned_car')
  
@@ -19,14 +19,27 @@ const Congratulations = ({onCancel}) => {
         <div className="flex flex-col items-center justify-center gap-[12px] mt-5">
 
             <img src={Car} alt="" className="max-w-[329.83px] max-h-[144px] mb-5 img-fluid" />
-
-            <h1 className="text-center leading-[35.2px] font-Bold max-w-[379px] text-[#FFFFFF] text-[32px]">
+            {unassigned ? (
+               <h1 className="text-center leading-[35.2px] font-Bold max-w-[379px] text-[#FFFFFF] text-[32px]">
+                 Thank you
+               </h1>
+            ) : (
+              <h1 className="text-center leading-[35.2px] font-Bold max-w-[379px] text-[#FFFFFF] text-[32px]">
                 Congratulations!
-            </h1>
+             </h1>
+            )}
+            
 
-            <p className="text-center max-w-[327px] text-[#F5F5F5] font-Light mb-5">
-               {assigned_car} has been assigned to Driver.
-            </p>
+            {unassigned ? (
+               <p className="text-center max-w-[327px] text-[#F5F5F5] font-Light mb-5">
+                 This car has been Unassigned successfully. The driver will be notified immediately.
+               </p>
+            ) : (
+              <p className="text-center max-w-[327px] text-[#F5F5F5] font-Light mb-5">
+                {assigned_car} has been assigned to Driver.
+              </p>
+            )}
+           
            
            <div 
            onClick={handleBackHome}

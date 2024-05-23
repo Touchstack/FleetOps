@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema } from "./utils";
+import { formSchema } from "../AssignFLow/utils";
 import {
   Form,
   FormControl,
@@ -18,7 +18,8 @@ import { Checkbox } from "@/Components/ui/checkbox";
 import { Separator } from "@/Components/ui/separator";
 
 
-const CollectionForm = () => {
+
+const RetrivalForm = () => {
   const navigate = useNavigate();
 
    const defaultData = JSON.parse(localStorage.getItem('defaultData'))
@@ -110,12 +111,12 @@ const CollectionForm = () => {
         road_test_comment: values.road_test_comment
       };
       localStorage.setItem('form', JSON.stringify(formData));
-     navigate('/carowner/assign/car-image/front')
+     navigate('/carowner/retrival/frontview')
     }
   
     const handleRestart = () => {
       localStorage.removeItem('driver-img');
-      navigate('/carowner/assign/driver-image')
+      navigate('/carowner/retrival/form')
     }
 
   return (
@@ -125,7 +126,7 @@ const CollectionForm = () => {
 
       <div className="flex flex-col mt-10 items-center mb-8">
         <h1 className="text-[#0A0D14] font-bold text-3xl md:text-5xl">
-          Vehicle Collection Form
+          Vehicle Retrival Form
         </h1>
         <p className="text-[#545151] md:text-lg md:w-full pt-[16px]  text-center text-base font-light">
           Please fill in the vehicle checklist
@@ -794,9 +795,9 @@ const CollectionForm = () => {
   );
 };
 
-export default CollectionForm;
+export default RetrivalForm;
 
-CollectionForm.propTypes = {
+RetrivalForm.propTypes = {
     onNext: PropTypes.func,
     onBack: PropTypes.func,
   };

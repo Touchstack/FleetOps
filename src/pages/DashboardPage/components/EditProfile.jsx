@@ -13,12 +13,15 @@ import { useForm } from "react-hook-form";
 import { apiEditDriverProfile } from "@/services/VehiclesService";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
+import { ClipLoader } from "react-spinners";
 
 const EditProfile = () => {
   const prefillData = JSON.parse(localStorage.getItem('From-Prefill')) || {};
   const [transmission, setTransmission] = useState(prefillData.transmission || 'Manual');
+  const [Loading, setLoading] = useState(false)
   
   const id = localStorage.getItem("driver_id")
+  const driver_avatar = localStorage.getItem('driver_avatar')
   
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -61,7 +64,7 @@ const EditProfile = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-10 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src=""  />
+            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${driver_avatar}`}  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>
@@ -81,6 +84,7 @@ const EditProfile = () => {
             name="firstName"
             placeholder="e.g Kwaku" 
             className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+            disabled = {prefillData?.unedit}
             {...register("firstName", { required: "First name is required",  })}
           />
           {errors?.firstName && <p className="text-red-500 text-xs">{errors?.firstName?.message}</p>}
@@ -92,6 +96,7 @@ const EditProfile = () => {
             name="lastName"
             placeholder="e.g Mensah" 
             className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+            disabled = {prefillData?.unedit}
             {...register("lastName", { required: "Last name is required",  })}
           />
           {errors?.lastName && <p className="text-red-500 text-xs">{errors?.lastName?.message}</p>}
@@ -101,6 +106,7 @@ const EditProfile = () => {
              type="email" 
              id="email" 
              placeholder="e.g kwaku@mail.com"
+             disabled = {prefillData?.unedit}
              className="rounded-[5px] border-[#D9D9D9] h-[49px]"
              {...register("email", { required: "Email is required", pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email address" } })}
            />

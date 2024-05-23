@@ -164,6 +164,22 @@ export async function apiPostCarOwner(payLoad) {
       });
   }
 
+  export async function apiRetriveVehicle(payLoad) {
+    return axios({
+      method: "post",
+      url:  `https://engines.fleetopsgh.com/api/retrieve/vehicle`,
+      data: payLoad,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+
+
 
 
 

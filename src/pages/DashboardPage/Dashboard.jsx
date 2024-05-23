@@ -1,7 +1,7 @@
 
 import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
-import { apiGetDriverDashboard } from "../../services/VehiclesService";
+import { apiGetDriverDashboard, apiCancelRetrival } from "../../services/VehiclesService";
 import Car from "../../assets/images/car-dashboard.svg";
 import Chart from "../../assets/images/chart.svg";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import Confirmation from "./components/modals/Confirmation";
 import Congratulations from "./components/modals/Congratulations";
 import { useNavigate } from "react-router-dom";
 import { BiSolidFilePdf } from "react-icons/bi";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
   //const driverData = localStorage.getItem("driver");
@@ -64,6 +65,25 @@ const Dashboard = () => {
       }
     }
   };
+
+  const handleCancelRetrival = async () => {
+    const id = data?.vehicle_id
+    if (id) {
+      try {
+        setLoading(true);
+        const res = await apiCancelRetrival(id);
+
+        if (res.status === 200) {
+          toast.success(res?.data?.message)
+          return window.location.reload()
+        } else {
+         toast.error(res?.response?.data?.message || "an error occured")
+        } 
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  } 
 
 
   useEffect(() => {
@@ -191,7 +211,7 @@ const Dashboard = () => {
                      <div className="flex items-center space-x-3">
                       <BiSolidFilePdf size={25} />
                       <a 
-                        href={`https://engines.fleetopsgh.com/${data?.form}`}
+                        href={`https://engines.fleetopsgh.com/uploads/handover/${data?.form}`}
                         target="_blank"
                         rel="noreferrer"
                         className="font-SemiBold font-[16px] underline">
@@ -200,11 +220,19 @@ const Dashboard = () => {
                      </div>
                     </div>
                     <div className="flex justify-end mt-5">
-                      <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
-                       onClick={() => setShowReturnReason(true)}
-                      >
-                        Return car
-                      </div>
+                    {data?.return_status === false ? (
+                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                         onClick={() => setShowReturnReason(true)}
+                        >
+                          Return car
+                        </div>
+                      )  : (
+                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                         onClick={handleCancelRetrival}
+                         >
+                          Cancel Retrival
+                         </div>
+                      )}
                     </div>
                   </>
                     ) : null}
@@ -264,6 +292,8 @@ const Dashboard = () => {
       {showCongratulations && (
        <Congratulations onCancel={closeModal} />
       )}
+
+     <Toaster position="top-right" reverseOrder={true} />
 
     </div>
   );

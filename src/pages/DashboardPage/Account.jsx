@@ -17,7 +17,8 @@ const Account = () => {
           lname: res?.data?.driver?.DSN,
           phone: res?.data?.driver?.DCN,
           email: res?.data?.driver?.email,
-          transmission: res?.data?.driver?.trans_type
+          transmission: res?.data?.driver?.trans_type,
+          unedit: res?.data?.driver?.unedit
         };
         localStorage.setItem('From-Prefill', JSON.stringify(driverData));
       }
