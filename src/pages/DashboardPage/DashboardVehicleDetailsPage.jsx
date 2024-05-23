@@ -148,7 +148,7 @@ const DashboardVehicleDetailsPage = () => {
         <div className="md:flex hidden flex-col md:min-w-[550px] max-w-[650px]">
           {data?.front_photo ? (
             <img
-            src={image || `http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
+            src={image || `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`}
             className="hidden rounded-[10px]  md:flex h-[422px]" 
             alt=""
           />         
