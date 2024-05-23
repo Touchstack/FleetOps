@@ -46,13 +46,16 @@ const EditProfile = () => {
 
     try {
      await apiEditDriverProfile(id, payLoad).then((res) => {
+      setLoading(true)
        if(res.status === 200) {
         toast.success("Driver Profile updates");
        }else{
+        setLoading(false)
         toast.error(res?.response?.data?.message || "Error Updating Driver profile ");
        }
      })
     } catch (error) {
+      setLoading(false)
      console.log(error) 
      toast.error(error?.response?.data?.message || "Error updating profile");
     }
@@ -135,7 +138,11 @@ const EditProfile = () => {
               </Select>
 
           <Button className='bg-[#23A6BF] mt-4 h-[46px]'>
-             Save changes
+             {Loading ? (
+              <ClipLoader size={30} color="#FFFFFF" />
+             ) : (
+              "Save changes"
+             )}
           </Button>
        </form>
 
