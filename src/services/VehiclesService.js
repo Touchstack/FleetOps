@@ -142,4 +142,9 @@ export async function apiFillDriverProfile(id) {
   return apiClient.get(`/driver/${id}/profile`);  //driver id
 }
 
+export async function apiCancelRetrival(vehicle_id) {
+  return apiClient.put(`cancel/return/${vehicle_id}`);  //vehicle id
+}
+
+
 //new Endpoints

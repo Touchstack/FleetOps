@@ -33,6 +33,7 @@ const ExperienceRate = ({onCancel, onNext}) => {
         if (res.status === 200) {
           onNext();
           localStorage.removeItem("reason")
+          return window.location.reload()
         } else {
           toast.error(res?.response?.data?.message || "An error occured couldnt return vehicle")
         }
