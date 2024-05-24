@@ -101,7 +101,7 @@ export default function ActiveBid({ data }) {
             <Avatar>
               <AvatarImage 
                 className={"w-[44px] h-[44px] rounded"} 
-                src={`http://engines.fleetopsgh.com/uploads/driver/${data?.avatar}`}
+                src={`http://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}
               />
               <AvatarFallback>
                 <CgProfile size={30} />
@@ -119,12 +119,21 @@ export default function ActiveBid({ data }) {
               </p>
             </div>
           </div>
+     
           {data?.swap === "yes" && 
-            <p className={"my-4 bg-[#EDFCFF] text-[#088DA7] w-max"}>
-              The bidder is currently driving another
+            <p className={"my-4 p-1 font-SemiBold text-[13px] rounded-sm bg-[#cde5ea] text-[#088DA7] w-max"}>
+              The bidder is currently driving another vehicle
             <br /> but wants to swap
             </p>
           }
+
+          {/* {data?.swap === "yes" && 
+            <p className={"my-4 bg-red-500 p-2 text-white w-max"}>
+              The bidder is currently driving another
+            <br /> but wants to swap
+            </p>
+          } */}
+    
         </div>
         <div
           className={"flex md:flex-row flex-col gap-8 justify-between w-1/2"}
@@ -135,7 +144,11 @@ export default function ActiveBid({ data }) {
           </div>
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Year of experience</p>
-            <p>{data?.years_of_exp} years</p>
+             {typeof data?.years_of_exp === 'number' && !isNaN(data?.years_of_exp) ? (
+              <p>{data?.years_of_exp} years</p>
+            ) : (
+              <p>--</p>
+            )} 
           </div>
           <div className={"flex flex-col gap-4"}>
             <p className={"font-bold text-[#6D6D6D]"}>Phone</p>
@@ -150,36 +163,48 @@ export default function ActiveBid({ data }) {
               <p className="font-Light text-[14px] text-[#CE9A00]  p-0">Waiting to be assigned</p>
             </div>
            }
+
           </div>
         </div>
-        <div
-          className={
-            "flex gap-2  justify-end md:justify-center md:w-max w-full"
-          }
-        >
-          {data?.bid_status === 'pending' ? (
+
+        <div>
+          <div
+            className={
+              "flex gap-2  justify-end md:justify-center md:w-max w-full"
+            }
+          >
+            {data?.bid_status === 'pending' ? (
+            <Button
+              className={`${data?.swap === 'yes' ? "bg-gray-400" : "bg-[#23A6BF]"} py-3 text-base hover:bg-fleetLightBlue`}
+              onClick={() => handleAcceptBid(data?.bid_id, data)}
+              disabled = {data?.swap === 'yes' ? true : false}
+            >
+              Accept bid
+            </Button>
+          ) : (
           <Button
             className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-            onClick={() => handleAcceptBid(data?.bid_id, data)}
+            onClick={() => handleAssign(data?.bid_id)}
           >
-            Accept bid
+            Assign Car
           </Button>
-        ) : (
-        <Button
-          className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
-          onClick={() => handleAssign(data?.bid_id)}
-         >
-          Assign Car
-        </Button>
-        )}
+          )}
 
-          <Button
-            className={"border-[#23A6BF] text-base text-fleetBlue"}
-            variant={"outline"}
-            onClick={() => handleCancelBid(data?.bid_id)}
-          >
-            Cancel
-          </Button>
+            <Button
+              className={"border-[#23A6BF] text-base text-fleetBlue"}
+              variant={"outline"}
+              onClick={() => handleCancelBid(data?.bid_id)}
+            >
+              Cancel
+            </Button>
+          </div>
+
+          {data?.swap === "yes" && 
+            <p className={"my-4 p-1 rounded-sm bg-[#c16060] text-white w-max"}>
+              Bid can not be accepted until driver 
+            <br /> return Vehicle.
+            </p>
+          }
         </div>
       </div>
     ))}

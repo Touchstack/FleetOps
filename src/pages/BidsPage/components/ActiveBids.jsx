@@ -48,6 +48,8 @@ const ActiveBids = () => {
   useEffect(() => {
     getActiveBids()
   }, [])
+
+  console.log("this is the data", data);
   
 
   return (
@@ -63,9 +65,9 @@ const ActiveBids = () => {
                 <div className="relative flex flex-col cursor-pointer  py-[23px] px-[22px] rounded-[30px]">
                   
 
-                  {cars?.front_photo ? (
+                  {cars?.vehicle?.front_photo ? (
                     <img 
-                      src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.vehicle.front_photo}`}  
+                      src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.vehicle?.front_photo}`}  
                       className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                        alt="" 
                      />

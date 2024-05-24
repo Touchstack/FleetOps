@@ -67,8 +67,18 @@ export async function apiGetAvailableVehicles() {
   return apiClient.get(`/availablecars`);
 }
 
-export async function apiGetAvailableVehiclesBySearch(data) {
-  return apiClient.get(`/availablecars`, data);
+export async function apiGetAvailableVehiclesBySearch(payLoad) {
+  return axios({
+    method: "get",
+    url: "https://engines.fleetopsgh.com/api/availablecars",
+    data: payLoad
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
 }
 
 export async function apiGetVehicleDetails(id, driver_id ) {

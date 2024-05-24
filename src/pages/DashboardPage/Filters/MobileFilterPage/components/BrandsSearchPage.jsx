@@ -1,66 +1,67 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SlArrowLeft } from "react-icons/sl";
-import { Input } from "../../../../.././Components/ui/input";
+//import { Input } from "../../../../.././Components/ui/input";
 import { motion } from "framer-motion";
 import { slideIn } from "../../../../.././utils/animation";
 import { PropTypes } from 'prop-types';
 
 const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  
-  // Sample data for cars
-  const cars = [
-    { name: "Audi", brand: "A" },
-    { name: "BMW", brand: "B" },
-    { name: "Chevrolet", brand: "C" },
-    { name: "Dodge", brand: "D" },
-    { name: "Ford", brand: "F" },
-    { name: "Honda", brand: "H" },
-    { name: "Toyota", brand: "T" },
-    { name: "Audi", brand: "A" },
-    { name: "BMW", brand: "B" },
-    { name: "Chevrolet", brand: "C" },
-    { name: "Dodge", brand: "D" },
-    { name: "Ford", brand: "F" },
-    { name: "Honda", brand: "H" },
-    { name: "Toyota", brand: "T" },
-  ];
+  //const [searchQuery, setSearchQuery] = useState('');
+  const [Data, setData] = useState([])
 
+  async function fetchOptions() {
+    try {
+      const response = await fetch(`https://engines.fleetopsgh.com/api/filter`);
+      const data = await response.json();
+      console.log(data);
+
+      const transformedOptions = data.brands.map(item => item.VMK);
+      setData(transformedOptions);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchOptions();
+  }, []);
+  
+  
     // Debounce function to create intervals in api call
-    const debounce = (func, delay) => {
-      let timeoutId;
-      return function (...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          func.apply(this, args);
-        }, delay);
-      };
-    };
+    // const debounce = (func, delay) => {
+    //   let timeoutId;
+    //   return function (...args) {
+    //     clearTimeout(timeoutId);
+    //     timeoutId = setTimeout(() => {
+    //       func.apply(this, args);
+    //     }, delay);
+    //   };
+    // };
   
     // Function to filter cars based on search query
-    const filterCars = debounce((searchQuery) => {
-      console.log("Perform API call with filtered data:", searchQuery);
-    }, 2000); 
+    // const filterCars = debounce((searchQuery) => {
+    //   console.log("Perform API call with filtered data:", searchQuery);
+    // }, 2000); 
   
 
-    const handleInputChange = (e) => {
-      const value = e.target.value;
-      setSearchQuery(value);
-      filterCars(value);
-    };
+    // const handleInputChange = (e) => {
+    //   const value = e.target.value;
+    //   setSearchQuery(value);
+    //   filterCars(value);
+    // };
   
 
   // Function to group cars by their first alphabet
-  const groupCarsByAlphabet = () => {
-    const groupedCars = {};
-    cars.forEach((car) => {
-      const firstAlphabet = car.brand.charAt(0).toUpperCase();
-      if (!groupedCars[firstAlphabet]) {
-        groupedCars[firstAlphabet] = [];
+  const groupBrandsByAlphabet = (brands) => {
+    const groupedBrands = {};
+    brands.forEach((brand) => {
+      const firstAlphabet = brand.charAt(0).toUpperCase();
+      if (!groupedBrands[firstAlphabet]) {
+        groupedBrands[firstAlphabet] = [];
       }
-      groupedCars[firstAlphabet].push(car);
+      groupedBrands[firstAlphabet].push(brand);
     });
-    return groupedCars;
+    return groupedBrands;
   };
 
   // Function to filter cars based on search query
@@ -69,22 +70,22 @@ const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
   // );
 
   // Render categorized listing of cars
-  const renderCategorizedCars = () => {
-    const groupedCars = groupCarsByAlphabet();
+  const renderCategorizedBrands = () => {
+    const groupedBrands = groupBrandsByAlphabet(Data);
     return (
-      <div className="overflow-auto" style={{ maxHeight: "calc(100vh - 250px)" }}>
-        {Object.entries(groupedCars).map(([alphabet, cars]) => (
+      <div className="overflow-auto mt-4" style={{ maxHeight: "calc(100vh - 250px)" }}>
+        {Object.entries(groupedBrands).map(([alphabet, brands]) => (
           <div className='py-5 px-3' key={alphabet}>
             <h2 className="text-lg font-semibold">{alphabet}</h2>
             <div className="grid grid-cols-2 gap-4">
-              {cars.map((car, index) => (
+              {brands.map((brand, index) => (
                 <div key={index} className="pl-5 pt-1">
                   <ul>
                     <li 
-                     className='list-disc'
-                     onClick={() => onValueSelect(car.name)}
+                     className='list-disc cursor-pointer'
+                     onClick={() => onValueSelect(brand)}
                     >
-                      {car.name}
+                      {brand}
                     </li>
                   </ul>
                 </div>
@@ -95,6 +96,7 @@ const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
       </div>
     );
   };
+
 
   return (
     <motion.div
@@ -108,17 +110,17 @@ const BrandsSearchPage = ({ onBackClick, onValueSelect }) => {
           onClick={onBackClick} 
         />
       </div>
-      <div className='flex items-center justify-center mt-7 mb-10'>
+      {/* <div className='flex items-center justify-center mt-7 mb-10'>
         <Input 
            type="text" 
            placeholder="Search item" 
            value={searchQuery}
            onChange={handleInputChange}
         />
-      </div>
+      </div> */}
 
       {/* Render categorized listing of cars */}
-      {renderCategorizedCars()}
+      {renderCategorizedBrands()}
     </motion.div>
   );
 };

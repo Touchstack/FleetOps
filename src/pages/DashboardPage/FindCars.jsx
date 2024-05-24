@@ -27,20 +27,23 @@ const FindCars = () => {
   const [appContext, setAppContext] = useContext(AppContext);
   const [URL, setURL] = useState("")
 
-  console.log(hirePurchase)
-
+  
   const updateAllData = (data) => {
+    //console.log("all data =>", data)
     setAllData(data);
   };
 
   const updateRentals = (data) => {
+    //console.log("rental data =>", data)
     setRentals(data);
   };
   const updateRideHailing = (data) => {
+    //console.log("Hailing data =>", data)
     setRideHailing(data);
   };
 
   const updateHirePurchase = (data) => {
+    //console.log("Purchase data =>", data)
     setHirePurchase(data);
   };
 

@@ -87,7 +87,7 @@ export default function DashboardNavBar() {
               </p>
             </span>
             <Avatar className="w-14 h-14">
-              <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${driver?.driver_avatar}`}  />
+              <AvatarImage src={`http://engines.fleetopsgh.com/uploads/photo/${driver?.driver_avatar}`}  />
               <AvatarFallback>
                   <CgProfile size={30} />
               </AvatarFallback>

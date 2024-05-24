@@ -72,7 +72,7 @@ const ScheduleMeetModal = ({ open, onClose }) => {
             <Avatar>
               <AvatarImage 
                 className={"w-[44px] h-[44px] rounded"} 
-                src={`http://engines.fleetopsgh.com/uploads/driver/${bid_data?.avatar}`}
+                src={`http://engines.fleetopsgh.com/uploads/photo/${bid_data?.avatar}`}
               />
               <AvatarFallback>
                 <CgProfile size={30} />

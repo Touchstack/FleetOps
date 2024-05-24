@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { Button } from '../../.././Components/ui/button';
 import { Separator } from '../../.././Components/ui/separator';
@@ -40,26 +40,32 @@ const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
   
   
 
-  const FilterItem = ({ title, value, onChange, options }) => {
+  const FilterItem = ({ title, value, onChange, optionsKey, staticOptions }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
-    // const [options, setOptions] = useState([]);
+    const [options, setOptions] = useState(staticOptions || []);
 
-    // useEffect(() => {
-    //   async function fetchOptions() {
-    //     try {
-    //       const response = await fetch(`YOUR_API_ENDPOINT_FOR_${title.toUpperCase()}`);
-    //       const data = await response.json();
-    //       setOptions(data);
-    //     } catch (error) {
-    //       console.error('Error fetching options:', error);
-    //     }
-    //   }
+    useEffect(() => {
+      if (optionsKey !== 'brands') return; // Only fetch if optionsKey is 'brands'
   
-    //   if (showDropdown) {
-    //     fetchOptions();
-    //   }
-    // }, [showDropdown, title]);
+      async function fetchOptions() {
+        try {
+          const response = await fetch(`https://engines.fleetopsgh.com/api/filter`);
+          const data = await response.json();
+          console.log(data);
+  
+          const transformedOptions = data.brands.map(item => item.VMK);
+          setOptions(transformedOptions.filter(option => option !== null));
+        } catch (error) {
+          console.error('Error fetching options:', error);
+        }
+      }
+  
+      if (showDropdown) {
+        fetchOptions();
+      }
+    }, [showDropdown, optionsKey]);
+  
 
     const handleSelect = (newValue) => {
         setSelectedValue(newValue);
@@ -84,7 +90,7 @@ const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
         {showDropdown && (
           <FilterDropdown
             options={options}
-            title={title}
+            //title={title}
             onMouseEnter={() => setShowDropdown(true)}
             onMouseLeave={() => setShowDropdown(false)}
             onSelect={(newValue) => handleSelect(newValue)}
@@ -99,8 +105,8 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
 
     const [selectedValues, setSelectedValues] = useState({
         'Brand': '',
-        'Year_of_man.': '',
-        'Year_of_reg.': '',
+        'Year_of_man': '',
+        'Year_of_reg': '',
         'Fuel_consumption': '',
         'Transmission_type': '',
       });
@@ -117,13 +123,13 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
       const getSearchData = async () => {
         try {
           const res = await apiGetAvailableVehiclesBySearch(selectedValues)
-           console.log(res);
+           console.log("data from search =>",res);
             if(res.status === 200){
               updateAllData(res.data?.all?.data);
               updateRentals(res.data?.rentals?.data)
               updateRideHailing(res.data?.rideHailing?.data)
               updateHirePurchase(res.data?.hirePurchase?.data)
-              toast.success("fetching data successful");
+              toast.success("Fetched Search Result");
             }
         } catch (error) {
           toast.error("Error occurred while fetching data");
@@ -138,31 +144,32 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
          title="Brand" 
          value={selectedValues['Brand']} 
          onChange={(value) => handleFilterChange('Brand', value)} 
-         options={['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Mercedes']} // take this out when api is ready
+         //options={['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Mercedes']} // take this out when api is ready
+         optionsKey="brands"
      />
       <FilterItem 
          title="Year of man." 
-         value={selectedValues['Year_of_man.']} 
-         onChange={(value) => handleFilterChange('Year_of_man.', value)}
-         options={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']}  
+         value={selectedValues['Year_of_man']} 
+         onChange={(value) => handleFilterChange('Year_of_man', value)}
+         staticOptions={['2020-2024', '2015-2019', '2010-2014', '2005-2009']} 
        />
       <FilterItem 
          title="Year of reg." 
-         value={selectedValues['Year_of_reg.']} 
-         onChange={(value) => handleFilterChange('Year_of_reg.', value)}
-         options={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']} 
+         value={selectedValues['Year_of_reg']} 
+         onChange={(value) => handleFilterChange('Year_of_reg', value)}
+         staticOptions={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']} 
        />
       <FilterItem 
          title="Fuel consumption" 
          value={selectedValues['Fuel_consumption']} 
          onChange={(value) => handleFilterChange('Fuel_consumption', value)}
-         options={['1.5', '2.0',]} 
+         staticOptions={['1.5', '2.0',]} 
        />
       <FilterItem 
          title="Transmission type" 
          value={selectedValues['Transmission_type']} 
          onChange={(value) => handleFilterChange('Transmission_type', value)}
-         options={['Manual','Automatic']}  
+         staticOptions={['Manual','Automatic']}  
       />
 
       <div className="md:hidden flex" onClick={() => {setAllFilter(!AllFilter);}}>
@@ -193,9 +200,9 @@ FilterBar.propTypes = {
 
 FilterItem.propTypes = {
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
+  optionsKey: PropTypes.string.isRequired,
 }
 
 FilterDropdown.propTypes = {

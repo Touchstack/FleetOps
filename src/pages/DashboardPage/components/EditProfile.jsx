@@ -67,7 +67,7 @@ const EditProfile = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-10 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${driver_avatar}`}  />
+            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/photo/${driver_avatar}`}  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>
@@ -86,7 +86,7 @@ const EditProfile = () => {
             id="fullName" 
             name="firstName"
             placeholder="e.g Kwaku" 
-            className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+            className={`rounded-[5px] ${prefillData?.unedit ? 'bg-slate-300' : 'bg-white'}  border-[#D9D9D9] h-[49px]`}
             disabled = {prefillData?.unedit}
             {...register("firstName", { required: "First name is required",  })}
           />
@@ -98,7 +98,7 @@ const EditProfile = () => {
             id="lastName" 
             name="lastName"
             placeholder="e.g Mensah" 
-            className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+            className={`rounded-[5px] ${prefillData?.unedit ? 'bg-slate-300' : 'bg-white'}  border-[#D9D9D9] h-[49px]`}
             disabled = {prefillData?.unedit}
             {...register("lastName", { required: "Last name is required",  })}
           />
@@ -110,7 +110,7 @@ const EditProfile = () => {
              id="email" 
              placeholder="e.g kwaku@mail.com"
              disabled = {prefillData?.unedit}
-             className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+             className={`rounded-[5px] ${prefillData?.unedit ? 'bg-slate-300' : 'bg-white'}  border-[#D9D9D9] h-[49px]`}
              {...register("email", { required: "Email is required", pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email address" } })}
            />
            {errors?.email && <p className="text-red-500 text-xs">{errors?.email?.message}</p>}
@@ -120,7 +120,8 @@ const EditProfile = () => {
             type="text" 
             id="phone" 
             placeholder="e.g  0245869979"
-            className="rounded-[5px] border-[#D9D9D9] h-[49px]"
+            disabled = {prefillData?.unedit}
+            className={`rounded-[5px] ${prefillData?.unedit ? 'bg-slate-300' : 'bg-white'}  border-[#D9D9D9] h-[49px]`}
             {...register("phone", { required: "Number is required"  })}
           />
            {errors?.phone && <span className="text-red-500 text-xs">Phone Number is required</span>}

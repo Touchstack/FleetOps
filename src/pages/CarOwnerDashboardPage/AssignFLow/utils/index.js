@@ -14,7 +14,7 @@ export const formSchema = z.object({
     }),
 
     starting_mileage: z.string().min(1, {
-      message: "Starting Mileage is required",
+      message: "Mileage is required",
     }),
 
     road_cert: z.string().min(1, {

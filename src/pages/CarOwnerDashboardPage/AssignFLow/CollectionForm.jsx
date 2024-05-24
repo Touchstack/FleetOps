@@ -231,6 +231,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+
+             <FormField
+                control={form.control}
+                name="front_lights_high_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Front Lights High comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               
 
               <FormField
@@ -249,6 +263,20 @@ const CollectionForm = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="reverse_lights_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Reverse lights comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -273,6 +301,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+                control={form.control}
+                name="parking_lights_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Parking lights comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -290,6 +332,20 @@ const CollectionForm = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="front_lights_deem_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Front lights deem comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -313,6 +369,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+                control={form.control}
+                name="indicator_lights_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Indicator lights comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -330,6 +400,20 @@ const CollectionForm = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+               
+               <FormField
+                control={form.control}
+                name="vehicle_tools_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Vehicle tools comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -353,6 +437,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+                control={form.control}
+                name="radio_comments"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Radio comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -370,6 +468,20 @@ const CollectionForm = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="warning_triangle_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Warning triangle comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -393,6 +505,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+                control={form.control}
+                name="air_conditioner_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Air conditioner comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -410,6 +536,20 @@ const CollectionForm = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+               
+               <FormField
+                control={form.control}
+                name="spare_tire_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Spare tire comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -433,6 +573,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+               
+               <FormField
+                control={form.control}
+                name="fire_extinguisher_comment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Fire extinguisher comment</FormLabel>
+                    <FormControl>
+                      <Input className="md:w-6/12 h-[52px]"  {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> 
 
               <FormField
                 control={form.control}
@@ -453,6 +607,20 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
+              
+              <FormField
+              control={form.control}
+              name="road_test_comment"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Road test comment</FormLabel>
+                  <FormControl>
+                    <Input className="md:w-6/12 h-[52px]"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
               <FormField
                 control={form.control}
@@ -536,178 +704,7 @@ const CollectionForm = () => {
 
             </div>
             <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
-            
-            {/* Comments */}
-            <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] md:mx-20 grid-cols-1">
-            <FormField
-                control={form.control}
-                name="front_lights_high_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Front Lights High comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="reverse_lights_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Reverse lights comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-             <FormField
-                control={form.control}
-                name="parking_lights_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Parking lights comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="front_lights_deem_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Front lights deem comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="indicator_lights_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Indicator lights comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="vehicle_tools_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Vehicle tools comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="radio_comments"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Radio comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="warning_triangle_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Warning triangle comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="air_conditioner_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Air conditioner comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="spare_tire_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Spare tire comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="fire_extinguisher_comment"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Fire extinguisher comment</FormLabel>
-                    <FormControl>
-                      <Input className="md:w-6/12 h-[52px]"  {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> 
-              
-              <FormField
-              control={form.control}
-              name="road_test_comment"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Road test comment</FormLabel>
-                  <FormControl>
-                    <Input className="md:w-6/12 h-[52px]"  {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            </div>
-            <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
+                  
 
             <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] md:mx-20 grid-cols-1">
             <FormField

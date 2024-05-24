@@ -30,7 +30,7 @@ const PlacingBidModal = ({onCancel}) => {
 
             <h2 className="font-Bold text-center text-[32px] text-[#FFFFFF]">Your bid has been placed</h2>
             <p className="text-center text-[13.66px] text-[#F5F5F5] w-[347px]">
-                We have received your car request. A member of our team will contact you within 6 hours.
+                We have received your bid request. A member of our team will contact you within 6 hours.
             </p>
           </div>
 
@@ -45,8 +45,8 @@ const PlacingBidModal = ({onCancel}) => {
 
            <div 
             onClick={handleOnBackToSearch}
-            className="md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
-                 Back to search
+            className="flex items-center md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white px-[26px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
+               <p>Back to search</p>   
            </div>
 
         </div>

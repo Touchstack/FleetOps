@@ -50,7 +50,7 @@ export const DriverDropdown = ({ Settings }) => {
           <p 
           onClick={() => navigate('/drivers/account')}
           className="px-2 py-3 cursor-pointer text-base hover:bg-gray-100 dark:hover:bg-green-100">
-            SETTINGS
+            Settings
         </p> }
 
         <button

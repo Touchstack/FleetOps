@@ -31,7 +31,7 @@ const AccountOverview = () => {
     <div className="flex flex-col  mt-10">
        <div className="flex flex-col items-center mb-5 gap-5">
         <Avatar className="w-24 h-24">
-            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/driver/${data?.avatar}`}  />
+            <AvatarImage src={`http://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}  />
             <AvatarFallback>
                 <CgProfile size={50} />
             </AvatarFallback>

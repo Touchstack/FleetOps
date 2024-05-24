@@ -10,10 +10,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomCarousel from './components/CustomCarousel';
 import { IoImagesOutline } from "react-icons/io5";
+import Disclamer from './components/modals/Disclamer';
 
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
     const [showPlaceBid, setshowPlaceBid] = useState(false)
+    const [showDisclamer, setshowDisclamer] = useState(false)
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState(``);
@@ -43,6 +45,7 @@ const DashboardVehicleDetailsPage = () => {
         const res = await apiGetVehicleDetails(id, driver_id);
          setData(res?.data?.vehicles);
          setBidStatus(res?.data?.bid_status)
+         setshowDisclamer(res?.data?.canSwap)
         setLoading(false);
         return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
@@ -123,7 +126,7 @@ const DashboardVehicleDetailsPage = () => {
           vehicle_id: data?.id
         }
         const res = await apiPlaceDriverBids(payLoad)
-          console.log(res)
+          //console.log(res)
         if (res.status === 200) {
           setshowPlaceBid(!showPlaceBid);
         } else {
@@ -134,7 +137,7 @@ const DashboardVehicleDetailsPage = () => {
        }
        
       };
-
+   
   return (
     <main className="bg-[#F7F9F8]">
       <DashboardNavBar />
@@ -312,7 +315,7 @@ const DashboardVehicleDetailsPage = () => {
 
       {showPlaceBid && <PlacingBidModal onCancel={closePlaceBid} /> }
 
-
+      {showDisclamer && <Disclamer onCancel={() => setshowDisclamer(false)} /> }
 
       <ToastContainer
               position="top-right"
