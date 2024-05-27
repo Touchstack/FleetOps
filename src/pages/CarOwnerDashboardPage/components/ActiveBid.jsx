@@ -202,7 +202,7 @@ export default function ActiveBid({ data }) {
           {data?.swap === "yes" && 
             <p className={"my-4 p-1 rounded-sm bg-[#c16060] text-white w-max"}>
               Bid can not be accepted until driver 
-            <br /> return Vehicle.
+            <br /> returns previous vehicle.
             </p>
           }
         </div>
