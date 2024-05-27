@@ -15,8 +15,8 @@ const MobileFilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) =
 
     const [selectedValues, setSelectedValues] = useState({
       'Brand': '',
-      'Year_of_man.': '',
-      'Year_of_reg.': '',
+      'Year_of_man': '',
+      'Year_of_reg': '',
       'Fuel_consumption': '',
       'Transmission type': '',
     });

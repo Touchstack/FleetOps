@@ -5,22 +5,10 @@ import { PropTypes } from 'prop-types';
 
 const ManifactureSearchPage = ({ onBackClick,  onValueSelect }) => {
    const data = [
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},
-      {year: "2020 - 2024"},    
+      {year: "2020-2024"},
+      {year: "2015-2019"},
+      {year: "2010-2014"},
+      {year: "2005-2009"} 
    ]
   return (
     <motion.div

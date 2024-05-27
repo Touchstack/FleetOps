@@ -63,15 +63,15 @@ export const nextPage = async (url) => {
 }
 
 //new Endpoints
-export async function apiGetAvailableVehicles() {
-  return apiClient.get(`/availablecars`);
+export async function apiGetAvailableVehicles(id) {
+  return apiClient.get(`/availablecars/${id}`);
 }
 
-export async function apiGetAvailableVehiclesBySearch(payLoad) {
+export async function apiGetAvailableVehiclesBySearch(id, payLoad) {
   const queryParams = new URLSearchParams(payLoad).toString();
   return axios({
     method: "get",
-    url: `https://engines.fleetopsgh.com/api/availablecars?${queryParams}`,
+    url: `https://engines.fleetopsgh.com/api/availablecars/${id}?${queryParams}`,
     data: payLoad
   })
     .then((response) => {

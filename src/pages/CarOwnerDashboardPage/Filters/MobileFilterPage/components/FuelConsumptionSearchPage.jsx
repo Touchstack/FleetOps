@@ -5,11 +5,8 @@ import { PropTypes } from 'prop-types';
 
 const FuelConsumptionSearchPage = ({ onBackClick, onValueSelect }) => {
    const data = [
-      {liter: "50"},
-      {liter: "40"},
-      {liter: "30"},
-      {liter: "20"},
-      {liter: "10"},   
+      {liter: "1.5"},
+      {liter: "2.5"},
    ]
   return (
     <motion.div
