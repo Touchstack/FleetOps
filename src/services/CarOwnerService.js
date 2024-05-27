@@ -34,7 +34,20 @@ export async function apiPostCarOwner(payLoad) {
   }
 
   export async function apiGetCarOwnerVehiclesBySearch(id, data) {
-    return apiClient.get(`/carowner/${id}/listings`, data); //user_id
+   //return apiClient.get(`/carowner/${id}/listings`, data); //user_id
+   const queryParams = new URLSearchParams(data).toString();
+   
+    return axios({
+      method: "get",
+      url:  `https://engines.fleetopsgh.com/api/carowner/${id}/listings?${queryParams}`,
+      data: data,
+    })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
   }
 
 

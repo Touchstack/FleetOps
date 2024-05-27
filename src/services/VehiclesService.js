@@ -68,9 +68,10 @@ export async function apiGetAvailableVehicles() {
 }
 
 export async function apiGetAvailableVehiclesBySearch(payLoad) {
+  const queryParams = new URLSearchParams(payLoad).toString();
   return axios({
     method: "get",
-    url: "https://engines.fleetopsgh.com/api/availablecars",
+    url: `https://engines.fleetopsgh.com/api/availablecars?${queryParams}`,
     data: payLoad
   })
     .then((response) => {

@@ -107,8 +107,8 @@ const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
 
     const [selectedValues, setSelectedValues] = useState({
         'Brand': '',
-        'Year_of_man.': '',
-        'Year_of_reg.': '',
+        'Year_of_man': '',
+        'Year_of_reg': '',
         'Fuel_consumption': '',
         'Transmission_type': '',
       });
@@ -125,11 +125,11 @@ const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
       const getSearchData = async () => {
         try {
           const res = await apiGetCarOwnerVehiclesBySearch(id, selectedValues)
-           console.log("search-data =>>", res);
+           //console.log("search-data =>>", res);
             if(res.status === 200){
               updateAllData(res.data?.allVehicles?.data); 
               updateAssigned(res.data?.assigned?.data);
-              updateUnassigned(res.data?.unAssigned?.data)
+              updateUnassigned(res.data?.unAssigned)
               toast.success("fetching data successful");
             }
         } catch (error) {
@@ -150,15 +150,15 @@ const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
      />
       <FilterItem 
          title="Year of man." 
-         value={selectedValues['Year_of_man.']} 
-         onChange={(value) => handleFilterChange('Year_of_man.', value)}
-         staticOptions={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']}  
+         value={selectedValues['Year_of_man']} 
+         onChange={(value) => handleFilterChange('Year_of_man', value)}
+         staticOptions={['2020-2024', '2015-2019', '2010-2014', '2005-2009']}  
        />
       <FilterItem 
          title="Year of reg." 
-         value={selectedValues['Year_of_reg.']} 
-         onChange={(value) => handleFilterChange('Year_of_reg.', value)}
-         staticOptions={['2020 - 2024', '2015 - 2019', '2010 - 2014', '2005 - 2009']} 
+         value={selectedValues['Year_of_reg']} 
+         onChange={(value) => handleFilterChange('Year_of_reg', value)}
+         staticOptions={['2020-2024', '2015-2019', '2010-2014', '2005-2009']} 
        />
       <FilterItem 
          title="Fuel consumption" 

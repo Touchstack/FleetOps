@@ -37,7 +37,7 @@ const MobileFilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) =
           if(res.status === 200){
             updateAllData(res.data?.allVehicles?.data); 
             updateAssigned(res.data?.assigned?.data);
-            updateUnassigned(res.data?.unAssigned?.data)
+            updateUnassigned(res.data?.unAssigned)
             toast.success("fetching data successful");
           }
       } catch (error) {
