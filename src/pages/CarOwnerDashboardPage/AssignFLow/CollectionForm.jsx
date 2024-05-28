@@ -238,7 +238,7 @@ const CollectionForm = () => {
                 name="front_lights_high_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10" {...field} />
                     </FormControl>
@@ -274,7 +274,7 @@ const CollectionForm = () => {
                 name="reverse_lights_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -311,7 +311,7 @@ const CollectionForm = () => {
                 name="parking_lights_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -347,7 +347,7 @@ const CollectionForm = () => {
                 name="front_lights_deem_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -383,7 +383,7 @@ const CollectionForm = () => {
                 name="indicator_lights_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -419,7 +419,7 @@ const CollectionForm = () => {
                 name="vehicle_tools_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -455,7 +455,7 @@ const CollectionForm = () => {
                 name="radio_comments"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -491,7 +491,7 @@ const CollectionForm = () => {
                 name="air_conditioner_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -527,7 +527,7 @@ const CollectionForm = () => {
                 name="warning_triangle_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -563,7 +563,7 @@ const CollectionForm = () => {
                 name="spare_tire_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -599,7 +599,7 @@ const CollectionForm = () => {
                 name="fire_extinguisher_comment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Comment</FormLabel>
+                    {/* <FormLabel>Comment</FormLabel> */}
                     <FormControl>
                       <Input className="md:w-8/12 h-10"  {...field} />
                     </FormControl>
@@ -635,7 +635,7 @@ const CollectionForm = () => {
               name="road_test_comment"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Comment</FormLabel>
+                  {/* <FormLabel>Comment</FormLabel> */}
                   <FormControl>
                     <Input className="md:w-8/12 h-10"  {...field} />
                   </FormControl>
