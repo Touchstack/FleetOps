@@ -111,7 +111,7 @@ export async function apiCancelDriverBids(id) {
 
 export async function apiDriverReBid(payLoad) {
   return axios({
-    method: "get",
+    method: "put",
     url: "https://engines.fleetopsgh.com/api/rebid",
     data: payLoad  //bid_id & driver_id
   })

@@ -4,12 +4,14 @@ import { Camera } from "react-camera-pro-react-18";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useNavigate } from "react-router-dom";
 import { apiGetCollectionForm } from "@/services/CarOwnerService";
+import { FaCameraRotate } from "react-icons/fa6";
 import toast, { Toaster } from 'react-hot-toast';
 
 const DriverImage = () => {
     const camera = useRef(null);
     const [image, setImage] = useState(null);
     const [aspectRatio, setAspectRatio] = useState(16/9);
+    const [numberOfCameras, setNumberOfCameras] = useState(0);
 
 
     const vehicle_id = localStorage.getItem("vehicle_id");
@@ -75,6 +77,7 @@ const DriverImage = () => {
          <Camera 
          ref={camera} 
          aspectRatio={aspectRatio}
+         numberOfCamerasCallback={setNumberOfCameras} 
          errorMessages={{
           noCameraAccessible: 'No camera device accessible. Please connect your camera or try a different browser.',
           permissionDenied: 'Permission denied. Please refresh and give camera permission.',
@@ -91,17 +94,23 @@ const DriverImage = () => {
     {/* Capture button */}
 
    {!image ? (
+      <div className="flex space-x-6">
       <div 
-      onClick={() => {
-        if (camera.current) {
-          const photo = camera.current.takePhoto();
-          //console.log(photo);
-          setImage(photo);
-        }
-      }}
+        onClick={() => setImage(camera.current.takePhoto())}
         className=" w-[43.93px] flex items-center justify-center rounded-full h-[43.93px] bg-[#23A6BF]">
         <AiOutlineCamera color="#FFFFFF" width={60} />
       </div>
+
+      {!!numberOfCameras <= 1 &&
+        <div 
+         onClick={() => {
+           camera.current.switchCamera();
+         }}
+          className=" w-[43.93px] flex items-center justify-center rounded-full h-[43.93px] bg-[#23A6BF]">
+         <FaCameraRotate color="#FFFFFF" width={60} />
+        </div>
+      }
+    </div>
    ) : (
     <div className="flex  gap-2">
         <div 
