@@ -43,7 +43,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
 
                     {/* driver tag if assigned */}
                     {car?.status === "assigned" && (
-                      <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
+                      <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:left-8 left-4  px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#111111CC]">
                         <Avatar>
                           <AvatarImage src={`http://engines.fleetopsgh.com/uploads/photo/${car?.driver?.avatar}`} />
                           <AvatarFallback>
@@ -62,7 +62,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                     )}
 
                     {car?.status === "assigned" && car?.return_status === true && (
-                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:right-10 right-3 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
                         
                         <div className="flex items-center justify-center">
                           <p className="font-GelionBold text-[11px]">Retrieval requested</p>

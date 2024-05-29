@@ -35,6 +35,14 @@ const RideHailing = ({data, Selected, loading, loadMore, isLoadMoreLoading}) => 
                     <p> GHS {car?.VAM}{" "}</p>
                     <span className="text-[13.32px] font-Light pt-1">{car?.VPF}</span>
                   </div> */}
+                   {car?.bid_status === true && (
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#f5d359]">
+                        
+                        <div className="flex items-center justify-center">
+                          <p className="font-GelionBold text-[11px]">Bid placed</p>
+                        </div>
+                      </div>
+                    )}
                   {/* Car info */}
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">

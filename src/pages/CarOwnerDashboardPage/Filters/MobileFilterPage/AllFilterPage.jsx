@@ -69,13 +69,13 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange, o
            onOpen={() => setIsBrandOpen(true)}
         />
         <FilterItem 
-          title={"Year of man"} 
-          value={selectedValues['Year_of_man.']}  
+          title={"Year of man."} 
+          value={selectedValues['Year_of_man']}  
           onOpen={() => setIsManOpen(true)} 
         />
         <FilterItem 
            title={"Year of reg."} 
-           value={selectedValues['Year_of_reg.']} 
+           value={selectedValues['Year_of_reg']} 
            onOpen={() => setIsRegOpen(true)}
         />
         <FilterItem 
@@ -103,7 +103,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange, o
          <ManifactureSearchPage 
          onBackClick={() => setIsManOpen(false)} 
          onValueSelect={(value) => {
-          handleFilterChange('Year_of_man.', value);
+          handleFilterChange('Year_of_man', value);
           setIsManOpen(false);
          }}
       />}
@@ -111,7 +111,7 @@ const AllFilterPage = ({ onCloseClick, selectedValues, onSelectedValuesChange, o
          <RegistrationSearchPage 
           onBackClick={() => setIsRegOpen(false)}
           onValueSelect={(value) => {
-            handleFilterChange('Year_of_reg.', value);
+            handleFilterChange('Year_of_reg', value);
             setIsRegOpen(false);
           }}
       />}

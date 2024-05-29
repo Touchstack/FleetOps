@@ -51,7 +51,7 @@ const YouAreAssigning = ({onCancel}) => {
 
         <div className="flex flex-col items-center justify-center gap-[12px] mt-5">
             
-            <h2 className="text-[#F5F5F5] text-[18px] mb-5 font-SemiBold">You are assigning</h2>
+            <h2 className="text-[#F5F5F5] md:text-[24px] text-[18px] mb-5 font-Bold">You are assigning</h2>
 
             <div className="flex gap-8 items-center justify-center">
                 <div className="md:mt-5 gap-8 flex flex-col items-center justify-center">

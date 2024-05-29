@@ -9,8 +9,8 @@ import { apiGetAvailableVehiclesBySearch } from '@/services/VehiclesService';
 const MobileFilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHirePurchase }) => {
     const [selectedValues, setSelectedValues] = useState({
       'Brand': '',
-      'Year_of_man.': '',
-      'Year_of_reg.': '',
+      'Year_of_man': '',
+      'Year_of_reg': '',
       'Fuel_consumption': '',
       'Transmission_type': '',
     });

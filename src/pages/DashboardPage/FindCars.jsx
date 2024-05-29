@@ -47,15 +47,17 @@ const FindCars = () => {
     setHirePurchase(data);
   };
 
+  const id = localStorage.getItem('driver_id')
+
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const [allResponse, rentalsResponse, rideHailingResponse, hirePurchaseResponse] = await Promise.all([
-        apiGetAvailableVehicles(),
-        apiGetAvailableVehicles(),
-        apiGetAvailableVehicles(),
-        apiGetAvailableVehicles()
+        apiGetAvailableVehicles(id),
+        apiGetAvailableVehicles(id),
+        apiGetAvailableVehicles(id),
+        apiGetAvailableVehicles(id)
       ]);
       
       setAllData(allResponse.data?.all?.data);

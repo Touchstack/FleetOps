@@ -6,7 +6,7 @@ import { PropTypes } from 'prop-types';
 
 const Modal = ({ bidId, onCancel, text, title, isRebid }) => {
     
-    const driver_id = localStorage.getItem("diver_id")
+    const driver_id = localStorage.getItem("driver_id")
 
     const handleClose = () => {
       onCancel();
@@ -18,7 +18,7 @@ const Modal = ({ bidId, onCancel, text, title, isRebid }) => {
          console.log(res)
         if (res.status === 200){
           toast.success('Bid cancelled successfully')
-          setTimeout(()=>{handleClose()},1000);
+          window.location.reload()
         }
       } catch (error) {
         toast.error("An error ocuured couldnt cancel bid")
@@ -34,6 +34,7 @@ const Modal = ({ bidId, onCancel, text, title, isRebid }) => {
         const res = await apiDriverReBid(payLoad)
         if (res.status === 200){
           toast.success('Rebid was successfully')
+          window.location.reload()
         }
       } catch (error) {
         toast.error("An error occured, couldnt Rebid")

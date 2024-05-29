@@ -41,7 +41,6 @@ const ExpiredBids = () => {
   const closeModal = () => {
     setShowModal(false);
     setSelectedBid(null);
-    getExpriedBids()
   };
 
   useEffect(() => {

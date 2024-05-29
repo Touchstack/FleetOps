@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import { IoMdClose } from "react-icons/io";
 import { Button } from '../../.././Components/ui/button';
 import { Separator } from '../../.././Components/ui/separator';
-import { apiGetAvailableVehiclesBySearch } from '@/services/VehiclesService';
+import { apiGetAvailableVehiclesBySearch, apiGetAvailableVehicles } from '@/services/VehiclesService';
 import { PropTypes } from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -103,6 +104,8 @@ const FilterDropdown = ({ options, onSelect, onMouseEnter, onMouseLeave }) => {
 
 const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHirePurchase }) => {
 
+  const id = localStorage.getItem('driver_id')
+
     const [selectedValues, setSelectedValues] = useState({
         'Brand': '',
         'Year_of_man': '',
@@ -122,24 +125,54 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
 
       const getSearchData = async () => {
         try {
-          const res = await apiGetAvailableVehiclesBySearch(selectedValues)
-           console.log("data from search =>",res);
+          const res = await apiGetAvailableVehiclesBySearch(id, selectedValues)
             if(res.status === 200){
               updateAllData(res.data?.all?.data);
               updateRentals(res.data?.rentals?.data)
               updateRideHailing(res.data?.rideHailing?.data)
               updateHirePurchase(res.data?.hirePurchase?.data)
               toast.success("Fetched Search Result");
+            } else {
+              toast.error(res?.response?.data?.message || "Error occurred while fetching data");
             }
         } catch (error) {
-          toast.error("Error occurred while fetching data");
+          toast.error(error?.response?.data?.message || "Error occurred while fetching data");
           console.log(error)
         }
       }
+
+      const clearSelectedValues = async () => {
+        try {
+          setSelectedValues({
+            'Brand': '',
+            'Year_of_man': '',
+            'Year_of_reg': '',
+            'Fuel_consumption': '',
+            'Transmission_type': '',
+        });
+
+        await apiGetAvailableVehicles(id).then((res) => {
+          if(res.status === 200){
+            updateAllData(res.data?.all?.data);
+            updateRentals(res.data?.rentals?.data)
+            updateRideHailing(res.data?.rideHailing?.data)
+            updateHirePurchase(res.data?.hirePurchase?.data)
+            toast.success("Results fetched succesfully");
+          } else {
+            toast.error(res?.response?.data?.message || "Error occurred while fetching data");
+          }
+        })
+        } catch (error) {
+          toast.error(error?.response?.data?.message || "Error occurred while fetching data");
+          console.log(error)
+        }
+    };
+
+     const hasSelectedValues = Object.values(selectedValues).some(value => value !== '');
       
   return (
 
-    <div className="flex my-7 justify-between drop-shadow-md w-[8/12] bg-[#FFFFFF] p-[30px] md:p-[16px]">
+    <div className="flex my-7 items-center justify-between drop-shadow-md w-[8/12] bg-[#FFFFFF] p-[30px] md:p-[16px]">
      <FilterItem 
          title="Brand" 
          value={selectedValues['Brand']} 
@@ -181,6 +214,13 @@ const FilterBar = ({ updateAllData, updateRentals,  updateRideHailing,  updateHi
           <Separator orientation="vertical" />
         </div>
       </div>
+      
+     
+      {hasSelectedValues && (
+                <div onClick={clearSelectedValues} className='hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110'>
+                    <IoMdClose size={30} />
+                </div>
+            )}
 
       <Button onClick={() => getSearchData() } className="bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-[108px] md:w-[140px] rounded-[10px] text-white">Search</Button>
     </div>
