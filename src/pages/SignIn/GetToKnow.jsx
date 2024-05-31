@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Formik } from "formik";
 import {
   apiPostDriver,
-  apiRegisterDriver,
 } from "../../services/VehiclesService";
 import Preview from "../../Components/ImgPreview/Preview";
 import {
@@ -15,6 +14,7 @@ import {
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import FormInputItem from "../../Components/Forms/Inputs/RegistrationFormInput";
+import { Label } from "@/Components/ui/label";
 
 const GetToKnow = () => {
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,8 @@ const GetToKnow = () => {
   }, []);
 
   const validation = Yup.object().shape({
-    name: Yup.string().required("Fullname is Required"),
+    firstName: Yup.string().required("First name is Required"),
+    lastName: Yup.string().required("Last name is Required"),
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is Required"),
@@ -66,28 +67,31 @@ const GetToKnow = () => {
     try {
       setLoading(true);
       var bodyFormData = new FormData();
-      bodyFormData.append("fullname", values?.name);
+      bodyFormData.append("lastName", values?.firstName);
+      bodyFormData.append("firstName", values?.lastName);
       bodyFormData.append("email", values?.email);
       bodyFormData.append("phoneNumber", driverNumber);
       bodyFormData.append("licenseFront", values?.licenseFront);
       bodyFormData.append("licenseBack", values?.licenseBack);
-      localStorage.setItem("fullName", values?.name);
-      const data = {
-        fullname: values?.name,
-        email: values?.email,
-        phoneNumber: driverNumber,
-        licenseFront: values?.licenseFront?.name,
-        licenseBack: values?.licenseBack?.name,
-      };
-      const apiMarketingRes = await apiRegisterDriver(data);
+      localStorage.setItem("fullName", values?.firstName + " " + values?.lastName);
+      // const data = {
+      //   fullname: values?.name,
+      //   email: values?.email,
+      //   phoneNumber: driverNumber,
+      //   licenseFront: values?.licenseFront?.name,
+      //   licenseBack: values?.licenseBack?.name,
+      // };
+      //const apiMarketingRes = await apiRegisterDriver(data);
       const response = await apiPostDriver(bodyFormData);
-      const userData = apiMarketingRes.data?.data;
-      localStorage.setItem("driver", JSON.stringify(userData));
-      localStorage.setItem("token", userData?.token);
-      console.log(response);
-      setError(false);
-      setLoading(false);
-      return (window.location.href = "/drivers/dashboard");
+      console.log("this is the response =>", response)
+      if (response.status === 200) {
+        const userData = response?.data.driver_id;
+        localStorage.setItem("driver_id", userData);
+        //localStorage.setItem("token", userData?.token);
+        setError(false);
+        setLoading(false);
+        return (window.location.href = "/drivers/dashboard");
+      }
     } catch (error) {
       console.log("ERROR: =>", error);
       setLoading(false);
@@ -111,7 +115,8 @@ const GetToKnow = () => {
 
         <Formik
           initialValues={{
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             licenseFront: null,
             licenseBack: null,
@@ -129,11 +134,23 @@ const GetToKnow = () => {
           }) => (
             <div className="container items-center lg:w-5/12 md:w-5-12 sm:w-10/12 w-10/12">
               <FormInputItem
-                label={"Full name"}
-                placeholder={"e.g Kwaku Mensah"}
+                label={"First name"}
+                placeholder={"e.g Kwaku"}
                 id={"first_name"}
                 value={values.name}
-                onChange={handleChange("name")}
+                onChange={handleChange("firstName")}
+              />
+              {touched.name && errors.name && (
+                <p className="text-red-500 underline font-Regular pb-2">
+                  {errors.name}
+                </p>
+              )}
+               <FormInputItem
+                label={"Last name"}
+                placeholder={"e.g Mensah"}
+                id={"first_name"}
+                value={values.name}
+                onChange={handleChange("lastName")}
               />
               {touched.name && errors.name && (
                 <p className="text-red-500 underline font-Regular pb-2">
@@ -160,18 +177,21 @@ const GetToKnow = () => {
                   onClick={() => setFieldValue("licenseFront", null)}
                 />
               ) : (
-                <input
-                  name="licenseFront"
-                  value={""}
-                  type={"file"}
-                  id={"licenseFront"}
-                  className="bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-1 focus:border focus:border-fleetLightBlue block w-full p-3 mb-4"
-                  placeholder={"Upload your license"}
-                  required
-                  onChange={(event) => {
-                    setFieldValue("licenseFront", event.currentTarget.files[0]);
-                  }}
-                />
+                <>
+                 <Label className='font-Light'>License front</Label>
+                  <input
+                    name="licenseFront"
+                    value={""}
+                    type={"file"}
+                    id={"licenseFront"}
+                    className="bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-1 focus:border focus:border-fleetLightBlue block w-full p-3 mb-4"
+                    placeholder={"Upload your license"}
+                    required
+                    onChange={(event) => {
+                      setFieldValue("licenseFront", event.currentTarget.files[0]);
+                    }}
+                  />
+                </>
               )}
               {touched.licenseFront && errors.licenseFront && (
                 <p className="text-red-500 underline font-Regular pb-2">
@@ -185,18 +205,19 @@ const GetToKnow = () => {
                   onClick={() => setFieldValue("licenseBack", null)}
                 />
               ) : (
-                <input
-                  name="licenseBack"
-                  value={""}
-                  type={"file"}
-                  id={"licenseBack"}
-                  className="bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-1 focus:border focus:border-fleetLightBlue block w-full p-3 mb-4"
-                  placeholder={"Upload your license"}
-                  required
-                  onChange={(event) =>
-                    setFieldValue("licenseBack", event.currentTarget.files[0])
-                  }
-                />
+                <>
+                <Label className='font-Light'>License back</Label>
+                 <input
+                    name="licenseBack"
+                    value={""}
+                    type={"file"}
+                    id={"licenseBack"}
+                    className="bg-white border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-1 focus:border focus:border-fleetLightBlue block w-full p-3 mb-4"
+                    placeholder={"Upload your license"}
+                    required
+                    onChange={(event) => setFieldValue("licenseBack", event.currentTarget.files[0])}
+                  />
+                </>
               )}
 
               {touched.licenseBack && errors.licenseBack && (

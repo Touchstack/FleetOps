@@ -22,8 +22,26 @@ import DriversReports from "./pages/DashboardPage/DriversReports.jsx";
 import "./App.css";
 import "./index.css";
 import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
-import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
+import BidsPage from "./pages/BidsPage/BidsPage.jsx";
+import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleDetailsPage.jsx";
+//import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx"; not in use by kobby
+import CarOwnerDashboard from "./pages/CarOwnerDashboardPage/CarOwnerDashboard.jsx";
+import CarsListing from "./pages/CarOwnerDashboardPage/CarsListing.jsx";
+import CarImage from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageFrontView.jsx";
+import CarImageRightView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageRightView.jsx";
+import CollectionForm from "./pages/CarOwnerDashboardPage/AssignFLow/CollectionForm.jsx";
+import DriverImage from "./pages/CarOwnerDashboardPage/AssignFLow/DriverImage.jsx";
+import CarImageLeftView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageLeftView.jsx";
+import CarImageBackView from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageBackView.jsx";
+import Preview from "./pages/CarOwnerDashboardPage/AssignFLow/Preview.jsx";
+import Account from "./pages/DashboardPage/Account.jsx";
+import RetrivalForm from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetrivalForm.jsx";
+import RetrivalPreview from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetrivalPreview.jsx";
+import RetriveCarImageFrontView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageFrontView.jsx";
+import RetriveCarImageBackView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageBackView.jsx";
+import RetriveCarImageLeftView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageLeftView.jsx";
+import RetriveCarImageRightView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageRightView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -118,7 +136,94 @@ const router = createBrowserRouter([
   },
   {
     path: "/drivers/dashboard/vehicle/details/:id",
-    element: <DashboardVehicleDetails />,
+     //element: <DashboardVehicleDetails />,
+     element: <DashboardVehicleDetailsPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/bids",
+    element: <BidsPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/dashboard",
+    element: <CarOwnerDashboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/listing",
+    element: <CarsListing />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/driver-image",
+    element: <DriverImage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/form",
+    element: <CollectionForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/form",
+    element: <RetrivalForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/frontview",
+    element: <RetriveCarImageFrontView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/backview",
+    element: <RetriveCarImageBackView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/leftview",
+    element: <RetriveCarImageLeftView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/retrival/rightview",
+    element: <RetriveCarImageRightView />,
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: "/carowner/retrival/review",
+    element: <RetrivalPreview />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/front",
+    element: <CarImage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/right",
+    element: <CarImageRightView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/left",
+    element: <CarImageLeftView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/back",
+    element: <CarImageBackView />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/carowner/assign/car-image/preview",
+    element: <Preview />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/account",
+    element: <Account />,
     errorElement: <ErrorPage />,
   },
   {
