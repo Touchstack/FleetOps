@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom"; 
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { CgProfile } from "react-icons/cg";
+import { PropTypes } from 'prop-types';
 
 
-export default function DashboardNavBar() {
+export default function DashboardNavBar({ payment }) {
   const [hidden, setHiddenState] = useState("hidden"); //show or hide navbar
   const [ariaExpanded, setAriaExpanded] = useState("false"); //expanded or collapsed state
   const [showMenu, setShowMenu] = useState(true);
@@ -80,7 +81,16 @@ export default function DashboardNavBar() {
           />
         </a>
         <div className="flex md:order-2">
-          <button className="flex" onClick={handleShowDropdown}>
+        
+        {payment === true && 
+            <div 
+              className="border-[1px] w-6/6 flex items-center justify-center p-3 rounded-[10px] text-[#23A6BF] border-[#23A6BF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                //onClick={}
+            >
+              <p>Back to dashboard</p>
+            </div> }
+
+          <button className={`${payment === true ? 'hidden' : 'flex'}`} onClick={handleShowDropdown}>
             <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
               <p className="font-Light text-fleetNavText text-center">
                 {driver?.driver}
@@ -141,8 +151,8 @@ export default function DashboardNavBar() {
               <a
                 href="/drivers/dashboard"
                 className={`block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue  md:dark:hover:text-blue-500 ${
-                  location.pathname === "/drivers/dashboard" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
+                  location.pathname === "/drivers/dashboard" ? "text-fleetBlue" : "text-fleetNavText" 
+                } ${payment === true ? 'hidden' : 'flex'}`}
                 aria-current="page"
               >
                 Home
@@ -153,7 +163,7 @@ export default function DashboardNavBar() {
                 href="/drivers/findcars"
                 className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
                   location.pathname === "/drivers/findcars" ||  location.pathname.startsWith("/drivers/dashboard/vehicle/details/") ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
+                } ${payment === true ? 'hidden' : 'flex'}`}
               >
                 Find Cars
               </a>
@@ -164,24 +174,18 @@ export default function DashboardNavBar() {
                 href="/drivers/bids"
                 className={`block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 ${
                   location.pathname === "/drivers/bids" ? "text-fleetBlue" : "text-fleetNavText"
-                }`}
+                }  ${payment === true ? 'hidden' : 'flex'}`}
               >
                 Bids
               </a>
             </motion.li>
-            
-
-            {/*<motion.li variants={linkVariants}>
-              <a
-                href="/drivers/reports"
-                className="block py-2 pl-3 pr-4 text-fleetNavText rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-fleetBlue md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Reports
-              </a>
-           </motion.li>*/}
           </motion.ul>
         </div>
       </div>
     </nav>
   );
+}
+
+DashboardNavBar.propTypes = {
+ payment: PropTypes.boolean
 }

@@ -3,6 +3,7 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import { Spinner } from "../../Components/Forms/CarOwnersRegistrationForm";
 import { apiGetDriverDashboard, apiCancelRetrival } from "../../services/VehiclesService";
 import Car from "../../assets/images/car-dashboard.svg";
+import Earnchart from '../../assets/images/Earnchart.svg'
 import Chart from "../../assets/images/chart.svg";
 import { useEffect, useState } from "react";
 import ReturnReason from "./components/modals/ReturnReason";
@@ -124,7 +125,7 @@ const Dashboard = () => {
             Welcome to FleetOps
           </h1>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 my-12 w-full">
+          <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 mt-12 w-full">
             
           {/* Selected Cars */}
             {/* <div className="bg-fleetBlue text-white rounded-3xl p-8 h-40">
@@ -219,18 +220,25 @@ const Dashboard = () => {
                       </a>
                      </div>
                     </div>
-                    <div className="flex justify-end mt-5">
+                    
+                  <div className="flex space-x-3 mt-5">
+                    <div className="border-[1px] w-6/12 flex items-center justify-center p-3 rounded-[10px] text-[#23A6BF] bg-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                         //onClick={}
+                        >
+                         <p>Make Payment</p>
+                     </div>
+                    
                     {data?.return_status === false ? (
-                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                        <div className="border-[1px] w-6/12 flex items-center justify-center p-3 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                          onClick={() => setShowReturnReason(true)}
                         >
-                          Return car
+                         <p>Return car</p>
                         </div>
                         ) : (
-                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                        <div className="border-[1px] w-6/12 flex items-center justify-center p-3 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                          onClick={handleCancelRetrival}
                          >
-                          Cancel Retrival
+                          <p>Cancel Retrival</p>
                          </div>
                       )}
                     </div>
@@ -250,6 +258,25 @@ const Dashboard = () => {
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
               <p className="text-gray-700 text-md">Average Reviews</p>
               <h3 className="font-Regular text-2xl">{data?.ReviewCount} / 5.0</h3>
+            </div>
+          </div>
+
+         {/* Earingins and trips */}
+          <div className="flex md:flex-row w-full gap-3 flex-col my-8 ">
+           <div className="bg-white flex  md:w-[257px] flex-row p-4 space-x-3 border text-black rounded-[20px]">
+              <img src={Earnchart} alt="" />
+              <div className="flex flex-col">
+               <p className="text-[#A3AED0] text-[14px]">Earnings</p>
+               <h3 className="font-SansMedium font-[700] text-2xl">GHS 0.00</h3>
+              </div>
+            </div>
+
+            <div className="bg-white flex md:w-[257px]  justify-between flex-row p-4 space-x-3 border text-black rounded-[20px]">
+              <div className="flex flex-col">
+               <p className="text-[#A3AED0] text-[14px]">Trips</p>
+               <h3 className="font-Regular font-[700] text-2xl">82</h3>
+              </div>
+              <img src={Earnchart} alt="" />
             </div>
           </div>
 
