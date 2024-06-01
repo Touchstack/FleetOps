@@ -67,7 +67,7 @@ const ActiveBids = () => {
 
                   {cars?.vehicle?.front_photo ? (
                     <img 
-                      src={`http://engines.fleetopsgh.com/uploads/photo/${cars?.vehicle?.front_photo}`}  
+                      src={`http://engines.fleetopsgh.com/uploads/vehicle/${cars?.vehicle?.front_photo}`}  
                       className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                        alt="" 
                      />
