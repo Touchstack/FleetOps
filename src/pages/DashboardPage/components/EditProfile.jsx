@@ -48,6 +48,7 @@ const EditProfile = () => {
      await apiEditDriverProfile(id, payLoad).then((res) => {
       setLoading(true)
        if(res.status === 200) {
+        setLoading(false)
         toast.success("Driver Profile updates");
        }else{
         setLoading(false)
