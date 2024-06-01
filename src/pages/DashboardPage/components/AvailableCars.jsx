@@ -21,7 +21,7 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
                   {/* Render image or placeholder */}
                   {car?.front_photo ? (
                     <img
-                      src={`http://engines.fleetopsgh.com/uploads/photo/${car?.front_photo}`}
+                      src={`http://engines.fleetopsgh.com/uploads/vehicle/${car?.front_photo}`}
                       className="md:w-11/12 w-12/12 h-[408px] rounded-[10px]"
                       alt=""
                     />

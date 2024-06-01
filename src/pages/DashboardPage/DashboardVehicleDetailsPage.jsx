@@ -56,23 +56,23 @@ const DashboardVehicleDetailsPage = () => {
     const carouselImages = [
       {
           id: 1,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`,
+          image: `http://engines.fleetopsgh.com/uploads/vehicle/${data?.front_photo}`,
         },
         {
           id: 2,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.rear_photo}`,
+          image: `http://engines.fleetopsgh.com/uploads/vehicle/${data?.rear_photo}`,
         },
         {
           id: 3,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.side_photo}`,
+          image: `http://engines.fleetopsgh.com/uploads/vehicle/${data?.side_photo}`,
         }, 
         {
           id: 4,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.interior_photo}`,
+          image: `http://engines.fleetopsgh.com/uploads/vehicle/${data?.interior_photo}`,
         }, 
         {
           id: 5,
-          image: `http://engines.fleetopsgh.com/uploads/photo/${data?.engine_photo}`,
+          image: `http://engines.fleetopsgh.com/uploads/vehicle/${data?.engine_photo}`,
         }, 
     ];
   
@@ -151,7 +151,7 @@ const DashboardVehicleDetailsPage = () => {
         <div className="md:flex hidden flex-col md:min-w-[550px] max-w-[650px]">
           {data?.front_photo ? (
             <img
-            src={image || `http://engines.fleetopsgh.com/uploads/photo/${data?.front_photo}`}
+            src={image || `http://engines.fleetopsgh.com/uploads/vehicle/${data?.front_photo}`}
             className="hidden rounded-[10px]  md:flex h-[422px]" 
             alt=""
           />         
