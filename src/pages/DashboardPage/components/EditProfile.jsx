@@ -50,6 +50,7 @@ const EditProfile = () => {
        if(res.status === 200) {
         setLoading(false)
         toast.success("Driver Profile updates");
+        setLoading(false)
        }else{
         setLoading(false)
         toast.error(res?.response?.data?.message || "Error Updating Driver profile ");
