@@ -80,16 +80,7 @@ export default function DashboardNavBar({ payment }) {
             style={{ width: 210, height: 75 }}
           />
         </a>
-        <div className="flex md:order-2">
-        
-        {payment === true && 
-            <div 
-              className="border-[1px] w-6/6 flex items-center justify-center p-3 rounded-[10px] text-[#23A6BF] border-[#23A6BF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
-                //onClick={}
-            >
-              <p>Back to dashboard</p>
-            </div> }
-
+        <div className={`${payment === true ? '' : 'flex md:order-2'}`}>
           <button className={`${payment === true ? 'hidden' : 'flex'}`} onClick={handleShowDropdown}>
             <span className="md:ml-20 py-1 mr-2 text-xl self-center lg:block md:hidden sm:hidden hidden">
               <p className="font-Light text-fleetNavText text-center">
@@ -179,6 +170,14 @@ export default function DashboardNavBar({ payment }) {
                 Bids
               </a>
             </motion.li>
+
+            {payment === true && 
+            <div 
+              className="border-[1px] w-6/6 flex items-center justify-center p-3 rounded-[10px] text-[#23A6BF] border-[#23A6BF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                //onClick={}
+            >
+              <p>Back to dashboard</p>
+            </div> }
           </motion.ul>
         </div>
       </div>

@@ -42,6 +42,8 @@ import RetriveCarImageFrontView from "./pages/CarOwnerDashboardPage/RetrivalFlow
 import RetriveCarImageBackView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageBackView.jsx";
 import RetriveCarImageLeftView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageLeftView.jsx";
 import RetriveCarImageRightView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageRightView.jsx";
+import PaymentAuth from "./pages/DashboardPage/PaymentFlow/PaymentAuth.jsx";
+import PaymentOptions from "./pages/DashboardPage/PaymentFlow/PaymentOptions.jsx";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +104,16 @@ const router = createBrowserRouter([
   {
     path: "/drivers/loginpage",
     element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/dashboard/payment/auth",
+    element: <PaymentAuth />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/dashboard/payment/option",
+    element: <PaymentOptions />,
     errorElement: <ErrorPage />,
   },
   {
