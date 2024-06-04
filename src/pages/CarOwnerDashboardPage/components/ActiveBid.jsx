@@ -14,12 +14,10 @@ import moment from 'moment';
 export default function ActiveBid({ data }) {
   const [openModal, setOpenModal] = useState(false);
   const [cancelBid, setCancelBid] = useState(false);
-  const [onAssignCar, setonAssignCar] = useState(false)
-  //const [inviteSent, setInviteSent] = useState(false);
+  const [onAssignCar, setonAssignCar] = useState(false);
   const [timeLeft, setTimeLeft] = useState({});
   const [expired, setExpired] = useState({});
-  
-  // console.log('upper data =>', data)
+
  
   const handleAcceptBid = (id, data) => {
      localStorage.setItem("bid_id", id)
@@ -36,10 +34,6 @@ export default function ActiveBid({ data }) {
     localStorage.setItem("bid_id", id)
     setonAssignCar(!onAssignCar)
   };
-
-  // const handleInviteSent = () => {
-  //   setInviteSent(!inviteSent);
-  // };
 
 
   const calculateTimeLeft = useCallback((endTime) => {
@@ -65,11 +59,9 @@ export default function ActiveBid({ data }) {
 
   useEffect(() => {
     const intervals = data.map((bid, index) => {
-      //console.log(bid);
       let endTime = moment(bid?.expire_time);
       if (!endTime.isValid()) {
         endTime = moment().add(6, 'hours');
-        //localStorage.setItem(`endTime_${index}`, endTime.toISOString());
       }
       return setInterval(() => {
         const timeLeft = calculateTimeLeft(endTime);
@@ -101,7 +93,7 @@ export default function ActiveBid({ data }) {
             <Avatar>
               <AvatarImage 
                 className={"w-[44px] h-[44px] rounded"} 
-                src={`http://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}
+                src={`https://engines.fleetopsgh.com/uploads/photo/${data?.avatar}`}
               />
               <AvatarFallback>
                 <CgProfile size={30} />
@@ -114,8 +106,14 @@ export default function ActiveBid({ data }) {
                   Rating: <span>{data?.rating}/5.0</span>
                 </p>
               </div>
-              <p className={"text-[#5A6267]"}>
-                License No: <span className={"text-bodyText"}>{data?.license_no}</span>
+              <p className="text-[#5A6267] hover:underline">
+                <a
+                  target="_blank"
+                  href={`https://engines.fleetopsgh.com/uploads/driver/${data?.DLD}`}
+                  rel="noreferrer"
+                >
+                  License No: <span className="text-bodyText">{data?.license_no}</span>
+                </a>
               </p>
             </div>
           </div>
