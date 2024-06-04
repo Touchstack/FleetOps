@@ -12,6 +12,7 @@ import CustomCarousel from './components/CustomCarousel';
 import { IoImagesOutline } from "react-icons/io5";
 import Disclamer from './components/modals/Disclamer';
 
+
 const DashboardVehicleDetailsPage = () => {
     const [showMore, setShowMore] = useState(false);
     const [showPlaceBid, setshowPlaceBid] = useState(false)
@@ -22,6 +23,7 @@ const DashboardVehicleDetailsPage = () => {
     const [data, setData] = useState();
     const [selectedImageId, setSelectedImageId] = useState(null);
     const [bidStatus, setBidStatus] = useState("")
+    const [licenseExpired, setlicenseExpired] = useState()
     const loaction = useLocation();
     const pathSegments = loaction?.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
@@ -46,6 +48,7 @@ const DashboardVehicleDetailsPage = () => {
          setData(res?.data?.vehicles);
          setBidStatus(res?.data?.bid_status)
          setshowDisclamer(res?.data?.canSwap)
+         setlicenseExpired(res?.data?.license_expired)
         setLoading(false);
         return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
@@ -126,7 +129,6 @@ const DashboardVehicleDetailsPage = () => {
           vehicle_id: data?.id
         }
         const res = await apiPlaceDriverBids(payLoad)
-          //console.log(res)
         if (res.status === 200) {
           setshowPlaceBid(!showPlaceBid);
         } else {
@@ -257,11 +259,17 @@ const DashboardVehicleDetailsPage = () => {
           </div>
           {/* Terms */}
 
+          { licenseExpired === true && 
+             <p className='text-red-400'>
+              Your driving license is Expired
+            </p>
+          }
+
          {/* Call to action */}
           {bidStatus !== 'pending' ? (
-            <div onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+            <button disabled={licenseExpired} onClick={toggleShowPlaceBid} className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:bg-[#23A6BF] hover:text-white justify-center border-[#23A6BF] cursor-pointer rounded-[10px] px-[10px] py-[10px] ">
             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
-            </div>
+            </button>
           ): (
             <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center  cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
               <p className=" font-Light text-[19px] text-[#CE9A00]  pt-2">Awaiting Response</p>

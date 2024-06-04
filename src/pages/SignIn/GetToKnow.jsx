@@ -15,12 +15,21 @@ import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNa
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import FormInputItem from "../../Components/Forms/Inputs/RegistrationFormInput";
 import { Label } from "@/Components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/Components/ui/select"
+import toast, { Toaster } from 'react-hot-toast';
 
 const GetToKnow = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
   const driverNumber = localStorage.getItem("driverNumber");
+  const [transmission, setTransmission] = useState('Manual');
 
   const navigate = useNavigate();
 
@@ -73,27 +82,22 @@ const GetToKnow = () => {
       bodyFormData.append("phoneNumber", driverNumber);
       bodyFormData.append("licenseFront", values?.licenseFront);
       bodyFormData.append("licenseBack", values?.licenseBack);
+      bodyFormData.append("transmission", transmission);
       localStorage.setItem("fullName", values?.firstName + " " + values?.lastName);
-      // const data = {
-      //   fullname: values?.name,
-      //   email: values?.email,
-      //   phoneNumber: driverNumber,
-      //   licenseFront: values?.licenseFront?.name,
-      //   licenseBack: values?.licenseBack?.name,
-      // };
-      //const apiMarketingRes = await apiRegisterDriver(data);
+    
       const response = await apiPostDriver(bodyFormData);
-      console.log("this is the response =>", response)
+      console.log(response)
       if (response.status === 200) {
         const userData = response?.data.driver_id;
         localStorage.setItem("driver_id", userData);
-        //localStorage.setItem("token", userData?.token);
         setError(false);
         setLoading(false);
-        return (window.location.href = "/drivers/dashboard");
+       return (window.location.href = "/drivers/dashboard");
+      } else {
+        setLoading(false);
+        toast.error(response?.response?.data?.message);
       }
     } catch (error) {
-      console.log("ERROR: =>", error);
       setLoading(false);
       setError(true);
       setErrorText(error?.response?.data?.message || error?.message);
@@ -225,7 +229,21 @@ const GetToKnow = () => {
                   {errors.licenseBack}
                 </p>
               )}
-              <div className="flex justify-end align-baseline">
+              
+               <Label className='text-[#0A0D14] font-[400] pb-3'>Preferred Transmisson</Label>
+                <Select onValueChange={(value) => setTransmission(value)}  defaultValue={transmission}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a verified email to display" />
+                    </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Manual">Manual</SelectItem>
+                    <SelectItem value="Automatic">Automatic</SelectItem>
+                    <SelectItem value="Automatic/Manual">Automatic/Manual</SelectItem>
+                  </SelectContent>
+                </Select>
+
+             
+              <div className="flex mt-5 justify-end align-baseline">
                 {loading ? (
                   <Spinner />
                 ) : (
@@ -236,6 +254,8 @@ const GetToKnow = () => {
           )}
         </Formik>
       </div>
+
+      <Toaster position="top-right" reverseOrder={true} />
     </div>
   );
 };

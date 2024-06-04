@@ -41,6 +41,7 @@ const DriverLogin = () => {
           setLoading(true);
           const response = await apiDriverLogin(values);
           const userData = response.data;
+          console.log(userData)
           localStorage.setItem("driver", JSON.stringify(userData));
           localStorage.setItem("tempID", userData?.login_id);
           localStorage.setItem("driverNumber", values?.phoneNumber);
