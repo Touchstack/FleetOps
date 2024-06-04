@@ -4,7 +4,7 @@ import {
   Spinner,
   ErrorAlert,
 } from "../../Components/Forms/CarOwnersRegistrationForm";
-import { apiVerifyOtp, apiDriverSignUp } from "../../services/VehiclesService";
+import { apiVerifyOtp, apiDriverLogin } from "../../services/VehiclesService";
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import toast, { Toaster } from 'react-hot-toast';
@@ -15,7 +15,7 @@ const OtpPage = () => {
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [resendEnabled, setResendEnabled] = useState(false);
-  const [countdown, setCountdown] = useState(59);
+  const [countdown, setCountdown] = useState(180);
 
   const id = localStorage.getItem("tempID");
   const phoneNumber =  localStorage.getItem("driverNumber");
@@ -38,11 +38,10 @@ const OtpPage = () => {
     try {
       setError(false);
       setLoading(true);
-      const res = await apiDriverSignUp(payLoad);
-      console.log("resend response =>",res)
+      const res = await apiDriverLogin(payLoad);
       if (res.status === 200) {
        toast.success("OTP code Resent");
-       setCountdown(59);
+       setCountdown(180);
        setResendEnabled(false);
       } else {
         setLoading(false);
@@ -80,6 +79,12 @@ const OtpPage = () => {
     }
   };
 
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
+  };
+
   return (
     <div className="bg-[#F7F9F8] min-h-screen">
       <DriversOnboardingNavBar />
@@ -93,7 +98,7 @@ const OtpPage = () => {
           <h3 className="font-Regular  text-[15px] mr-[16rem]">
             Enter code
           </h3>
-          <p className="text-fleetBlue">{`00:${countdown < 10 ? `0${countdown}` : countdown}`}</p>
+          <p className="text-fleetBlue">{formatTime(countdown)}</p>
         </div>
         {error && <ErrorAlert error={errorText} />}
         <div className="flex flex-col   lg:w-6/12 md:w-6/12 sm:w-10/12 w-10/12">
