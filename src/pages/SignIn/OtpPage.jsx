@@ -1,20 +1,60 @@
 import OtpInput from "react-otp-input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Spinner,
   ErrorAlert,
 } from "../../Components/Forms/CarOwnersRegistrationForm";
-import { apiVerifyOtp } from "../../services/VehiclesService";
+import { apiVerifyOtp, apiDriverSignUp } from "../../services/VehiclesService";
 import DriversOnboardingNavBar from "../../Components/Navbar/DriversOnboardingNavBar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
+import toast, { Toaster } from 'react-hot-toast';
 
 const OtpPage = () => {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
+  const [resendEnabled, setResendEnabled] = useState(false);
+  const [countdown, setCountdown] = useState(59);
 
   const id = localStorage.getItem("tempID");
+  const phoneNumber =  localStorage.getItem("driverNumber");
+
+  useEffect(() => {
+    let timer;
+    if (countdown > 0) {
+      timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    } else {
+      setResendEnabled(true);
+    }
+    return () => clearTimeout(timer);
+  }, [countdown]);
+
+
+  const reSendOTP = async () => {
+    const payLoad = {
+      phoneNumber:  phoneNumber
+    }
+    try {
+      setError(false);
+      setLoading(true);
+      const res = await apiDriverSignUp(payLoad);
+      console.log("resend response =>",res)
+      if (res.status === 200) {
+       toast.success("OTP code Resent");
+       setCountdown(59);
+       setResendEnabled(false);
+      } else {
+        setLoading(false);
+        toast.error(res?.response?.data?.message || "Error resending OTP");
+      }
+    } catch (error) {
+     console.log(error);
+     toast.error(error?.response?.data?.message || "Error resending OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   const verifyOtp = async () => {
@@ -49,13 +89,14 @@ const OtpPage = () => {
           We sent a 4 digit code to your phone number <br />
           for verification. Please enter it below
         </p>
-        <div className="">
-          <h3 className="font-Regular mt-6 text-[15px] mr-[16rem]">
+        <div className="flex items-center mt-6">
+          <h3 className="font-Regular  text-[15px] mr-[16rem]">
             Enter code
           </h3>
+          <p className="text-fleetBlue">{`00:${countdown < 10 ? `0${countdown}` : countdown}`}</p>
         </div>
         {error && <ErrorAlert error={errorText} />}
-        <div className="flex justify-center items-center text-center lg:w-6/12 md:w-6/12 sm:w-10/12 w-10/12">
+        <div className="flex flex-col   lg:w-6/12 md:w-6/12 sm:w-10/12 w-10/12">
           <OtpInput
             containerStyle={{
               flexDirection: "row",
@@ -78,12 +119,15 @@ const OtpPage = () => {
             )}
           />
         </div>
-        {/*<a href="/otppage">
-          <h3 className="text-fleetBlue font-Regular text-[15px] p-6">
+        <div
+          onClick={resendEnabled ? reSendOTP : null}
+          className={`flex ml-60 mt-2 ${!resendEnabled ? "text-gray-400 cursor-not-allowed" : "text-fleetBlue hover:cursor-pointer"}`}
+        >
+          <p className="font-Regular text-[15px]">
             Resend code
-          </h3>
-              </a>*/}
-        <div className="flex justify-end align-baseline mt-5">
+          </p>
+        </div>
+        <div className="flex justify-end align-baseline mt-3">
           {loading ? (
             <Spinner />
           ) : (
@@ -91,6 +135,7 @@ const OtpPage = () => {
           )}
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={true} />
     </div>
   );
 };
