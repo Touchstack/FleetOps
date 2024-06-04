@@ -33,7 +33,6 @@ const SignUpPage = () => {
       setError(false);
       setLoading(true);
       const res = await apiDriverSignUp(payLoad);
-      console.log(res)
       localStorage.setItem('tempCode', res?.data?.code)
       localStorage.setItem('tempID', res?.data?.login_id)
       localStorage.setItem("driverNumber", values?.phone_number);
