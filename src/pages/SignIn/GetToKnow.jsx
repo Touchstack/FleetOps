@@ -86,7 +86,6 @@ const GetToKnow = () => {
       localStorage.setItem("fullName", values?.firstName + " " + values?.lastName);
     
       const response = await apiPostDriver(bodyFormData);
-      console.log(response)
       if (response.status === 200) {
         const userData = response?.data.driver_id;
         localStorage.setItem("driver_id", userData);
