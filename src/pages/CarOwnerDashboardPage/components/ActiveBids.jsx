@@ -63,9 +63,9 @@ export default function ActiveBids({ data }) {
                className={"rounded-[20px] border px-4"}
              >
                <AccordionTrigger className={"hover:no-underline py-4"}>
-                 <div>
+                 <div className="flex items-start flex-col">
                    <p className={"no-underline font-Bold mb-2"}>
-                     {vehicle?.vehicle?.VCL} {vehicle?.vehicle?.VMK} {vehicle?.vehicle?.VMD}
+                     {vehicle?.vehicle?.VCL} {vehicle?.vehicle?.VMK} {vehicle?.vehicle?.VMD} ({vehicle?.vehicle?.VNO})
                    </p>
                    {vehicle?.vehicle?.trans_type !== null && (
                       <p className={"no-underline font-SemiBold text-[14px] mb-2"}>

@@ -13,7 +13,7 @@ export const formSchema = z.object({
       message: "Insurance is required",
     }),
 
-    starting_mileage: z.string().min(1, {
+    ending_mileage: z.string().min(1, {
       message: "Mileage is required",
     }),
 

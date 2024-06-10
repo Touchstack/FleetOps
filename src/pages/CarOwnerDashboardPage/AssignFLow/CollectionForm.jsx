@@ -48,6 +48,10 @@ const CollectionForm = () => {
         radio_comments: '',
         fire_extinguisher_comment: '',
         road_test_comment: '',
+        brake_lights_comment: '',
+        wiper_function_comment: '',
+        wheel_caps_comment: '',
+        horn_comment: '',
         front_lights: false,
         reverse_lights: false,
         wheel_caps: false,
@@ -68,8 +72,6 @@ const CollectionForm = () => {
     })
 
     const onSubmit = (values) => {
-
-      //console.log(values)
       const formData = {
         registration: values.registration,
         chasis_num: values.chasis_num,
@@ -107,7 +109,11 @@ const CollectionForm = () => {
         air_conditioner_comment: values.air_conditioner_comment,
         spare_tire_comment: values.spare_tire_comment,
         fire_extinguisher_comment: values.fire_extinguisher_comment,
-        road_test_comment: values.road_test_comment
+        road_test_comment: values.road_test_comment,
+        brake_lights_comment: values.brake_lights_comment,
+        wiper_function_comment: values.wiper_function_comment,
+        wheel_caps_comment: values.wheel_caps_comment,
+        horn_comment: values.horn_comment,
       };
       localStorage.setItem('form', JSON.stringify(formData));
      navigate('/carowner/assign/car-image/front')
@@ -199,7 +205,11 @@ const CollectionForm = () => {
                   <FormItem>
                     <FormLabel>Starting Mileage</FormLabel>
                     <FormControl>
-                      <Input className="md:w-8/12 h-10"  {...field} />
+                      <Input 
+                        type='number' 
+                        className="md:w-8/12 h-10"  
+                        {...field} 
+                        />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -646,7 +656,7 @@ const CollectionForm = () => {
 
           </div>  
 
-           
+          <div className="col-span-1 space-y-4 md:col-span-1">
             <FormField
                 control={form.control}
                 name="brake_lights"
@@ -666,8 +676,23 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
-              
-        
+
+             <FormField
+              control={form.control}
+              name="brake_lights_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            </div>  
+
+            <div className="col-span-1 space-y-4 md:col-span-1">  
               <FormField
                 control={form.control}
                 name="wiper_function"
@@ -687,8 +712,23 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
-              
-             
+
+            <FormField
+              control={form.control}
+              name="wiper_function_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>    
+
+            <div className="col-span-1 space-y-4 md:col-span-1">   
               <FormField
                 control={form.control}
                 name="wheel_caps"
@@ -709,8 +749,22 @@ const CollectionForm = () => {
                 )}
               />
 
-               
-
+            <FormField
+              control={form.control}
+              name="wheel_caps_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> 
+            </div>       
+            
+            <div className="col-span-1 space-y-4 md:col-span-1">  
               <FormField
                 control={form.control}
                 name="horn"
@@ -730,7 +784,23 @@ const CollectionForm = () => {
                   </FormItem>
                 )}
               />
-               
+
+             <FormField
+              control={form.control}
+              name="horn_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> 
+            </div>  
+
+
             </div>
             <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
                   

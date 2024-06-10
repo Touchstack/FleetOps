@@ -1,6 +1,7 @@
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { PropTypes } from 'prop-types';
+import { Button } from "@/Components/ui/button";
 
 const ReturnReason = ({onCancel, onNext}) => {
     const [selectedReason, setSelectedReason] = useState("");
@@ -99,13 +100,15 @@ const ReturnReason = ({onCancel, onNext}) => {
              </p>
            </div>
 
-           <div 
+           <Button
             onClick={handleNext}
-            className="md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] bg-[#23A6BF]">
-              <p className="text-[#ffffff]">
-                 continue
-              </p>
-           </div>
+            className={`md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] ${selectedReason ? 'bg-[#23A6BF] cursor-pointer' : 'bg-gray-400 cursor-not-allowed'}`}
+            disabled={!selectedReason}
+          >
+            <p className="text-[#ffffff]">
+              continue
+            </p>
+          </Button>
 
         </div>
     </div>
