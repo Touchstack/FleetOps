@@ -79,6 +79,7 @@ const RetrivalForm = () => {
         registration: values.registration,
         chasis_num: values.chasis_num,
         insurance: values.insurance,
+        starting_mileage: '',
         ending_mileage: values.ending_mileage,
         road_cert: values.road_cert,
         comment: values.comment,

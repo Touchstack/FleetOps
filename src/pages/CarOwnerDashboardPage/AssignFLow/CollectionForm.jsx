@@ -77,6 +77,7 @@ const CollectionForm = () => {
         chasis_num: values.chasis_num,
         insurance: values.insurance,
         starting_mileage: values.starting_mileage,
+        ending_mileage: '',
         road_cert: values.road_cert,
         comment: values.comment,
         hand_over_date: values.hand_over_date,
