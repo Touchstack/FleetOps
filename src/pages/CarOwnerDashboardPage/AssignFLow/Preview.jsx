@@ -90,18 +90,18 @@ const Preview = () => {
   return (
   <div className="bg-[#F7F9F8] min-h-screen">
    <CarOwnerDashboardNavBar />
-    <div className="flex flex-col mt-10 md:mx-20">
-      <div className="flex flex-col items-center mb-8">
-        <h1 className="text-[#0A0D14] font-bold text-3xl md:text-5xl">
+    <div className="flex flex-col mt-10 mx-10">
+      <div className="flex flex-col justify-center items-center mb-8">
+        <h1 className="text-[#0A0D14] font-bold text-5xl">
           Vehicle Photos
         </h1>
       </div>
 
        
-      <div className='grid md:grid-cols-4 gap-3 justify-center items-center'>
+      <div className='flex md:flex-row flex-col flex-grow gap-3 mt-20 justify-center items-center'>
        {data.map((image) => (
            <div key={image.id} className=''>
-              <img src={image.img} className='w-[288px] h-[250px] rounded-md' />
+              <img src={image.img} className='w-11/12 h-[400px] rounded-md' />
            </div>
         ))}
       </div>
@@ -132,7 +132,7 @@ const Preview = () => {
     </div>
     {showModal && <Congratulations unassigned={false} onCancel={() => setshowModal(false)} />}
 
-    <Toaster position="bottom-right" reverseOrder={true} />
+    <Toaster position="top-right" reverseOrder={true} />
   </div>
   )
 }

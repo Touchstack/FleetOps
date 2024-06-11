@@ -23,7 +23,6 @@ const CarOwnerDashboard = () => {
         try {
           setLoading(true);
           const res = await apiGetCarOwnerDashboard(id);
-          console.log(res);
            if (res.status === 200) {
             localStorage.setItem(
               "dashBoardData",
@@ -45,7 +44,6 @@ const CarOwnerDashboard = () => {
       return (window.location.href = "/drivers/loginpage");
     }
     getCarOwnerDashboard()
-    //getSelectedVehicle();
   }, []);
 
 

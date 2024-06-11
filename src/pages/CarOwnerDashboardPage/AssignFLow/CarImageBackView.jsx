@@ -51,7 +51,7 @@ const CarImageBackView = () => {
     </div>
 
     {/* Camera div to display and review */}
-    <div className="md:w-6/12 w-full h-[531px] md:h-[420.01px] bg-black mb-6 md:rounded-[13px]">
+    <div className="md:w-6/12 w-full bg-black mb-6 md:rounded-[13px]">
      {!image ? (
          <Camera 
          ref={camera} 

@@ -52,7 +52,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
-                          <p className="font-GelionBold">{car?.driver?.DNM} {car?.driver?.DSN}</p>
+                          <p className="font-GelionBold text-[12px]">{car?.driver?.DNM} {car?.driver?.DSN}</p>
 
                           <div className="flex items-center gap-1 font-GelionLight text-[14px]">
                             <FaStar color="#CAEA08" size={10} />
@@ -63,7 +63,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                     )}
 
                     {car?.status === "assigned" && car?.return_status === true && (
-                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:right-10 right-3 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:right-20 right-3 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
                         
                         <div className="flex items-center justify-center">
                           <p className="font-GelionBold text-[11px]">Retrieval requested</p>
@@ -72,7 +72,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                     )}
                     
                    {car?.bid_status === true && (
-                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:right-20 right-3 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#c32121cc]">
                         
                         <div className="flex items-center justify-center">
                           <p className="font-GelionBold text-[11px]">Pending Bid</p>
@@ -83,8 +83,8 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
 
                     {/* Car info */}
                     <div className=" flex justify-start flex-col pb-[16px]">
-                      <p className="font-SemiBold mt-3 text-[24px]">
-                        {car?.VCL} {car?.VMK} {car?.VMD}
+                      <p className="font-SemiBold mt-3 text-[18px]">
+                        {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
                       <p className="font-Light text-[18px]">
                         Plan: {car?.bus_model} 

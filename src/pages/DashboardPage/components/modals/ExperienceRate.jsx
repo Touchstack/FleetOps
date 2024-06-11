@@ -3,11 +3,12 @@ import { IoCloseOutline } from "react-icons/io5"
 import { apiPostVehicleReturn } from "@/services/VehiclesService";
 import { PropTypes } from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
+import { Button } from "@/Components/ui/button";
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const ExperienceRate = ({onCancel, onNext}) => {
-  const [selectedRate, setSelectedRate] = useState(null);
+  const [selectedRate, setSelectedRate] = useState('');
   
   const reason = localStorage.getItem('reason')
   const driverString = localStorage.getItem('driver');
@@ -99,13 +100,15 @@ const ExperienceRate = ({onCancel, onNext}) => {
              </p>
            </div>
 
-           <div 
+           <Button
             onClick={handleNext}
-            className="md:px-[46px] md:py-[8px] px-[20px] py-[8px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] bg-[#23A6BF]">
-              <p className="text-[#ffffff]">
-                submit
-              </p>
-           </div>
+            className={`md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] ${selectedRate ? 'bg-[#23A6BF] cursor-pointer' : 'bg-gray-400 cursor-not-allowed'}`}
+            disabled={!selectedRate}
+          >
+            <p className="text-[#ffffff]">
+              submit
+            </p>
+          </Button>
 
         </div>
     </div>

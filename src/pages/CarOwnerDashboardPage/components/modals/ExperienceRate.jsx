@@ -3,10 +3,11 @@ import { IoCloseOutline } from "react-icons/io5"
 import { apiGetCollectionForm } from "@/services/CarOwnerService";
 import { PropTypes } from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { Button } from "@/Components/ui/button";
 import 'react-toastify/dist/ReactToastify.css';
 
 const ExperienceRate = ({onCancel, onNext}) => {
-  const [selectedRate, setSelectedRate] = useState(null);
+  const [selectedRate, setSelectedRate] = useState('');
   // const reason = localStorage.getItem('car_owner_reason')
    const vehicle_id = localStorage.getItem('car_id');
    const driver_id = localStorage.getItem('driver_id');
@@ -110,13 +111,15 @@ const handleNext = async () => {
              </p>
            </div>
 
-           <div 
+           <Button
             onClick={handleNext}
-            className="md:px-[46px] md:py-[8px] px-[20px] py-[8px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] bg-[#23A6BF]">
-              <p className="text-[#ffffff]">
-                Continue
-              </p>
-           </div>
+            className={`md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] ${selectedRate ? 'bg-[#23A6BF] cursor-pointer' : 'bg-gray-400 cursor-not-allowed'}`}
+            disabled={!selectedRate}
+          >
+            <p className="text-[#ffffff]">
+              continue
+            </p>
+          </Button>
 
         </div>
     </div>

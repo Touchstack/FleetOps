@@ -165,7 +165,7 @@ const CarsListing = () => {
             <ActiveBids data={activeBids} loading={loading} />
         </TabsContent>
        </Tabs>
-          {/* Tabs */}
+      {/* Tabs */}
 
       </div>
 

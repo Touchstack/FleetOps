@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CarOwnerDashboardNavBar from "../../../Components/Navbar/CarOwnerDashboardNavBar";
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema } from "../AssignFLow/utils";
+import { formSchema } from "./utils";
 import {
   Form,
   FormControl,
@@ -31,7 +31,7 @@ const RetrivalForm = () => {
         registration: defaultData?.registration,
         chasis_num: defaultData?.chasis_num,
         insurance: defaultData?.insurance,
-        starting_mileage: '',
+        ending_mileage: '',
         road_cert: defaultData?.road_cert,
         comment: '',
         hand_over_date: defaultData?.hand_over_date,
@@ -49,6 +49,10 @@ const RetrivalForm = () => {
         radio_comments: '',
         fire_extinguisher_comment: '',
         road_test_comment: '',
+        brake_lights_comment: '',
+        wiper_function_comment: '',
+        wheel_caps_comment: '',
+        horn_comment: '',
         front_lights: false,
         reverse_lights: false,
         wheel_caps: false,
@@ -75,7 +79,8 @@ const RetrivalForm = () => {
         registration: values.registration,
         chasis_num: values.chasis_num,
         insurance: values.insurance,
-        starting_mileage: values.starting_mileage,
+        starting_mileage: '',
+        ending_mileage: values.ending_mileage,
         road_cert: values.road_cert,
         comment: values.comment,
         hand_over_date: values.hand_over_date,
@@ -108,7 +113,11 @@ const RetrivalForm = () => {
         air_conditioner_comment: values.air_conditioner_comment,
         spare_tire_comment: values.spare_tire_comment,
         fire_extinguisher_comment: values.fire_extinguisher_comment,
-        road_test_comment: values.road_test_comment
+        road_test_comment: values.road_test_comment,
+        brake_lights_comment: values.brake_lights_comment,
+        wiper_function_comment: values.wiper_function_comment,
+        wheel_caps_comment: values.wheel_caps_comment,
+        horn_comment: values.horn_comment,
       };
       localStorage.setItem('form', JSON.stringify(formData));
      navigate('/carowner/retrival/frontview')
@@ -136,7 +145,7 @@ const RetrivalForm = () => {
       <Form {...form} className="px-6 space-y-4">
         <form onSubmit={form.handleSubmit(onSubmit)} className="px-2 space-y-10">
          <div className="space-y-4">
-           <div className="grid md:grid-cols-2 gap-4 px-[22px] py-[16px] mb-10 md:mx-20 grid-cols-1">
+         <div className="grid md:grid-cols-3 gap-4 px-[22px] py-[16px] mb-10 md:mx-20 grid-cols-1">
             <FormField
                 control={form.control}
                 name="registration"
@@ -144,7 +153,7 @@ const RetrivalForm = () => {
                   <FormItem>
                     <FormLabel>Registration(number plate)</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-6/12 h-10 bg-[#AAAAAA]" {...field} />
+                      <Input disabled className="md:w-8/12 h-10 bg-[#AAAAAA]" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -158,7 +167,7 @@ const RetrivalForm = () => {
                   <FormItem>
                     <FormLabel>Chasis No</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-6/12 h-10 bg-[#AAAAAA]"  {...field} />
+                      <Input disabled className="md:w-8/12 h-10 bg-[#AAAAAA]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -172,7 +181,7 @@ const RetrivalForm = () => {
                   <FormItem>
                     <FormLabel>Insurance expiry date</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-6/12 h-10 bg-[#AAAAAA]"  {...field} />
+                      <Input disabled className="md:w-8/12 h-10 bg-[#AAAAAA]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -186,7 +195,7 @@ const RetrivalForm = () => {
                   <FormItem>
                     <FormLabel>Roadworthy certificate expiry date</FormLabel>
                     <FormControl>
-                      <Input disabled className="md:w-6/12 h-10 bg-[#AAAAAA]"  {...field} />
+                      <Input disabled className="md:w-8/12 h-10 bg-[#AAAAAA]"  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -195,12 +204,16 @@ const RetrivalForm = () => {
 
               <FormField
                 control={form.control}
-                name="starting_mileage"
+                name="ending_mileage"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Ending Mileage</FormLabel>
                     <FormControl>
-                      <Input className="md:w-6/12 h-10"  {...field} />
+                      <Input 
+                        type='number' 
+                        className="md:w-8/12 h-10"  
+                        {...field} 
+                        />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -647,7 +660,7 @@ const RetrivalForm = () => {
 
           </div>  
 
-           
+          <div className="col-span-1 space-y-4 md:col-span-1">
             <FormField
                 control={form.control}
                 name="brake_lights"
@@ -667,8 +680,23 @@ const RetrivalForm = () => {
                   </FormItem>
                 )}
               />
-              
-        
+
+             <FormField
+              control={form.control}
+              name="brake_lights_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            </div>  
+
+            <div className="col-span-1 space-y-4 md:col-span-1">  
               <FormField
                 control={form.control}
                 name="wiper_function"
@@ -688,8 +716,23 @@ const RetrivalForm = () => {
                   </FormItem>
                 )}
               />
-              
-             
+
+            <FormField
+              control={form.control}
+              name="wiper_function_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>    
+
+            <div className="col-span-1 space-y-4 md:col-span-1">   
               <FormField
                 control={form.control}
                 name="wheel_caps"
@@ -710,8 +753,22 @@ const RetrivalForm = () => {
                 )}
               />
 
-               
-
+            <FormField
+              control={form.control}
+              name="wheel_caps_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> 
+            </div>       
+            
+            <div className="col-span-1 space-y-4 md:col-span-1">  
               <FormField
                 control={form.control}
                 name="horn"
@@ -731,8 +788,24 @@ const RetrivalForm = () => {
                   </FormItem>
                 )}
               />
-               
-           </div>
+
+             <FormField
+              control={form.control}
+              name="horn_comment"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Comment</FormLabel> */}
+                  <FormControl>
+                    <Input className="md:w-8/12 h-10"  {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> 
+            </div>  
+
+
+            </div>
            <Separator orientation='horizontal' className="h-[2px] bg-[#D9D9D9]" />
             
         

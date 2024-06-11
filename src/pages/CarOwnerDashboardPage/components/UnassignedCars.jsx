@@ -67,7 +67,7 @@ const UnassignedCars = ({data, loading}) => {
                     {/* Car info */}
                     <div className=" flex justify-start flex-col pb-[16px]">
                       <p className="font-SemiBold mt-3 text-[24px]">
-                        {car?.VCL} {car?.VMK} {car?.VMD}
+                        {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
                       <p className="font-Light text-[18px]">
                         Plan: {car?.bus_model} 
