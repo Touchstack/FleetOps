@@ -241,14 +241,26 @@ const DashboardVehicleDetailsPage = () => {
         <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
           
           <div className='space-y-2 pb-3 '>
-           <p className="text-[24px] font-SemiBold">Location : {data?.location}</p>
-           <p className="text-[24px] font-SemiBold">Plan : <span className='font-Medium'>{data?.bus_model}</span> </p>
-           {data?.bus_model !== 'Ride-Hailing' && <p className="text-[24px] font-Medium">GHS {data?.amount} / {data?.periodicity} </p>}
+           <p className="text-[24px] font-SemiBold">Location: <span className='font-Light text-[20px]'>{data?.location}</span></p>
+           <p className="text-[24px] font-SemiBold">
+             Plan: {" "} 
+                <span className='font-Light text-[20px]'>
+                  {data?.bus_model}{" "} 
+                  {data?.bus_model !== 'Ride-Hailing' &&
+                   <>
+                    / <span className="font-Light text-[20px]">GHS {data?.amount}</span>
+                    {" "}
+                    <span className='text-[14px]'>{data?.periodicity}</span>
+                   </>
+                   }
+                </span>
+           </p>
+           {/* {data?.bus_model !== 'Ride-Hailing' && <p className="font-Light text-[20px]">GHS {data?.amount}</p>} */}
           </div>
 
           {/* Terms */}
           <div className="flex flex-col mb-5">
-              <p className="font-Light text-[24px] text-[#0A0D14] underline pb-2">Terms</p>
+              <p className="font-Light text-[18px] text-[#0A0D14] underline pb-2">Terms</p>
               {/*                
                <div className="text-[#545151] font-Light">
                    <p>Model : {data?.bus_model}</p>

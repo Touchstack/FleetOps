@@ -51,7 +51,7 @@ const AssignedCars = ({data, loading, onUnassignClick}) => {
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
-                          <p className="font-GelionBold text-[12px]">{car?.driver?.DNM} {car?.driver?.DSN}</p>
+                          <p className="font-GelionBold text-[12px] max-w-[100px]">{car?.driver?.DNM} {car?.driver?.DSN}</p>
 
                           <div className="flex items-center gap-1 font-GelionLight text-[14px]">
                             <FaStar color="#CAEA08" size={10} />

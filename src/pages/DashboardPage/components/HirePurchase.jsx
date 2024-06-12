@@ -32,10 +32,12 @@ const HirePurchase = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =>
                   )}
                   {/* Price tag */}
                   
-                    <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:left-3 left-8 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
-                     <p> GHS {car?.amount}{" "}</p>
+                
+                   <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 md:left-5 px-[15px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
+                     <p>{car?.bus_model}/GHS {car?.amount}{" "}</p>
                      <span className="text-[13.32px] font-Light pt-1">{car?.periodicity}</span>
                    </div>
+                   
 
                    {car?.bid_status === true && (
                       <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#f5d359]">
@@ -50,9 +52,6 @@ const HirePurchase = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =>
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">
                        {car?.VCL} {car?.VMK} {car?.VMD}
-                    </p>
-                    <p className="font-Light  text-[18px]">
-                      Plan: {car?.bus_model} 
                     </p>
                   </div>
                   {/* Car info */}

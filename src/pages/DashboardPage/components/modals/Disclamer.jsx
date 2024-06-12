@@ -35,7 +35,7 @@ const Disclamer = ({onCancel}) => {
             <img src={Info} className="w-[144px] h-[144px] mb-3" alt="" />
             <h1 className="font-Bold text-center text-[32px] text-[#FFFFFF]">Disclaimer</h1>
             {/* <h2 className="font-Bold text-center text-[32px] text-[#FFFFFF]">Your bid is on hold</h2> */}
-            <p className="text-center text-[13.66px] text-[#F5F5F5] w-[347px]">
+            <p className="text-center text-[13.66px] text-[#F5F5F5] max-w-[347px]">
                  You are attempting to swap vehicles. By this process, 
                  you must return the current vehicle to its owner before the new owner can accept your bid to swap.
                  It requires that you do a proper handing over. You are full responsible for your actions especially in 
@@ -44,18 +44,11 @@ const Disclamer = ({onCancel}) => {
           </div>
 
         <div className="flex flex-row justify-center gap-[12px] mt-10">
-           <div className="md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] border-[#23A6BF]"
-             onClick={handleClose}
-           >
-             <p className="text-white font-SemiBold">
-                I Accept
-             </p>
-           </div>
-
+        
            <div 
             onClick={handleClose}
-            className="flex items-center md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white  px-[26px]  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
-                <p>Cancel</p> 
+            className="flex py-3 items-center md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white  px-[26px]  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
+                <p>Ok</p> 
            </div>
 
         </div>

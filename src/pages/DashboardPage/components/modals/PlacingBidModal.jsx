@@ -2,6 +2,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import Clipboard from "../../../../assets/images/clipboard.svg"
 import { PropTypes } from 'prop-types';
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/Components/ui/button";
 
 const PlacingBidModal = ({onCancel}) => {
   const navigate = useNavigate()
@@ -29,13 +30,13 @@ const PlacingBidModal = ({onCancel}) => {
             <img src={Clipboard} className="w-[144px] h-[144px] mb-8" alt="" />
 
             <h2 className="font-Bold text-center text-[32px] text-[#FFFFFF]">Your bid has been placed</h2>
-            <p className="text-center text-[13.66px] text-[#F5F5F5] w-[347px]">
+            <p className="text-center text-[13.66px] text-[#F5F5F5] max-w-[347px]">
                 We have received your bid request. A member of our team will contact you within 6 hours.
             </p>
           </div>
 
-        <div className="flex flex-row justify-center gap-[12px] mt-10">
-           <div className="md:px-[46px] md:py-[8px] px-[26px] py-[5px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] border-[#23A6BF]"
+        <div className="flex flex-row items-center justify-center gap-4 md:gap-10 mt-10">
+           <div className="hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[5px] border-[1px] border-[#23A6BF]"
              onClick={handleViewBids}
            >
              <p className="text-white font-SemiBold">
@@ -43,11 +44,11 @@ const PlacingBidModal = ({onCancel}) => {
              </p>
            </div>
 
-           <div 
+           <Button 
             onClick={handleOnBackToSearch}
-            className="flex items-center md:px-[46px] font-SemiBold md:text-[16px] text-[13px] text-white px-[26px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
+            className="flex items-center  font-SemiBold md:text-[16px] text-[13px] text-white px-[26px] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 rounded-[10px] border-[1px] bg-[#00A3C2]">
                <p>Back to search</p>   
-           </div>
+           </Button>
 
         </div>
     </div>

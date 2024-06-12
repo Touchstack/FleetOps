@@ -184,7 +184,7 @@ const Dashboard = () => {
               <div className="bg-fleetBlue font-Sans text-white rounded-3xl p-8 h-50">
                 <div className="flex justify-between items-center">
                   <div className="flex flex-col gap-2">
-                    <p className="text-[16px] text-[#E9EDF7] font-SansLight">Current vehicle</p>
+                    <p className="text-[20px] text-[#E9EDF7] font-Light">Current vehicle</p>
                     {loading ? (
                       <Spinner /> // Show spinner while loading
                     ) : data?.AssignedVehicle !== "" ? (
@@ -206,9 +206,10 @@ const Dashboard = () => {
 
                 {data?.AssignedVehicle ? (
                   <>
-                    <div className="space-y-3">
-                      <p className="text-[14px] text-[#E9EDF7] mt-[14px] font-SansLight">Plan: {data?.model}</p>
-                     <div className="flex items-center space-x-3">
+                    <div className="mt-3">
+                      <p className="text-[20px] text-[#E9EDF7] font-Light">Plan</p>
+                      <p className="text-[20px] font-SansMedium">{data?.model}</p>
+                     <div className="flex items-center mt-3 space-x-3">
                       <BiSolidFilePdf size={25} />
                       <a 
                         href={`https://engines.fleetopsgh.com/uploads/handover/${data?.form}`}
