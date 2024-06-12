@@ -27,7 +27,7 @@ const CustomCarousel = ({ data }) => {
     }, [api])
     
   return (
-    <div className="flex flex-col md:hidden mb-10">
+    <div className="flex flex-col md:hidden mb-5">
       <Carousel setApi={setApi} className="flex flex-col md:hidden mb-10">
           <CarouselContent>
             {data.map((img) => (

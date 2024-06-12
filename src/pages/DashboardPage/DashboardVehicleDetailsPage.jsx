@@ -238,7 +238,7 @@ const DashboardVehicleDetailsPage = () => {
 
         <CustomCarousel data={carouselImages} />
         
-        <h1 className="text-[34px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
+        <h1 className="md:text-[34px] text-[24px] font-Bold">{data?.VCL} {data?.VMK} {data?.VMD}</h1>
           
           <div className='space-y-2 pb-3 '>
            <p className="text-[24px] font-SemiBold">Location: <span className='font-Light text-[20px]'>{data?.location}</span></p>
