@@ -17,6 +17,7 @@ export default function ActiveBid({ data }) {
   const [onAssignCar, setonAssignCar] = useState(false);
   const [timeLeft, setTimeLeft] = useState({});
   const [expired, setExpired] = useState({});
+ 
 
  
   const handleAcceptBid = (id, data) => {
@@ -79,14 +80,13 @@ export default function ActiveBid({ data }) {
   return (
     <div className={"py-4"}>
       {data?.map((data, index) => (
-       
+        
       <div
         key={index}
         className={
           "flex md:flex-row flex-col justify-between items-start py-4 gap-7 px-3"
         }
       >
-        
          <div className={""}>
           <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data?.DNM} {data?.DSN}</p>
           <div className={"flex gap-4 items-start"}>
@@ -106,15 +106,31 @@ export default function ActiveBid({ data }) {
                   Rating: <span>{data?.rating}/5.0</span>
                 </p>
               </div>
-              <p className="text-[#5A6267] hover:underline">
+              <p className="text-[#5A6267]">
+                License No: <span className="text-bodyText">{data?.license_no}</span>
+              </p>
+
+              <div className="flex gap-3">
+                <p className="text-[#5A6267] hover:underline cursor-pointer">
                 <a
                   target="_blank"
                   href={`https://engines.fleetopsgh.com/uploads/driver/${data?.DLD}`}
                   rel="noreferrer"
                 >
-                  License No: <span className="text-bodyText">{data?.license_no}</span>
+                  Front
                 </a>
-              </p>
+                </p>
+                <p className="text-[#5A6267] hover:underline cursor-pointer">
+                <a
+                  target="_blank"
+                  href={`https://engines.fleetopsgh.com/uploads/driver/${data?.DLD2}`}
+                  rel="noreferrer"
+                >
+                  Back
+                </a>
+                </p>
+              </div>
+
             </div>
           </div>
      
@@ -125,13 +141,6 @@ export default function ActiveBid({ data }) {
             </p>
           }
 
-          {/* {data?.swap === "yes" && 
-            <p className={"my-4 bg-red-500 p-2 text-white w-max"}>
-              The bidder is currently driving another
-            <br /> but wants to swap
-            </p>
-          } */}
-    
         </div>
         <div
           className={"flex md:flex-row flex-col gap-8 justify-between w-1/2"}
@@ -166,6 +175,7 @@ export default function ActiveBid({ data }) {
         </div>
 
         <div>
+        {data?.hideButton === false && 
           <div
             className={
               "flex gap-2  justify-end md:justify-center md:w-max w-full"
@@ -196,6 +206,7 @@ export default function ActiveBid({ data }) {
               Cancel
             </Button>
           </div>
+          }
 
           {data?.swap === "yes" && 
             <p className={"my-4 p-1 rounded-sm bg-[#c16060] text-white w-max"}>
