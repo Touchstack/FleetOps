@@ -190,7 +190,7 @@ export default function ActiveBid({ data }) {
             </Button>
           ) : (
           <Button
-            className={"bg-[#23A6BF] py-3 text-base hover:bg-fleetLightBlue"}
+            className={"bg-violet-500 py-3 text-base"}
             onClick={() => handleAssign(data?.bid_id)}
           >
             Assign Car
