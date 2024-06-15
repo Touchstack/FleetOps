@@ -249,7 +249,7 @@ const Dashboard = () => {
             </div>
 
             <div className="bg-white flex flex-col justify-center items-start border text-black rounded-3xl p-10 h-50">
-              <p className="text-gray-700 text-md">Average Reviews</p>
+              <p className="text-gray-700 text-md">Your Rating</p>
               <h3 className="font-Regular text-2xl">{data?.ReviewCount} / 5.0</h3>
             </div>
           </div>
