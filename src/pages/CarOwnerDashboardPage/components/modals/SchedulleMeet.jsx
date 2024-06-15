@@ -9,6 +9,7 @@ import { apiScheduleBid } from "@/services/CarOwnerService";
 import { ClipLoader } from "react-spinners";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { CgProfile } from "react-icons/cg";
+import toast, { Toaster } from 'react-hot-toast';
 
 const ScheduleMeetModal = ({ open, onClose }) => {
   const [invitationSent, setInvitationSent] = useState(false);
@@ -33,18 +34,23 @@ const ScheduleMeetModal = ({ open, onClose }) => {
     try {
       setloading(true)
       const res = await apiScheduleBid(payLoad);
-     //console.log(res);
+      console.log(res);
       if (res.status === 200) {
         window.location.reload();
         setInvitationSent(true);
+      } else {
+         setloading(false)
+         toast.error(res?.response?.data?.message);
       }
     } catch (error) {
+      toast.error(error?.response?.data?.message);
       setloading(false)
       console.log(error);
     }
   };
 
   return (
+   <div>
     <Modal show={open} onClose={onClose} center popup dismissible size={"md"}>
       <div
         className={cn(
@@ -171,6 +177,8 @@ const ScheduleMeetModal = ({ open, onClose }) => {
         )}
       </Modal.Footer>
     </Modal>
+    <Toaster position="top-right" reverseOrder={true} />
+  </div>
   );
 };
 

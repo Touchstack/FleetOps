@@ -79,15 +79,14 @@ export default function ActiveBid({ data }) {
 
   return (
     <div className={"py-4"}>
-      {data?.map((data, index) => (
-        
+    {data?.map((data, index) => (
+     <div key={index}>
       <div
-        key={index}
         className={
           "flex md:flex-row flex-col justify-between items-start py-4 gap-7 px-3"
         }
       >
-         <div className={""}>
+        <div className={""}>
           <p className={"text-[#2A2A2A] font-SemiBold mb-1"}>{data?.DNM} {data?.DSN}</p>
           <div className={"flex gap-4 items-start"}>
             <Avatar>
@@ -214,7 +213,11 @@ export default function ActiveBid({ data }) {
             <br /> returns previous vehicle.
             </p>
           }
+
         </div>
+        
+      </div>
+      {index === data.length ? null :  <hr className="w-full bg-blue-400"/> }
       </div>
     ))}
 
