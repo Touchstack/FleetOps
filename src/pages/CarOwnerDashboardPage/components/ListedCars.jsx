@@ -86,8 +86,8 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                       <p className="font-SemiBold mt-3 text-[18px]">
                         {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
-                      <p className="font-Light text-[18px]">
-                        Plan: {car?.bus_model} 
+                      <p className="font-Medium text-[18px]">
+                        Plan: {car?.bus_model}/ GHS {car?.amount} 
                       </p>
 
                       <div className="flex w-11/12 justify-between">

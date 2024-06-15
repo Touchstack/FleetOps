@@ -125,7 +125,7 @@ const RetrivalForm = () => {
   
     const handleRestart = () => {
       localStorage.removeItem('driver-img');
-      navigate('/carowner/retrival/form')
+      navigate('/carowner/listing')
     }
 
   return (

@@ -90,7 +90,7 @@ const handleNext = async () => {
                  className={`flex items-center justify-center md:w-[68px] md:h-[56px] w-[38.86px] h-[32px] border-[1px] rounded-[5px] ${selectedRate === num.id ? 'bg-[#8CE7F9] border-[#8CE7F9]' : 'border-[#23A6BF] bg-[#DEDBDB]'}`}
                  onClick={() => handleRateClick(num.id)}
                  >
-                   {num.value}
+                  <p className='font-Bold text-[24px]'>{num.value}</p> 
                 </div>
               ))}     
         </div>

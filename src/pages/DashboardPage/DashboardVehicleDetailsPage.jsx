@@ -277,16 +277,33 @@ const DashboardVehicleDetailsPage = () => {
             </p>
           }
 
+          {bidStatus === 'expired' && 
+             <p className='text-red-400'>
+              Your previous bid has expired 
+            </p>
+          }
+
          {/* Call to action */}
-          {bidStatus !== 'pending' ? (
+          {bidStatus === '' && 
             <button disabled={licenseExpired} onClick={toggleShowPlaceBid} className={`border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] ${licenseExpired === true ? 'bg-gray-300' : 'bg-[#23A6BF] hover:bg-[#23A6BF] border-[#23A6BF]' }  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:text-white justify-center  cursor-pointer rounded-[10px] px-[10px] py-[10px]`}>
             <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
             </button>
-          ): (
-            <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center  cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
-              <p className=" font-Light text-[19px] text-[#CE9A00]  pt-2">Awaiting Response</p>
-            </div>
-          )}
+          }
+
+         {bidStatus === 'pending' && 
+           <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center  cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
+            <p className=" font-Light text-[19px] text-[#CE9A00]  pt-2">Awaiting Response</p>
+           </div>
+          } 
+
+         {bidStatus === 'expired' && 
+            <button disabled={licenseExpired} onClick={toggleShowPlaceBid} className={`border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] ${licenseExpired === true ? 'bg-gray-300' : 'bg-[#23A6BF] hover:bg-[#23A6BF] border-[#23A6BF]' }  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:text-white justify-center  cursor-pointer rounded-[10px] px-[10px] py-[10px]`}>
+            <p className=" font-SemiBold text-[19px]  pt-2">Rebid</p>
+            </button>
+          }
+         
+            
+       
           {/* Call to action */}
 
 
