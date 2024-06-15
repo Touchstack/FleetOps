@@ -79,16 +79,13 @@ const ActiveBids = () => {
                   
                   {cars?.vehicle?.bus_model !== "ride-hailing" &&
                     <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-10 px-[20px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
-                     <p>GHS {cars?.vehicle?.amount}</p>
+                     <p>{cars?.vehicle?.bus_model}/GHS {cars?.vehicle?.amount}</p>
                      <span className="text-[13.32px] font-Light pt-1">{cars?.vehicle?.periodicity}</span>
                     </div>
                   }
                   <div className=" flex flex-col pb-[16px]">
                     <p className="font-SemiBold mt-3 text-[24px]">
                       {cars?.vehicle?.VCL} {cars?.vehicle?.VMK} {cars?.vehicle?.VMD}
-                    </p>
-                    <p className="font-Light  text-[20px]">
-                      Plan: {cars?.vehicle?.bus_model}
                     </p>
                   </div>
                   <div className="px-[6px] w-7/12  md:w-6/12 lg:w-[7/12] py-[8px] flex items-center justify-center rounded-[6px] bg-[#FFEFB6] mb-5">

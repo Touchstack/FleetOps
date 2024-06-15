@@ -191,23 +191,23 @@ const DashboardVehicleDetailsPage = () => {
                       </div>
                   ))}
                 </div>
-
-
-                {/* <div className='text-[24px] mt-5'>
-                   <h1 className='font-Bold'>Car Features</h1>
-
-                   <div className='flex flex-wrap gap-2 max-w-[230px] md:max-w-[430px]'>
-                       {Features.map((msg) => (
-                          <div key={msg.id} className='text-[16px] md:text-[12px] flex items-center justify-center border-[1px] border-[#E7E9EE] rounded-[4px] md:p-1 p-3  bg-[#FEFEFE]'>
-                              {msg.msg}
-                          </div>
-                       ))}
-                   </div>
-                </div> */}
             </div>
           {/* Car specifications */}
 
         </div>
+
+        <div className='flex md:hidden flex-col max-w-[430px] md:mt-10  order-last'>
+                <h1 className='font-Bold text-[24px]'>Car Specifications</h1>
+
+                <div className="font-Light">
+                  {carDetails.map((detail, index) => (
+                      <div key={index} className="flex justify-between text-[16px] mb-5">
+                      <p>{detail?.label}</p>
+                      <p>{detail?.value}</p>
+                      </div>
+                  ))}
+                </div>
+            </div>
 
        
         <div className="flex flex-col justify-start  md:order-last order-first">
