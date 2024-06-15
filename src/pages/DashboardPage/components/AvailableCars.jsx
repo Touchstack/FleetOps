@@ -49,8 +49,7 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
                    )}
 
                   {car?.bid_status === true && (
-                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 right-10 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#f5d359]">
-                        
+                      <div className="absolute  hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 md:right-20 right-6 px-[8px] py-[8px] font-SemiBold text-[16.87px] gap-2 rounded-[35.51px] text-[#FFFFFF] bg-[#f5d359]">
                         <div className="flex items-center justify-center">
                           <p className="font-GelionBold text-[11px]">Bid placed</p>
                         </div>

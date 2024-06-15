@@ -12,13 +12,12 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
 
   return (
     <div className="z-0 md:p-10 p-5">
-
+     <h1 className="font-Bold pt-5 text-[30px] md:text-[36px]">Other cars you may like</h1>
     {loading ? (
       <Loading />
     ) : !loading && Data.length > 0 ? (
      <>
      <div className="">
-     <h1 className="font-Bold pt-5 text-[30px] md:text-[36px]">Other cars you may like</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-10 z-0">
         {Data.map((car) => {
           return (

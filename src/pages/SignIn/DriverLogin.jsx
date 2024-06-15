@@ -8,22 +8,22 @@ import { apiDriverLogin } from "../../services/VehiclesService";
 import FormInputItem from "../../Components/Forms/Inputs/RegistrationFormInput";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import { Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 const DriverLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState("");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
-  useEffect(() => {
-    const token = localStorage.getItem("driver_id");
-    if (token) {
-      return navigate("/drivers/dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("driver_id");
+  //   if (token) {
+  //     return navigate("/drivers/dashboard");
+  //   }
+  // }, []);
 
 
     const validation = Yup.object().shape({

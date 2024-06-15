@@ -12,8 +12,6 @@ const CustomCarousel = ({ data }) => {
     const [current, setCurrent] = useState(0)
     const [api, setApi] = useState();
 
-    console.log(data);
-
     useEffect(() => {
      if (!api) {
        return
