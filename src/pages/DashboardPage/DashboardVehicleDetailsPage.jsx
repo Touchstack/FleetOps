@@ -3,7 +3,7 @@ import DashboardNavBar from "../../Components/Navbar/DashboardNavBar";
 import OtherCarsYouMayLike from "./OtherCarsYouMayLike";
 import Info from "../../assets/images/info.png";
 import PlacingBidModal from './components/modals/PlacingBidModal';
-import { apiGetVehicleDetails, apiPlaceDriverBids } from '../.././services/VehiclesService';
+import { apiGetVehicleDetails, apiPlaceDriverBids, apiDriverReBid } from '../.././services/VehiclesService';
 import { useLocation } from "react-router-dom";
 import VehiclesLoading from './components/VehiclesLoading';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,6 +23,7 @@ const DashboardVehicleDetailsPage = () => {
     const [data, setData] = useState();
     const [selectedImageId, setSelectedImageId] = useState(null);
     const [bidStatus, setBidStatus] = useState("")
+    const [bidId, setbidId] = useState()
     const [licenseExpired, setlicenseExpired] = useState()
     const loaction = useLocation();
     const pathSegments = loaction?.pathname.split("/");
@@ -49,6 +50,7 @@ const DashboardVehicleDetailsPage = () => {
          setBidStatus(res?.data?.bid_status)
          setshowDisclamer(res?.data?.canSwap)
          setlicenseExpired(res?.data?.license_expired)
+         setbidId(res?.data?.bid_id)
         setLoading(false);
         return  setVehicles(res.data?.similarCars?.slice(0, 3));
       } catch (error) {
@@ -56,6 +58,7 @@ const DashboardVehicleDetailsPage = () => {
       }
     };
 
+    
     const carouselImages = [
       {
           id: 1,
@@ -136,9 +139,34 @@ const DashboardVehicleDetailsPage = () => {
         }
        } catch (error) {
         console.log(error)
-       }
-       
-      };
+       } 
+    };
+
+    const handleRebid = async () => {
+      try {
+        const payLoad = {
+          driver_id,
+          bid_id: bidId
+        }
+        const res = await apiDriverReBid(payLoad)
+        if (res.status === 200){
+          toast.success('Rebid was successfully')
+          window.location.reload()
+        } else {
+          toast.error(res?.response?.data?.message || "Error Placing bid try again");
+        }
+      } catch (error) {
+        toast.error("An error occured, couldnt Rebid")
+      }
+    }
+
+    const handleBidAction = () => {
+      if (bidStatus === '') {
+        toggleShowPlaceBid();
+      } else if (bidStatus === 'expired' || bidStatus === 'declined') {
+        handleRebid();
+      }
+    };
    
   return (
     <main className="bg-[#F7F9F8]">
@@ -255,7 +283,6 @@ const DashboardVehicleDetailsPage = () => {
                    }
                 </span>
            </p>
-           {/* {data?.bus_model !== 'Ride-Hailing' && <p className="font-Light text-[20px]">GHS {data?.amount}</p>} */}
           </div>
 
           {/* Terms */}
@@ -277,40 +304,34 @@ const DashboardVehicleDetailsPage = () => {
             </p>
           }
 
-          {bidStatus === 'expired' && 
-             <p className='text-red-400'>
-              Your previous bid has expired 
-            </p>
-          }
 
-         {bidStatus === 'declined' && 
-             <p className='text-red-400'>
-              Your previous bid was declined
-            </p>
-          }
+            {bidStatus !== "" && 
+             <p className="text-red-400">
+              {bidStatus === 'expired'
+                ? 'Your previous bid has expired.'
+                : bidStatus === 'declined'
+                ? 'Your previous bid was declined.'
+                : null
+              }
+              </p>
+            }
 
          {/* Call to action */}
-          {bidStatus === '' && 
-            <button disabled={licenseExpired} onClick={toggleShowPlaceBid} className={`border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] ${licenseExpired === true ? 'bg-gray-300' : 'bg-[#23A6BF] hover:bg-[#23A6BF] border-[#23A6BF]' }  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:text-white justify-center  cursor-pointer rounded-[10px] px-[10px] py-[10px]`}>
-            <p className=" font-SemiBold text-[19px]  pt-2">Place a bid</p>
-            </button>
-          }
-
-         {bidStatus === 'pending' && 
-           <div className="border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] bg-[#FFEDBA] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  justify-center  cursor-pointer rounded-[10px] px-[10px] py-[7px] ">
-            <p className=" font-Light text-[19px] text-[#CE9A00]  pt-2">Awaiting Response</p>
-           </div>
-          } 
-
-         {bidStatus === 'expired'|| 'declined' && 
-            <button disabled={licenseExpired} onClick={toggleShowPlaceBid} className={`border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF] ${licenseExpired === true ? 'bg-gray-300' : 'bg-[#23A6BF] hover:bg-[#23A6BF] border-[#23A6BF]' }  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:text-white justify-center  cursor-pointer rounded-[10px] px-[10px] py-[10px]`}>
-            <p className=" font-SemiBold text-[19px]  pt-2">Rebid</p>
-            </button>
-          }
-         
-            
-       
-          {/* Call to action */}
+         <button
+            disabled={licenseExpired}
+            onClick={handleBidAction}
+            className={`
+              border-[1px] md:w-4/12 w-6/12 mt-3 mb-6 flex text-[#FFFFFF]
+              ${licenseExpired ? 'bg-gray-300' : (bidStatus === 'pending' ? 'bg-[#FFEDBA]' : 'bg-[#23A6BF] hover:bg-[#23A6BF] border-[#23A6BF]')}
+              hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 hover:text-white justify-center  cursor-pointer rounded-[10px] px-[10px] py-[${bidStatus === 'pending' ? '7px' : '10px'}]
+            `}
+          >
+            <p className={`font-${bidStatus === 'pending' ? 'Light' : 'SemiBold'} text-[19px]  ${bidStatus === 'pending' ? 'text-[#CE9A00]' : 'text-[#FFFFFF]'} pt-2`}>
+              {bidStatus === '' ? 'Place a bid' : (bidStatus === 'pending' ? 'Awaiting Response' : 'Rebid')}
+            </p>
+          </button>
+        
+        {/* Call to action */}
 
 
         
