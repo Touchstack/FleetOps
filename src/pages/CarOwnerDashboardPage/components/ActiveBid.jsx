@@ -180,23 +180,24 @@ export default function ActiveBid({ data }) {
               "flex gap-2  justify-end md:justify-center md:w-max w-full"
             }
           >
-            {data?.bid_status === 'pending' ? (
+          {data?.bid_status === 'pending' ? (
             <Button
               className={`${data?.swap === 'yes' ? "bg-gray-400" : "bg-[#23A6BF]"} py-3 text-base hover:bg-fleetLightBlue`}
               onClick={() => handleAcceptBid(data?.bid_id, data)}
-              disabled = {data?.swap === 'yes' ? true : false}
+              disabled={data?.swap === 'yes'}
             >
               Accept bid
             </Button>
-          ) : (
-          <Button
-            className={"bg-violet-500 py-3 text-base"}
-            onClick={() => handleAssign(data?.bid_id)}
-          >
-            Assign Car
-          </Button>
-          )}
+          ) : data?.bid_status === 'accepted' ? (
+            <Button
+              className="bg-violet-500 py-3 text-base"
+              onClick={() => handleAssign(data?.bid_id)}
+            >
+              Assign Car
+            </Button>
+          ) : null}
 
+          
             <Button
               className={"border-[#23A6BF] text-base text-fleetBlue"}
               variant={"outline"}
