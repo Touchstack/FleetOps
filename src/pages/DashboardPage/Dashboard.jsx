@@ -14,39 +14,18 @@ import { BiSolidFilePdf } from "react-icons/bi";
 import toast, { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
-  //const driverData = localStorage.getItem("driver");
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [showReturnReason, setShowReturnReason] = useState(false);
   const [showExperienceRate, setShowExperienceRate] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
-  // const driver = JSON.parse(driverData);
-  // const driverVehicleObj = localStorage.getItem("driverVehicle");
-  // const driverVehicle = JSON.parse(driverVehicleObj);
 
   const navigate = useNavigate()
 
   const driver_id = localStorage.getItem("driver_id");
 
-  // const getSelectedVehicle = async () => {
-  //   const driverObj = localStorage.getItem("driver");
-  //   const driver = JSON.parse(driverObj);
-  //   if (driver && !driverVehicle) {
-  //     try {
-  //       setLoading(true);
-  //       const response = await apiGetSelectedVehicle(driver?.id);
-  //       localStorage.setItem(
-  //         "driverVehicle",
-  //         JSON.stringify(response.data?.data?.vehicle)
-  //       );
-  //       setData(response.data?.data?.vehicle);
-  //       return setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
 
   const getDashBoardData = async () => {
     if (driver_id) {
@@ -126,67 +105,12 @@ const Dashboard = () => {
 
           <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-8 my-12 w-full">
             
-          {/* Selected Cars */}
-            {/* <div className="bg-fleetBlue text-white rounded-3xl p-8 h-40">
-              <p className="text-md">Current Vehicle</p>
-              <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-between items-center">
-                {loading ? (
-                  <Spinner />
-                ) : (
-                  <>
-                    {data ? (
-                      <div>
-                        <p className="font-Bold text-xl">
-                          {data?.VCL} {data?.VMK} {data?.VMD} (
-                          {data?.VDT?.split("-")[0]})
-                        </p>
-                        <a
-                          href="https://engines.fleetopsgh.com/driver"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-Light bg-fleetBlue text-yellow-200 underline"
-                        >
-                          Access Your Selected Vehicle
-                        </a>
-                      </div>
-                    ) : driverVehicle ? (
-                      <div>
-                        <p className="font-Bold text-xl">
-                          {driverVehicle?.VCL} {driverVehicle?.VMK}{" "}
-                          {driverVehicle?.VMD} (
-                          {driverVehicle?.VDT?.split("-")[0]})
-                        </p>
-                        <a
-                          href="https://engines.fleetopsgh.com/driver"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-Light bg-fleetBlue  text-yellow-200 underline"
-                        >
-                          Access Your Selected Vehicle
-                        </a>
-                      </div>
-                    ) : (
-                      "___"
-                    )}
-                  </>
-                )}
-                {driverVehicle ? (
-                  <div></div>
-                ) : data ? (
-                  <div></div>
-                ) : (
-                  <img src={Chart} className="img-fluid" />
-                )}
-              </div>
-            </div> */}
-
- 
               <div className="bg-fleetBlue font-Sans text-white rounded-3xl p-8 h-50">
                 <div className="flex justify-between items-center">
                   <div className="flex flex-col gap-2">
                     <p className="text-[20px] text-[#E9EDF7] font-Light">Current vehicle</p>
                     {loading ? (
-                      <Spinner /> // Show spinner while loading
+                      <Spinner /> 
                     ) : data?.AssignedVehicle !== "" ? (
                       <p className="text-[20px] font-SansMedium">
                          {data?.AssignedVehicle}

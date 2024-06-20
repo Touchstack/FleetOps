@@ -47,13 +47,13 @@ export const DriverDropdown = ({ Settings }) => {
         aria-labelledby="dropdownLargeButton"
       >
        { Settings &&  
-          <p 
+          <li 
           onClick={() => navigate('/drivers/account')}
-          className="px-2 py-3 cursor-pointer text-base hover:bg-gray-100 dark:hover:bg-green-100">
+          className="px-2 py-3 cursor-pointer text-xl hover:bg-gray-100 dark:hover:bg-green-100">
             Settings
-        </p> }
+        </li> }
 
-        <button
+        <li
           onClick={() => {
             localStorage.removeItem("driverNumber");
             localStorage.removeItem("driver");
@@ -65,14 +65,10 @@ export const DriverDropdown = ({ Settings }) => {
             localStorage.removeItem("car-owner-token");
             return (window.location.href = "/drivers/loginpage");
           }}
+           className="px-2 py-3 text-xl hover:bg-gray-100 dark:hover:bg-green-100"
         >
-          <a
-            href="#"
-            className="block px-2 py-3 text-xl hover:bg-gray-100 dark:hover:bg-green-100"
-          >
-            Logout
-          </a>
-        </button>
+          Logout
+        </li>
       </ul>
     </div>
   );

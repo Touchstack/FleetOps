@@ -87,7 +87,7 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Brand', value: `${data?.VMK}` },
       { label: 'Year of manufacturing', value: `${data?.year_of_manufacturing}` },
       { label: 'Year of registration', value: `${data?.year_of_registration}` },
-      { label: 'Trasmition', value: `${data?.trans_type}` },
+      { label: 'Transmission', value: `${data?.trans_type}` },
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 

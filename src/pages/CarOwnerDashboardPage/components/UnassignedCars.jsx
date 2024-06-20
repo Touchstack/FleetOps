@@ -66,13 +66,25 @@ const UnassignedCars = ({data, loading}) => {
 
                     {/* Car info */}
                     <div className=" flex justify-start flex-col pb-[16px]">
-                      <p className="font-SemiBold mt-3 text-[24px]">
+                      <p className="font-Bold mt-3 text-[18px]">
                         {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
-                      <p className="font-Medium text-[18px]">
-                        Plan: {car?.bus_model}/ GHS {car?.amount} 
-                      </p>
+                      
+                      {car?.bus_model !== 'Ride-Hailing' ? (
+                        <p className="font-Bold text-[18px]">
+                          Plan: <span className="font-Medium">{car?.bus_model}/ GHS {car?.amount} </span>
+                        </p>
+                      ) : 
+                        null
+                      }
 
+                      {car?.bus_model === 'Ride-Hailing' ? (
+                        <p className="font-Bold text-[18px]">
+                          Plan: <span className="font-Medium">{car?.bus_model}</span>
+                        </p>
+                      ) : 
+                        null
+                      }
                       <div className="flex w-11/12 justify-between">
                       <div
                           className={`px-3 h-[39px] capitalize flex items-center  text-[16px] rounded-[2px] ${

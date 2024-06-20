@@ -55,7 +55,7 @@ const YouAreAssigning = ({onCancel}) => {
 
             <div className="flex gap-8 items-center justify-center">
                 <div className="md:mt-5 gap-8 flex flex-col items-center justify-center">
-                    <p className="text-[#FFFFFF] md:text-[24px] text-[16px] font-Bold">{data?.vehicle?.VCL} {data?.vehicle?.VMK} {data?.vehicle?.VMD}</p>
+                    <p className="text-[#FFFFFF] md:text-[20px] text-[12px] font-Bold">{data?.vehicle?.VCL} {data?.vehicle?.VMK} {data?.vehicle?.VMD}</p>
                     <div className="flex md:gap-8 gap-10">
                       <img src={Car} alt="" className="md:w-[172px] w-[94px] h-[41.04px] md:h-[75.09px]" />
                       <FaRightLong color="#FFFFFF" className="w-[24px] h-[24px]" />
@@ -65,7 +65,7 @@ const YouAreAssigning = ({onCancel}) => {
                
 
                 <div className="md:mt-5 md:gap-8 gap-6 flex flex-col font-Bold items-center justify-center">
-                    <p className="text-[#FFFFFF] md:text-[24px] text-[16px]">{data?.driver?.DNM} {data?.driver?.DSN}</p>
+                    <p className="text-[#FFFFFF] md:text-[20px] text-[12px]">{data?.driver?.DNM} {data?.driver?.DSN}</p>
                     <img src={Driver} alt="" className="md:w-[75px] w-[56px] md:h-[75px] h-[56px]" />
                 </div>
             </div>
