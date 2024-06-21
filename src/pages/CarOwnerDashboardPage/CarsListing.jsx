@@ -55,7 +55,7 @@ const CarsListing = () => {
       
       setAllData(allResponse.data?.allVehicles?.data);
       setAssigned(assignedResponse.data?.assigned?.data);
-      setUnassigned(unassignedResponse.data?.unAssigned);
+      setUnassigned(unassignedResponse.data?.unAssigned?.data);
       setActiveBids(activeBidsResponse.data?.activeBids?.data);
     } catch (error) {
       toast.error(error?.response?.data?.message  || "Error occurred while fetching data");
