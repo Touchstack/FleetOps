@@ -29,21 +29,17 @@ const FindCars = () => {
 
   
   const updateAllData = (data) => {
-    //console.log("all data =>", data)
     setAllData(data);
   };
 
   const updateRentals = (data) => {
-    //console.log("rental data =>", data)
     setRentals(data);
   };
   const updateRideHailing = (data) => {
-    //console.log("Hailing data =>", data)
     setRideHailing(data);
   };
 
   const updateHirePurchase = (data) => {
-    //console.log("Purchase data =>", data)
     setHirePurchase(data);
   };
 
@@ -157,7 +153,7 @@ const FindCars = () => {
             value="Ride hailing"
             className="relative rounded-none border-b-2  bg-transparent md:px-10 px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none focus-visible:ring-0 data-[state=active]:border-b-[#234C65] data-[state=active]:text-[#234C65] data-[state=inactive]:text-[#ABB3BF] data-[state=active]:shadow-none "
           >
-           Ride hailing
+           Ride Hailing
           </TabsTrigger>
           <TabsTrigger
             value="Rental"
@@ -166,10 +162,10 @@ const FindCars = () => {
             Rental 
           </TabsTrigger>
           <TabsTrigger
-            value="Hire-purchase"
+            value="Hire Purchase"
             className="relative rounded-none border-b-2  bg-transparent md:px-10 px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none focus-visible:ring-0 data-[state=active]:border-b-[#234C65] data-[state=active]:text-[#234C65] data-[state=inactive]:text-[#ABB3BF] data-[state=active]:shadow-none "
           >
-            Hire-purchase
+            Hire Purchase
           </TabsTrigger>
         </TabsList>
        
@@ -186,7 +182,7 @@ const FindCars = () => {
           <Rental data={rentals} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
 
-        <TabsContent value="Hire-purchase">
+        <TabsContent value="Hire Purchase">
           <HirePurchase data={hirePurchase} Selected={selectVehicle} loadMore={loadMore} isLoadMoreLoading={isloadMore}  loading={loading} />
         </TabsContent>
        </Tabs>
