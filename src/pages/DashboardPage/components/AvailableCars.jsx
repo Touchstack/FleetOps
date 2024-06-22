@@ -57,8 +57,8 @@ const AvailableCars = ({data, Selected, loading, loadMore, isLoadMoreLoading}) =
                     )}
                   {/* Car info */}
                   <div className=" flex flex-col pb-[16px]">
-                    <p className="font-SemiBold mt-3 text-[24px]">
-                       {car?.VCL} {car?.VMK} {car?.VMD}
+                    <p className="font-Bold mt-3 text-[18px]">
+                        {car?.VCL} {car?.VMK} {car?.VMD}
                     </p>
                   </div>
                   {/* Car info */}

@@ -27,17 +27,15 @@ const MobileFilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) =
 
       const [AllFilter, setAllFilter] = useState(false) 
       const length = Object.values(selectedValues).filter(value => value !== '').length
-
-     // console.log("Selected data on bar =>>", selectedValues)
+ 
 
      const getSearchData = async () => {
       try {
         const res = await apiGetCarOwnerVehiclesBySearch(id, selectedValues)
-         console.log("search-data =>>", res);
           if(res.status === 200){
             updateAllData(res.data?.allVehicles?.data); 
             updateAssigned(res.data?.assigned?.data);
-            updateUnassigned(res.data?.unAssigned)
+            updateUnassigned(res.data?.unAssigned?.data);
             toast.success("fetching data successful");
           }
       } catch (error) {

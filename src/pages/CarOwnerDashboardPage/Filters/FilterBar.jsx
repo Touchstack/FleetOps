@@ -126,11 +126,10 @@ const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
       const getSearchData = async () => {
         try {
           const res = await apiGetCarOwnerVehiclesBySearch(id, selectedValues)
-           //console.log("search-data =>>", res);
             if(res.status === 200){
               updateAllData(res.data?.allVehicles?.data); 
               updateAssigned(res.data?.assigned?.data);
-              updateUnassigned(res.data?.unAssigned)
+              updateUnassigned(res.data?.unAssigned?.data);
               toast.success("fetching data successful");
             }
         } catch (error) {
@@ -153,7 +152,7 @@ const FilterBar = ({ updateAllData, updateAssigned, updateUnassigned  }) => {
           if(res.status === 200){
             updateAllData(res.data?.allVehicles?.data); 
             updateAssigned(res.data?.assigned?.data);
-            updateUnassigned(res.data?.unAssigned)
+            updateUnassigned(res.data?.unAssigned?.data);
             toast.success("Results fetched succesfully");
           } else {
             toast.error(res?.response?.data?.message || "Error occurred while fetching data");

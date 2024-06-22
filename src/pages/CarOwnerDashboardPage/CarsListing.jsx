@@ -27,9 +27,6 @@ const CarsListing = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
 
-  //console.log("this is url ==>", URL)
- //console.log("this is active bid =>", activeBids)
-
   const id = localStorage.getItem("car-owner-token")
 
   const updateAllData = (data) => {
