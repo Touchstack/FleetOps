@@ -91,25 +91,6 @@ const DashboardVehicleDetailsPage = () => {
       { label: 'Fuel consumption', value: `${data?.fuel_consumption}` },
     ];
 
-
-  //   const Features = [
-  //     {
-  //        id: 1,
-  //        msg: 'Air bags'
-  //     },
-  //     {
-  //         id: 2,
-  //         msg: 'Air condition'
-  //     },
-  //     {
-  //         id: 3,
-  //         msg: 'Bluetooth connectivity'
-  //     },
-  //     {
-  //         id: 4,
-  //         msg: 'Pedestrian detection'
-  //     }
-  // ]
    
    
    
@@ -274,7 +255,7 @@ const DashboardVehicleDetailsPage = () => {
              Plan: {" "} 
                 <span className='font-Light text-[20px]'>
                   {data?.bus_model}{" "} 
-                  {data?.bus_model !== 'Ride-Hailing' &&
+                  {data?.bus_model !== 'Ride Hailing' &&
                    <>
                     / <span className="font-Light text-[20px]">GHS {data?.amount}</span>
                     {" "}
@@ -327,7 +308,7 @@ const DashboardVehicleDetailsPage = () => {
             `}
           >
             <p className={`font-${bidStatus === 'pending' ? 'Light' : 'SemiBold'} text-[19px]  ${bidStatus === 'pending' ? 'text-[#CE9A00]' : 'text-[#FFFFFF]'} pt-2`}>
-              {bidStatus === '' ? 'Place a bid' : (bidStatus === 'pending' ? 'Awaiting Response' : 'Rebid')}
+              {bidStatus === '' ? 'Place a bid' : (bidStatus === 'pending' || bidStatus === 'accepted' ? 'Awaiting Response' : 'Rebid')}
             </p>
           </button>
         

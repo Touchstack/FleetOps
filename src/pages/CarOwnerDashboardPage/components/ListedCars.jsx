@@ -87,7 +87,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                         {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
                       
-                      {car?.bus_model !== 'Ride-Hailing' ? (
+                      {car?.bus_model !== 'Ride Hailing' ? (
                         <p className="font-Bold text-[18px]">
                           Plan: <span className="font-Medium">{car?.bus_model}/ GHS {car?.amount} </span>
                         </p>
@@ -95,7 +95,7 @@ const ListedCars = ({data, loading, onUnassignClick }) => {
                         null
                       }
 
-                      {car?.bus_model === 'Ride-Hailing' ? (
+                      {car?.bus_model === 'Ride Hailing' ? (
                         <p className="font-Bold text-[18px]">
                           Plan: <span className="font-Medium">{car?.bus_model}</span>
                         </p>

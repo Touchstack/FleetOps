@@ -25,7 +25,7 @@ const HomePage = () => {
       name: "Bernice Buensi Otoo",
       image: BerniceImg,
       answer:
-        "Being frequent travelers living almost in the countryside, my husband and I have found great peace of mind in the Fleetops platform. During our time away, we enrolled in their service and experienced the security of having our cars efficiently managed under their rental system. The platform seamlessly connected us with trustworthy drivers who not only ensured the safety of our vehicles but also utilized them for ride-hailing services like Uber and Bolt, allowing them to earn a livelihood. We are thrilled to be part of a platform that offers such a combination of freedom and security. Choosing FleetOps has truly been a rewarding decision for us.",
+        "Being frequent travelers living almost in the countryside, my husband and I have found great peace of mind in the Fleetops platform. During our time away, we enrolled in their service and experienced the security of having our cars efficiently managed under their rental system. The platform seamlessly connected us with trustworthy drivers who not only ensured the safety of our vehicles but also utilized them for Ride Hailing services like Uber and Bolt, allowing them to earn a livelihood. We are thrilled to be part of a platform that offers such a combination of freedom and security. Choosing FleetOps has truly been a rewarding decision for us.",
     },
   ];
 

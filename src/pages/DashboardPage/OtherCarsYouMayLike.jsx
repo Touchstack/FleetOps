@@ -36,7 +36,7 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
                   </div>
                 )}
                 {/* Price tag */}
-                {car?.bus_model !== "Ride-Hailing" ? (
+                {car?.bus_model !== "Ride Hailing" ? (
                      <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 md:left-5 px-[15px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
                      <p>{car?.bus_model}/GHS {car?.amount}{" "}</p>
                      <span className="text-[13.32px] font-Light pt-1">{car?.periodicity}</span>
@@ -45,7 +45,7 @@ const OtherCarsYouMayLike = ({Data, loading}) => {
                       null
                    )}
 
-                   {car?.bus_model === "Ride-Hailing" ? (
+                   {car?.bus_model === "Ride Hailing" ? (
                      <div className="absolute hover:bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 flex pt-2 top-10 left-8 md:left-5 px-[15px] py-[5px] font-SemiBold text-[16.87px] gap-1 rounded-[35.51px] text-[#FFFFFF] bg-[#234C65]">
                        <p>{car?.bus_model} plan</p>
                      </div>

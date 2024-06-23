@@ -70,7 +70,7 @@ const UnassignedCars = ({data, loading}) => {
                         {car?.VCL} {car?.VMK} {car?.VMD} ({car?.VNO})
                       </p>
                       
-                      {car?.bus_model !== 'Ride-Hailing' ? (
+                      {car?.bus_model !== 'Ride Hailing' ? (
                         <p className="font-Bold text-[18px]">
                           Plan: <span className="font-Medium">{car?.bus_model}/ GHS {car?.amount} </span>
                         </p>
@@ -78,7 +78,7 @@ const UnassignedCars = ({data, loading}) => {
                         null
                       }
 
-                      {car?.bus_model === 'Ride-Hailing' ? (
+                      {car?.bus_model === 'Ride Hailing' ? (
                         <p className="font-Bold text-[18px]">
                           Plan: <span className="font-Medium">{car?.bus_model}</span>
                         </p>
