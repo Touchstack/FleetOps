@@ -279,7 +279,7 @@ const DashboardVehicleDetailsPage = () => {
           </div>
           {/* Terms */}
 
-          {licenseExpired === false && 
+          {licenseExpired === true && 
              <p className='text-red-400 font-Bold w-60'>
                You are unable to place a bid right now, 
                please update  your 
