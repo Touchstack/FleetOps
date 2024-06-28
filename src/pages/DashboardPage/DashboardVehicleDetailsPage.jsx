@@ -281,7 +281,7 @@ const DashboardVehicleDetailsPage = () => {
 
           {licenseExpired === true && 
              <p className='text-red-400 font-Bold w-60'>
-               Unable to place a bid right not, 
+               Unable to place a bid right now, 
                please update and validate your 
                records with {" "}
                <a href="/contactus">
