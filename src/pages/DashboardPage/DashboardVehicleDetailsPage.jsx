@@ -279,13 +279,13 @@ const DashboardVehicleDetailsPage = () => {
           </div>
           {/* Terms */}
 
-          {licenseExpired === true && 
+          {licenseExpired === false && 
              <p className='text-red-400 font-Bold w-60'>
-               Unable to place a bid right now, 
-               please update and validate your 
-               records with {" "}
+               You are unable to place a bid right now, 
+               please update  your 
+               records. {" "} <br />
                <a href="/contactus">
-                <span className='underline'>FleetOps</span>
+                <span className='underline'>Contact FleetOps</span>
                </a>.
             </p>
           }
