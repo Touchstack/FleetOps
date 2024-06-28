@@ -279,9 +279,9 @@ const DashboardVehicleDetailsPage = () => {
           </div>
           {/* Terms */}
 
-          { licenseExpired === true && 
-             <p className='text-red-400'>
-              Your driving license is Expired
+          {licenseExpired === true && 
+             <p className='text-red-400 w-60'>
+               Unable to place a bid right not, please update and validate your records with FleetOps
             </p>
           }
 
