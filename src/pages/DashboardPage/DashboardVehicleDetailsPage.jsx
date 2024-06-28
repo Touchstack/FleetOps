@@ -280,8 +280,13 @@ const DashboardVehicleDetailsPage = () => {
           {/* Terms */}
 
           {licenseExpired === true && 
-             <p className='text-red-400 w-60'>
-               Unable to place a bid right not, please update and validate your records with FleetOps
+             <p className='text-red-400 font-Bold w-60'>
+               Unable to place a bid right not, 
+               please update and validate your 
+               records with {" "}
+               <a href="/contactus">
+                <span className='underline'>FleetOps</span>
+               </a>.
             </p>
           }
 
