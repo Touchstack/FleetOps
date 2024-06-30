@@ -152,7 +152,7 @@ const Dashboard = () => {
                           Return car
                         </div>
                         ) : (
-                        <div className="border-[1px] py-3 px-10 rounded-[10px] text-[#FFFFFF] border-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
+                        <div className="py-3 px-10 bg-[#1A2E35] rounded-[10px] text-[#FFFFFF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
                          onClick={handleCancelRetrival}
                          >
                           Cancel Retrival
