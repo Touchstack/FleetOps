@@ -2,7 +2,7 @@ import { useState } from "react";
 import AppLogo from "../../assets/images/fleetops-logo.svg";
 import { DriverDropdown } from "./NavBarDropdown";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom"; 
+import { useLocation, useNavigate } from "react-router-dom"; 
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar"
 import { CgProfile } from "react-icons/cg";
 import { PropTypes } from 'prop-types';
@@ -16,6 +16,7 @@ export default function DashboardNavBar({ payment }) {
   const data = localStorage.getItem("driver");
   const driver = JSON.parse(data);
 
+  const navigate = useNavigate()
   const location = useLocation();
 
   const navBarToggler = () => {
@@ -174,7 +175,7 @@ export default function DashboardNavBar({ payment }) {
             {payment === true && 
             <div 
               className="border-[1px] w-6/6 flex items-center justify-center p-3 rounded-[10px] text-[#23A6BF] border-[#23A6BF] font-SemiBold hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110"
-                //onClick={}
+              onClick={()=> navigate("/drivers/dashboard")}
             >
               <p>Back to dashboard</p>
             </div> }

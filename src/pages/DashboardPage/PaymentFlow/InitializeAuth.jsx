@@ -12,6 +12,7 @@ import {
 } from "@/Components/ui/form"
 import { Input } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button"
+import { useNavigate } from "react-router-dom";
 
 
 const schema = z.object({
@@ -23,7 +24,8 @@ const schema = z.object({
   
   });
 
-const PaymentAuth = () => {
+const InitializeAuth = () => {
+   const navigate = useNavigate()
 
     const form = useForm({
         resolver: zodResolver(schema),
@@ -33,6 +35,7 @@ const PaymentAuth = () => {
     })
     
     const onSubmit = (data) => {
+      navigate("/drivers/dashboard/payment/option")
       console.log(data);
     };
 
@@ -42,7 +45,7 @@ const PaymentAuth = () => {
      <div className="flex flex-col mt-10 items-center justify-center">
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-[#0A0D14] font-Bold text-[32px] md:text-[45px]">
-          Authenticate Driver
+           Initialize Payment
         </h1>
         <p className="text-[#545151] md:text-[19px] w-7/12  text-center text-[16px] font-Light">
            Fill in the details below. Please be clear about your entries. 
@@ -84,4 +87,4 @@ const PaymentAuth = () => {
   )
 }
 
-export default PaymentAuth
+export default InitializeAuth

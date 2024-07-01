@@ -25,7 +25,6 @@ import VehicleDetails from "./pages/VehicleDetails/VehicleDetails.jsx";
 import SignUpSuccess from "./pages/SignIn/SignUpSuccess.jsx";
 import BidsPage from "./pages/BidsPage/BidsPage.jsx";
 import DashboardVehicleDetailsPage from "./pages/DashboardPage/DashboardVehicleDetailsPage.jsx";
-//import DashboardVehicleDetails from "./pages/DashboardPage/DashboardVehicleDetails.jsx"; not in use by kobby
 import CarOwnerDashboard from "./pages/CarOwnerDashboardPage/CarOwnerDashboard.jsx";
 import CarsListing from "./pages/CarOwnerDashboardPage/CarsListing.jsx";
 import CarImage from "./pages/CarOwnerDashboardPage/AssignFLow/CarImageFrontView.jsx";
@@ -42,8 +41,9 @@ import RetriveCarImageFrontView from "./pages/CarOwnerDashboardPage/RetrivalFlow
 import RetriveCarImageBackView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageBackView.jsx";
 import RetriveCarImageLeftView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageLeftView.jsx";
 import RetriveCarImageRightView from "./pages/CarOwnerDashboardPage/RetrivalFlow/RetriveCarImageRightView.jsx";
-import PaymentAuth from "./pages/DashboardPage/PaymentFlow/PaymentAuth.jsx";
+import InitializeAuth from "./pages/DashboardPage/PaymentFlow/InitializeAuth.jsx";
 import PaymentOptions from "./pages/DashboardPage/PaymentFlow/PaymentOptions.jsx";
+import Invoice from "./pages/DashboardPage/PaymentFlow/Invoice.jsx";
 
 const router = createBrowserRouter([
   {
@@ -106,9 +106,10 @@ const router = createBrowserRouter([
     element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
+  //Phase 3 routes
   {
-    path: "/drivers/dashboard/payment/auth",
-    element: <PaymentAuth />,
+    path: "/drivers/dashboard/payment/initialize",
+    element: <InitializeAuth />,
     errorElement: <ErrorPage />,
   },
   {
@@ -116,6 +117,12 @@ const router = createBrowserRouter([
     element: <PaymentOptions />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/drivers/dashboard/payment/invoice",
+    element: <Invoice />,
+    errorElement: <ErrorPage />,
+  },
+   //Phase 3 routes
   {
     path: "/drivers/dashboard",
     element: <Dashboard />,
@@ -148,7 +155,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/drivers/dashboard/vehicle/details/:id",
-     //element: <DashboardVehicleDetails />,
      element: <DashboardVehicleDetailsPage />,
     errorElement: <ErrorPage />,
   },
