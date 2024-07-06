@@ -42,12 +42,19 @@ export default function ActiveBids({ data }) {
                 possession before being allowed to be assigned yours. 24hrs are
                 allocated for this process.
               </span>
+              <span className="">
+                {" "}
+                Please note that FleetOps only provides the technology to facilitate the connection between  driver and car owner and fleet management information.
+                It is the car owners' responsibility to carry out full background checks and due diligence on the driver prior to assigning their vehicles to them.
+                To aid you in this process and to encourage an open discussion, prior to giving you vehicle out, we provide some minimum information such as drivers' license copy, contact number etc.
+                FleetOps bares no responsibility to or for whatsoever may occur upon assigning your vehicle to a driver.
+              </span>
             </p>
           </div>
         </div>
         <button
           onClick={() => setReadMore(!readMore)}
-          className={"underline w-full md:hidden mt-4"}
+          className={"underline w-full  mt-4"}
         >
           {readMore ? "Collapse" : "Read more"}
         </button>

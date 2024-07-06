@@ -98,7 +98,7 @@ const CarOwnerDashboard = () => {
           <div className="bg-white flex md:flex-row sm:flex-col flex-col justify-around items-center rounded-3xl py-10 px-10 w-full">
             <div className="lg:mb-0 md:mb-0 sm:mb-8 mb-8">
               <p className="font-Bold  md:text-4xl sm:text-3xl text-3xl">
-                Manage Your Listings
+                Manage Your Cars
               </p>
               <p className="text-gray-700 text-md pr-4 max-w-[356px]">
                 View and manage all the vehicles you’ve listed on our platform.
@@ -106,7 +106,7 @@ const CarOwnerDashboard = () => {
 
               <div onClick={() => navigate("/carowner/listing")} className="mt-3 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110  w-[140px] h-[46px] rounded-[10px] flex items-center justify-center">
                 <p className="pt-1 font-Sans font-Medium text-[#FFFFFF] text-[14px]">
-                  Manage Listings
+                  Manage Cars
                 </p>
               </div>
             </div>

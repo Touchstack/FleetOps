@@ -155,7 +155,7 @@ export default function CarOwnerDashboardNavBar() {
                 location.pathname === "/carowner/listing" || location.pathname.startsWith("/carowner/assign")  ? "text-fleetBlue" : "text-fleetNavText"
               }`}
             >
-              Car listings
+              Manage Cars
             </a>
             </motion.li>
           </motion.ul>
