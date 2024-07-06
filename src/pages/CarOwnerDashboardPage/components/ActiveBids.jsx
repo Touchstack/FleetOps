@@ -22,33 +22,31 @@ export default function ActiveBids({ data }) {
           <div>
             <MdInfo className={"w-[24px]"} size={24} color={"#E6B422"} />
           </div>
-          <div className="">
+          <div className="px-3">
             <p
               className={cn(
                 "text-[#2A2A2A] line-clamp-4",
                 readMore && "line-clamp-none"
               )}
             >
-              {" "}
-              Drivers that are currently using another vehicle are at liberty to
-              request a swap for yours.{" "}
-              <span className="">
-                Such bidders have a <b>&quot;Swap request tag&quot;</b>
-              </span>
-              <span className="">
-                {" "}
-                placed on their bids. Please note that when selected,
-                they&apos;ll have to return the vehicle currently in their
-                possession before being allowed to be assigned yours. 24hrs are
-                allocated for this process.
-              </span>
-              <span className="">
-                {" "}
-                Please note that FleetOps only provides the technology to facilitate the connection between  driver and car owner and fleet management information.
-                It is the car owners' responsibility to carry out full background checks and due diligence on the driver prior to assigning their vehicles to them.
-                To aid you in this process and to encourage an open discussion, prior to giving you vehicle out, we provide some minimum information such as drivers' license copy, contact number etc.
-                FleetOps bares no responsibility to or for whatsoever may occur upon assigning your vehicle to a driver.
-              </span>
+             
+              <ol className={"list-decimal"}>
+               <li>
+                   Please note that FleetOps only provides the technology to facilitate the connection between  driver and car owner.
+                   It is the car owners' responsibility to carry out full background checks and due diligence on the driver prior to assigning their vehicles to them.
+                   To aid you in this process and to encourage an open discussion, prior to giving your vehicle out, we provide some minimum information such as drivers' license copy, contact number etc.  {" "}
+                   <b>FleetOps bares no responsibility to or for whatsoever may occur upon assigning your vehicle to a driver.</b>
+                 </li>
+                 <li className={"mt-3"}>
+                  Drivers that are currently using another vehicle are at liberty to
+                  request a swap for yours.
+                  Such bidders have a <b>&quot;Swap request tag&quot;</b>
+                  placed on their bids. Please note that when selected,
+                  they&apos;ll have to return the vehicle currently in their
+                  possession before being allowed to be assigned yours. 24hrs are
+                  allocated for this process.
+                 </li>
+              </ol>
             </p>
           </div>
         </div>
