@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/Components/ui/form"
-import { Input } from "@/Components/ui/input";
+import { InputToolTip } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button"
 import { useNavigate } from "react-router-dom";
 
@@ -64,7 +64,9 @@ const InitializeAuth = () => {
                   <FormItem>
                     <FormLabel>Phone number</FormLabel>
                     <FormControl>
-                      <Input 
+                      <InputToolTip
+                        type="tel" 
+                        name="phoneNumber" 
                         placeholder='Enter your phone number' 
                         className="w-[348px] h-12"  {...field} 
                         />
@@ -73,8 +75,7 @@ const InitializeAuth = () => {
                   </FormItem>
                 )}
               />
-
-          <Button type="submit" className="mt-16 bg-[#23A6BF] hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-full md:w-[200px] h-[46px] rounded-[10px] flex items-center justify-center">
+          <Button  disabled={!form.formState.isValid} type="submit" className={`mt-16 ${!form.formState.isValid ? 'bg-[#AAAAAA]' : 'bg-[#23A6BF]'}  hover:cursor-pointer transition duration-700 ease-in-out hover:scale-110 w-full md:w-[200px] h-[46px] rounded-[10px] flex items-center justify-center`}>
             <p className=" font-Sans text-[#FFFFFF] text-[14px]">
              Continue
            </p>

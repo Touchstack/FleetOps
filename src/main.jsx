@@ -44,6 +44,7 @@ import RetriveCarImageRightView from "./pages/CarOwnerDashboardPage/RetrivalFlow
 import InitializeAuth from "./pages/DashboardPage/PaymentFlow/InitializeAuth.jsx";
 import PaymentOptions from "./pages/DashboardPage/PaymentFlow/PaymentOptions.jsx";
 import Invoice from "./pages/DashboardPage/PaymentFlow/Invoice.jsx";
+import SalesReporting from "./pages/DashboardPage/PaymentFlow/SalesReporting.jsx";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,11 @@ const router = createBrowserRouter([
   {
     path: "/drivers/dashboard/payment/invoice",
     element: <Invoice />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/drivers/dashboard/payment/sales/reporting",
+    element: <SalesReporting />,
     errorElement: <ErrorPage />,
   },
    //Phase 3 routes

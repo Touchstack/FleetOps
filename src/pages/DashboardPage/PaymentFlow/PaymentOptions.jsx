@@ -80,6 +80,7 @@ const PaymentOptions = () => {
           onClick={() => {
             if (selectedProvider) {
               navigate('/drivers/dashboard/payment/invoice')
+              //navigate('/drivers/dashboard/payment/sales/reporting')
             }
           }}
         >
